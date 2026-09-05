@@ -745,12 +745,18 @@ class SpokenMathParser {
     if (this.accept("divided", "by")) return "\\div ";
     if (this.accept("multiplied", "by")) return "\\times ";
 
+    // --- Function application in legacy alt text: "g of x" → g(x)
+    if (lower === "of" && /[A-Za-z]\s*$/.test(soFar)) {
+      this.next();
+      return `(${this.atom()})`;
+    }
+
     // --- Simple binary "a over b" (legacy alt text)
     if (lower === "over") {
       this.next();
       const left = lastAtom(soFar);
       const right = this.atom();
-      if (left) return ` FRAC${left.length} \\frac{${left}}{${right}}`; // marker handled by caller
+      if (left) return `\u0000FRAC${left.length}\u0000\\frac{${left}}{${right}}`; // marker handled by caller
       return `/${right}`;
     }
 
@@ -805,9 +811,9 @@ function lastAtom(latex: string): string {
 export function spokenMathToLatex(text: string): string {
   const parser = new SpokenMathParser(text);
   let out = parser.parse();
-  // Resolve "a over b" markers:  FRAC<n>  means "drop the previous
+  // Resolve "a over b" markers: \u0000FRAC<n>\u0000 means "drop the previous
   // n characters, they were folded into the \frac that follows".
-  const marker = / FRAC(\d+) /;
+  const marker = /\u0000FRAC(\d+)\u0000/;
   let m = marker.exec(out);
   while (m) {
     const n = Number(m[1]);
@@ -822,7 +828,10 @@ export function spokenMathToLatex(text: string): string {
 /* HTML fragment → BlueMind markup                                        */
 /* ---------------------------------------------------------------------- */
 
-export type ImageRef = { kind: "svg"; svg: string } | { kind: "data"; dataUrl: string } | { kind: "url"; src: string };
+export type ImageRef =
+  | { kind: "svg"; svg: string }
+  | { kind: "data"; dataUrl: string; formula?: boolean }
+  | { kind: "url"; src: string };
 
 export interface FragmentResult {
   text: string;
@@ -964,8 +973,12 @@ class FragmentConverter {
         const src = node.attrs["src"] ?? "";
         const isMathImage = /\bmath-img\b/.test(cls) || node.attrs["role"] === "math";
         if (isMathImage) {
-          const latex = spokenMathToLatex(alt);
-          return latex ? `$${latex}$` : "";
+          const latex = alt.trim() ? spokenMathToLatex(alt) : "";
+          if (latex) return `$${latex}$`;
+          // No spoken text to rebuild the formula from — keep the PNG itself.
+          if (src.startsWith("data:")) this.images.push({ kind: "data", dataUrl: src, formula: true });
+          else this.warnings.push("formula image without alt text was dropped");
+          return "";
         }
         if (src.startsWith("data:")) this.images.push({ kind: "data", dataUrl: src });
         else if (/^https?:\/\//.test(src)) this.images.push({ kind: "url", src });
@@ -1057,7 +1070,7 @@ class FragmentConverter {
             const span = Math.max(1, Number(c.attrs["colspan"] ?? 1) || 1);
             const latex = this.cellLatex(c.children, c.name === "th");
             cells.push(span > 1 ? `\\multicolumn{${span}}{|c|}{${latex}}` : latex);
-            for (let s = 1; s < span; s++) cells.push(" SPAN");
+            for (let s = 1; s < span; s++) cells.push("\u0000SPAN");
           }
           rows.push({ cells, header });
         } else {
@@ -1073,7 +1086,7 @@ class FragmentConverter {
       .map((r) => {
         const cells = [...r.cells];
         while (cells.length < width) cells.push("");
-        return cells.filter((c) => c !== " SPAN").join(" & ");
+        return cells.filter((c) => c !== "\u0000SPAN").join(" & ");
       })
       .join(" \\\\ \\hline ");
     const block = `$$\\begin{array}{${spec}}\\hline ${body} \\\\ \\hline\\end{array}$$`;
@@ -1308,10 +1321,16 @@ export interface ConvertedQuestion {
 
 /** Picks a single data URL for a fragment's figures — SVGs are stacked
  * into one image; a raster image wins if it's the only kind present. */
-function resolveImages(images: ImageRef[], warnings: string[]): { imageData: string | null; pendingUrls: string[] } {
+function resolveImages(
+  images: ImageRef[],
+  warnings: string[],
+  allowFormulaImages = false
+): { imageData: string | null; pendingUrls: string[] } {
   if (images.length === 0) return { imageData: null, pendingUrls: [] };
   const svgs = images.filter((i): i is Extract<ImageRef, { kind: "svg" }> => i.kind === "svg");
-  const datas = images.filter((i): i is Extract<ImageRef, { kind: "data" }> => i.kind === "data");
+  const allDatas = images.filter((i): i is Extract<ImageRef, { kind: "data" }> => i.kind === "data");
+  const datas = allowFormulaImages ? allDatas : allDatas.filter((i) => !i.formula);
+  if (datas.length < allDatas.length) warnings.push("formula image without alt text was dropped from the question text");
   const urls = images.filter((i): i is Extract<ImageRef, { kind: "url" }> => i.kind === "url");
   if (svgs.length > 0) {
     if (datas.length > 0 || urls.length > 0) warnings.push("mixed SVG and raster figures — only the SVG figure(s) were kept");
@@ -1321,6 +1340,7 @@ function resolveImages(images: ImageRef[], warnings: string[]): { imageData: str
     if (datas.length > 1 || urls.length > 0) warnings.push("several raster figures — only the first was kept");
     return { imageData: datas[0].dataUrl, pendingUrls: [] };
   }
+  if (urls.length === 0) return { imageData: null, pendingUrls: [] };
   if (urls.length > 1) warnings.push("several remote figures — only the first was kept");
   return { imageData: null, pendingUrls: [urls[0].src] };
 }
@@ -1385,7 +1405,7 @@ export function convertModernQuestion(raw: ModernQuestionJson, section: "Math" |
     raw.answerOptions.forEach((opt, i) => {
       const conv = htmlToMarkup(opt.content);
       warnings.push(...conv.warnings.map((w) => `choice ${LETTERS[i]}: ${w}`));
-      const img = resolveImages(conv.images, warnings);
+      const img = resolveImages(conv.images, warnings, true);
       if (img.pendingUrls.length) warnings.push(`choice ${LETTERS[i]}: remote image not embedded`);
       choices.push({ id: LETTERS[i] ?? String(i + 1), text: conv.text, imageData: img.imageData });
     });
@@ -1487,7 +1507,13 @@ function denominatorFromWord(word: string): number | null {
 /** "three halves" → "3/2", "negative one fourth" → "-1/4", "twelve" → "12",
  * "five point five" → "5.5", "StartFraction 3 Over 2 EndFraction" → "3/2". */
 export function spokenNumberToAnswer(alt: string): string | null {
-  let s = alt.trim().toLowerCase().replace(/[,]/g, "").replace(/\s+/g, " ");
+  let s = alt
+    .trim()
+    .toLowerCase()
+    .replace(/[,]/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/^(?:the )?(?:fraction|quantity|value|number|decimal|integer) /, "")
+    .trim();
   if (!s) return null;
   let sign = "";
   const neg = /^(negative|minus)\s+/.exec(s);
@@ -1596,7 +1622,7 @@ export function convertLegacyQuestion(raw: LegacyQuestionJson, section: "Math" |
       const conv = htmlToMarkup(c.body);
       const letter = /^[a-f]$/i.test(key) ? key.toUpperCase() : LETTERS[i];
       warnings.push(...conv.warnings.map((w) => `choice ${letter}: ${w}`));
-      const img = resolveImages(conv.images, warnings);
+      const img = resolveImages(conv.images, warnings, true);
       choices.push({ id: letter, text: conv.text, imageData: img.imageData });
     });
     const given = Array.isArray(answer.correct_choice) ? answer.correct_choice : answer.correct_choice ? [answer.correct_choice] : [];

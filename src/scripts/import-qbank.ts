@@ -506,12 +506,6 @@ async function writeToDatabase(rows: ImportRow[]): Promise<{ inserted: number; u
   const { db } = await import("../lib/db");
   const { newId } = await import("../lib/id");
 
-  const existing = (await db.prepare("SELECT id, external_id FROM questions WHERE external_id IS NOT NULL").all()) as {
-    id: string;
-    external_id: string;
-  }[];
-  const idByExternal = new Map(existing.map((e) => [e.external_id, e.id]));
-
   // Stable ordering inside each section — domain, skill, difficulty, ID —
   // written into `position` so listings never depend on random ids.
   const bySection = new Map<Section, ImportRow[]>();
@@ -522,6 +516,28 @@ async function writeToDatabase(rows: ImportRow[]): Promise<{ inserted: number; u
     list.forEach((r, i) => positions.set(r.externalId, i + 1));
   }
 
+  // Single-statement upsert keyed on external_id: an existing row keeps its
+  // id and created_at (so student history stays attached) and gets its
+  // content refreshed; a new one is inserted. Being one statement, it is
+  // also safe if two imports ever overlap — the second simply updates.
+  const UPSERT = `INSERT INTO questions
+       (id, mock_id, section, domain, skill, difficulty, module, module_pool,
+        passage_text, image_data, question_text, choices, correct_answer, question_type,
+        rationale, explanation, estimated_time, source, version, review_status, position, external_id)
+     VALUES (?, NULL, ?, ?, ?, ?, 1, NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 'validated', ?, ?)
+     ON CONFLICT (external_id) WHERE external_id IS NOT NULL DO UPDATE SET
+       section = EXCLUDED.section, domain = EXCLUDED.domain, skill = EXCLUDED.skill,
+       difficulty = EXCLUDED.difficulty, module = 1, module_pool = NULL,
+       passage_text = EXCLUDED.passage_text, image_data = EXCLUDED.image_data,
+       question_text = EXCLUDED.question_text, choices = EXCLUDED.choices,
+       correct_answer = EXCLUDED.correct_answer, question_type = EXCLUDED.question_type,
+       rationale = EXCLUDED.rationale, explanation = EXCLUDED.explanation,
+       estimated_time = EXCLUDED.estimated_time, source = EXCLUDED.source,
+       review_status = 'validated', position = EXCLUDED.position,
+       version = questions.version + 1,
+       updated_at = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')
+     RETURNING (xmax = 0) AS inserted`;
+
   let inserted = 0;
   let updated = 0;
   const BATCH = 100;
@@ -531,70 +547,29 @@ async function writeToDatabase(rows: ImportRow[]): Promise<{ inserted: number; u
       for (const row of batch) {
         const c = row.converted;
         const choicesJson = JSON.stringify(c.choices.map((ch) => ({ id: ch.id, text: ch.text, imageData: ch.imageData ?? null })));
-        const estimatedTime = SECTION_CONFIG[row.section].estimatedTime;
-        const existingId = idByExternal.get(row.externalId);
-        if (existingId) {
-          await tx
-            .prepare(
-              `UPDATE questions SET
-                 section = ?, domain = ?, skill = ?, difficulty = ?, module = 1, module_pool = NULL,
-                 passage_text = ?, image_data = ?, question_text = ?, choices = ?, correct_answer = ?,
-                 question_type = ?, rationale = ?, explanation = ?, estimated_time = ?, source = ?,
-                 review_status = 'validated', position = ?, version = version + 1,
-                 updated_at = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')
-               WHERE id = ?`
-            )
-            .run(
-              row.section,
-              row.domain,
-              row.skill,
-              row.difficulty,
-              c.passageText,
-              c.imageData,
-              c.questionText,
-              choicesJson,
-              c.correctAnswer,
-              c.questionType,
-              c.rationale,
-              c.explanation,
-              estimatedTime,
-              QBANK_SOURCE,
-              positions.get(row.externalId) ?? 0,
-              existingId
-            );
-          updated++;
-        } else {
-          const id = newId("q");
-          await tx
-            .prepare(
-              `INSERT INTO questions
-                 (id, mock_id, section, domain, skill, difficulty, module, module_pool,
-                  passage_text, image_data, question_text, choices, correct_answer, question_type,
-                  rationale, explanation, estimated_time, source, version, review_status, position, external_id)
-               VALUES (?, NULL, ?, ?, ?, ?, 1, NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 'validated', ?, ?)`
-            )
-            .run(
-              id,
-              row.section,
-              row.domain,
-              row.skill,
-              row.difficulty,
-              c.passageText,
-              c.imageData,
-              c.questionText,
-              choicesJson,
-              c.correctAnswer,
-              c.questionType,
-              c.rationale,
-              c.explanation,
-              estimatedTime,
-              QBANK_SOURCE,
-              positions.get(row.externalId) ?? 0,
-              row.externalId
-            );
-          idByExternal.set(row.externalId, id);
-          inserted++;
-        }
+        const result = (await tx
+          .prepare(UPSERT)
+          .get(
+            newId("q"),
+            row.section,
+            row.domain,
+            row.skill,
+            row.difficulty,
+            c.passageText,
+            c.imageData,
+            c.questionText,
+            choicesJson,
+            c.correctAnswer,
+            c.questionType,
+            c.rationale,
+            c.explanation,
+            SECTION_CONFIG[row.section].estimatedTime,
+            QBANK_SOURCE,
+            positions.get(row.externalId) ?? 0,
+            row.externalId
+          )) as { inserted: boolean } | undefined;
+        if (result?.inserted) inserted++;
+        else updated++;
       }
     });
     process.stdout.write(`\r  ${Math.min(start + BATCH, rows.length)}/${rows.length} written   `);
@@ -608,9 +583,42 @@ async function writeToDatabase(rows: ImportRow[]): Promise<{ inserted: number; u
 /* Main                                                                   */
 /* ---------------------------------------------------------------------- */
 
+function acquireLock(): () => void {
+  ensureDir(RAW_DIR);
+  const lockFile = path.join(RAW_DIR, ".import.lock");
+  if (fs.existsSync(lockFile)) {
+    const pid = Number(fs.readFileSync(lockFile, "utf-8").trim());
+    let alive = false;
+    if (pid) {
+      try {
+        process.kill(pid, 0);
+        alive = true;
+      } catch {
+        alive = false;
+      }
+    }
+    if (alive) fail(`Another import is already running (pid ${pid}). Wait for it to finish, or delete ${lockFile} if it crashed.`);
+  }
+  fs.writeFileSync(lockFile, String(process.pid));
+  const release = () => {
+    try {
+      fs.unlinkSync(lockFile);
+    } catch {
+      // already gone
+    }
+  };
+  process.on("exit", release);
+  process.on("SIGINT", () => {
+    release();
+    process.exit(130);
+  });
+  return release;
+}
+
 async function main() {
   const opts = parseArgs();
   ensureDir(RAW_DIR);
+  acquireLock();
   console.log(`College Board SAT Question Bank → BlueMind`);
   console.log(`  sections: ${opts.sections.join(", ")}${opts.dryRun ? "  (dry run)" : ""}${opts.fetchOnly ? "  (fetch only)" : ""}${opts.offline ? "  (offline)" : ""}\n`);
 
