@@ -12,6 +12,13 @@ import { AdminQuestionEditModal } from "@/components/AdminQuestionEditModal";
 import { AdminAiPasteModal } from "@/components/AdminAiPasteModal";
 import { FormatToolbar } from "@/components/FormatToolbar";
 import { TextWatermarkOverlay } from "@/components/TextWatermarkOverlay";
+// Bluebook's typefaces: Roboto for the chrome, a Times-compatible serif
+// (Tinos) for Reading & Writing passages, prompts and choices.
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import "@fontsource/tinos/400.css";
+import "@fontsource/tinos/700.css";
 
 interface Choice {
   id: string;
@@ -621,6 +628,147 @@ function OutlineCircleIcon() {
   );
 }
 
+function BookmarkIcon({ filled = false, size = 16, className = "" }: { filled?: boolean; size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" className={className} aria-hidden="true" fill={filled ? "currentColor" : "none"}>
+      <path d="M6 3h12v18l-6-4.5L6 21V3z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function LocationPinIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+    </svg>
+  );
+}
+function CoachIcon({ size = 22 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H9l-4.2 3.4c-.4.3-.8 0-.8-.5V5.5z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="M8.5 9.5h7M8.5 12.5h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Bluebook header tool: an icon with its label underneath. */
+function ToolButton({
+  label,
+  icon,
+  onClick,
+  active = false,
+  className = "",
+  title,
+}: {
+  label: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+  active?: boolean;
+  className?: string;
+  title?: string;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      title={title}
+      className={`flex flex-col items-center gap-1 min-w-[60px] px-2 pt-1 pb-1.5 rounded-md text-[12px] leading-none whitespace-nowrap hover:bg-[#f0f0f0] ${
+        active ? "text-[#324dc7]" : "text-[#1e1e1e]"
+      } ${className}`}
+    >
+      <span className="h-6 flex items-center">{icon}</span>
+      <span>{label}</span>
+    </button>
+  );
+}
+
+/** The small corner button at the top of each pane that expands it. */
+function PaneExpandButton({ expanded, onClick, title }: { expanded: boolean; onClick: () => void; title: string }) {
+  return (
+    <button
+      onClick={onClick}
+      title={title}
+      className="w-7 h-7 rounded-[4px] border border-[#8f8f8f] bg-white text-[#3b3b3b] flex items-center justify-center hover:bg-[#f0f0f0]"
+    >
+      {expanded ? <CompressCornerIcon /> : <ExpandCornerIcon />}
+    </button>
+  );
+}
+
+/** One numbered square in the question navigator / review page grid —
+ * filled blue when answered, dashed outline when not, a red bookmark when
+ * marked for review, and a location pin above the current question. */
+function QuestionTile({
+  number,
+  answered,
+  marked,
+  current,
+  onClick,
+  size = 40,
+}: {
+  number: number;
+  answered: boolean;
+  marked: boolean;
+  current: boolean;
+  onClick: () => void;
+  size?: number;
+}) {
+  return (
+    <button onClick={onClick} className="relative flex items-center justify-center mx-auto" style={{ width: size, height: size }}>
+      {current && (
+        <span className="absolute -top-[19px] left-1/2 -translate-x-1/2 text-[#1e1e1e]">
+          <LocationPinIcon size={17} />
+        </span>
+      )}
+      <span
+        className={`w-full h-full flex items-center justify-center text-[16px] font-bold ${
+          answered ? "bg-[#324dc7] text-white" : "bg-white text-[#324dc7] border border-dashed border-[#1e1e1e]"
+        }`}
+      >
+        {number}
+      </span>
+      {marked && (
+        <span className="absolute -top-[8px] -right-[7px] text-[#c13515]">
+          <BookmarkIcon filled size={15} />
+        </span>
+      )}
+    </button>
+  );
+}
+
+function NavigatorLegend() {
+  return (
+    <div className="flex items-center justify-center gap-6 text-[14px] text-[#1e1e1e] flex-wrap">
+      <span className="flex items-center gap-1.5">
+        <LocationPinIcon size={16} /> Current
+      </span>
+      <span className="flex items-center gap-1.5">
+        <span className="w-[18px] h-[18px] border border-dashed border-[#1e1e1e] bg-white" /> Unanswered
+      </span>
+      <span className="flex items-center gap-1.5">
+        <BookmarkIcon filled size={16} className="text-[#c13515]" /> For Review
+      </span>
+    </div>
+  );
+}
+
+const RW_DIRECTIONS = [
+  "The questions in this section address a number of important reading and writing skills. Each question includes one or more passages, which may include a table or graph. Read each passage and question carefully, and then choose the best answer to the question based on the passage(s).",
+  "All questions in this section are multiple-choice with four answer choices. Each question has a single best answer.",
+  "Select any text in the passage to highlight it, and use the ABC button to cross out answer choices. You can go back and change answers within this module before time runs out, and you can mark questions to revisit using the bookmark.",
+];
+const MATH_DIRECTIONS = [
+  "The questions in this section address a number of important math skills.",
+  "Use of a calculator is permitted for all questions. A reference sheet, calculator, and these directions can be accessed throughout the test.",
+  "Unless otherwise indicated: all variables and expressions represent real numbers; figures provided are drawn to scale; all figures lie in a plane; the domain of a given function f is the set of all real numbers x for which f(x) is a real number.",
+  "For multiple-choice questions, solve each problem and choose the correct answer from the choices provided. Each multiple-choice question has a single correct answer.",
+  "For student-produced response questions, solve each problem and enter your answer in the box. If you find more than one correct answer, enter only one answer. You can enter up to 5 characters for a positive answer and up to 6 characters (including the negative sign) for a negative answer. If your answer is a fraction that doesn't fit in the provided space, enter the decimal equivalent. If your answer is a decimal that doesn't fit in the provided space, enter it by truncating or rounding at the fourth digit. If your answer is a mixed number (such as 3½), enter it as an improper fraction (7/2) or its decimal equivalent (3.5). Don't enter symbols such as a percent sign, comma, or dollar sign.",
+];
+
 function ChoiceRow({
   letter,
   text,
@@ -654,21 +802,21 @@ function ChoiceRow({
           }
         }}
         aria-disabled={crossedOut}
-        className={`relative flex-1 flex items-center gap-3.5 text-left px-5 py-4 rounded-lg border transition-colors cursor-pointer overflow-hidden ${
+        className={`relative flex-1 flex items-center gap-3 text-left px-3.5 py-2.5 rounded-lg border bg-white overflow-hidden ${
           selected
-            ? "border-brand-blue bg-brand-blue-light"
+            ? "border-[#324dc7] shadow-[inset_0_0_0_1px_#324dc7] cursor-pointer"
             : crossedOut
-              ? "border-brand-border bg-slate-100"
-              : "border-brand-border hover:border-amber-400 hover:bg-amber-50"
-        } ${crossedOut ? "cursor-not-allowed" : ""}`}
+              ? "border-[#8f8f8f] cursor-not-allowed"
+              : "border-[#1e1e1e] hover:bg-[#f5f5f5] cursor-pointer"
+        }`}
       >
         <span
-          className={`shrink-0 w-7 h-7 rounded-full border flex items-center justify-center text-sm font-bold ${
+          className={`shrink-0 w-[26px] h-[26px] rounded-full border-[1.5px] flex items-center justify-center text-[13px] font-bold ${
             selected
-              ? "bg-brand-blue border-brand-blue text-white"
+              ? "bg-[#324dc7] border-[#324dc7] text-white"
               : crossedOut
-                ? "border-brand-slate/50 text-brand-slate bg-white"
-                : "border-brand-navy text-brand-navy bg-white"
+                ? "border-[#8f8f8f] text-[#8f8f8f] bg-white"
+                : "border-[#1e1e1e] text-[#1e1e1e] bg-white"
           }`}
         >
           {letter}
@@ -676,37 +824,36 @@ function ChoiceRow({
         {/* An image-only choice (no text entered alongside it) renders just
             the image — no empty text line taking up space beside it. A
             choice with both shows the image above the text. */}
-        <span className={`flex-1 min-w-0 ${crossedOut ? "text-brand-slate" : "text-brand-navy"}`}>
+        <span className={`flex-1 min-w-0 ${crossedOut ? "text-[#8f8f8f]" : "text-[#1e1e1e]"}`}>
           {imageData && (
             <img
               src={imageData}
               alt={`Choice ${letter}`}
-              className={`max-w-full h-auto rounded-md border border-brand-border/60 ${hasText ? "mb-2 max-h-40" : "max-h-48"}`}
+              className={`max-w-full h-auto ${hasText ? "mb-2 max-h-40" : "max-h-48"}`}
             />
           )}
           {hasText && (
-            <span className="text-base font-normal leading-snug">
+            <span className="text-[16px] font-normal leading-snug">
               <MathText text={text} mathOnly />
             </span>
           )}
         </span>
-        {/* Full-width strike line across the whole choice box — matches the
-            real Bluebook eliminator look, not just a line through the text. */}
+        {/* Full-width strike line across the whole choice box, exactly as
+            Bluebook's answer eliminator draws it. */}
         {crossedOut && (
-          <span className="absolute left-4 right-4 top-1/2 -translate-y-1/2 h-px bg-brand-slate/70 pointer-events-none" />
+          <span className="absolute left-3 right-3 top-1/2 -translate-y-1/2 h-[2px] bg-[#1e1e1e] pointer-events-none" />
         )}
       </div>
-      {/* Eliminator target — only present while Eliminator mode (the header
-          ABC toggle) is turned on, matching the real Bluebook UI exactly:
-          no circles at all when it's off, a lettered circle next to every
-          choice once it's on. */}
+      {/* Eliminator target — only present while the ABC tool is on: a small
+          struck-through letter next to every choice, or "Undo" once that
+          choice has been crossed out. */}
       {eliminatorMode &&
         (crossedOut ? (
           <button
             type="button"
             onClick={onToggleCrossOut}
             title="Restore choice"
-            className="shrink-0 text-xs font-semibold text-brand-blue border border-brand-blue rounded-full px-3 py-1.5 hover:bg-brand-blue-light whitespace-nowrap"
+            className="shrink-0 w-[42px] text-[13px] font-medium text-[#1e1e1e] underline underline-offset-2 hover:no-underline whitespace-nowrap"
           >
             Undo
           </button>
@@ -715,9 +862,10 @@ function ChoiceRow({
             type="button"
             onClick={onToggleCrossOut}
             title="Cross out choice"
-            className="shrink-0 w-7 h-7 rounded-full border border-brand-border text-brand-slate hover:bg-slate-50 flex items-center justify-center text-[11px] font-semibold"
+            className="shrink-0 relative w-[26px] h-[26px] mx-2 rounded-full border-[1.5px] border-[#1e1e1e] text-[#1e1e1e] bg-white hover:bg-[#f0f0f0] flex items-center justify-center text-[12px] font-bold"
           >
             {letter}
+            <span className="absolute -left-[4px] -right-[4px] top-1/2 h-[1.5px] bg-[#1e1e1e]" />
           </button>
         ))}
     </div>
@@ -2208,60 +2356,78 @@ export default function GuestPracticePage({
 
   const isCrossedOut = (qId: string, choiceId: string) => (crossedOut[qId] ?? []).includes(choiceId);
 
+  // Bluebook's header title: "Section 1, Module 1: Reading and Writing".
+  // Question Bank sets carry their own label ("Question Bank: Algebra").
+  const examTitle = isBank ? mockTitle.replace(" · ", ": ") : `Section ${sectionNumber}, Module ${module}: ${section}`;
+
   return (
-    <div ref={examRootRef} className={`h-screen flex flex-col overflow-hidden ${darkMode ? "exam-dark bg-[#0b1220]" : "bg-brand-bg"}`}>
+    <div ref={examRootRef} className={`bluebook h-screen flex flex-col overflow-hidden ${darkMode ? "exam-dark bg-[#0b1220]" : "bg-white"}`}>
       <TextWatermarkOverlay dark={darkMode} />
-      {/* ---------------- Top chrome bar ---------------- */}
-      <header className="bg-white px-4 sm:px-6 py-4 grid grid-cols-[1fr_auto_1fr] items-center gap-4 shrink-0 relative z-30 leading-none">
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="shrink-0 text-brand-blue">
-            <BrainMark size={30} />
-          </span>
-          <div className="min-w-0">
-            <p className="text-lg font-bold text-brand-navy truncate leading-none">
-              {mockTitle}{moduleSuffix}
-            </p>
+      {/* ---------------- Top chrome bar — Bluebook layout: title + Directions on
+          the left, timer with Hide underneath in the middle, labelled tool
+          icons on the right ---------------- */}
+      <header className="bg-white px-4 sm:px-6 pt-3 pb-2 grid grid-cols-[1fr_auto_1fr] items-start gap-4 shrink-0 relative z-30">
+        <div className="min-w-0 relative">
+          <p className="text-[19px] sm:text-[20px] text-[#1e1e1e] truncate leading-tight">{examTitle}</p>
+          <div className="flex items-center gap-3 mt-1 min-w-0">
             <button
-              onClick={() => setDirectionsOpen(true)}
-              className="flex items-center gap-1 text-sm text-brand-slate hover:text-brand-navy mt-2"
+              onClick={() => setDirectionsOpen((v) => !v)}
+              className="flex items-center gap-1 text-[14px] text-[#1e1e1e] hover:underline underline-offset-2 shrink-0"
             >
-              Directions <ChevronDownIcon />
+              Directions <ChevronDownIcon className={directionsOpen ? "rotate-180" : ""} />
             </button>
+            {!isBank && mockTitle && <span className="text-[12px] text-[#6b6b6b] truncate">{mockTitle}</span>}
           </div>
+          {directionsOpen && (
+            <>
+              <div className="fixed inset-0 z-30" onClick={() => setDirectionsOpen(false)} />
+              <div className="absolute left-0 top-[60px] z-40 w-[640px] max-w-[calc(100vw-2rem)] bg-white rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.28)] border border-[#d9d9d9] p-6 text-[15px] leading-relaxed text-[#1e1e1e] space-y-3 max-h-[70vh] overflow-y-auto">
+                {(isMath ? MATH_DIRECTIONS : RW_DIRECTIONS).map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+                <div className="flex justify-end pt-2">
+                  <button onClick={() => setDirectionsOpen(false)} className="bb-btn-primary">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
-        <div className="flex flex-col items-center gap-1.5 shrink-0 justify-self-center">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col items-center shrink-0 justify-self-center pt-0.5">
+          {timerHidden ? (
+            <span className="h-[30px] flex items-center text-[#1e1e1e]">
+              <StopwatchIcon size={22} />
+            </span>
+          ) : (
+            <span
+              className={`h-[30px] flex items-center text-[22px] font-medium tabular-nums leading-none ${
+                secondsLeft > 0 && secondsLeft <= 300 ? "text-[#c13515]" : "text-[#1e1e1e]"
+              }`}
+            >
+              {timeStr}
+            </span>
+          )}
+          <div className="flex items-center gap-1.5 mt-1">
+            <button
+              onClick={() => setTimerHidden((v) => !v)}
+              className="text-[13px] font-medium text-[#1e1e1e] border border-[#1e1e1e] rounded-full px-3 h-[24px] leading-none hover:bg-[#f0f0f0] whitespace-nowrap"
+            >
+              {timerHidden ? "Show" : "Hide"}
+            </button>
             <button
               onClick={() => setTimerPaused((v) => !v)}
               title={timerPaused ? "Resume timer" : "Pause timer — no limit on how long you can stay paused"}
-              className="flex flex-col items-center justify-center gap-0.5 w-[58px] h-9 text-[11px] font-semibold rounded-lg border border-brand-border text-brand-navy hover:bg-slate-50 whitespace-nowrap"
+              className={`w-[24px] h-[24px] rounded-full border flex items-center justify-center ${
+                timerPaused ? "border-[#324dc7] text-[#324dc7] bg-[#eef1fb]" : "border-[#1e1e1e] text-[#1e1e1e] hover:bg-[#f0f0f0]"
+              }`}
             >
               {timerPaused ? <PlayIcon /> : <PauseIcon />}
-              <span>{timerPaused ? "Resume" : "Pause"}</span>
             </button>
-            {timerHidden ? (
-              <span className="flex items-center text-brand-navy">
-                <StopwatchIcon size={24} />
-              </span>
-            ) : (
-              <span
-                className={`text-lg font-bold tabular-nums leading-none ${
-                  secondsLeft > 0 && secondsLeft <= 300 ? "text-[#B3453F]" : "text-brand-navy"
-                }`}
-              >
-                {timeStr}
-              </span>
-            )}
           </div>
-          <button
-            onClick={() => setTimerHidden((v) => !v)}
-            className="text-sm font-medium text-brand-navy border border-brand-border rounded-full px-4 py-1 hover:bg-slate-50 whitespace-nowrap"
-          >
-            {timerHidden ? "Show" : "Hide"}
-          </button>
           {isPracticeMode && (
-            <div className="flex items-center gap-2 mt-0.5">
+            <div className="flex items-center gap-2 mt-1.5">
               <span
                 title="Question difficulty"
                 className={`h-6 flex items-center text-[10px] font-semibold px-2 rounded-full whitespace-nowrap ${
@@ -2284,137 +2450,145 @@ export default function GuestPracticePage({
           )}
         </div>
 
-        <div className="flex items-center gap-2 shrink-0 justify-self-end">
+        <div className="flex items-start justify-end gap-0.5 shrink-0 justify-self-end">
           {isMath ? (
             <>
-              <button
+              <ToolButton
+                label="Calculator"
+                active={calcOpen}
                 onClick={() => setCalcOpen((v) => !v)}
-                className={`hidden sm:flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium ${
-                  calcOpen ? "text-brand-blue" : "text-brand-navy hover:bg-slate-50"
-                }`}
-              >
-                <CalculatorIcon size={21} />
-                Calculator
-              </button>
-              <button
+                icon={<CalculatorIcon size={22} />}
+                className="hidden sm:flex"
+              />
+              <ToolButton
+                label="Reference"
                 onClick={() => setReferenceOpen(true)}
-                className="hidden sm:flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium text-brand-navy hover:bg-slate-50"
-              >
-                <ReferenceIcon size={21} />
-                Reference
-              </button>
+                icon={<ReferenceIcon size={22} />}
+                className="hidden sm:flex"
+              />
             </>
           ) : (
-            <div className="relative hidden sm:block">
-              <button
-                onClick={() => setHighlightMode((v) => !v)}
-                title={
-                  highlightMode
-                    ? "Annotate mode is on — select any text to choose a color or underline"
-                    : "Turn on Annotate, then select text to highlight or underline it"
-                }
-                className={`flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium ${
-                  highlightMode ? "text-brand-blue" : "text-brand-navy hover:bg-slate-50"
-                }`}
-              >
-                <AnnotateIcon size={21} />
-                Annotate
-              </button>
-            </div>
+            <ToolButton
+              label="Annotate"
+              active={highlightMode}
+              onClick={() => setHighlightMode((v) => !v)}
+              title={
+                highlightMode
+                  ? "Annotate mode is on — select any text to choose a color or underline"
+                  : "Turn on Annotate, then select text to highlight or underline it"
+              }
+              icon={<AnnotateIcon size={22} />}
+              className="hidden sm:flex"
+            />
           )}
 
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            title={darkMode ? "Switch to light background" : "Switch to dark background"}
-            className={`hidden md:flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium ${
-              darkMode ? "text-brand-blue" : "text-brand-navy hover:bg-slate-50"
-            }`}
-          >
-            <MoonIcon size={21} />
-            {darkMode ? "Light" : "Dark"}
-          </button>
-
-          <button
-            onClick={toggleFullscreen}
-            className="hidden md:flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium text-brand-navy hover:bg-slate-50"
-          >
-            {isFullscreen ? <ExitFullscreenIcon size={21} /> : <FullscreenIcon size={21} />}
-            Full screen
-          </button>
-
-          <button
-            onClick={() => openReport(current.id)}
-            className="hidden lg:flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium text-brand-navy hover:bg-slate-50"
-          >
-            <FlagRedIcon size={18} />
-            Report
-          </button>
-
-          {isAdminUser && (
-            <button
-              onClick={() => openAdminEdit(current.id)}
-              title="Admin: edit this question — saves for every student"
-              className="hidden lg:flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium text-brand-blue hover:bg-brand-blue-light"
-            >
-              <EditPencilIcon size={18} />
-              Edit
-            </button>
-          )}
-
-          <button
+          <ToolButton
+            label="Coach"
+            active={coachOpen}
             onClick={() => setCoachOpen(true)}
             title={signedIn ? "AI Coach" : "Sign in to unlock AI Coach"}
-            className={`hidden xl:flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium ${
-              signedIn ? "text-brand-navy hover:bg-slate-50" : "text-brand-slate/60 hover:bg-slate-50"
-            }`}
-          >
-            {!signedIn && <LockIcon />}
-            Coach
-          </button>
+            icon={signedIn ? <CoachIcon size={22} /> : <LockIcon />}
+            className="hidden sm:flex"
+          />
 
           <div className="relative">
-            <button
-              onClick={() => setMoreOpen((v) => !v)}
-              className="flex items-center justify-center w-10 h-10 rounded-full border border-brand-border text-brand-navy hover:bg-slate-50"
-              aria-label="More options"
-            >
-              <KebabIcon />
-            </button>
+            <ToolButton label="More" active={moreOpen} onClick={() => setMoreOpen((v) => !v)} icon={<KebabIcon />} />
             {moreOpen && (
-              <div className="absolute right-0 top-12 w-56 card p-1 shadow-card-hover z-40">
-                <button
-                  onClick={() => {
-                    setMoreOpen(false);
-                    openReport(current.id);
-                  }}
-                  className="flex w-full items-center gap-2 text-left text-sm px-3 py-2 rounded-md hover:bg-slate-50 text-brand-navy sm:hidden"
-                >
-                  <FlagRedIcon />
-                  Report a problem
-                </button>
-                {isAdminUser && (
+              <>
+                <div className="fixed inset-0 z-30" onClick={() => setMoreOpen(false)} />
+                <div className="absolute right-0 top-[52px] w-60 bg-white rounded-lg border border-[#d9d9d9] shadow-[0_8px_30px_rgba(0,0,0,0.22)] p-1.5 z-40 text-[14px] text-[#1e1e1e]">
+                  {isMath ? (
+                    <>
+                      <button
+                        onClick={() => {
+                          setMoreOpen(false);
+                          setCalcOpen((v) => !v);
+                        }}
+                        className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0] sm:hidden"
+                      >
+                        <CalculatorIcon size={17} /> Calculator
+                      </button>
+                      <button
+                        onClick={() => {
+                          setMoreOpen(false);
+                          setReferenceOpen(true);
+                        }}
+                        className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0] sm:hidden"
+                      >
+                        <ReferenceIcon size={17} /> Reference
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setMoreOpen(false);
+                        setHighlightMode((v) => !v);
+                      }}
+                      className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0] sm:hidden"
+                    >
+                      <AnnotateIcon size={17} /> {highlightMode ? "Turn off Annotate" : "Annotate"}
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       setMoreOpen(false);
-                      openAdminEdit(current.id);
+                      setCoachOpen(true);
                     }}
-                    className="flex w-full items-center gap-2 text-left text-sm px-3 py-2 rounded-md hover:bg-slate-50 text-brand-blue lg:hidden"
+                    className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0] sm:hidden"
                   >
-                    <EditPencilIcon size={15} />
-                    Admin: Edit question
+                    <CoachIcon size={17} /> Coach
                   </button>
-                )}
-                <button
-                  onClick={() => {
-                    setMoreOpen(false);
-                    setLeaveModalOpen(true);
-                  }}
-                  className="flex w-full items-center gap-2 text-left text-sm px-3 py-2 rounded-md hover:bg-slate-50 text-brand-red"
-                >
-                  <ArrowLeftIcon />
-                  Leave test
-                </button>
-              </div>
+                  <button
+                    onClick={() => {
+                      setMoreOpen(false);
+                      setDarkMode(!darkMode);
+                    }}
+                    className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0]"
+                  >
+                    <MoonIcon size={17} /> {darkMode ? "Light background" : "Dark background"}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMoreOpen(false);
+                      toggleFullscreen();
+                    }}
+                    className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0]"
+                  >
+                    {isFullscreen ? <ExitFullscreenIcon size={17} /> : <FullscreenIcon size={17} />}
+                    {isFullscreen ? "Exit full screen" : "Full screen"}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMoreOpen(false);
+                      openReport(current.id);
+                    }}
+                    className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0]"
+                  >
+                    <FlagRedIcon size={15} /> Report a problem
+                  </button>
+                  {isAdminUser && (
+                    <button
+                      onClick={() => {
+                        setMoreOpen(false);
+                        openAdminEdit(current.id);
+                      }}
+                      className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0] text-[#324dc7]"
+                    >
+                      <EditPencilIcon size={15} /> Admin: Edit question
+                    </button>
+                  )}
+                  <div className="my-1 border-t border-[#e5e5e5]" />
+                  <button
+                    onClick={() => {
+                      setMoreOpen(false);
+                      setLeaveModalOpen(true);
+                    }}
+                    className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0] text-[#c13515]"
+                  >
+                    <ArrowLeftIcon /> {isBank ? "Leave this set" : "Leave test"}
+                  </button>
+                </div>
+              </>
             )}
           </div>
         </div>
@@ -2451,7 +2625,7 @@ export default function GuestPracticePage({
               the split to 80/20; dragging the divider between the panes sets
               any width in between. */}
           <div
-            className={`relative overflow-y-auto p-6 sm:p-8 border-b md:border-b-0 md:border-r border-brand-border bg-white md:shrink-0 ${
+            className={`relative overflow-y-auto px-6 sm:px-8 pt-12 pb-8 border-b md:border-b-0 border-[#c7c7c7] bg-white md:shrink-0 ${
               isDraggingPane ? "" : "transition-[width] duration-150"
             }`}
             style={
@@ -2461,19 +2635,27 @@ export default function GuestPracticePage({
             }
           >
               <TextWatermarkOverlay dark={darkMode} mode="absolute" />
+              {isDesktop && (
+                <div className="absolute top-2 right-2 z-20">
+                  <PaneExpandButton
+                    expanded={focusedPane === "left"}
+                    onClick={() => setFocusedPane((p) => (p === "left" ? null : "left"))}
+                    title={focusedPane === "left" ? "Restore the split view" : "Expand this pane"}
+                  />
+                </div>
+              )}
               <div className="relative z-10">
                 {current.imageData && (
                   <img
                     src={current.imageData}
                     alt="Chart or figure for this question"
-                    className="max-w-full h-auto rounded-lg border border-brand-border mb-4 bg-white p-2"
-                    style={{ filter: "contrast(1.15)" }}
+                    className="max-w-full h-auto mb-4"
                   />
                 )}
                 {(current.passageText || (!isMath && derived.passage) || isMath) && (
                   <Highlightable
                     key={`${current.id}-left`}
-                    className={`text-brand-navy leading-relaxed ${!isMath ? "font-serif" : ""}`}
+                    className={`text-[#1e1e1e] leading-[1.6] ${!isMath ? "bluebook-serif" : ""}`}
                     enabled={isMath || highlightMode}
                   >
                     <div style={{ fontSize: fontSizePx }}>
@@ -2501,9 +2683,9 @@ export default function GuestPracticePage({
             <div
               onMouseDown={startPaneDrag}
               title="Drag to resize"
-              className="hidden md:flex items-center justify-center w-1.5 shrink-0 cursor-col-resize hover:bg-brand-blue/10 active:bg-brand-blue/15 relative z-20 group"
+              className="hidden md:flex items-center justify-center w-[6px] shrink-0 cursor-col-resize bg-[#d9d9d9] hover:bg-[#bdbdbd] relative z-20 group"
             >
-              <div className="w-0.5 h-7 rounded-full bg-brand-border group-hover:bg-brand-blue/50 transition-colors" />
+              <div className="w-[3px] h-9 rounded-full bg-[#1e1e1e]/70 group-hover:bg-[#1e1e1e]" />
             </div>
           )}
 
@@ -2519,50 +2701,58 @@ export default function GuestPracticePage({
               }
             >
               <TextWatermarkOverlay dark={darkMode} mode="absolute" />
-              <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-3 shrink-0 relative z-10">
-              <div className="flex items-center gap-3">
-                <span className="w-7 h-7 rounded-[4px] bg-black text-white text-sm font-bold flex items-center justify-center shrink-0">
-                  {index + 1}
-                </span>
-                <button
-                  onClick={() => toggleMark(current.id)}
-                  className={`shrink-0 flex items-center gap-1.5 text-sm font-medium whitespace-nowrap ${
-                    marked[current.id] ? "text-red-600" : "text-brand-navy/80 hover:text-brand-navy"
-                  }`}
-                >
-                  <FlagIcon filled={!!marked[current.id]} />
-                  {marked[current.id] ? "Marked for Review" : "Mark for Review"}
-                </button>
-                <div className="flex-1" />
-                <button
-                  onClick={toggleEliminatorMode}
-                  title={eliminatorMode ? "Turn off Answer Eliminator (also restores any crossed-out choices)" : "Turn on Answer Eliminator"}
-                  className={`shrink-0 rounded-[6px] w-10 h-8 flex items-center justify-center text-xs font-bold tracking-tight border transition-colors ${
-                    eliminatorMode
-                      ? "bg-brand-navy border-brand-navy text-white"
-                      : "bg-white border-brand-border text-brand-navy hover:bg-slate-50"
-                  }`}
-                >
-                  <span className={eliminatorMode ? "line-through" : ""}>ABC</span>
-                </button>
+              {/* Bluebook's response-pane top: the pane expand button, then the
+                  gray strip with the question number, "Mark for Review" and
+                  the ABC answer eliminator, closed off by the dashed rule. */}
+              <div className="shrink-0 relative z-10">
+                <div className="h-11 flex items-center px-2">
+                  {isDesktop && (
+                    <PaneExpandButton
+                      expanded={focusedPane === "right"}
+                      onClick={() => setFocusedPane((p) => (p === "right" ? null : "right"))}
+                      title={focusedPane === "right" ? "Restore the split view" : "Expand this pane"}
+                    />
+                  )}
+                </div>
+                <div className="mx-6 sm:mx-8 flex items-center bg-[#f0f0f0] h-[34px] pr-2">
+                  <span className="w-[34px] h-[34px] bg-[#1e1e1e] text-white text-[15px] font-bold flex items-center justify-center shrink-0">
+                    {index + 1}
+                  </span>
+                  <button
+                    onClick={() => toggleMark(current.id)}
+                    className="flex items-center gap-1.5 pl-3 text-[14px] text-[#1e1e1e] whitespace-nowrap"
+                  >
+                    <BookmarkIcon filled={!!marked[current.id]} size={17} className={marked[current.id] ? "text-[#c13515]" : ""} />
+                    {marked[current.id] ? "Marked for Review" : "Mark for Review"}
+                  </button>
+                  <div className="flex-1" />
+                  <button
+                    onClick={toggleEliminatorMode}
+                    title={eliminatorMode ? "Turn off the answer eliminator (also restores any crossed-out choices)" : "Turn on the answer eliminator"}
+                    className={`shrink-0 w-[34px] h-[26px] rounded-[4px] border flex items-center justify-center text-[11px] font-bold tracking-tight ${
+                      eliminatorMode ? "bg-[#1e1e1e] border-[#1e1e1e] text-white" : "bg-white border-[#1e1e1e] text-[#1e1e1e] hover:bg-[#e6e6e6]"
+                    }`}
+                  >
+                    <span className="line-through decoration-[1.5px]">ABC</span>
+                  </button>
+                </div>
+                <div className="mx-6 sm:mx-8 dash-line" />
               </div>
-              <div className="dash-line mt-2.5" />
-              </div>
-            <div className="relative z-10 flex-1 overflow-y-auto px-6 sm:px-8 pb-6 sm:pb-8" style={{ fontSize: fontSizePx }}>
+            <div className="relative z-10 flex-1 overflow-y-auto px-6 sm:px-8 pt-5 pb-8" style={{ fontSize: fontSizePx }}>
           <Highlightable
             key={`${current.id}-right`}
             enabled={isMath || highlightMode}
-            className={!isMath ? "font-serif" : ""}
+            className={!isMath ? "bluebook-serif" : ""}
           >
             {(current.passageText || derived.prompt) && (
-              <p className="text-brand-navy leading-relaxed mb-6" style={{ fontSize: fontSizePx }}>
+              <p className="text-[#1e1e1e] leading-[1.6] mb-5" style={{ fontSize: fontSizePx }}>
                 <MathText text={current.passageText ? current.questionText : derived.prompt} />
               </p>
             )}
           </Highlightable>
 
           {current.questionType !== "spr" && (
-            <div className="space-y-3.5">
+            <div className={`space-y-3 ${!isMath ? "bluebook-serif" : ""}`}>
               {current.choices.map((c) => (
                 <ChoiceRow
                   key={c.id}
@@ -2580,15 +2770,20 @@ export default function GuestPracticePage({
           )}
 
           {current.questionType === "spr" && (
-            <div className="max-w-xs">
-              <label className="block text-xs font-semibold text-brand-slate mb-1.5">Answer</label>
+            <div className="max-w-[300px]">
               <input
                 type="text"
                 value={answers[current.id] ?? ""}
                 onChange={(e) => selectAnswer(current.id, e.target.value)}
-                placeholder="Enter your answer"
-                className="w-full px-3 py-2.5 rounded-lg border border-brand-border focus:border-brand-blue outline-none text-sm"
+                aria-label="Your answer"
+                className="w-[176px] h-[44px] px-3 rounded-[4px] border border-[#1e1e1e] focus:border-[#324dc7] focus:shadow-[inset_0_0_0_1px_#324dc7] outline-none text-[18px] bg-white text-[#1e1e1e]"
               />
+              <p className="mt-3 text-[13px] text-[#1e1e1e] flex items-baseline gap-2">
+                Answer Preview:
+                <span className="text-[17px] min-h-[24px]">
+                  <MathText text={answers[current.id] ?? ""} mathOnly />
+                </span>
+              </p>
             </div>
           )}
             </div>
@@ -2866,7 +3061,7 @@ export default function GuestPracticePage({
                 <div className="grid sm:grid-cols-2 gap-3 border border-brand-border rounded-lg overflow-hidden">
                   <div className="p-4 bg-slate-50 border-b sm:border-b-0 sm:border-r border-brand-border">
                     {editPassageText.trim() ? (
-                      <div className={`text-sm text-brand-navy leading-relaxed ${!isMath ? "font-serif" : ""}`}>
+                      <div className={`text-sm text-brand-navy leading-relaxed ${!isMath ? "bluebook-serif" : ""}`}>
                         <PassageText text={editPassageText} />
                       </div>
                     ) : (
@@ -3062,26 +3257,6 @@ export default function GuestPracticePage({
       )}
 
       {/* ---------------- Directions modal ---------------- */}
-      {directionsOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-brand-navy/30">
-          <div className="card max-w-md w-full p-6">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-semibold text-brand-navy">Directions</span>
-              <button onClick={() => setDirectionsOpen(false)} className="text-brand-slate hover:text-brand-navy">
-                <CloseIcon />
-              </button>
-            </div>
-            <p className="text-sm text-brand-slate leading-relaxed">
-              {isMath
-                ? "For this module, solve each problem and choose the correct answer, or enter your answer in the box provided. The Desmos graphing calculator and a formula reference sheet are available from the header for every question in this section."
-                : "Each question is based on one or more short passages. Read each passage and question, then choose the best answer from the choices provided. Select any text in the passage to highlight it."}{" "}
-              You may go back and change answers within this module before time runs out, and you can mark
-              questions to revisit using the flag.
-            </p>
-          </div>
-        </div>
-      )}
-
       {/* ---------------- Reference sheet modal (Math) ---------------- */}
       {referenceOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-brand-navy/30">
@@ -3120,77 +3295,55 @@ export default function GuestPracticePage({
         </div>
       )}
 
-      {/* ---------------- Question navigator (centered modal, matching the
-          reference structure: title with live answered count, legend,
-          grid, and a "Go to module review" action) ---------------- */}
+      {/* ---------------- Question navigator — Bluebook's popover above the
+          "Question N of N" button: title, legend, numbered grid, and a link
+          to the review page ---------------- */}
       {navigatorOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-end justify-center px-4 pb-20 bg-brand-navy/30"
-          onClick={() => setNavigatorOpen(false)}
-        >
-          <div className="card w-full max-w-xl p-6 shadow-card-hover" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-4 gap-3">
-              <span className="text-base font-semibold text-brand-navy">
-                {section}{moduleSuffix} — {questions.filter((q) => !!answers[q.id]).length}/{questions.length} answered
-              </span>
-              <button onClick={() => setNavigatorOpen(false)} className="text-brand-slate hover:text-brand-navy shrink-0">
+        <div className="fixed inset-0 z-50" onClick={() => setNavigatorOpen(false)}>
+          <div
+            className="absolute left-1/2 -translate-x-1/2 bottom-[82px] w-[600px] max-w-[calc(100vw-1.5rem)] bg-white rounded-lg shadow-[0_6px_28px_rgba(0,0,0,0.3)] border border-[#d9d9d9] px-6 pt-5 pb-6 max-h-[calc(100vh-130px)] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative text-center">
+              <h3 className="text-[19px] font-bold text-[#1e1e1e] leading-snug px-8">{examTitle} Questions</h3>
+              <button
+                onClick={() => setNavigatorOpen(false)}
+                className="absolute right-0 top-0 text-[#1e1e1e] hover:bg-[#f0f0f0] rounded p-1"
+                aria-label="Close"
+              >
                 <CloseIcon />
               </button>
             </div>
-
-            <div className="flex items-center gap-5 text-xs text-brand-slate mb-5 flex-wrap">
-              <span className="flex items-center gap-1.5 text-brand-navy">
-                <FilledCircleIcon /> Answered
-              </span>
-              <span className="flex items-center gap-1.5">
-                <FlagIcon filled /> Marked for review
-              </span>
-              <span className="flex items-center gap-1.5">
-                <OutlineCircleIcon /> Current
-              </span>
+            <div className="my-4 border-t border-[#1e1e1e]" />
+            <NavigatorLegend />
+            <div className="my-4 border-t border-[#1e1e1e]" />
+            <div className="grid grid-cols-6 sm:grid-cols-10 gap-x-3 gap-y-7 px-1 pt-3">
+              {questions.map((q, i) => (
+                <QuestionTile
+                  key={q.id}
+                  number={i + 1}
+                  answered={!!answers[q.id]}
+                  marked={!!marked[q.id]}
+                  current={i === index}
+                  onClick={() => {
+                    setIndex(i);
+                    setNavigatorOpen(false);
+                  }}
+                />
+              ))}
             </div>
-
-            <div className="grid grid-cols-6 sm:grid-cols-10 gap-1.5 mb-5">
-              {questions.map((q, i) => {
-                const isCurrent = i === index;
-                const isAnswered = !!answers[q.id];
-                const isMarked = !!marked[q.id];
-                return (
-                  <button
-                    key={q.id}
-                    onClick={() => {
-                      setIndex(i);
-                      setNavigatorOpen(false);
-                    }}
-                    className={`relative h-9 rounded-md border flex items-center justify-center text-sm font-medium ${
-                      isCurrent
-                        ? "border-2 border-brand-navy text-brand-navy font-bold"
-                        : isAnswered
-                          ? "border-brand-border bg-brand-blue-light text-brand-blue"
-                          : "border-brand-border text-brand-blue"
-                    }`}
-                  >
-                    {i + 1}
-                    {isMarked && (
-                      <span className="absolute -top-1.5 -right-1.5 text-red-600">
-                        <FlagIcon filled />
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
+            <div className="mt-8 flex justify-center">
+              <button
+                onClick={() => {
+                  setNavigatorOpen(false);
+                  setModuleReviewOpen(true);
+                }}
+                className="bb-btn-outline"
+              >
+                Go to Review Page
+              </button>
             </div>
-
-            <button
-              onClick={() => {
-                setNavigatorOpen(false);
-                setModuleReviewOpen(true);
-              }}
-              className="btn-primary w-full text-sm flex items-center justify-center gap-1.5"
-            >
-              Go to module review
-              <ArrowRightIcon />
-            </button>
+            <span className="absolute left-1/2 -translate-x-1/2 -bottom-[9px] w-4 h-4 bg-white border-r border-b border-[#d9d9d9] rotate-45" />
           </div>
         </div>
       )}
@@ -3199,71 +3352,56 @@ export default function GuestPracticePage({
           a small popup card floating over the exam. No dimmed backdrop, no
           card border/shadow — it replaces the whole viewport like a real
           page would, matching Bluebook's actual end-of-module screen. */}
+      {/* ---------------- Review page — Bluebook's "Check Your Work" screen:
+          same header, a card with the numbered grid, Back / Submit below. */}
       {moduleReviewOpen && (
-        <div className="fixed inset-0 z-50 bg-brand-bg flex flex-col overflow-y-auto">
-          <header className="sticky top-0 bg-white border-b border-brand-border px-4 sm:px-6 h-16 flex items-center justify-between shrink-0">
-            <button
-              onClick={() => setModuleReviewOpen(false)}
-              className="flex items-center gap-1.5 text-sm font-medium text-brand-slate hover:text-brand-navy"
-            >
-              <ArrowLeftIcon /> Back to questions
-            </button>
-            <span className="flex items-center gap-2 text-sm font-semibold text-brand-navy">
-              <BrainMark size={20} /> Module Review
-            </span>
+        <div className="bluebook fixed inset-0 z-50 bg-white flex flex-col overflow-hidden">
+          <header className="px-4 sm:px-6 pt-3 pb-2 grid grid-cols-[1fr_auto_1fr] items-start shrink-0">
+            <div className="min-w-0">
+              <p className="text-[19px] sm:text-[20px] text-[#1e1e1e] truncate leading-tight">{examTitle}</p>
+              <span className="block text-[14px] text-[#1e1e1e] mt-1">Review</span>
+            </div>
+            <div className="flex flex-col items-center justify-self-center pt-0.5">
+              <span
+                className={`h-[30px] flex items-center text-[22px] font-medium tabular-nums leading-none ${
+                  secondsLeft > 0 && secondsLeft <= 300 ? "text-[#c13515]" : "text-[#1e1e1e]"
+                }`}
+              >
+                {timerHidden ? <StopwatchIcon size={22} /> : timeStr}
+              </span>
+            </div>
+            <div />
           </header>
+          <div className="dash-line shrink-0" />
 
-          <div className="flex-1 flex items-start justify-center px-4 py-14">
-            <div className="w-full max-w-5xl text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold text-brand-navy mb-3 leading-snug">
-                You've reached the end of
-                <br />
-                {section}{moduleSuffix}
-              </h2>
-              <p className="text-base text-brand-slate mb-8">Review your answers below. You can jump back to any question.</p>
+          <div className="flex-1 overflow-y-auto px-4 py-10">
+            <div className="w-full max-w-3xl mx-auto text-center">
+              <h2 className="text-[28px] sm:text-[32px] text-[#1e1e1e] mb-3 leading-tight">Check Your Work</h2>
+              <p className="text-[15px] text-[#1e1e1e] mb-8 max-w-xl mx-auto">
+                On this page, you can review your work before you submit. Click a question number to go back to it.
+                Unanswered questions count as incorrect.
+              </p>
 
-              <div className="flex items-center justify-center gap-4 mb-8 flex-wrap">
-                <span className="flex items-center gap-2 text-sm font-semibold text-brand-green border border-brand-green rounded-full px-4 py-2 bg-white">
-                  <CheckSmallIcon /> {questions.filter((q) => !!answers[q.id]).length} answered
-                </span>
-                <span className="flex items-center gap-2 text-sm font-semibold text-brand-red border border-brand-red rounded-full px-4 py-2 bg-white">
-                  <WarningIcon /> {questions.filter((q) => !answers[q.id]).length} unanswered
-                </span>
-                <span className="flex items-center gap-2 text-sm font-semibold text-brand-amber border border-brand-amber rounded-full px-4 py-2 bg-white">
-                  <FlagIcon filled /> {questions.filter((q) => !!marked[q.id]).length} marked
-                </span>
-              </div>
-
-              <div className="border border-brand-border rounded-2xl p-8 mb-8 bg-white">
-                <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-11 gap-3.5">
-                  {questions.map((q, i) => {
-                    const isCurrent = i === index;
-                    const isAnswered = !!answers[q.id];
-                    const isMarked = !!marked[q.id];
-                    return (
-                      <button
-                        key={q.id}
-                        onClick={() => {
-                          setIndex(i);
-                          setModuleReviewOpen(false);
-                        }}
-                        className={`relative h-14 rounded-lg border-2 flex items-center justify-center text-lg font-semibold bg-white ${
-                          isCurrent
-                            ? "border-brand-navy text-brand-navy font-bold"
-                            : isAnswered
-                              ? "border-brand-border text-brand-navy"
-                              : "border-brand-border text-brand-slate"
-                        }`}
-                      >
-                        {i + 1}
-                        {isMarked && (
-                          <span className="absolute -top-2 -right-2 text-red-600">
-                            <FlagIcon filled />
-                          </span>
-                        )}
-                      </button>
-                    );
-                  })}
+              <div className="border border-[#1e1e1e] rounded-lg bg-white px-5 sm:px-10 pt-6 pb-8 mb-8">
+                <h3 className="text-[18px] font-bold text-[#1e1e1e] mb-4">{examTitle} Questions</h3>
+                <div className="border-y border-[#1e1e1e] py-3 mb-8">
+                  <NavigatorLegend />
+                </div>
+                <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-x-4 gap-y-9 pt-3">
+                  {questions.map((q, i) => (
+                    <QuestionTile
+                      key={q.id}
+                      number={i + 1}
+                      answered={!!answers[q.id]}
+                      marked={!!marked[q.id]}
+                      current={i === index}
+                      size={44}
+                      onClick={() => {
+                        setIndex(i);
+                        setModuleReviewOpen(false);
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
 
@@ -3353,65 +3491,59 @@ export default function GuestPracticePage({
                 </div>
               )}
 
-              <div className="flex items-center justify-center gap-4">
-                <button
-                  onClick={() => setModuleReviewOpen(false)}
-                  className="btn-secondary text-base px-6 py-3 flex items-center gap-2"
-                >
-                  <ArrowLeftIcon /> Back to questions
-                </button>
-                <button
-                  onClick={() => {
-                    setModuleReviewOpen(false);
-                    handleSubmit();
-                  }}
-                  disabled={submitting}
-                  className="flex items-center gap-2 text-base font-semibold text-white bg-brand-navy px-7 py-3 rounded-lg hover:bg-brand-navy/90 disabled:opacity-60"
-                >
-                  {submitting ? "Submitting…" : isBank ? "Submit Set" : "Submit Module"}
-                  <ArrowRightIcon />
-                </button>
-              </div>
             </div>
           </div>
+
+          <div className="dash-line shrink-0" />
+          <footer className="shrink-0 bg-white h-[64px] flex items-center px-4 sm:px-6">
+            <span className="text-[14px] font-medium text-[#1e1e1e] flex-1 truncate">{userName ?? "Guest"}</span>
+            <div className="flex items-center gap-3">
+              <button onClick={() => setModuleReviewOpen(false)} className="bb-btn-primary">
+                Back
+              </button>
+              <button
+                onClick={() => {
+                  setModuleReviewOpen(false);
+                  handleSubmit();
+                }}
+                disabled={submitting}
+                className="bb-btn-primary"
+              >
+                {submitting ? "Submitting…" : isBank ? "Submit Set" : "Submit Module"}
+              </button>
+            </div>
+          </footer>
         </div>
       )}
 
-      {/* ---------------- Bottom bar ---------------- */}
+      {/* ---------------- Bottom bar — student name, the black "Question N of N"
+          navigator button, and Bluebook's blue Back / Next pills ---------------- */}
       <div className="dash-line shrink-0 relative z-10" />
-      <footer className="shrink-0 bg-white h-14 flex items-center px-4 sm:px-6 relative z-10">
-        <div className="w-full flex items-center justify-between">
-          <span className="text-xs font-medium text-brand-navy truncate max-w-[40%]">{userName ?? "Guest"}</span>
+      <footer className="shrink-0 bg-white h-[64px] flex items-center px-4 sm:px-6 relative z-10">
+        <div className="w-full grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+          <span className="text-[14px] font-medium text-[#1e1e1e] truncate">{userName ?? "Guest"}</span>
 
           <button
-            onClick={() => setNavigatorOpen(true)}
-            className="flex items-center gap-1 text-sm font-semibold text-white bg-[#0d1321] px-4 py-2 rounded-full hover:bg-black"
+            onClick={() => setNavigatorOpen((v) => !v)}
+            className="justify-self-center flex items-center gap-2 text-[15px] font-bold text-white bg-[#1e1e1e] pl-4 pr-3 h-[40px] rounded-md hover:bg-black whitespace-nowrap"
           >
             Question {index + 1} of {questions.length}
-            <ChevronUpIcon />
+            {navigatorOpen ? <ChevronDownIcon /> : <ChevronUpIcon />}
           </button>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIndex((i) => Math.max(0, i - 1))}
-              disabled={index === 0}
-              className="text-sm font-semibold rounded-full px-4 py-2 bg-[#0d1321] text-white hover:bg-black disabled:opacity-40 disabled:hover:bg-[#0d1321] disabled:cursor-not-allowed"
-            >
-              Back
-            </button>
+          <div className="justify-self-end flex items-center gap-3">
+            {index > 0 && (
+              <button onClick={() => setIndex((i) => Math.max(0, i - 1))} className="bb-btn-primary">
+                Back
+              </button>
+            )}
             {index < questions.length - 1 ? (
-              <button
-                onClick={() => setIndex((i) => i + 1)}
-                className="text-sm font-semibold rounded-full px-4 py-2 bg-[#0d1321] text-white hover:bg-black"
-              >
+              <button onClick={() => setIndex((i) => i + 1)} className="bb-btn-primary">
                 Next
               </button>
             ) : (
-              <button
-                onClick={() => setModuleReviewOpen(true)}
-                className="text-sm font-semibold rounded-full px-4 py-2 bg-[#0d1321] text-white hover:bg-black"
-              >
-                Review &amp; Submit
+              <button onClick={() => setModuleReviewOpen(true)} className="bb-btn-primary">
+                Next
               </button>
             )}
           </div>

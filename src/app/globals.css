@@ -263,12 +263,136 @@ textarea:focus-visible,
    the exam header and footer, under the "Mark for Review" row, and on the
    Module Review screen. */
 .dash-line {
-  height: 2px;
-  background-image: repeating-linear-gradient(to right, #0f172a 0, #0f172a 26px, transparent 26px, transparent 44px);
+  height: 3px;
+  /* Bluebook's divider: dark dashes with a gold and a light-blue dash mixed
+     in every few dashes (14px dash, 8px gap). */
+  background-image: repeating-linear-gradient(
+    to right,
+    #1e1e1e 0 14px,
+    transparent 14px 22px,
+    #1e1e1e 22px 36px,
+    transparent 36px 44px,
+    #1e1e1e 44px 58px,
+    transparent 58px 66px,
+    #ffc700 66px 80px,
+    transparent 80px 88px,
+    #1e1e1e 88px 102px,
+    transparent 102px 110px,
+    #1e1e1e 110px 124px,
+    transparent 124px 132px,
+    #1e1e1e 132px 146px,
+    transparent 146px 154px,
+    #35b8ff 154px 168px,
+    transparent 168px 176px
+  );
 }
-.exam-dark .dash-line {
-  background-image: repeating-linear-gradient(to right, #94a3b8 0, #94a3b8 26px, transparent 26px, transparent 44px);
-}
+.exam-dark .dash-line,
 .app-dark .dash-line {
-  background-image: repeating-linear-gradient(to right, #94a3b8 0, #94a3b8 26px, transparent 26px, transparent 44px);
+  background-image: repeating-linear-gradient(
+    to right,
+    #cbd5e1 0 14px,
+    transparent 14px 22px,
+    #cbd5e1 22px 36px,
+    transparent 36px 44px,
+    #cbd5e1 44px 58px,
+    transparent 58px 66px,
+    #ffc700 66px 80px,
+    transparent 80px 88px,
+    #cbd5e1 88px 102px,
+    transparent 102px 110px,
+    #cbd5e1 110px 124px,
+    transparent 124px 132px,
+    #cbd5e1 132px 146px,
+    transparent 146px 154px,
+    #35b8ff 154px 168px,
+    transparent 168px 176px
+  );
+}
+
+/* Bluebook look for the exam screen (mocks and Question Bank sets share
+   src/app/practice/[mockId]/[section]/[module]/page.tsx). Roboto for the
+   chrome, a Times-compatible serif for Reading & Writing text, the
+   College Board blue for primary actions. */
+.bluebook {
+  font-family: Roboto, Inter, system-ui, -apple-system, sans-serif;
+  color: #1e1e1e;
+}
+.bluebook-serif {
+  font-family: Tinos, "Times New Roman", Times, serif;
+}
+.bb-btn-primary {
+  background: #324dc7;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  white-space: nowrap;
+  transition: background-color 120ms ease;
+}
+.bb-btn-primary:hover {
+  background: #2a41ab;
+}
+.bb-btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.bb-btn-outline {
+  background: #fff;
+  color: #324dc7;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+  border: 1.5px solid #324dc7;
+  border-radius: 9999px;
+  padding: 11px 22px;
+  white-space: nowrap;
+}
+.bb-btn-outline:hover {
+  background: #eef1fb;
+}
+
+/* Dark background: the exam page's Bluebook colors are arbitrary Tailwind
+   values, so they need their own overrides alongside the named ones above. */
+.exam-dark .bg-\[\#f0f0f0\],
+.exam-dark .bg-\[\#f5f5f5\],
+.exam-dark .bg-\[\#eef1fb\] {
+  background-color: #1e293b !important;
+}
+.exam-dark .hover\:bg-\[\#f0f0f0\]:hover,
+.exam-dark .hover\:bg-\[\#f5f5f5\]:hover,
+.exam-dark .hover\:bg-\[\#e6e6e6\]:hover {
+  background-color: #1e293b !important;
+}
+.exam-dark .text-\[\#1e1e1e\],
+.exam-dark .text-\[\#3b3b3b\],
+.exam-dark .text-\[\#6b6b6b\],
+.exam-dark .bluebook {
+  color: #e2e8f0 !important;
+}
+.exam-dark .text-\[\#8f8f8f\] {
+  color: #64748b !important;
+}
+.exam-dark .border-\[\#1e1e1e\] {
+  border-color: #94a3b8 !important;
+}
+.exam-dark .border-\[\#c7c7c7\],
+.exam-dark .border-\[\#d9d9d9\],
+.exam-dark .border-\[\#8f8f8f\],
+.exam-dark .border-\[\#e5e5e5\] {
+  border-color: #2a3752 !important;
+}
+.exam-dark .bg-\[\#d9d9d9\] {
+  background-color: #2a3752 !important;
+}
+.exam-dark .bg-\[\#1e1e1e\] {
+  background-color: #e2e8f0 !important;
+  color: #0b1220 !important;
+}
+.exam-dark .bg-\[\#1e1e1e\]\/70 {
+  background-color: #94a3b8 !important;
+}
+.exam-dark .bb-btn-outline {
+  background: #111827;
 }
