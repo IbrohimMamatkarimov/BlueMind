@@ -1,0 +1,400 @@
+// Despite the filename (kept so /api/public/coach and /api/coach don't need
+// import-path changes), this is now 100% Groq — no Gemini calls happen here
+// anymore. GEMINI_API_KEY is unused; GROQ_API_KEY drives everything below.
+//
+// Groq exposes an OpenAI-compatible /chat/completions endpoint, so this is
+// a plain fetch — no SDK dependency needed.
+
+import { DOMAINS } from "./sat-constants";
+
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+// Groq's current flagship text model. If Groq retires/renames this, swap
+// the string here — nothing else in this file needs to change.
+const TEXT_MODEL = "llama-3.3-70b-versatile";
+// Vision-capable model, used only for mode "photo". Same swap note applies.
+const VISION_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct";
+
+function getApiKey() {
+  return process.env.GROQ_API_KEY || null;
+}
+
+export interface CoachStructuredResponse {
+  diagnosis: string;
+  mistake_type: string;
+  concept: string;
+  hint: string;
+  explanation: string;
+  next_step: string;
+  recommended_skill: string;
+  difficulty: string;
+}
+
+const FALLBACK_RESPONSE: CoachStructuredResponse = {
+  diagnosis:
+    "BlueMind Coach couldn't reach the AI service just now, but here's what we can tell from your answer data.",
+  mistake_type: "n/a",
+  concept: "Review the skill tag on this question and re-read the explanation below.",
+  hint: "Re-read the question stem carefully and eliminate answer choices one at a time.",
+  explanation:
+    "Coach is temporarily unavailable. Your progress and answers are saved — nothing was lost. Try again in a moment, or use the built-in explanation for this question.",
+  next_step: "Retry Coach shortly, or continue practicing — your session isn't affected.",
+  recommended_skill: "",
+  difficulty: "n/a",
+};
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) => setTimeout(() => reject(new Error("Groq request timed out")), ms)),
+  ]);
+}
+
+export interface AskCoachParams {
+  mode: "hint" | "explain" | "teach" | "similar_question" | "diagnose" | "study_plan" | "chat" | "photo";
+  questionText?: string;
+  choices?: { id: string; text: string }[];
+  correctAnswer?: string;
+  studentAnswer?: string;
+  skill?: string;
+  difficulty?: string;
+  userMessage?: string;
+  examMode?: boolean; // if true, never reveal the correct answer
+  imageBase64?: string; // for mode "photo" — a photographed/screenshotted question
+  imageMimeType?: string;
+}
+
+function sectionForSkill(skill?: string): "Math" | "Reading and Writing" | null {
+  if (!skill) return null;
+  for (const domain of Object.values(DOMAINS)) {
+    if (domain.skills.includes(skill)) return domain.section as "Math" | "Reading and Writing";
+  }
+  return null;
+}
+
+// The exact expert-tutor walkthrough structure, verbatim per product spec —
+// used for "explain" / "teach" / "photo", i.e. whenever Coach is actually
+// solving/teaching a question rather than giving a quick nudge or a
+// behind-the-scenes diagnosis.
+const TUTOR_STRUCTURE = `Solve this SAT question like an expert SAT tutor, using the same style as a high-quality visual SAT explanation.
+
+Do NOT just give the answer up front. Teach the student how to recognize the logic quickly.
+
+Follow this exact structure, using markdown headers exactly as shown:
+
+## 1. What Is The Question Really Asking?
+- Rewrite the question in very simple language.
+- Identify exactly what relationship, claim, inference, or comparison must be proven.
+
+## 2. Understand The Information
+- Before calculating or choosing an answer, explain what each important part of the graph/table/passage means.
+- Define categories, variables, units, labels, and comparisons if necessary.
+- Ignore information that is irrelevant.
+
+## 3. Find The Key Evidence
+- Identify the 1–3 pieces of information that actually determine the answer.
+- Explicitly compare the relevant values.
+- If something increases/decreases, say so clearly.
+- Focus on the BIGGEST or MOST RELEVANT change rather than analyzing every number unnecessarily.
+
+## 4. Connect The Evidence To The Claim
+- Explain the logical chain: evidence → what it means → why that supports/refutes the claim.
+- Do not make a logical jump.
+- If the question asks whether evidence supports a conclusion, explicitly explain WHY.
+
+## 5. Eliminate The Wrong Answers
+- Briefly explain why each wrong choice fails.
+- Point out traps such as: reversing cause and effect, confusing correlation with causation, using irrelevant information, exaggerating what the passage says, comparing the wrong categories, answering a different question than the one asked.
+
+## 6. Final Answer
+- Give the correct answer clearly.
+- Then give a one-sentence reason using the strongest evidence.
+
+## 7. SAT Quick Strategy
+- End with a short "SAT Strategy" explaining the reusable skill or shortcut for similar questions.
+
+STYLE RULES:
+- Think like a 1500+ SAT tutor.
+- Make the reasoning extremely clear and structured.
+- Use simple language, not unnecessarily complicated vocabulary.
+- Bold the key numbers/words using markdown **like this**.
+- When comparing data, use arrows such as 83% → 15% or 13% → 78%.
+- Explicitly label important changes as INCREASES, DECREASES, JUMPS, or DROPS when appropriate.
+- Separate "what the evidence says" from "what the evidence means."
+- Don't over-explain irrelevant details.
+- If there is a faster SAT-specific way to solve it, show that too.`;
+
+const RW_ADDENDUM = `For this Reading & Writing question, always identify the exact textual evidence that makes the correct answer work.
+
+Use this reasoning pattern: CLAIM → TEXT EVIDENCE → LOGICAL CONNECTION → ANSWER
+
+For vocabulary-in-context questions: ignore the word's common definition at first, read the surrounding sentence and paragraph, determine the meaning required by context, and test each answer choice in the sentence.
+
+For inference questions: separate what the text explicitly says from what can reasonably be inferred. Never choose an answer that requires information not supported by the passage.
+
+For transitions: identify the relationship between the previous and next sentence FIRST, then choose the transition that expresses that relationship.
+
+For rhetorical synthesis / data questions: identify the purpose of the sentence/question, find only the data that directly serves that purpose, and explain exactly how the data supports the intended statement.`;
+
+const JSON_CONTRACT = `Respond with ONLY a single JSON object — no markdown code fences, no text before or after it — with exactly these string keys:
+{
+  "diagnosis": string,        // one-line restatement of what the question is asking (or, for mode "diagnose", why the student likely got it wrong)
+  "mistake_type": string,     // one of: concept_gap | reasoning_error | calculation_error | misread_question | timing_issue | careless_error | strategy_issue | n/a
+  "concept": string,          // the underlying concept/skill being tested, in a sentence or two
+  "hint": string,             // ONE short, non-revealing nudge — never the answer itself
+  "explanation": string,      // the full walkthrough — this is the main content, use markdown, this is where the structured tutor response goes
+  "next_step": string,        // what to study/practice next
+  "recommended_skill": string,// a skill name to drill next, or ""
+  "difficulty": string        // Easy | Medium | Hard | n/a
+}
+Every key is required. Values are plain strings (markdown allowed inside "explanation" and "concept"). Do not wrap the JSON in \`\`\`.`;
+
+function buildSystemPrompt(params: AskCoachParams): string {
+  const lines = [
+    "You are BlueMind Coach, a calm, encouraging, extremely clear SAT tutor.",
+    params.examMode
+      ? "EXAM MODE IS ON: do NOT reveal or hint at the final correct answer anywhere in your response, including inside 'explanation'. Only give process-level strategy. Keep 'explanation' focused on HOW to approach the question, not what the answer is, and never fill in '## 6. Final Answer' with the actual answer — describe how the student can find and verify it instead."
+      : "Coach mode is on: you may fully explain the correct answer and reasoning.",
+  ];
+
+  const solvingModes: AskCoachParams["mode"][] = ["explain", "teach", "photo"];
+  if (solvingModes.includes(params.mode)) {
+    lines.push(TUTOR_STRUCTURE);
+    const section = sectionForSkill(params.skill);
+    if (section === "Reading and Writing") lines.push(RW_ADDENDUM);
+  } else {
+    const taskByMode: Partial<Record<AskCoachParams["mode"], string>> = {
+      hint: "Task: give ONE short, non-revealing hint that nudges the student toward the approach — never the answer.",
+      similar_question: "Task: describe a similar practice question idea at the same skill/difficulty, without solving this one.",
+      diagnose: "Task: diagnose why the student likely got this wrong, precisely.",
+      study_plan: "Task: recommend what to study next given this pattern.",
+      chat: "Task: respond helpfully to the student's message.",
+    };
+    if (taskByMode[params.mode]) lines.push(taskByMode[params.mode]!);
+  }
+
+  if (params.mode === "photo") {
+    lines.push(
+      "The student has attached a photo of an SAT question (textbook, another site, or handwritten work). Read the question and any visible work/answer in the image, then apply the structure above."
+    );
+  }
+
+  lines.push(JSON_CONTRACT);
+  return lines.join("\n\n");
+}
+
+function buildUserContent(params: AskCoachParams): string {
+  const parts: string[] = [];
+  if (params.questionText) parts.push(`Question: ${params.questionText}`);
+  if (params.choices?.length) parts.push(`Choices: ${params.choices.map((c) => `${c.id}) ${c.text}`).join(" | ")}`);
+  if (params.correctAnswer && !params.examMode) parts.push(`Correct answer: ${params.correctAnswer}`);
+  if (params.studentAnswer) parts.push(`Student's answer: ${params.studentAnswer}`);
+  if (params.skill) parts.push(`Skill: ${params.skill}`);
+  if (params.difficulty) parts.push(`Difficulty: ${params.difficulty}`);
+  if (params.userMessage) parts.push(`Student asked: ${params.userMessage}`);
+  if (parts.length === 0) parts.push("(No question text provided — respond based on the student's message only.)");
+  return parts.join("\n");
+}
+
+function extractJson(text: string): string {
+  const trimmed = text.trim();
+  // Strip ```json ... ``` fences if the model added them despite instructions.
+  const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
+  if (fenced) return fenced[1].trim();
+  // Fall back to the first {...} block.
+  const first = trimmed.indexOf("{");
+  const last = trimmed.lastIndexOf("}");
+  if (first !== -1 && last !== -1 && last > first) return trimmed.slice(first, last + 1);
+  return trimmed;
+}
+
+export interface ExtractedQuestionDraft {
+  section: "Math" | "Reading and Writing";
+  domain: string;
+  skill: string;
+  difficulty: "Easy" | "Medium" | "Hard";
+  passageText: string | null;
+  questionText: string;
+  choices: { id: string; text: string }[];
+  correctAnswer: string;
+  questionType: "multiple_choice" | "spr";
+  rationale: string;
+  explanation: string;
+}
+
+const DOMAIN_SKILL_GUIDE = `
+Use ONLY these section/domain/skill combinations (official College Board taxonomy):
+Reading and Writing:
+  Information and Ideas: Central Ideas and Details, Command of Evidence, Inferences
+  Craft and Structure: Words in Context, Text Structure and Purpose, Cross-Text Connections
+  Expression of Ideas: Rhetorical Synthesis, Transitions
+  Standard English Conventions: Boundaries, Form, Structure, and Sense
+Math:
+  Algebra: Linear Equations, Linear Functions, Systems of Equations, Linear Inequalities
+  Advanced Math: Nonlinear Functions, Nonlinear Equations, Equivalent Expressions
+  Problem-Solving and Data Analysis: Ratios and Proportions, Percentages, Data Interpretation, Probability
+  Geometry and Trigonometry: Area and Volume, Lines/Angles/Triangles, Right Triangle Trig, Circles
+`;
+
+const EXTRACT_JSON_CONTRACT = `Respond with ONLY a single JSON object — no markdown code fences, no text before or after it — with exactly this shape:
+{ "questions": [ { "section": "Math" | "Reading and Writing", "domain": string, "skill": string, "difficulty": "Easy" | "Medium" | "Hard", "passageText": string | null, "questionText": string, "choices": [{"id": string, "text": string}], "correctAnswer": string, "questionType": "multiple_choice" | "spr", "rationale": string, "explanation": string } ] }
+If no questions are found, return { "questions": [] }. Do not wrap the JSON in \`\`\`.`;
+
+export interface ExtractQuestionsParams {
+  text?: string;
+  imageBase64?: string;
+  imageMimeType?: string;
+}
+
+/**
+ * Turns raw pasted text or a photographed/screenshotted worksheet into a
+ * batch of question drafts matching BlueMind's schema, via Groq (text or
+ * vision model depending on input). Nothing is saved by this function —
+ * the admin reviews/edits the returned drafts and only approved ones get
+ * imported (see /api/admin/questions/extract).
+ */
+export async function extractQuestions(
+  params: ExtractQuestionsParams
+): Promise<{ ok: true; questions: ExtractedQuestionDraft[] } | { ok: false; error: string }> {
+  const apiKey = getApiKey();
+  if (!apiKey) return { ok: false, error: "GROQ_API_KEY not configured" };
+  if (!params.text?.trim() && !params.imageBase64) {
+    return { ok: false, error: "Provide text or an image to extract from" };
+  }
+
+  const systemPrompt = [
+    "You are extracting SAT practice questions from source material into structured data for a question bank.",
+    "For each distinct question found, produce one object matching the schema exactly.",
+    "For Reading and Writing questions with an accompanying passage/stimulus, put the passage in 'passageText' and ONLY the question stem (e.g. 'Which choice completes the text?') in 'questionText'. For Math, leave passageText null and put the full problem in 'questionText'.",
+    "For any math notation, use LaTeX delimited with $...$ for inline or $$...$$ for standalone equations/expressions (e.g. $x^2 + 3x = 0$), so it renders correctly — never use plain-text approximations like x^2 or unicode fraction characters.",
+    "For multiple-choice, choices must have id 'A'/'B'/'C'/'D' etc. For student-produced response (numeric fill-in) questions, set questionType to 'spr' and choices to an empty array.",
+    "Write a clear 'rationale' (why the correct answer is right) and 'explanation' (fuller walkthrough) for every question — if the source doesn't include one, write a correct one yourself.",
+    DOMAIN_SKILL_GUIDE,
+    "If you cannot confidently classify a question's domain/skill, pick the closest match — never invent a new one.",
+    EXTRACT_JSON_CONTRACT,
+  ].join("\n");
+
+  const isPhoto = !!params.imageBase64;
+  const userText = params.text?.trim() ? params.text.trim() : "Extract every question from the attached image.";
+  const userMessage = isPhoto
+    ? {
+        role: "user",
+        content: [
+          { type: "text", text: userText },
+          {
+            type: "image_url",
+            image_url: { url: `data:${params.imageMimeType || "image/jpeg"};base64,${params.imageBase64}` },
+          },
+        ],
+      }
+    : { role: "user", content: userText };
+
+  try {
+    const response = await withTimeout(
+      fetch(GROQ_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+        body: JSON.stringify({
+          model: isPhoto ? VISION_MODEL : TEXT_MODEL,
+          messages: [{ role: "system", content: systemPrompt }, userMessage],
+          response_format: { type: "json_object" },
+          temperature: 0.3,
+          max_tokens: 8000,
+        }),
+      }),
+      45000
+    );
+    if (!response.ok) {
+      const errText = await response.text().catch(() => "");
+      throw new Error(`Groq API error ${response.status}: ${errText.slice(0, 300)}`);
+    }
+    const json = await response.json();
+    const text: string | undefined = json?.choices?.[0]?.message?.content;
+    if (!text) throw new Error("Empty Groq response");
+    const parsed = JSON.parse(extractJson(text)) as { questions?: ExtractedQuestionDraft[] };
+    if (!Array.isArray(parsed.questions)) throw new Error("Malformed extraction response");
+    return { ok: true, questions: parsed.questions };
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : "Extraction failed" };
+  }
+}
+
+export async function askCoach(
+  params: AskCoachParams
+): Promise<{ ok: true; data: CoachStructuredResponse } | { ok: false; data: CoachStructuredResponse; error: string }> {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    return { ok: false, data: FALLBACK_RESPONSE, error: "GROQ_API_KEY not configured" };
+  }
+
+  try {
+    const systemPrompt = buildSystemPrompt(params);
+    const userText = buildUserContent(params);
+    const isPhoto = params.mode === "photo" && !!params.imageBase64;
+
+    const userMessage = isPhoto
+      ? {
+          role: "user",
+          content: [
+            { type: "text", text: userText },
+            {
+              type: "image_url",
+              image_url: { url: `data:${params.imageMimeType || "image/jpeg"};base64,${params.imageBase64}` },
+            },
+          ],
+        }
+      : { role: "user", content: userText };
+
+    const response = await withTimeout(
+      fetch(GROQ_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: isPhoto ? VISION_MODEL : TEXT_MODEL,
+          messages: [{ role: "system", content: systemPrompt }, userMessage],
+          response_format: { type: "json_object" },
+          temperature: 0.4,
+          max_tokens: 2048,
+        }),
+      }),
+      25000
+    );
+
+    if (!response.ok) {
+      const errText = await response.text().catch(() => "");
+      throw new Error(`Groq API error ${response.status}: ${errText.slice(0, 300)}`);
+    }
+
+    const json = await response.json();
+    const text: string | undefined = json?.choices?.[0]?.message?.content;
+    if (!text) throw new Error("Empty Groq response");
+
+    const parsed = JSON.parse(extractJson(text)) as CoachStructuredResponse;
+
+    const required: (keyof CoachStructuredResponse)[] = [
+      "diagnosis",
+      "mistake_type",
+      "concept",
+      "hint",
+      "explanation",
+      "next_step",
+      "recommended_skill",
+      "difficulty",
+    ];
+    for (const key of required) {
+      if (typeof parsed[key] !== "string") {
+        throw new Error(`Malformed Groq response: missing ${key}`);
+      }
+    }
+
+    return { ok: true, data: parsed };
+  } catch (err) {
+    return {
+      ok: false,
+      data: FALLBACK_RESPONSE,
+      error: err instanceof Error ? err.message : "Unknown Groq error",
+    };
+  }
+}

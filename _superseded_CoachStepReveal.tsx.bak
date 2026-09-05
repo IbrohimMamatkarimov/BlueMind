@@ -1,0 +1,78 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { CoachMarkdown } from "./CoachMarkdown";
+
+interface Section {
+  title: string;
+  body: string;
+}
+
+/** Splits Coach's structured "## 1. ..." / "## 2. ..." explanation into
+ * per-step sections. Any content before the first "## " header (rare, but
+ * possible if the model adds a stray lead-in line) becomes an untitled
+ * first section rather than being dropped. */
+function splitSections(markdown: string): Section[] {
+  const lines = markdown.split("\n");
+  const sections: Section[] = [];
+  let current: Section | null = null;
+
+  for (const line of lines) {
+    const heading = line.match(/^##\s+(.+)$/);
+    if (heading) {
+      if (current) sections.push(current);
+      current = { title: heading[1].trim(), body: "" };
+    } else {
+      if (!current) current = { title: "", body: "" };
+      current.body += line + "\n";
+    }
+  }
+  if (current) sections.push(current);
+  return sections;
+}
+
+/**
+ * Renders a Coach explanation one step at a time instead of dumping the
+ * whole walkthrough at once — shows the first two steps, then gates each
+ * further step behind a "Next step" click until the final step is reached.
+ * Falls back to a plain render for anything that isn't a multi-step
+ * "## 1. / ## 2. ..." explanation (hints, one-liners, chat replies).
+ */
+export function CoachStepReveal({ text }: { text: string }) {
+  const sections = useMemo(() => splitSections(text), [text]);
+  const [revealed, setRevealed] = useState(2);
+
+  if (sections.length <= 2) {
+    return <CoachMarkdown text={text} />;
+  }
+
+  const visible = sections.slice(0, revealed);
+  const hasMore = revealed < sections.length;
+  const isFinal = !hasMore;
+
+  return (
+    <div className="space-y-4">
+      {visible.map((s, i) => (
+        <div key={i} className={i === visible.length - 1 && hasMore === false && i > 1 ? "" : ""}>
+          {s.title && <h4 className="text-sm font-bold text-brand-navy mb-1">{s.title}</h4>}
+          <CoachMarkdown text={s.body.trim()} />
+        </div>
+      ))}
+      {hasMore ? (
+        <button
+          onClick={() => setRevealed((r) => r + 1)}
+          className="btn-primary text-xs px-4 py-1.5"
+        >
+          Next step ({revealed}/{sections.length}) →
+        </button>
+      ) : (
+        isFinal &&
+        sections.length > 2 && (
+          <p className="text-[11px] text-brand-slate font-medium uppercase tracking-wide">
+            End of walkthrough
+          </p>
+        )
+      )}
+    </div>
+  );
+}

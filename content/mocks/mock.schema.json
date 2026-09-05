@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BlueMind mock test import file",
+  "description": "A complete mock test (both sections, both modules) for `npm run db:import-mock -- <folder>`. The folder holds this mock.json plus a figures/ directory with the images it references. Text fields use the same markup the admin editor uses: $...$ inline LaTeX, $$...$$ block LaTeX, *italic*, __underline__, and a run of 6 underscores (______) for a fill-in-the-blank.",
+  "type": "object",
+  "required": ["mock", "modules"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "mock": {
+      "type": "object",
+      "required": ["title", "groupLabel", "month", "year"],
+      "properties": {
+        "title": { "type": "string", "description": "Card title on /mocks, e.g. \"March 2026\"." },
+        "subtitle": { "type": ["string", "null"], "description": "Form / version label shown under the title, e.g. \"International Form A\"." },
+        "groupLabel": { "type": "string", "description": "Sidebar year group: \"2026\", \"2025\", \"2024\" or \"2023\"." },
+        "month": {
+          "type": "string",
+          "enum": ["March", "May", "June", "August", "September", "October", "November", "December"],
+          "description": "Real SAT administration month (the public library hides any other month)."
+        },
+        "year": { "type": "integer", "minimum": 2000, "maximum": 2100 },
+        "source": { "type": "string", "description": "Stored in questions.source and mocks.official_source." },
+        "notes": { "type": "string" },
+        "totalQuestions": { "type": "integer" },
+        "durationMinutes": { "type": "integer" }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["section", "module", "questions"],
+        "properties": {
+          "section": { "type": "string", "enum": ["Reading and Writing", "Math"] },
+          "module": { "type": "integer", "enum": [1, 2] },
+          "questions": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/question" }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "choice": {
+      "type": "object",
+      "required": ["id", "text"],
+      "properties": {
+        "id": { "type": "string", "enum": ["A", "B", "C", "D"] },
+        "text": { "type": "string", "description": "May be empty for an image-only choice." },
+        "image": { "type": ["string", "null"], "description": "File name inside figures/ shown for this choice." }
+      }
+    },
+    "question": {
+      "type": "object",
+      "required": ["number", "domain", "skill", "difficulty", "questionText", "choices", "correctAnswer", "rationale", "explanation"],
+      "properties": {
+        "number": { "type": "integer", "minimum": 1, "description": "1-based position within the module; must be sequential." },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "Information and Ideas", "Craft and Structure", "Expression of Ideas", "Standard English Conventions",
+            "Algebra", "Advanced Math", "Problem-Solving and Data Analysis", "Geometry and Trigonometry"
+          ]
+        },
+        "skill": {
+          "type": "string",
+          "enum": [
+            "Central Ideas and Details", "Command of Evidence", "Inferences",
+            "Words in Context", "Text Structure and Purpose", "Cross-Text Connections",
+            "Rhetorical Synthesis", "Transitions",
+            "Boundaries", "Form, Structure, and Sense",
+            "Linear Equations", "Linear Functions", "Systems of Equations", "Linear Inequalities",
+            "Nonlinear Functions", "Nonlinear Equations", "Equivalent Expressions",
+            "Ratios and Proportions", "Percentages", "Data Interpretation", "Probability",
+            "Area and Volume", "Lines/Angles/Triangles", "Right Triangle Trig", "Circles"
+          ]
+        },
+        "difficulty": { "type": "string", "enum": ["Easy", "Medium", "Hard"] },
+        "questionType": { "type": "string", "enum": ["multiple_choice", "spr"], "default": "multiple_choice" },
+        "passageText": {
+          "type": ["string", "null"],
+          "description": "Reading & Writing only: the left-pane passage/stimulus. Use \"Text 1\" / \"Text 2\" headings (no colon) for paired texts and bullet lines for student notes."
+        },
+        "questionText": { "type": "string", "description": "R&W: the question stem shown on the right. Math: the whole question." },
+        "image": { "type": ["string", "null"], "description": "File name inside figures/ for a chart, table or diagram shown with the question." },
+        "choices": { "type": "array", "items": { "$ref": "#/definitions/choice" }, "description": "Exactly A–D for multiple choice; empty array for SPR." },
+        "correctAnswer": { "type": "string", "description": "Choice id (A–D) or, for SPR, the numeric answer; several accepted answers may be comma-separated (\"2,-2\")." },
+        "rationale": { "type": "string", "description": "One- or two-sentence reason the correct answer is right." },
+        "explanation": { "type": "string", "description": "Full walkthrough, including why the other choices are wrong." },
+        "estimatedTime": { "type": "integer", "description": "Seconds; defaults to 71 for R&W and 95 for Math." }
+      }
+    }
+  }
+}

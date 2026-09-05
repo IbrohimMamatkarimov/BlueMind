@@ -1,0 +1,2747 @@
+{
+ "$schema": "../mock.schema.json",
+ "mock": {
+  "title": "March 2026",
+  "subtitle": "International Form A",
+  "groupLabel": "2026",
+  "month": "March",
+  "year": 2026,
+  "source": "March 2026 International (Form A)",
+  "notes": "Transcribed from the March 2026 International (Int-A) administration. Figures are cropped from the source PDF; rationales and explanations were written for BlueMind."
+ },
+ "modules": [
+  {
+   "section": "Reading and Writing",
+   "module": 1,
+   "questions": [
+    {
+     "number": 1,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Easy",
+     "passageText": "The Apollo Moon landings (1969–1972) left charged particle detectors and equipment too heavy for liftoff on the Moon and produced large amounts of data. Researcher Philip Metzger, who is investigating the long-term effects of being on the Moon, continues to use Apollo's data, demonstrating that the missions' value to science ______",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "persists"
+      },
+      {
+       "id": "B",
+       "text": "responds"
+      },
+      {
+       "id": "C",
+       "text": "arrives"
+      },
+      {
+       "id": "D",
+       "text": "agrees"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The missions ended decades ago, yet a researcher \"continues to use\" their data, so their scientific value continues to exist — it persists.",
+     "explanation": "The text sets up a contrast between the age of the Apollo missions (1969–1972) and the fact that Metzger \"continues to use\" the data they produced. The blank must describe what the data's ongoing use shows about the missions' value: that it lasts, or persists. \"Responds\" and \"agrees\" would require the value to react to or match something, which the text never mentions. \"Arrives\" wrongly implies the value is only now appearing, when the text stresses that it has continued since the missions.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 2,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Easy",
+     "passageText": "The following text is from Billie Jean King's 2021 autobiography *All In*.\n\n[P]eople on both sides of my family had repeatedly demonstrated an independent streak. In the end, that was the temperament I gravitated toward, too. Both the Moffitts and the members of my mother's clan, the Jermans, came from mining and oil-geyser towns on the western frontier. They kept their heads down and worked, worked, worked. But they also bucked convention.",
+     "questionText": "As used in the text, what does the word \"demonstrated\" most nearly mean?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Protested"
+      },
+      {
+       "id": "B",
+       "text": "Defined"
+      },
+      {
+       "id": "C",
+       "text": "Exhibited"
+      },
+      {
+       "id": "D",
+       "text": "Confirmed"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "King's relatives showed an independent streak through how they lived, so \"demonstrated\" means displayed or exhibited.",
+     "explanation": "The text describes family members who worked hard on the frontier yet \"bucked convention\" — that behavior is how they displayed, or exhibited, their independent streak. \"Protested\" (objected to) does not fit; nobody is objecting to anything. \"Defined\" would mean they set the meaning of an independent streak, and \"confirmed\" would mean they verified something already claimed; neither matches the idea of showing a trait through one's actions.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 3,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "Scientists studying marine ecosystems were surprised by the extent of internal carbon recycling by red coralline algae. While some ______ of carbon was expected, the scientists found that the algae reabsorb nearly 40% of the carbon dioxide they produce during calcification processes and harness it for photosynthesis.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "reuse"
+      },
+      {
+       "id": "B",
+       "text": "imitation"
+      },
+      {
+       "id": "C",
+       "text": "supply"
+      },
+      {
+       "id": "D",
+       "text": "examination"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The passage is about carbon \"recycling\" — the algae reabsorb and use again the carbon dioxide they produce — so the expected phenomenon is some reuse of carbon.",
+     "explanation": "The first sentence calls the phenomenon \"internal carbon recycling,\" and the second describes the algae reabsorbing carbon dioxide they themselves produced. The scientists expected some of this recycling but were surprised by how much; the blank therefore needs a word meaning recycling, which is \"reuse.\" \"Imitation\" and \"examination\" are not things algae do with carbon, and \"supply\" would describe providing carbon rather than recycling it, so it does not match the surprise about the extent of reabsorption.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 4,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "The traditional Puerto Rican dish mofongo, characterized broadly by its base of mashed plantains, is often ______ in its preparation and serving style. Coastal families typically serve it with fresh-caught octopus and shrimp, mountain families tend to prepare it with chicharrones, and restaurant chefs in San Juan explore innovations like topping the dish with guarapo (juice from sugarcane).",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "seasonal"
+      },
+      {
+       "id": "B",
+       "text": "proprietary"
+      },
+      {
+       "id": "C",
+       "text": "meticulous"
+      },
+      {
+       "id": "D",
+       "text": "localized"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The examples show the dish varying by place — coast, mountains, San Juan — so its preparation is localized.",
+     "explanation": "Every example after the blank ties a version of mofongo to a location: coastal families, mountain families, and chefs in San Juan each prepare it differently. The word that captures variation according to place is \"localized.\" \"Seasonal\" would require differences by time of year, which the text never mentions. \"Proprietary\" (privately owned) and \"meticulous\" (extremely careful) describe neither the regional pattern nor anything else in the examples.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 5,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "The following text is from Charles Chesnutt's 1905 novel *The Colonel's Dream*. Mr. French and Mr. Kirby work together.\n\nMr. French, the senior partner, who sat opposite Kirby, was an older man—a safe guess would have placed him somewhere in the debatable ground between forty and fifty; of a good height, as could be seen even from the seated figure, the upper part of which was held erect with the unconscious ease which one associates with military training.",
+     "questionText": "As used in the text, what does the word \"good\" most nearly mean?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Reliable"
+      },
+      {
+       "id": "B",
+       "text": "Courteous"
+      },
+      {
+       "id": "C",
+       "text": "Considerable"
+      },
+      {
+       "id": "D",
+       "text": "Capable"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "\"Good\" modifies \"height\" in a physical description, so it means considerable — Mr. French is fairly tall.",
+     "explanation": "The narrator is describing Mr. French's physical appearance: his age, then his height, which \"could be seen even from the seated figure.\" A height cannot be reliable, courteous, or capable; those words describe a person's character or abilities. A height can, however, be considerable (large), which is what \"good\" means here — he is noticeably tall, something evident even while he sits.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 6,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Easy",
+     "passageText": "The Uffington White Horse in England is a large chalk image of a horse made by ancient peoples. Monuments like these were an inspiration for the land art movement that began in the 1960s. Land art artists create works set in the outdoors. For example, in her 1976 work *Sun Tunnels*, Nancy Holt placed four tubes made of concrete in a Utah desert to form an X and frame the sun.",
+     "questionText": "Which choice best states the main purpose of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The text argues against placing works of art outside."
+      },
+      {
+       "id": "B",
+       "text": "The text provides information about the land art movement."
+      },
+      {
+       "id": "C",
+       "text": "The text describes the popularity of art galleries in the 1960s."
+      },
+      {
+       "id": "D",
+       "text": "The text describes the benefits of being an artist."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Every sentence explains something about land art — its inspiration, what it is, and an example — so the text's purpose is to inform readers about the movement.",
+     "explanation": "The text introduces an ancient monument as an inspiration for land art, defines land art as outdoor works, and gives Nancy Holt's *Sun Tunnels* as an example. That is straightforward information about the movement. The text never argues against outdoor art (it describes it neutrally), never mentions art galleries, and says nothing about the benefits of being an artist.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 7,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Medium",
+     "passageText": "Though Chloe Zhao's films are fictional, she incorporates real events into them in a documentary-like style and casts nonprofessional actors who reside in the places that she aims to portray. She also encourages these actors, whether they are teenagers living on the Pine Ridge Indian Reservation or adults who travel the country for work, to put as much of themselves into their roles as possible. Her approach adds powerful resonance to films that explore the highly personal experiences of place and home, and often the difficult decision to stay or leave.",
+     "questionText": "Which choice best states the main purpose of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "To discuss how Chloe Zhao's background in documentary filmmaking has influenced her storytelling style in films"
+      },
+      {
+       "id": "B",
+       "text": "To emphasize that Chloe Zhao's decisions during the filmmaking process reinforce the themes of her films"
+      },
+      {
+       "id": "C",
+       "text": "To summarize how Chloe Zhao's style of filmmaking changed over the course of her career"
+      },
+      {
+       "id": "D",
+       "text": "To argue that Chloe Zhao's films are best understood as documentaries"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The text lists Zhao's filmmaking choices (real events, local nonprofessional actors, personal performances) and concludes that this approach strengthens her films' themes of place and home.",
+     "explanation": "The first two sentences describe specific decisions Zhao makes while making films; the final sentence says that \"her approach adds powerful resonance\" to the themes her films explore. So the purpose is to show that her process reinforces her themes. The text never says she has a background in documentary filmmaking (only that her style is documentary-like), never traces changes over her career, and explicitly calls her films fictional rather than documentaries.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 8,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Hard",
+     "passageText": "While many initiatives aimed at limiting atmospheric warming focus on curbing emissions of methane (CH₄), a greenhouse gas that is typically generated by microbially mediated processes, Lisa Y. Stein and Mary E. Lidstrom caution that under certain circumstances, such efforts cause microbial communities to accelerate production of nitrous oxide (N₂O), another potent greenhouse gas, thus offsetting the impact of CH₄ reduction. Researchers, therefore, need to take such biological interactions into account to ensure that any CH₄ mitigation strategy has an overall positive climate effect.",
+     "questionText": "Which choice best describes the overall structure of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "It mentions a phenomenon that negatively affects the environment, summarizes competing methods for remedying that phenomenon, and then concedes that even apparently distinct methods share similar problems."
+      },
+      {
+       "id": "B",
+       "text": "It describes a widely accepted approach to addressing an environmental issue caused by a type of chemical emissions, indicates a potential disadvantage of that approach, and then discusses an implication of that disadvantage."
+      },
+      {
+       "id": "C",
+       "text": "It reports on a predicament resulting from emissions of a particular greenhouse gas, outlines a strategy aimed at solving that predicament, and then admonishes those who utilize that strategy without fully comprehending its ramifications."
+      },
+      {
+       "id": "D",
+       "text": "It presents an ongoing environmental challenge, demonstrates why the impact of that challenge may intensify over time, and then criticizes a misguidedly narrow attempt to address that impact."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The text moves from a common approach (curbing methane), to a drawback (it can raise nitrous oxide), to what that drawback implies (researchers must account for biological interactions).",
+     "explanation": "\"Many initiatives\" focusing on methane is the widely accepted approach; Stein and Lidstrom's caution that such efforts can increase N₂O production is the potential disadvantage; and the final sentence draws the implication that researchers must consider these interactions. That is exactly choice B. Choice A is wrong because the text presents one approach, not competing methods. Choice C is wrong because the text does not scold anyone; it makes a neutral recommendation. Choice D is wrong because the text never says the challenge will intensify over time.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 9,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Easy",
+     "passageText": "A debut novel is the first book that an author has published. An example of a debut novel is *The Skin I'm In* by Sharon G. Flake. It was published in 1998. Debut novels are especially interesting to literary critics and readers because these books offer a look at new voices in the literary world.",
+     "questionText": "Which choice best states the main topic of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The benefits of reading"
+      },
+      {
+       "id": "B",
+       "text": "Famous literary critics"
+      },
+      {
+       "id": "C",
+       "text": "Debut novels"
+      },
+      {
+       "id": "D",
+       "text": "Careers in the publishing industry"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The text defines debut novels, gives an example, and explains why they interest readers — every sentence is about debut novels.",
+     "explanation": "The text opens by defining a debut novel, offers *The Skin I'm In* as an example, and closes by explaining why debut novels interest critics and readers. Its topic is therefore debut novels. Reading in general, particular critics, and publishing careers are never discussed.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 10,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Easy",
+     "image": "p004_x72_0.png",
+     "passageText": "Scientists collected information about brown bears in Katmai National Park in Alaska. This information included each bear's sex, age, and approximate weight. For the bear with identification number 122, for example, the scientists recorded that the bear was ______",
+     "questionText": "Which choice most effectively uses data from the table to complete the statement?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "male, 4 years old, and weighed approximately 275 pounds."
+      },
+      {
+       "id": "B",
+       "text": "female, 10 years old, and weighed approximately 400 pounds."
+      },
+      {
+       "id": "C",
+       "text": "male, 3 years old, and weighed approximately 200 pounds."
+      },
+      {
+       "id": "D",
+       "text": "female, 6 years old, and weighed approximately 325 pounds."
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The row for bear 122 lists male, 3 years, and approximately 200 pounds.",
+     "explanation": "Find the row whose identification number is 122. Reading across that row gives sex: male, age: 3 years, approximate weight: 200 pounds — exactly choice C. Choice A describes bear 103, choice B describes bear 173, and choice D describes bear 117.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 11,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Medium",
+     "passageText": "*Great Expectations* is an 1861 novel by Charles Dickens. The narrator describes his uncle, Joe Gargery, as being both powerful and tender: ______",
+     "questionText": "Which quotation from *Great Expectations* most effectively illustrates the claim?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "\"There I stood, for minutes, looking at Joe, already at work with a glow of health and strength upon his face that made it show as if the bright sun of the life in store for him were shining on it.\""
+      },
+      {
+       "id": "B",
+       "text": "\"In his working-clothes, Joe was a well-knit characteristic-looking blacksmith; in his holiday clothes, he was more like a scarecrow in good circumstances, than anything else.\""
+      },
+      {
+       "id": "C",
+       "text": "\"I have often thought [Joe] since, like the steam-hammer that can crush a man or pat an egg-shell, in his combination of strength with gentleness.\""
+      },
+      {
+       "id": "D",
+       "text": "\"Estella opened the gate as usual, and, the moment she appeared, Joe took his hat off and stood weighing it by the brim in both his hands.\""
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Only choice C shows both qualities at once: a steam-hammer that can \"crush a man or pat an egg-shell\" — a \"combination of strength with gentleness.\"",
+     "explanation": "The claim has two parts — Joe is powerful and tender — so the best quotation must show both. Choice C explicitly names \"strength with gentleness\" and illustrates it with the image of a steam-hammer that can crush or gently pat. Choice A mentions strength and health but nothing tender. Choice B describes only his appearance in different clothes. Choice D shows nervous politeness toward Estella but says nothing about power.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 12,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Medium",
+     "image": "p005_x83_0.png",
+     "passageText": "Lin-Tai Ho and colleagues counted fish in a tide pool in Taiwan at several times during the year and found that some species had a significantly higher maximum population count than others. For example, the highest count for the combtooth blenny was 62 individuals in January of 2001, whereas the highest count for the striated rockskipper was ______",
+     "questionText": "Which choice most effectively uses data from the graph to complete the example?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "16 individuals in October of 2001."
+      },
+      {
+       "id": "B",
+       "text": "15 individuals in July of 2001."
+      },
+      {
+       "id": "C",
+       "text": "72 individuals in January of 2001."
+      },
+      {
+       "id": "D",
+       "text": "5 individuals in July of 2001."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The striated rockskipper line (dotted, open circles) peaks at about 5 individuals in July 2001.",
+     "explanation": "Follow the dotted line with open circles, which the legend identifies as the striated rockskipper: 0 in January, 0 in April, about 5 in July, and about 4 in October. Its highest count is therefore 5 individuals in July of 2001. Choice A (16 in October) is the barred flagtail's peak, not the rockskipper's. Choice B misreads July's value, and choice C's 72 is higher than anything on the graph — even the blenny's peak was 62.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 13,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Hard",
+     "passageText": "In the early 1970s, art historian Michael Baxandall created an approach to viewing art called the \"period eye,\" which explains how to look at art through the lens of its historical period. Baxandall argued that it is critical that art historians understand and communicate the original social and cultural contexts of older works of art so that it is clear what the artists intended and how the pieces would have been understood by their original viewers. __Since it was first introduced, Baxandall's period eye has significantly influenced the practice of art history.__",
+     "questionText": "Which statement, if true, would most strongly support the claim in the underlined sentence?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Many art historians working before the 1970s produced detailed analyses of the social and cultural contexts of older artworks, though few extended that approach to artworks produced in their own lifetimes."
+      },
+      {
+       "id": "B",
+       "text": "Art historians working today have largely rejected the idea, common among Baxandall's predecessors, that artists' intentions should influence how artworks are interpreted."
+      },
+      {
+       "id": "C",
+       "text": "For some historical periods, it is difficult for art historians to reconstruct how the original viewers of artworks understood what artists' intentions for their works were."
+      },
+      {
+       "id": "D",
+       "text": "Numerous art historians of the late twentieth century and twenty-first century have focused their scholarship on how various artworks were interpreted at the time of their creation."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "If many art historians after the 1970s focus on how works were understood at the time of their creation, they are doing exactly what the period eye calls for — evidence of its influence.",
+     "explanation": "The underlined claim is that the period eye has significantly influenced art history since it was introduced in the early 1970s. Choice D describes many later art historians adopting the approach's core idea (how works were interpreted by their original viewers), which directly supports that influence. Choice A is about historians before the 1970s, so it cannot show Baxandall's influence. Choice B says today's historians reject attention to artists' intentions, which would undercut the claim. Choice C describes a difficulty with the approach, not its influence.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 14,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Medium",
+     "passageText": "Last-mile delivery refers to the final step in delivering packages to customers—and this final step can be very difficult. Delivery companies are contending with the increasing popularity of next-day delivery and with complex and inefficient delivery routes, resulting in a growing bottleneck of packages in the last-mile delivery stage. These companies have been experimenting with innovative solutions in last-mile delivery, including autonomous delivery robots (robots that deliver parcels from a van). Unfortunately, many of these innovations create new obstacles (e.g., robots travel relatively slowly since they must navigate many ground-level obstacles) and are not ready for full-scale implementation. As a result, delivery companies will likely ______",
+     "questionText": "Which choice most logically completes the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "encourage consumers to expect next-day delivery only for products that are widely available."
+      },
+      {
+       "id": "B",
+       "text": "be able to meet consumers' expectations for next-day delivery in many areas but not in all regions."
+      },
+      {
+       "id": "C",
+       "text": "have little incentive to find a solution to last-mile delivery challenges."
+      },
+      {
+       "id": "D",
+       "text": "continue to struggle with last-mile delivery operations until viable solutions become available."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The problem is growing and the proposed fixes \"are not ready for full-scale implementation,\" so the logical result is continued struggle until workable solutions exist.",
+     "explanation": "The text establishes a growing bottleneck, then says the innovations meant to solve it create new obstacles and are not ready to deploy. The sentence beginning \"As a result\" must state the consequence: companies will keep struggling until something viable is available (choice D). Nothing in the text supports steering consumers toward certain products (A) or a regional split in service (B). Choice C contradicts the text — companies are actively experimenting, which shows strong incentive to solve the problem.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 15,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Medium",
+     "passageText": "The olona shrub is one of many forest plant species native to Oahu (a Hawaiian island) that are at risk of extinction in the wild. Ecologists say that fruit-eating birds help support these species' population numbers by dropping seeds from the plants' fruits to different spots where new plants can grow. The birds native to Oahu that used to do this have all gone extinct over time. However, the common waxbill and other fruit-eating bird species brought to the island in the last 150 years have been found to spread plant seeds. Based on this finding, some ecologists suggest that olona shrubs and other forest plants native to Oahu ______",
+     "questionText": "Which choice most logically completes the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "probably established themselves on the island at about the same time as common waxbills and other fruit-eating birds did."
+      },
+      {
+       "id": "B",
+       "text": "may now depend on non-native birds, such as the common waxbill, to help maintain and increase their populations on the island."
+      },
+      {
+       "id": "C",
+       "text": "were likely already close to extinction long before non-native birds arrived on the island."
+      },
+      {
+       "id": "D",
+       "text": "seem to produce fewer fruits per plant now than they did when fruit-eating birds native to the island were still present."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Native seed-spreading birds are extinct, and introduced birds have been found to spread seeds, so the native plants may now rely on those non-native birds.",
+     "explanation": "The text says fruit-eating birds support plant populations by spreading seeds, that Oahu's native seed-spreaders are extinct, and that introduced birds like the common waxbill now spread seeds. The suggestion that follows from \"this finding\" is that native plants may depend on the non-native birds (choice B). Choice A is contradicted by the text: the plants are native while the birds arrived in the last 150 years. Choice C concerns a time before the birds arrived, which the finding says nothing about. Choice D introduces fruit production per plant, which is never discussed.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 16,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "Established in 1935 for the specific purpose of promoting collective bargaining between US labor unions and employers, ______ helped the nation recover from the Great Depression.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "the US government's many ways, just one of which was the National Labor Relations Act (NLRA),"
+      },
+      {
+       "id": "B",
+       "text": "the National Labor Relations Act (NLRA) was just one of many ways the US government"
+      },
+      {
+       "id": "C",
+       "text": "many ways, just one of which was the National Labor Relations Act (NLRA), were how the US government"
+      },
+      {
+       "id": "D",
+       "text": "the US government in many ways, just one of which was the National Labor Relations Act (NLRA),"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The opening modifier \"Established in 1935...\" must describe the National Labor Relations Act, so the NLRA must be the subject that immediately follows the comma.",
+     "explanation": "\"Established in 1935 for the specific purpose of promoting collective bargaining\" is an introductory participial phrase; the noun right after it must be the thing that was established — the National Labor Relations Act. Choice B places the NLRA there and forms a complete, logical sentence: the NLRA was one of many ways the US government helped the nation recover. Choices A, C, and D make \"ways\" or \"the US government\" the thing established in 1935, which is illogical, and A and D also leave the sentence without a proper main verb structure.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 17,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "In their 2019 study of butterfly diversity at Rupa Lake in Nepal, researcher Hari Adhikari and his colleagues counted eight Paris peacock ______ to the Papilionidae family, the Paris peacock (*Papilio paris*) is known to be rare.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "butterflies, belonging"
+      },
+      {
+       "id": "B",
+       "text": "butterflies. Belonging"
+      },
+      {
+       "id": "C",
+       "text": "butterflies and belonging"
+      },
+      {
+       "id": "D",
+       "text": "butterflies belonging"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Two independent clauses meet here, and \"Belonging to the Papilionidae family\" is an introductory modifier for the second one, so a period is needed.",
+     "explanation": "The first clause (\"researchers counted eight Paris peacock butterflies\") is complete. \"Belonging to the Papilionidae family, the Paris peacock is known to be rare\" is a second complete sentence that opens with a participial phrase describing the Paris peacock. Only a period (choice B) correctly separates the two. Choice A creates a comma splice, and choices C and D run the clauses together, attaching \"belonging\" to the butterflies that were counted and leaving the second clause unconnected.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 18,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Easy",
+     "passageText": "How a folktale begins depends largely on the language in which it ______ folktales told in the Pashto language open with a phrase that roughly means \"there was this work that.\" English-language folktales, on the other hand, often begin with \"once upon a time.\"",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "originates. Many"
+      },
+      {
+       "id": "B",
+       "text": "originates, many"
+      },
+      {
+       "id": "C",
+       "text": "originates many"
+      },
+      {
+       "id": "D",
+       "text": "originates many,"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "\"How a folktale begins depends largely on the language in which it originates\" and \"Many folktales told in the Pashto language open with...\" are both independent clauses, so they must be separated by a period.",
+     "explanation": "The blank sits between two complete sentences. Choice A ends the first with a period and starts the second with a capitalized \"Many.\" Choice B joins the two independent clauses with only a comma (a comma splice). Choices C and D fuse them with no punctuation at all, and D's comma after \"many\" separates the adjective from the noun it modifies.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 19,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Easy",
+     "passageText": "Maize was among the many plant species from the Western Hemisphere introduced into the Eastern Hemisphere in the years following Christopher Columbus's first transatlantic voyage in 1492. This ongoing transfer of species between hemispheres ______ now known as the Columbian Exchange.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "were"
+      },
+      {
+       "id": "B",
+       "text": "being"
+      },
+      {
+       "id": "C",
+       "text": "is"
+      },
+      {
+       "id": "D",
+       "text": "are"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The subject is the singular \"transfer,\" so the verb must be singular and finite: \"is.\"",
+     "explanation": "Strip away the modifiers and the sentence reads \"This transfer ______ now known as the Columbian Exchange.\" The subject \"transfer\" is singular, so the plural verbs \"were\" (A) and \"are\" (D) do not agree with it; the nearby plural nouns \"species\" and \"hemispheres\" are part of prepositional phrases, not the subject. \"Being\" (B) is a participle, not a finite verb, and would leave the sentence without a main verb. \"Is\" (C) is singular and present tense, matching \"now.\"",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 20,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "Now seen as a mechanical precursor to the e-reader, Spanish educator and inventor Ángela Ruiz Robles's *Enciclopedia Mecánica* eschewed pages in favor of three horizontal paper scrolls that could be easily swapped out to accommodate a range of subjects. Though Ruiz Robles's prototype had limited functionality, interactive features described in her 1949 patent—such as a button labeled \"verb\" that would illuminate relevant text when pressed—______ an impressive early vision of hypertext.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "revealing"
+      },
+      {
+       "id": "B",
+       "text": "has revealed"
+      },
+      {
+       "id": "C",
+       "text": "reveals"
+      },
+      {
+       "id": "D",
+       "text": "reveal"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The subject of the clause is the plural noun \"features,\" so the verb must be the plural \"reveal.\"",
+     "explanation": "Set aside the interrupting phrase between the dashes and the core clause reads \"interactive features described in her 1949 patent ______ an impressive early vision of hypertext.\" The subject is \"features,\" which is plural, so the singular verbs \"has revealed\" (B) and \"reveals\" (C) do not agree with it. \"Revealing\" (A) is a participle and would leave the clause without a main verb, creating a fragment. Only \"reveal\" (D) is a plural finite verb.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 21,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "In the seventeenth century, market-savvy British greenhouses scrambled to cultivate ______ the small group of wealthy consumers who could afford to import them from the Caribbean, the fruits had become a status symbol.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "pineapples for"
+      },
+      {
+       "id": "B",
+       "text": "pineapples, which for"
+      },
+      {
+       "id": "C",
+       "text": "pineapples, for"
+      },
+      {
+       "id": "D",
+       "text": "pineapples. For"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "\"Greenhouses scrambled to cultivate pineapples\" is a complete sentence, and \"For the small group of wealthy consumers..., the fruits had become a status symbol\" is another, so a period is required.",
+     "explanation": "Two independent clauses meet at the blank. The second one begins with the prepositional phrase \"For the small group of wealthy consumers who could afford to import them from the Caribbean\" and has its own subject and verb (\"the fruits had become\"). Only choice D separates the clauses correctly. Choice A runs them together with no punctuation. Choice B turns the second clause into a relative clause with \"which,\" leaving \"the fruits had become a status symbol\" ungrammatically attached. Choice C is a comma splice.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 22,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Easy",
+     "passageText": "It's tempting to think that the comic strips *Jump Start* and *Wee Pals* have the same main purpose—to amuse—because both feature humorous situations. ______ *Wee Pals* focuses just as much on challenging readers with sociopolitical commentary as it does on making them laugh.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Likewise,"
+      },
+      {
+       "id": "B",
+       "text": "Next,"
+      },
+      {
+       "id": "C",
+       "text": "In reality,"
+      },
+      {
+       "id": "D",
+       "text": "In other words,"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The first sentence describes a tempting but mistaken assumption; the second corrects it, so a transition signaling the actual situation, \"In reality,\" fits.",
+     "explanation": "\"It's tempting to think\" signals that the assumption about to be stated is not quite right. The second sentence then gives the truth: *Wee Pals* is as much about sociopolitical commentary as about laughs. \"In reality\" introduces that correction. \"Likewise\" would wrongly suggest the second sentence agrees with the first. \"Next\" implies a sequence of steps, and \"In other words\" implies a restatement, but the second sentence contradicts rather than restates the first.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 23,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Medium",
+     "passageText": "Karel Čapek's 1920 play *R.U.R. (Rossum's Universal Robots)*, in which artificial workers overthrow their masters, left an indelible mark on the science fiction genre, and the English language, by introducing the term \"robot\" (derived from the Czech word *robota*, meaning \"indentured labor\" or \"drudgery\"). ______ Čapek's play also contributed to a venerable literary and mythological tradition: using artificial beings as mirrors and foils for humanity.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Despite its creation of such an iconic trope,"
+      },
+      {
+       "id": "B",
+       "text": "By achieving such a lofty goal,"
+      },
+      {
+       "id": "C",
+       "text": "Ultimately limited in its lasting influence,"
+      },
+      {
+       "id": "D",
+       "text": "Beyond the simple coining of a term,"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The first sentence credits the play with coining \"robot\"; the second adds a further, larger contribution, so the transition should move beyond the word itself.",
+     "explanation": "The second sentence says the play \"also contributed\" to a literary tradition, adding to the first sentence's point about the word \"robot.\" \"Beyond the simple coining of a term\" (D) sets up exactly that addition. Choice A wrongly frames the second contribution as happening in spite of the first. Choice B's \"lofty goal\" does not describe anything in the text — coining a term was not presented as a goal. Choice C contradicts the text, which stresses the play's \"indelible mark.\"",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 24,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Easy",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• *The Expedition of Humphry Clinker* (1771) is an epistolary novel by English author Tobias Smollett.\n• Epistolary novels are novels written primarily as a series of fictional documents.\n• These documents can be letters, journal entries, newspaper clippings, and more.\n• *The Expedition of Humphry Clinker* consists primarily of letters.\n• The letters are sent between four family members, their maid, and a young man.",
+     "questionText": "The student wants to define the term \"epistolary novel.\" Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Tobias Smollett's novel *The Expedition of Humphry Clinker* was published in 1771 and consists primarily of letters sent between four family members, their maid, and a young man."
+      },
+      {
+       "id": "B",
+       "text": "Consisting primarily of letters sent between four family members, their maid, and a young man, Tobias Smollett's *The Expedition of Humphry Clinker* is an epistolary novel."
+      },
+      {
+       "id": "C",
+       "text": "Published in 1771, *The Expedition of Humphry Clinker* is an epistolary novel by English author Tobias Smollett."
+      },
+      {
+       "id": "D",
+       "text": "An epistolary novel is a novel written primarily as a series of fictional documents, such as letters, journal entries, or newspaper clippings."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Only choice D actually states what an epistolary novel is; the others describe Smollett's novel without defining the term.",
+     "explanation": "The goal is to define \"epistolary novel.\" Choice D combines the second and third notes into a definition: a novel written primarily as a series of fictional documents such as letters, journal entries, or newspaper clippings. Choices A, B, and C give facts about *The Expedition of Humphry Clinker* — its date, author, and letters — and B and C merely label it an epistolary novel without saying what that means.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 25,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Easy",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• The capital of Jamaica is Kingston.\n• The largest city in Jamaica by population is Kingston.\n• The capital of Morocco is Rabat.\n• The largest city in Morocco by population is Casablanca.",
+     "questionText": "The student wants to make a generalization about capital cities. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Casablanca and Rabat are both cities in Morocco."
+      },
+      {
+       "id": "B",
+       "text": "A country's capital city is not always the country's most populous city."
+      },
+      {
+       "id": "C",
+       "text": "Rabat, not Casablanca, is the capital of Morocco."
+      },
+      {
+       "id": "D",
+       "text": "The capital of Morocco is Rabat, while the capital of Jamaica is Kingston."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "A generalization is a broad statement drawn from the examples; choice B states a general rule about capitals that the Jamaica and Morocco notes together illustrate.",
+     "explanation": "The notes show that in Jamaica the capital is also the largest city, but in Morocco it is not. The general lesson is that a capital is not always the most populous city (choice B). Choices A, C, and D each repeat specific facts about one or two countries without drawing any broader conclusion, so they are not generalizations.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 26,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Easy",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• The A.M. Turing Award is a prestigious award given by the Association for Computing Machinery (ACM).\n• The ACM gives the award for \"major contributions of lasting importance to computing.\"\n• It is named after groundbreaking British mathematician Alan Turing.\n• Edgar F. Codd won the award in 1981.",
+     "questionText": "The student wants to explain whom the award is named for and identify one recipient of it. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The A.M. Turing Award, which is named for British mathematician Alan Turing, was given to Edgar F. Codd in 1981."
+      },
+      {
+       "id": "B",
+       "text": "In 1981, Edgar F. Codd won the A.M. Turing Award, which is given for \"major contributions of lasting importance to computing.\""
+      },
+      {
+       "id": "C",
+       "text": "The A.M. Turing Award is given for \"major contributions of lasting importance to computing.\""
+      },
+      {
+       "id": "D",
+       "text": "It was in 1981 that Edgar F. Codd won the A.M. Turing Award."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Choice A is the only one that both names Alan Turing as the award's namesake and identifies Edgar F. Codd as a recipient.",
+     "explanation": "The goal has two parts: say whom the award is named for and name one recipient. Choice A does both — it is named for Alan Turing and was given to Edgar F. Codd. Choices B and D identify Codd but never mention Turing. Choice C mentions neither the namesake nor a recipient.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 27,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• Albert Einstein's theory of general relativity allows for potential shortcuts through spacetime.\n• These hypothetical spacetime tunnels are known as wormholes.\n• For matter to travel through a wormhole, it would need to have negative energy density.\n• Negative energy density means that the matter would have less energy than empty space.\n• Such matter has not been shown to exist.",
+     "questionText": "The student wants to acknowledge a complication affecting travel through wormholes. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The hypothetical tunnels known as wormholes would be potential shortcuts through spacetime were it not for one complication: they have less energy than empty space."
+      },
+      {
+       "id": "B",
+       "text": "Einstein's theory of general relativity allows for potential spacetime shortcuts called wormholes but does not explain how matter with negative energy density could travel through them."
+      },
+      {
+       "id": "C",
+       "text": "For matter to travel through a wormhole, the matter would need to have less energy than empty space; such matter has not been shown to exist."
+      },
+      {
+       "id": "D",
+       "text": "For wormholes to be possible, according to Einstein's theory of general relativity, they would have to allow for potential shortcuts through spacetime."
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The complication is that wormhole travel requires matter with negative energy density, and no such matter has been shown to exist — which is exactly what choice C says.",
+     "explanation": "According to the notes, the obstacle to travel through wormholes is the need for matter with less energy than empty space, matter that has not been shown to exist. Choice C states this accurately. Choice A misattributes the negative energy to the wormholes themselves rather than to the matter traveling through them. Choice B invents a claim not in the notes (that relativity fails to explain something). Choice D merely restates what wormholes are and identifies no complication.",
+     "questionType": "multiple_choice"
+    }
+   ]
+  },
+  {
+   "section": "Reading and Writing",
+   "module": 2,
+   "questions": [
+    {
+     "number": 1,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "Recitals by Catherine Kautsky, known for her virtuosity on the piano, are rightly described as ______ given that they can feature not just the performance of a musical piece but also a lecture on the piece's composer and a slideshow contextualizing the time in which it was composed.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "circumscribed"
+      },
+      {
+       "id": "B",
+       "text": "multifaceted"
+      },
+      {
+       "id": "C",
+       "text": "undiscerning"
+      },
+      {
+       "id": "D",
+       "text": "exuberant"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The recitals combine a performance, a lecture, and a slideshow — many parts — so they are multifaceted.",
+     "explanation": "The phrase \"not just... but also\" lists three distinct components of Kautsky's recitals. A word meaning \"having many aspects\" is needed, and that is \"multifaceted.\" \"Circumscribed\" means limited or restricted — the opposite of what is described. \"Undiscerning\" (lacking judgment) and \"exuberant\" (lively, enthusiastic) describe qualities the text never mentions.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 2,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Hard",
+     "passageText": "Among saltwater fish species, there is a clear association between habitat latitude and morphological variety. While tropical species are ______ deep-bodied physical forms (body shapes that are laterally compressed but vertically extended), polar and temperate species are highly dispersed across the morphological spectrum.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "habituated to"
+      },
+      {
+       "id": "B",
+       "text": "authenticated by"
+      },
+      {
+       "id": "C",
+       "text": "concentrated among"
+      },
+      {
+       "id": "D",
+       "text": "contemporary with"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The sentence contrasts tropical species with polar and temperate species that are \"highly dispersed\" across body shapes, so tropical species must be clustered, or concentrated, in one type of body shape.",
+     "explanation": "The \"While... ,\" structure sets up a contrast: polar and temperate species are spread widely across the range of body shapes, so tropical species must do the opposite — cluster around deep-bodied forms. \"Concentrated among\" expresses that clustering. \"Habituated to\" (accustomed to) and \"authenticated by\" (proven genuine by) do not describe how species are distributed across body shapes, and \"contemporary with\" concerns time, which is irrelevant here.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 3,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "The following text is adapted from Edith Wharton's 1911 novella *Ethan Frome*. The narrator has asked the woman he rents a room from about Ethan Frome, a town resident he encountered recently.\n\nHer mind was a store-house of innocuous anecdote and any question about her acquaintances brought forth a volume of detail; but on the subject of Ethan Frome I found her unexpectedly reticent. There was no hint of disapproval in her reserve; I merely felt in her an insurmountable reluctance to speak of him.",
+     "questionText": "As used in the text, what does the word \"reserve\" most nearly mean?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Constraint"
+      },
+      {
+       "id": "B",
+       "text": "Modesty"
+      },
+      {
+       "id": "C",
+       "text": "Composure"
+      },
+      {
+       "id": "D",
+       "text": "Misgiving"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Her \"reserve\" is her being \"reticent\" and reluctant to speak — a holding back, or constraint.",
+     "explanation": "The landlady normally offers \"a volume of detail\" but on Ethan Frome is \"unexpectedly reticent\" and shows \"an insurmountable reluctance to speak of him.\" Her reserve is this restraint in speech, which \"constraint\" captures. \"Modesty\" (humility) and \"composure\" (calmness) are not about withholding information. \"Misgiving\" (doubt or unease) is ruled out by the text itself, which says there was \"no hint of disapproval.\"",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 4,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Hard",
+     "passageText": "The work of Tobias Gerstenberg et al. on tracking eye movements supports a theory that people envision ______ scenarios when making causal judgments: when subjects were asked to look at two colliding billiard balls and judge whether one caused or prevented the other's movement through a gate, their eyes looked at where the target ball would have gone if the ball that altered its path did not exist.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "analogical"
+      },
+      {
+       "id": "B",
+       "text": "counterfactual"
+      },
+      {
+       "id": "C",
+       "text": "retrospective"
+      },
+      {
+       "id": "D",
+       "text": "ambivalent"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Subjects imagined where the ball \"would have gone if\" the other ball did not exist — a scenario contrary to what actually happened, which is counterfactual.",
+     "explanation": "The colon introduces the evidence: people looked at where the target ball would have gone had the other ball not existed. Imagining what would have happened under conditions that did not occur is, by definition, a counterfactual scenario. \"Analogical\" would involve comparing to a similar case, \"retrospective\" merely means looking back at what did happen, and \"ambivalent\" describes mixed feelings — none fits the \"would have... if\" reasoning described.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 5,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Medium",
+     "passageText": "__On receiving good news, people's first instinct might be to immediately share it__, but a recent experiment suggests that keeping it a secret can be psychologically beneficial. Study participants were randomly assigned to reflect on an experience in which they either shared good news or kept it to themselves. On average, those who kept good news secret reported feeling more energized by the experience than participants who shared did, perhaps, as the researchers suggest, because the choice to savor good news is usually a personal one and autonomous motivation is linked with feelings of vitality.",
+     "questionText": "Which choice best describes the function of the underlined portion in the text as a whole?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "It indicates a reason why skepticism about the conclusions of the psychological study mentioned in the text is likely warranted."
+      },
+      {
+       "id": "B",
+       "text": "It reports the main conclusion of a study into a social phenomenon whose methodology is critiqued in the text."
+      },
+      {
+       "id": "C",
+       "text": "It presents a scenario whose psychological impact was investigated in the study summarized in the text."
+      },
+      {
+       "id": "D",
+       "text": "It provides an observation about human behavior that was validated by the experiment summarized in the text."
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The underlined portion describes sharing good news — one of the two behaviors (sharing versus keeping secret) whose psychological effects the experiment compared.",
+     "explanation": "The underlined clause names a common behavior: immediately sharing good news. The rest of the text describes an experiment in which participants reflected on either sharing good news or keeping it secret, and compared how energized each group felt. So the underlined portion sets up the scenario the study investigated (choice C). It is not a reason for skepticism (A), and the text never critiques the study's methodology (B). Choice D is wrong because the experiment did not validate the instinct to share — it found that keeping the news secret was more energizing.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 6,
+     "domain": "Craft and Structure",
+     "skill": "Cross-Text Connections",
+     "difficulty": "Hard",
+     "passageText": "Text 1\n\nFor decades, ornithologists assumed that if they saw a singing winter wren—a bird species found in temperate North America—they must be observing a male trying to attract a mate or claim territory. As Peter J.B. Slater and Nigel I. Mann have emphasized, however, a similar assumption can't be made about birds in the tropics, where females sing as often as males do. Slater and Mann call for more research on this discrepancy between tropical and temperate female birdsong.\n\nText 2\n\nRecent evidence shows that a female winter wren is as capable of song as a male is. In fact, female birdsong is more common among temperate species than currently assumed, claim Evangeline Rose and colleagues. These female songbirds sing less frequently than males do, and in duller tones, making it \"easy for researchers to miss the quiet and hidden females and focus on the loud and colorful males,\" says Rose.",
+     "questionText": "Based on the texts, how would Rose and colleagues (Text 2) most likely respond to the assertion by Slater and Mann (Text 1) about the different prevalence of female birdsong in temperate and tropical areas?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "They would concede that the geographic difference in prevalence is real but argue that the frequency with which male tropical birds sing has been overstated by previous researchers."
+      },
+      {
+       "id": "B",
+       "text": "They would caution that the seeming difference in prevalence may be an artifact of researchers' tendency to study birdsong among temperate species more frequently than among tropical species."
+      },
+      {
+       "id": "C",
+       "text": "They would raise the possibility that the difference in prevalence may be due to differences in the timing of the mating season among temperate and tropical bird species."
+      },
+      {
+       "id": "D",
+       "text": "They would argue that the apparent difference in prevalence may partly reflect a difference in the ease with which female birdsong and male birdsong can be detected."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Rose says temperate female birdsong is more common than assumed because quiet, hidden females are easy to miss — so the apparent temperate/tropical gap may partly be a detection problem.",
+     "explanation": "Text 1 reports a discrepancy: tropical females sing as often as males, while temperate females supposedly do not. Text 2 counters that temperate female song is underestimated because females sing less often and in duller tones, making them \"easy for researchers to miss.\" Rose and colleagues would therefore say the apparent difference partly reflects how easily female versus male song is detected (choice D). Choice A is wrong because Text 2 questions the difference rather than conceding it, and says nothing about males being overstated. Choice B's explanation (studying temperate species more often) and choice C's (mating-season timing) appear in neither text.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 7,
+     "domain": "Craft and Structure",
+     "skill": "Cross-Text Connections",
+     "difficulty": "Hard",
+     "passageText": "Text 1\n\nIn separate studies, Yanbo Xiao and colleagues and Xinhua He and colleagues examined whether plants transfer nutrients to one another using a common mycorrhizal network (CMN)—a lattice of fungal strands in the soil. Xiao and colleagues excluded all pathways other than the CMN by using barriers to keep the plants' root systems separate while allowing mycorrhizal strands through—a crucial step He and colleagues' study did not take.\n\nText 2\n\nXiao and colleagues took the necessary precaution of separating the plants' root systems (thereby excluding root-to-root transmission). However, any barrier used must allow the thread-like hyphae of a CMN to pass through, and this permeability would also allow liquids through. Thus, the researchers' experimental design cannot ensure that any nutrient transfer observed can be attributed to a CMN and not to some other pathway.",
+     "questionText": "Based on the texts, how would the author of Text 2 most likely respond to the characterization of Xiao and colleagues' study in Text 1?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "By arguing that the author of Text 1 has conflated the method used by Xiao and colleagues with that used by He and colleagues"
+      },
+      {
+       "id": "B",
+       "text": "By claiming that the author of Text 1 has misrepresented what Xiao and colleagues were trying to achieve with their experimental design"
+      },
+      {
+       "id": "C",
+       "text": "By asserting that the author of Text 1 has overstated the effectiveness of the method that Xiao and colleagues used"
+      },
+      {
+       "id": "D",
+       "text": "By pointing out that the author of Text 1 has overlooked studies that reported results that contradict those reported by Xiao and colleagues"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Text 1 says the barriers \"excluded all pathways other than the CMN\"; Text 2 argues the barriers also let liquids through, so they cannot rule out other pathways — the method is less effective than Text 1 claims.",
+     "explanation": "Text 1 credits Xiao and colleagues with excluding every pathway except the CMN. Text 2 agrees the root barrier was a necessary precaution but points out that a barrier permeable to fungal hyphae is also permeable to liquids, so the design \"cannot ensure\" that transfer happened through the CMN. That is a claim that Text 1 overstates the method's effectiveness (choice C). Text 2 does not confuse the two studies (A), does not dispute what Xiao's team was trying to do (B), and mentions no contradictory studies (D).",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 8,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Medium",
+     "passageText": "Since 2012, a consortium of research institutions has released an annual report that ranks countries by their populations' well-being, which the authors of the report derive using data from a globally administered survey of respondents' self-assessed levels of happiness. However, some other scholars caution that this approach reflects a tendentious understanding of the relationship between these two metrics. For example, studies have revealed a tendency among people in some non-Western countries to regard individual happiness as less important to their well-being than other ideals (e.g., a sense of harmony or balance).",
+     "questionText": "Based on the text, what is a potential weakness of the annual report issued by the consortium of research institutions?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "It may not adequately account for cultural variations in the value attached to a particular concept."
+      },
+      {
+       "id": "B",
+       "text": "It relies on survey responses from participants who may not be representative of their countries' cultural norms."
+      },
+      {
+       "id": "C",
+       "text": "It overlooks how philosophies regarding a particular concept have evolved over time."
+      },
+      {
+       "id": "D",
+       "text": "It includes survey data from a wide range of Western countries but only from a narrow set of non-Western countries."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The report equates well-being with self-assessed happiness, yet in some cultures happiness matters less to well-being than other ideals — a cultural variation the report may not account for.",
+     "explanation": "The report derives well-being rankings from happiness scores. The critics' example shows that the importance of individual happiness to well-being varies by culture, so treating the two as equivalent everywhere is a weakness (choice A). Nothing in the text questions whether respondents represent their cultures (B) or discusses changes over time (C). The survey is described as \"globally administered,\" so choice D's claim about narrow non-Western coverage is unsupported.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 9,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Medium",
+     "passageText": "While no one doubts that politicians are influenced by a variety of incentives, it is generally agreed that they seek to support policies their constituents favor—after all, they risk losing office if they do not. Direct contact with constituents via such means as public events and emails from voters is a major source of politicians' beliefs about their constituents' views, but it is susceptible to a selection effect. There is little reason to presume that individuals with the time, resources, and strength of feeling to directly engage with their representatives are themselves broadly representative.",
+     "questionText": "Which choice best states the main idea of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Politicians aim to advocate for their constituents' policy preferences, but politicians' understanding of those preferences may be skewed."
+      },
+      {
+       "id": "B",
+       "text": "People who are likely to contact their elected representatives do not tend to be representative of politicians' constituents generally."
+      },
+      {
+       "id": "C",
+       "text": "Direct contact with constituents shapes politicians' beliefs about policies their constituents favor, and they try to act in accordance with those beliefs."
+      },
+      {
+       "id": "D",
+       "text": "Although politicians have an incentive to act in accordance with their constituents' views, that is not the only incentive shaping their actions."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The text grants that politicians try to support what constituents want, then argues that their main source of information about those wants is subject to a selection effect — so their picture may be skewed.",
+     "explanation": "The first sentence establishes that politicians seek to support constituents' preferences; the remaining sentences explain that their knowledge of those preferences comes largely from a self-selected group who may not be representative. Choice A captures both halves. Choice B states only the supporting detail about who makes contact, not the overall point. Choice C omits the selection-effect problem, which is the text's central concern. Choice D focuses on the opening concession about other incentives, which the text sets aside rather than develops.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 10,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Hard",
+     "passageText": "Within higher education, studying philosophy requires that students be conversant with the field's foundational texts and historical figures. By contrast, doing philosophy within or beyond the academy demands the creative, self-directed application of acquired expertise to enduring questions about the nature of existence and knowledge. While both approaches engage with influential figures, those who do philosophy treat such figures as vital interlocutors who facilitate new insights rather than as ossified authorities who, though relevant to the present, primarily represent the discipline's past.",
+     "questionText": "Based on the text, which choice best describes the relationship between doing philosophy and studying philosophy?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Doing philosophy represents a departure from the norms that govern scholarly inquiry, whereas studying philosophy requires conformation to these norms."
+      },
+      {
+       "id": "B",
+       "text": "Doing philosophy involves developing novel ideas through imagined dialogue with past philosophers based on knowledge of those philosophers' views acquired by studying philosophy."
+      },
+      {
+       "id": "C",
+       "text": "Doing philosophy helps students formulate concrete solutions to practical issues, whereas studying philosophy prioritizes engagement with historical arguments in the field."
+      },
+      {
+       "id": "D",
+       "text": "Doing philosophy requires students to challenge the ideas articulated by past philosophers, especially when these ideas are broadly accepted by other people studying philosophy."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Doing philosophy applies \"acquired expertise\" (gained by studying) and treats past figures as \"interlocutors who facilitate new insights\" — new ideas through dialogue with past thinkers.",
+     "explanation": "The text says doing philosophy is \"the creative, self-directed application of acquired expertise\" — expertise acquired by studying the field's texts and figures — and that it treats influential figures as \"vital interlocutors\" (conversation partners) who produce \"new insights.\" Choice B restates exactly this. Choice A wrongly casts doing philosophy as breaking scholarly norms. Choice C's \"concrete solutions to practical issues\" contradicts the text's focus on \"enduring questions about the nature of existence and knowledge.\" Choice D's emphasis on challenging widely accepted ideas is never mentioned.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 11,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Hard",
+     "passageText": "Researchers have identified over eighty gestures made by nonhuman great apes, such as clapping and rocking from side to side, that appear to convey information and that seem to be biologically inherited. Kirsty E. Graham and Catherine Hobaiter hypothesized that humans may be able to interpret great ape gestures, either through an evolutionary inheritance or as part of more general human cognitive abilities. The researchers tested this hypothesis by enlisting participants in an online game in which they had to correctly identify the meanings of ape gestures seen in videos. Though participants achieved some success, __it is unclear whether they sometimes did so by making use of additional context provided by the images or sounds in the video recordings__.",
+     "questionText": "Which statement, if true, would most strongly support the underlined claim?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Participants correctly identified gestures at the same rate for videos in which the apes made sounds in addition to gestures and videos in which the apes were silent."
+      },
+      {
+       "id": "B",
+       "text": "When apes made mouth-touching gestures, which participants tended to correctly interpret as requests for food, the food was visible in the videos."
+      },
+      {
+       "id": "C",
+       "text": "Participants were more readily able to identify an ape gesture when it meant \"climb on my back\" than when it meant \"let's be friendly.\""
+      },
+      {
+       "id": "D",
+       "text": "Participants correctly interpreted ape gestures more than 50 percent of the time, whereas they would have only identified gestures correctly 25 percent of the time if they had been guessing."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "If food was visible whenever participants correctly read a \"request for food\" gesture, they may have relied on that visual context rather than the gesture itself — exactly the possibility the claim raises.",
+     "explanation": "The underlined claim is that participants may have succeeded partly by using extra context in the videos. Choice B gives a concrete case where such context (visible food) accompanied the gestures participants interpreted correctly, supporting the worry. Choice A would undercut the claim by showing sound context made no difference. Choice C compares two gestures without saying anything about context. Choice D shows participants performed better than chance but does not address how they achieved that success.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 12,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Hard",
+     "image": "p015_x218_0.png",
+     "passageText": "Researchers used anonymized location data from the US and Côte d'Ivoire to document people's daily patterns of mobility, using these results to test the efficacy of the researchers' predictive computer model. In each country, unidirectional cycles among two, three, or four locations were empirically the most common pattern types; the graph shows each of these pattern types as a proportion of all pattern instances found for that country (e.g., the measured value for CI 3 in the graph, 0.12, indicates that the three-location pattern constituted 12% of all pattern instances in the Côte d'Ivoire data). The researchers ran their model twice under different assumptions, concluding that emphasizing the salience of local population density over personal preferences generally yielded the best results.",
+     "questionText": "Which choice most effectively uses data from the graph to illustrate the researchers' conclusion?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Under the assumption that density is more salient than preferences, the US 2 and CI 2 proportions are approximately 0.65 and 0.85, respectively, significantly higher than the values predicted under the other assumption and thus farther than those predictions from the measured values."
+      },
+      {
+       "id": "B",
+       "text": "Under the assumption that preferences are more salient than density, the US 2 and CI 2 proportions were predicted to be approximately 0.45 and 0.35, respectively, both below the measured values, whereas under the other assumption, the model underestimated the proportion for US 2 and overestimated that for CI 2."
+      },
+      {
+       "id": "C",
+       "text": "Under the assumption that preferences are more salient than density, the two-location patterns (US 2 and CI 2) were predicted to be most frequent in the data even though neither proportion was projected to exceed 0.5, well below the proportion predicted under the other assumption."
+      },
+      {
+       "id": "D",
+       "text": "Under the assumption that preferences are more salient than density, the US 2 and CI 2 proportions were predicted to be in the range of 0.3 to 0.5, placing them farther from the measured values than were those predicted under the other assumption."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The conclusion is that emphasizing density beat emphasizing preferences; choice D shows the preference-based predictions (about 0.47 and 0.33) sitting farther from the measured values (about 0.76 and 0.79) than the density-based predictions (about 0.68 and 0.85).",
+     "explanation": "To illustrate that the density-emphasis model performed best, a choice must show its predictions landing closer to the measured bars than the preference-emphasis predictions do. For US 2 the measured value is about 0.76, the density model gives about 0.68, and the preference model about 0.47; for CI 2 the values are about 0.79, 0.85, and 0.33. Choice D states this accurately. Choice A wrongly says the density predictions are farther from the measured values. Choice B accurately reports some numbers but never compares the two models' accuracy, so it does not illustrate the conclusion. Choice C's claim that the preference model still predicted two-location patterns as most frequent says nothing about which model was closer to reality.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 13,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Hard",
+     "passageText": "Across brown bears—omnivores with high dietary plasticity—there is wide variety in dietary mix, which may reflect genetics, local resource availability, or social learning (cubs stay with their mothers for two years or more). Evaluating these possibilities, Anne Hertel et al. analyzed 30 years of data on trophic position (indicative of dietary mix) for female brown bears. After separation, daughters, who tended to settle near their mothers, occupied the same trophic positions as their mothers for two years, but the correlation disappeared by year five. Trophic correlation with unrelated individuals in similar habitats was modest, while habitat-independent correlation with nonmaternal relatives (e.g., cousins) was no different than with unrelated individuals. These findings suggest that ______",
+     "questionText": "Which choice most logically completes the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "social learning and resource fluctuations may both play a role in dietary mix among females, at least temporarily, though genetic factors appear to make a significant contribution as well."
+      },
+      {
+       "id": "B",
+       "text": "female dietary mix is best understood as changeable and contingent on fluctuating environmental conditions rather than as the result of social learning or genetic factors."
+      },
+      {
+       "id": "C",
+       "text": "dietary mix among females may reflect a social learning effect that eventually diminishes, though environmental constraints cannot be ruled out as a contributing factor."
+      },
+      {
+       "id": "D",
+       "text": "growing dissimilarity between mothers and their daughters with regard to dietary mix may reflect changes in the resources available in maternal habitats, though social learning could also contribute to the trend."
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Daughters matched their mothers' diets for two years but not by year five (a fading social-learning effect), similar habitats produced a modest correlation (environment matters somewhat), and relatives were no more similar than strangers (genetics does not seem to matter).",
+     "explanation": "Three findings must be reconciled. The mother–daughter match that disappears by year five points to social learning that fades over time. The modest correlation among unrelated bears in similar habitats means environment plays some role. And the lack of any extra similarity among cousins rules out a genetic effect. Choice C captures all three. Choice A wrongly credits genetics with a significant contribution. Choice B dismisses social learning even though the two-year mother–daughter match supports it. Choice D attributes the growing mother–daughter difference to changing resources, which the data never address.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 14,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Medium",
+     "passageText": "The advent of online streaming has led many music listeners to drift away from ownership of music (through downloads or through physical media such as compact discs) and toward the streaming services YouTube Music and Jango, among others. Datta et al. studied the impact of this change on the variety of music that listeners consume. The researchers reasoned that the ownership model of music assigns a cost per song to acquiring a variety of music, while streaming services typically charge a flat fee for access to an entire music catalog, making variety free, which suggests that ______",
+     "questionText": "Which choice most logically completes the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "listeners who use streaming services would be more likely to give physical copies of music as gifts to others than to purchase physical copies for themselves."
+      },
+      {
+       "id": "B",
+       "text": "music publishers who choose to forgo releasing music on physical media are likely to see no change in revenue."
+      },
+      {
+       "id": "C",
+       "text": "the music choices of listeners who use streaming services would likely be more varied than those of listeners who do not use streaming services."
+      },
+      {
+       "id": "D",
+       "text": "listeners who prefer to purchase compact discs rather than use a service such as YouTube Music or Jango would tend to listen to older music."
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "If ownership makes each additional song cost money while streaming makes variety free, streaming listeners should sample a wider variety of music.",
+     "explanation": "The researchers' reasoning is about cost: under ownership, exploring more music costs more per song, while streaming removes that cost. The natural implication is that people who stream will listen to a greater variety of music than those who do not (choice C). Gift-giving (A) and publishers' revenue (B) are never discussed, and nothing in the text connects buying compact discs to listening to older music (D).",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 15,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Hard",
+     "passageText": "Some farms are expanding their mix of crop species in an effort to reduce nonagricultural biodiversity loss caused by increasing agricultural specialization, in which farmers focus on a limited range of crops or livestock species to improve yields and, thus, their revenues. To study the joint environmental and economic effects of diversification practices (which can encompass improved soil and water management as well as increased variety in crops and livestock), Laura Vang Rasmussen and team analyzed data from 2,655 farms in eleven countries. They found that using multiple diversification practices concurrently had greater potential for improving both nonagricultural biodiversity and yields than using a single strategy did. Their finding suggests that ______",
+     "questionText": "Which choice most logically completes the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "farmers who are reluctant to switch from specializing in a single crop to cultivating a variety of crops incorrectly assume that any improvements in yields will be insufficient to offset the costs associated with making that transition."
+      },
+      {
+       "id": "B",
+       "text": "farmers who focus primarily on increasing crop variety without engaging in other diversification practices will likely help reverse nonagricultural biodiversity loss, but their farms will produce smaller yields than if they had continued to focus on developing a single crop."
+      },
+      {
+       "id": "C",
+       "text": "agricultural diversification doesn't inherently involve a trade-off between environmental and economic considerations, but farmers' chances of avoiding that outcome may be diminished if they focus on crop variety to the exclusion of other diversification practices."
+      },
+      {
+       "id": "D",
+       "text": "it is more expensive to increase crop variety while simultaneously implementing other diversification practices than it is to increase crop variety and then subsequently implement other diversification practices."
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Combining several diversification practices improved both biodiversity and yields, so environment and economics need not conflict — but relying on crop variety alone (a single strategy) had less potential for that win-win.",
+     "explanation": "The study found that multiple concurrent diversification practices had greater potential to improve both biodiversity (environmental) and yields (economic) than a single strategy did. Choice C draws the correct inference: diversification can serve both goals, but a farmer who uses only one practice, such as crop variety alone, is less likely to achieve both. Choice A speculates about farmers' mistaken assumptions, which the study did not examine. Choice B asserts that single-practice farms will have lower yields than specialized farms, a comparison the text never makes. Choice D is about costs and timing, neither of which is discussed.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 16,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "A bias toward studying birds and mammals over fish was one of the many shortcomings researcher Sonia Llorente-Culebras and her team ______ analyzing nearly 400 biodiversity studies from around the globe.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "discovered. While"
+      },
+      {
+       "id": "B",
+       "text": "discovered, while"
+      },
+      {
+       "id": "C",
+       "text": "discovered while"
+      },
+      {
+       "id": "D",
+       "text": "discovered: while"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "\"While analyzing nearly 400 biodiversity studies\" tells when the team discovered the shortcomings; it is an essential part of the same clause and needs no punctuation before it.",
+     "explanation": "The phrase \"while analyzing nearly 400 biodiversity studies from around the globe\" modifies \"discovered,\" specifying when the discovery happened, so it belongs in the same clause with no break (choice C). A period (A) would leave \"While analyzing... globe\" as a fragment. A comma (B) wrongly separates the verb from the adverbial phrase that completes its meaning, and a colon (D) would need an independent clause or a list before it and an explanation after it, neither of which is present.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 17,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Hard",
+     "passageText": "Jane Austen's *Northanger Abbey* (1818) is considered a satire of another novel popular at the time: Ann Radcliffe's *The Mysteries of Udolpho* (1794), which Austen's heroine, Catherine Morland, is depicted reading. However, the similarity of the ______ experiences—the predicaments of both Catherine and Radcliffe's Emily St. Aubert result from men's greed—suggests that underlying the satire is a social critique.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "novel's protagonist's"
+      },
+      {
+       "id": "B",
+       "text": "novels' protagonists"
+      },
+      {
+       "id": "C",
+       "text": "novels' protagonists'"
+      },
+      {
+       "id": "D",
+       "text": "novel's protagonists'"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "There are two novels and two protagonists (Catherine and Emily), and the experiences belong to the protagonists, so both nouns are plural possessives: novels' protagonists'.",
+     "explanation": "The sentence compares two novels, each with its own protagonist, so \"novels\" must be plural and possessive (the protagonists belong to the novels). The \"experiences\" belong to the two protagonists, so \"protagonists\" must also be plural and possessive. Choice C has both plural possessives. Choice A makes both singular. Choice B leaves \"protagonists\" without the possessive needed before \"experiences.\" Choice D makes \"novel\" singular even though two novels are being compared.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 18,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "As part of his effort to identify Bronze Age pathways across Sicily, archaeologist Dario Calderone created three-dimensional digital models of the terrain via aerial photogrammetry. The drone ______ the landscape, which included archaeological sites from as far back as the Early Neolithic Period, flew in a pattern that ensured 60 percent forward overlap and 20 percent side overlap between individual images.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "photographs"
+      },
+      {
+       "id": "B",
+       "text": "photographing"
+      },
+      {
+       "id": "C",
+       "text": "was photographing"
+      },
+      {
+       "id": "D",
+       "text": "photographed"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The sentence's main verb is \"flew,\" so the blank must be a participle modifying \"drone\" — \"photographing\" — not a second main verb.",
+     "explanation": "The subject \"The drone\" already has a finite verb later in the sentence: \"flew in a pattern.\" Everything between them describes the drone. A participial phrase, \"photographing the landscape,\" does that correctly (choice B). Choices A, C, and D each insert a second finite verb (\"photographs,\" \"was photographing,\" \"photographed\"), producing an ungrammatical sentence with two main verbs and no conjunction.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 19,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "Before the ratification of the 19th Amendment in 1920, many US territories extended voting rights to women, in part to spur westward migration that would help these territories meet population thresholds for statehood. The Territory of Wyoming approved women's suffrage in 1869 before attaining statehood in ______ while eastern states, lacking the same incentive, did not follow suit until after the turn of the century.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "1890, for example,"
+      },
+      {
+       "id": "B",
+       "text": "1890, for example:"
+      },
+      {
+       "id": "C",
+       "text": "1890, for example;"
+      },
+      {
+       "id": "D",
+       "text": "1890; for example,"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "\"For example\" is a parenthetical interrupter set off by commas, and \"while eastern states...\" is a dependent clause, so no semicolon or colon belongs before it.",
+     "explanation": "\"For example\" interrupts the sentence and should be enclosed in a pair of commas. The clause that follows, beginning with the subordinating conjunction \"while,\" is dependent and cannot stand alone, so it must not be preceded by a semicolon or colon, both of which require an independent clause on each side (choices B and C). Choice D also places a semicolon before \"for example,\" cutting the sentence at a point where the first part is complete but the remainder is not. Choice A punctuates correctly.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 20,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "In economics, soybeans are considered a commodity because they are essentially interchangeable, \"essentially\" being a word that admits a degree of latitude. In 2021, researchers J. Shorish, M. Stephenson, and M. Zargham devised a mathematical model of fungibility (interchangeability) that would account for such variation. Distinguishing \"exactly the same\" and \"nearly the same\" commodities—whether crops, lumber, or precious metals—______ among their primary aims.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "was"
+      },
+      {
+       "id": "B",
+       "text": "were"
+      },
+      {
+       "id": "C",
+       "text": "having been"
+      },
+      {
+       "id": "D",
+       "text": "being"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The subject is the singular gerund phrase \"Distinguishing... commodities,\" so the sentence needs the singular finite verb \"was.\"",
+     "explanation": "The subject of the final sentence is the gerund \"Distinguishing\" (along with the words that complete it), and a gerund phrase is singular. The plural nouns \"commodities,\" \"crops,\" \"lumber,\" and \"precious metals\" are objects inside that phrase, not the subject, so \"were\" (B) does not agree. \"Having been\" (C) and \"being\" (D) are not finite verbs and would leave the sentence without a main verb. Only \"was\" (A) is singular and finite.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 21,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Hard",
+     "passageText": "The legacy of the Spanish Empire, which once controlled portions of five continents, is evident in Spanish-speaking Uruguay, one of many places that reveal their imperial history in their language. Contrast Uruguay with Belgium, which ceased to be part of the empire in ______ the latter's connection to the empire is so attenuated that Spanish is seldom spoken there today.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "1714 and"
+      },
+      {
+       "id": "B",
+       "text": "1714"
+      },
+      {
+       "id": "C",
+       "text": "1714,"
+      },
+      {
+       "id": "D",
+       "text": "1714:"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "\"Contrast Uruguay with Belgium, which ceased to be part of the empire in 1714\" is a complete sentence, and what follows explains the contrast, so a colon is appropriate.",
+     "explanation": "The first part of the sentence, an imperative (\"Contrast Uruguay with Belgium...\"), is independent, and the second part (\"the latter's connection to the empire is so attenuated that...\") is also independent and elaborates on why the contrast matters. A colon (choice D) correctly joins an independent clause to an explanatory independent clause. Choice B fuses the two clauses with no punctuation, and choice C creates a comma splice. Choice A's \"and\" would attach \"the latter's connection...\" to the relative clause about Belgium, producing a garbled structure.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 22,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Easy",
+     "passageText": "To determine the approximate age of sand engravings excavated from a coastal site in South Africa, archaeologist Charles Helm and colleagues collected samples of sediments surrounding the engravings; these samples were then analyzed using a method known as optically stimulated luminescence (OSL) dating. ______ OSL dating indicated that the engravings were between 129,000 and 149,000 years old.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Similarly,"
+      },
+      {
+       "id": "B",
+       "text": "Ultimately,"
+      },
+      {
+       "id": "C",
+       "text": "By comparison,"
+      },
+      {
+       "id": "D",
+       "text": "In addition,"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The text describes a sequence of steps that ends with the dating result, so a transition marking the final outcome, \"Ultimately,\" fits.",
+     "explanation": "The passage narrates a process: collect samples, analyze them with OSL dating, and then obtain a result. The last sentence gives the end result of that process, which \"Ultimately\" signals. \"Similarly\" and \"By comparison\" would require a parallel or contrast with something else, but no second case is mentioned. \"In addition\" would present the result as a separate extra fact rather than the outcome of the steps just described.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 23,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Easy",
+     "passageText": "When it was built in the nineteenth century, the Eiffel Tower was criticized—even protested—for its unique appearance. ______ the spire-like structure earned not just acceptance but adoration, and its iconic design is now echoed in everything from the Eiffel Tower replica in Lake Buena Vista, Florida, to the Funkturm Berlin in Berlin, Germany.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Ultimately,"
+      },
+      {
+       "id": "B",
+       "text": "For example,"
+      },
+      {
+       "id": "C",
+       "text": "Thus,"
+      },
+      {
+       "id": "D",
+       "text": "Similarly,"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The tower was criticized at first but eventually adored, so a transition marking a later, final outcome — \"Ultimately\" — is needed.",
+     "explanation": "The first sentence describes the tower's early reception (criticism), and the second describes how things turned out in the end (adoration and imitation). \"Ultimately\" marks that shift over time. \"For example\" would make the adoration an example of the criticism, which is illogical. \"Thus\" would wrongly present adoration as a consequence of criticism. \"Similarly\" would require the two sentences to agree, but they contrast.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 24,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Easy",
+     "passageText": "Luminata Ilinca Ignat is a space scientist who works on the James Webb Space Telescope, or JWST. Thanks in part to Ilinca Ignat's contributions, the telescope is now positioned near the Sun-Earth L2 Lagrange point, almost one million miles beyond Earth's orbit. ______ the JWST's predecessor, the Hubble Telescope, is only about 340 miles above Earth's surface.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "By contrast,"
+      },
+      {
+       "id": "B",
+       "text": "Secondly,"
+      },
+      {
+       "id": "C",
+       "text": "Similarly,"
+      },
+      {
+       "id": "D",
+       "text": "Therefore,"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Almost one million miles versus only about 340 miles is a stark difference, so the transition must signal contrast.",
+     "explanation": "The JWST sits nearly a million miles beyond Earth's orbit, while Hubble is only about 340 miles up; the word \"only\" emphasizes how different the two distances are. \"By contrast\" introduces that difference. \"Secondly\" implies a list that was never started, \"Similarly\" contradicts the difference, and \"Therefore\" would wrongly present Hubble's altitude as a consequence of the JWST's position.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 25,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Medium",
+     "passageText": "In a given rock formation, Rhaetian rock from 208.5 million years ago might directly abut Lochkovian rock from 419.2 million years ago, with millions of years of material missing in between. ______ time did not stand still during these intervening years; the unaccounted-for sedimentary material was likely removed from the stratigraphic record via erosion and weathering.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "As a result,"
+      },
+      {
+       "id": "B",
+       "text": "In particular,"
+      },
+      {
+       "id": "C",
+       "text": "Of course,"
+      },
+      {
+       "id": "D",
+       "text": "On the contrary,"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The second sentence heads off an obvious misreading — that the missing layers mean time skipped — by stating something self-evidently true, which \"Of course\" signals.",
+     "explanation": "After noting that millions of years of material are missing between two rock layers, the text clarifies that time itself did not stop; the material was simply eroded away. This is an acknowledgment of an obvious point, introduced naturally by \"Of course.\" \"As a result\" would wrongly make the passage of time a consequence of the missing rock. \"In particular\" would need a specific example of a general point, and \"On the contrary\" would need a direct contradiction of the previous sentence, but the previous sentence never claimed time stood still.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 26,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Easy",
+     "passageText": "The Sino-Tibetan language of Loke has only about 7,500 living speakers. Although most Loke speakers live in Nepal, where the language originated, Loke is also spoken in New York City. ______ the New York-based Endangered Language Alliance has identified a group of Loke speakers in the city's Allerton neighborhood, in the borough of the Bronx.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "In addition,"
+      },
+      {
+       "id": "B",
+       "text": "Nonetheless,"
+      },
+      {
+       "id": "C",
+       "text": "Specifically,"
+      },
+      {
+       "id": "D",
+       "text": "Meanwhile,"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The final sentence narrows the general statement (Loke is spoken in New York City) to an exact location (the Allerton neighborhood in the Bronx), so \"Specifically\" fits.",
+     "explanation": "The second sentence makes a broad claim that Loke is spoken in New York City; the third pinpoints exactly where — a group of speakers in Allerton, in the Bronx. A transition that introduces more precise detail is needed, and that is \"Specifically.\" \"In addition\" would present a new, separate fact rather than a detail of the previous one. \"Nonetheless\" signals contrast, and \"Meanwhile\" signals simultaneous events, neither of which applies.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 27,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• Shanawdithit (1801–1829) was a Beothuk cartographer (mapmaker).\n• Her maps of Newfoundland's Beothuk Lake outline both the lake and various points around the lake where encounters between the Indigenous Beothuk people and British colonists occurred.\n• Her maps are notable for depicting the experiences the Beothuk had within the landscape.\n• Contemporary Potawatomi cartographer Margaret Pearce: Indigenous cartography emphasizes \"experienced space, or place, as opposed to the Western convention of depicting space as universal, homogenized, and devoid of human experience.\"\n• Pearce: \"Indigenous cartographies are as diverse as Indigenous cultures, from Hawaiian performative cartographies to Navajo verbal maps and sand paintings.\"",
+     "questionText": "The student wants to describe Shanawdithit's approach and explain its significance. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "By depicting experiences of the Beothuk that occurred around Beothuk Lake, Shanawdithit's maps reflect Indigenous cartography's emphasis on \"experienced space, or place\" rather than the landscape alone."
+      },
+      {
+       "id": "B",
+       "text": "According to Pearce, Indigenous cartography, such as Shanawdithit's maps of Beothuk Lake, emphasizes \"experienced space, or place,\" with a variety of approaches that reflect the diversity of Indigenous cultures."
+      },
+      {
+       "id": "C",
+       "text": "Shanawdithit mapped Beothuk Lake through significant encounters that occurred there, an approach that Pearce describes as \"depicting space as universal [and] homogenized.\""
+      },
+      {
+       "id": "D",
+       "text": "Shanawdithit's maps are part of a broader tradition of Indigenous cartography that, according to Pearce, ranges from \"Hawaiian performative cartographies to Navajo verbal maps and sand paintings.\""
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Choice A states what Shanawdithit did (depicted Beothuk experiences around the lake) and why it matters (it embodies Indigenous cartography's focus on experienced place).",
+     "explanation": "The goal is twofold: describe her approach and explain its significance. Choice A describes the approach — depicting the Beothuk's experiences around Beothuk Lake — and connects it to Pearce's point about \"experienced space, or place,\" which explains why it matters. Choice B is mostly about Pearce's general claims and mentions Shanawdithit only in passing. Choice C misapplies Pearce's description of the Western convention (\"universal [and] homogenized\") to Shanawdithit, contradicting the notes. Choice D places her in a tradition but never describes her approach.",
+     "questionType": "multiple_choice"
+    }
+   ]
+  },
+  {
+   "section": "Math",
+   "module": 1,
+   "questions": [
+    {
+     "number": 1,
+     "domain": "Algebra",
+     "skill": "Linear Equations",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "If $6 + x = 70$, what is the value of $48 + 8x$?",
+     "choices": [],
+     "correctAnswer": "560",
+     "rationale": "Solve for $x$: $x = 64$. Then $48 + 8(64) = 48 + 512 = 560$.",
+     "explanation": "Subtract 6 from both sides of $6 + x = 70$ to get $x = 64$. Substitute into the expression: $48 + 8x = 48 + 8(64) = 48 + 512 = 560$. (Shortcut: $48 + 8x = 8(6 + x) = 8(70) = 560$.)"
+    },
+    {
+     "number": 2,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Probability",
+     "difficulty": "Easy",
+     "image": "p021_x293_0.png",
+     "questionText": "A total of 50 people attended a conference and were offered 4 types of entrees. The table shows the number of people who chose each type of entree. If one of these people is selected at random, what is the probability of selecting a person who chose a vegetarian entree?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$\\frac{7}{100}$"
+      },
+      {
+       "id": "B",
+       "text": "$\\frac{7}{50}$"
+      },
+      {
+       "id": "C",
+       "text": "$\\frac{1}{4}$"
+      },
+      {
+       "id": "D",
+       "text": "$\\frac{7}{10}$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "7 of the 50 people chose vegetarian, so the probability is $\\frac{7}{50}$.",
+     "explanation": "Probability equals the number of favorable outcomes divided by the total number of outcomes. The table shows 7 people chose the vegetarian entree out of 50 people total, so the probability is $\\frac{7}{50}$. Choice A uses 100 as the total, choice C is $\\frac{1}{4}$ of the people (as if the four entrees were equally popular), and choice D uses 10 as the total.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 3,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Easy",
+     "questionText": "$y = 30x + 100$\n\nThe equation gives the total cost $y$, in dollars, for a small business to produce $x$ shirts. How many shirts can the business produce for a total cost of $550?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$-3$"
+      },
+      {
+       "id": "B",
+       "text": "$15$"
+      },
+      {
+       "id": "C",
+       "text": "$18$"
+      },
+      {
+       "id": "D",
+       "text": "$21$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Set $y = 550$: $550 = 30x + 100$, so $30x = 450$ and $x = 15$.",
+     "explanation": "Substitute the total cost, 550, for $y$: $550 = 30x + 100$. Subtract 100 from both sides to get $450 = 30x$, then divide by 30 to get $x = 15$. So the business can produce 15 shirts. Choice A is the result of subtracting 550 from 100 rather than the reverse; choices C and D result from arithmetic errors.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 4,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Lines/Angles/Triangles",
+     "difficulty": "Easy",
+     "questionText": "Triangles $XYZ$ and $RST$ are congruent, where $XY = 654$ and $YZ = 654$. If $RS = ST$, what is the length of segment $RS$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$327$"
+      },
+      {
+       "id": "B",
+       "text": "$654$"
+      },
+      {
+       "id": "C",
+       "text": "$1{,}308$"
+      },
+      {
+       "id": "D",
+       "text": "$1{,}962$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Congruent triangles have equal corresponding sides; $RS$ corresponds to $XY$, so $RS = 654$.",
+     "explanation": "The congruence statement $XYZ \\cong RST$ pairs vertices in order: $X \\leftrightarrow R$, $Y \\leftrightarrow S$, $Z \\leftrightarrow T$. Therefore side $RS$ corresponds to side $XY$, which has length 654, so $RS = 654$. (The fact that $RS = ST$ matches $XY = YZ$, confirming the correspondence.) Choice A halves the length, and choices C and D double and triple it.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 5,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Ratios and Proportions",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "A length of 590 meters is equal to how many decimeters? (1 meter = 10 decimeters)",
+     "choices": [],
+     "correctAnswer": "5900",
+     "rationale": "Multiply by the conversion factor: $590 \\times 10 = 5{,}900$ decimeters.",
+     "explanation": "Since each meter equals 10 decimeters, 590 meters equals $590 \\times 10 = 5{,}900$ decimeters."
+    },
+    {
+     "number": 6,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Ratios and Proportions",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "An object traveled 0.20 meters for every 4.0 seconds it was in motion. If the object was in motion for 24 seconds, what is the total distance, in meters, the object traveled?",
+     "choices": [],
+     "correctAnswer": "1.2",
+     "rationale": "24 seconds is 6 intervals of 4.0 seconds, and $6 \\times 0.20 = 1.2$ meters.",
+     "explanation": "The rate is $0.20$ meters per $4.0$ seconds, or $0.05$ meters per second. Over 24 seconds the object travels $0.05 \\times 24 = 1.2$ meters. Equivalently, $\\frac{24}{4} = 6$ intervals, each covering 0.20 meters, for a total of $6 \\times 0.20 = 1.2$ meters."
+    },
+    {
+     "number": 7,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Easy",
+     "questionText": "The function $f$ is defined by $f(x) = 6(4)^x$. What is the value of $f(x)$ when $x = 3$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$64$"
+      },
+      {
+       "id": "B",
+       "text": "$81$"
+      },
+      {
+       "id": "C",
+       "text": "$258$"
+      },
+      {
+       "id": "D",
+       "text": "$384$"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "$f(3) = 6(4)^3 = 6 \\times 64 = 384$.",
+     "explanation": "Substitute $x = 3$: $f(3) = 6(4)^3$. Evaluate the exponent first: $4^3 = 64$. Then multiply: $6 \\times 64 = 384$. Choice A is $4^3$ without the factor of 6, and choice C comes from adding instead of multiplying.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 8,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Medium",
+     "questionText": "The number of cells of the bacteria *Bacillus megaterium* doubles every 25 minutes during its growth period when placed in a medium of sucrose-salts in a controlled laboratory environment. If a sample of 980 cells of *Bacillus megaterium* is placed in sucrose-salts in a controlled laboratory environment, which function $f$ best represents the number of cells of the bacteria $x$ minutes after the growth period begins, where $x$ is less than the number of minutes in the growth period?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$f(x) = 980\\left(\\frac{1}{2}\\right)^{\\frac{x}{25}}$"
+      },
+      {
+       "id": "B",
+       "text": "$f(x) = 980(2)^{\\frac{x}{25}}$"
+      },
+      {
+       "id": "C",
+       "text": "$f(x) = 980\\left(\\frac{1}{3}\\right)^{\\frac{x}{25}}$"
+      },
+      {
+       "id": "D",
+       "text": "$f(x) = 980(3)^{\\frac{x}{25}}$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Doubling means a growth factor of 2 applied once per 25 minutes, i.e. $\\frac{x}{25}$ times after $x$ minutes, starting from 980 cells.",
+     "explanation": "Exponential growth has the form $f(x) = (\\text{initial amount})(\\text{growth factor})^{\\text{number of periods}}$. The initial amount is 980. The population doubles, so the growth factor is 2. Each period is 25 minutes, so after $x$ minutes there have been $\\frac{x}{25}$ periods. Thus $f(x) = 980(2)^{\\frac{x}{25}}$. Choices A and C describe decay (a factor less than 1), and choice D describes tripling rather than doubling.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 9,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "A model predicts that a certain elephant calf weighed 208 pounds when it was born and that the calf gained 3 pounds per day in its first year of life. This model is defined by an equation in the form $f(x) = a + bx$, where $f(x)$ is the predicted weight, in pounds, of the elephant calf $x$ days after it was born, and $a$ and $b$ are constants. What is the value of $a$?",
+     "choices": [],
+     "correctAnswer": "208",
+     "rationale": "$a$ is the value of $f$ when $x = 0$ (at birth), which is 208 pounds.",
+     "explanation": "In $f(x) = a + bx$, the constant $a$ is the initial value: $f(0) = a + b(0) = a$. At birth ($x = 0$ days) the calf weighed 208 pounds, so $a = 208$. (The constant $b$, the rate of change, would be 3.)"
+    },
+    {
+     "number": 10,
+     "domain": "Advanced Math",
+     "skill": "Equivalent Expressions",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "The expression $13x^3 + 19x^3 - 17x^3$ is equivalent to $bx^3$, where $b$ is a constant. What is the value of $b$?",
+     "choices": [],
+     "correctAnswer": "15",
+     "rationale": "Combine like terms: $13 + 19 - 17 = 15$, so the expression is $15x^3$.",
+     "explanation": "All three terms contain $x^3$, so they are like terms and their coefficients can be combined: $13 + 19 - 17 = 15$. The expression equals $15x^3$, which matches $bx^3$ when $b = 15$."
+    },
+    {
+     "number": 11,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Equations",
+     "difficulty": "Easy",
+     "questionText": "$x^2 - 20x = 0$\n\nWhich of the following is a solution to the given equation?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$40$"
+      },
+      {
+       "id": "B",
+       "text": "$20$"
+      },
+      {
+       "id": "C",
+       "text": "$10$"
+      },
+      {
+       "id": "D",
+       "text": "$\\sqrt{20}$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Factor: $x(x - 20) = 0$, so $x = 0$ or $x = 20$.",
+     "explanation": "Factor out the common factor $x$: $x(x - 20) = 0$. By the zero-product property, $x = 0$ or $x - 20 = 0$, so the solutions are $0$ and $20$. Only 20 appears among the choices. You can verify: $20^2 - 20(20) = 400 - 400 = 0$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 12,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Right Triangle Trig",
+     "difficulty": "Medium",
+     "image": "p024_x322_0.png",
+     "questionText": "In the right triangle shown, what is the value of $\\cos A$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$\\frac{1}{49}$"
+      },
+      {
+       "id": "B",
+       "text": "$\\frac{1}{26}$"
+      },
+      {
+       "id": "C",
+       "text": "$\\frac{26}{49}$"
+      },
+      {
+       "id": "D",
+       "text": "$\\frac{49}{26}$"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Cosine is adjacent over hypotenuse. The side adjacent to angle $A$ is $AB = 26$ and the hypotenuse is $AC = 49$, so $\\cos A = \\frac{26}{49}$.",
+     "explanation": "The right angle is at $B$, so the hypotenuse is $AC = 49$. For angle $A$, the adjacent leg is $AB = 26$ (the leg that touches $A$ and is not the hypotenuse). Therefore $\\cos A = \\frac{\\text{adjacent}}{\\text{hypotenuse}} = \\frac{26}{49}$. Choice D inverts the ratio (hypotenuse over adjacent), and choices A and B are not ratios of two side lengths of this triangle.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 13,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Medium",
+     "image": "p024_x323_0.png",
+     "questionText": "For the linear function $t$, the table shows three values of $x$ and their corresponding values of $t(x)$. Function $v$ is defined by $v(x) = t(x) - 4$. What is the $x$-intercept of the graph of $y = v(x)$ in the $xy$-plane?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$(-1, 0)$"
+      },
+      {
+       "id": "B",
+       "text": "$(3, 0)$"
+      },
+      {
+       "id": "C",
+       "text": "$(7, 0)$"
+      },
+      {
+       "id": "D",
+       "text": "$(8, 0)$"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "From the table, $t(x) = \\frac{1}{2}x + \\frac{1}{2}$, so $v(x) = \\frac{1}{2}x - \\frac{7}{2}$, which is 0 when $x = 7$.",
+     "explanation": "Find the slope of $t$ from two table points: $\\frac{\\frac{33}{2} - 15}{32 - 29} = \\frac{\\frac{3}{2}}{3} = \\frac{1}{2}$. Using the point $(29, 15)$: $t(x) = 15 + \\frac{1}{2}(x - 29) = \\frac{1}{2}x + \\frac{1}{2}$. (Check: $t(51) = 25.5 + 0.5 = 26$.) Then $v(x) = t(x) - 4 = \\frac{1}{2}x - \\frac{7}{2}$. The $x$-intercept occurs where $v(x) = 0$: $\\frac{1}{2}x = \\frac{7}{2}$, so $x = 7$. The intercept is $(7, 0)$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 14,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Medium",
+     "questionText": "For the polynomial function $f$, the graph of $y = f(x)$ in the $xy$-plane passes through the points $(-5, 0)$, $(3, 0)$, and $(4, 0)$. Which of the following must be a factor of $f(x)$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$x + 3$"
+      },
+      {
+       "id": "B",
+       "text": "$x + 4$"
+      },
+      {
+       "id": "C",
+       "text": "$x - 3$"
+      },
+      {
+       "id": "D",
+       "text": "$x - 5$"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "An $x$-intercept at $x = 3$ means $f(3) = 0$, so $(x - 3)$ is a factor.",
+     "explanation": "If the graph passes through $(k, 0)$, then $k$ is a zero of $f$ and $(x - k)$ is a factor. The zeros are $-5$, $3$, and $4$, giving factors $(x + 5)$, $(x - 3)$, and $(x - 4)$. Of the choices, only $x - 3$ is one of these. Choice A would correspond to a zero at $-3$, choice B to $-4$, and choice D to $5$ — none of which are given.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 15,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Medium",
+     "questionText": "What is the $x$-intercept of a line in the $xy$-plane that has a slope of $-\\frac{4}{7}$ and passes through the point $(0, 12)$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$(-21, 0)$"
+      },
+      {
+       "id": "B",
+       "text": "$(-4, 0)$"
+      },
+      {
+       "id": "C",
+       "text": "$(7, 0)$"
+      },
+      {
+       "id": "D",
+       "text": "$(21, 0)$"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The line is $y = -\\frac{4}{7}x + 12$; setting $y = 0$ gives $x = 21$.",
+     "explanation": "The point $(0, 12)$ is the $y$-intercept, so the equation is $y = -\\frac{4}{7}x + 12$. At the $x$-intercept, $y = 0$: $0 = -\\frac{4}{7}x + 12$, so $\\frac{4}{7}x = 12$ and $x = 12 \\cdot \\frac{7}{4} = 21$. The $x$-intercept is $(21, 0)$. Choice A has the wrong sign — a line with negative slope and positive $y$-intercept crosses the $x$-axis at a positive $x$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 16,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Circles",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "A circle has a circumference of $10\\pi$ centimeters. What is the diameter, in centimeters, of the circle?",
+     "choices": [],
+     "correctAnswer": "10",
+     "rationale": "Circumference $= \\pi d$, so $\\pi d = 10\\pi$ and $d = 10$.",
+     "explanation": "The circumference of a circle is $C = \\pi d$, where $d$ is the diameter. Setting $\\pi d = 10\\pi$ and dividing both sides by $\\pi$ gives $d = 10$ centimeters."
+    },
+    {
+     "number": 17,
+     "domain": "Algebra",
+     "skill": "Linear Equations",
+     "difficulty": "Medium",
+     "questionText": "A neighborhood consists of a 3-hectare park and a 34-hectare residential area. The total number of trees in the neighborhood is 4,832. The equation $3x + 34y = 4{,}832$ represents this situation. Which of the following is the best interpretation of $x$ in this context?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The average number of trees per hectare in the park"
+      },
+      {
+       "id": "B",
+       "text": "The average number of trees per hectare in the residential area"
+      },
+      {
+       "id": "C",
+       "text": "The total number of trees in the park"
+      },
+      {
+       "id": "D",
+       "text": "The total number of trees in the residential area"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "$x$ is multiplied by 3, the park's area in hectares, so $3x$ is the park's total trees and $x$ is the trees per hectare in the park.",
+     "explanation": "In $3x + 34y = 4{,}832$, the coefficient 3 is the park's area (3 hectares) and 34 is the residential area's size. For $3x$ to give a number of trees, $x$ must be the number of trees per hectare in the park; then $3x$ is the park's total, $34y$ is the residential area's total, and the sum is the neighborhood total. Choice B describes $y$, choice C describes $3x$, and choice D describes $34y$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 18,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Circles",
+     "difficulty": "Medium",
+     "questionText": "In the $xy$-plane, an equation of circle A is $(x - 5)^2 + (y - 7)^2 = 16$. Circle B has the same center as circle A but has a radius that is twice the radius of circle A. Which equation represents circle B?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$(x - 5)^2 + (y - 7)^2 = 32$"
+      },
+      {
+       "id": "B",
+       "text": "$(x - 5)^2 + (y - 7)^2 = 64$"
+      },
+      {
+       "id": "C",
+       "text": "$(x - 5)^2 + (y - 7)^2 = 128$"
+      },
+      {
+       "id": "D",
+       "text": "$(x - 5)^2 + (y - 7)^2 = 256$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Circle A has radius $\\sqrt{16} = 4$; doubling gives radius 8, and $8^2 = 64$.",
+     "explanation": "A circle with center $(h, k)$ and radius $r$ has equation $(x - h)^2 + (y - k)^2 = r^2$. For circle A, $r^2 = 16$, so $r = 4$. Circle B has the same center $(5, 7)$ and radius $2 \\times 4 = 8$, so its equation is $(x - 5)^2 + (y - 7)^2 = 8^2 = 64$. Choice A doubles $r^2$ instead of $r$, and choices C and D correspond to radii of about 11.3 and 16.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 19,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Data Interpretation",
+     "difficulty": "Medium",
+     "image": "p026_x340_0.png",
+     "questionText": "The table shown summarizes the number of employees at each of the 13 stores in a shopping plaza.\n\nWhich of the following could be the median number of employees for the stores in the shopping plaza?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$1$"
+      },
+      {
+       "id": "B",
+       "text": "$9$"
+      },
+      {
+       "id": "C",
+       "text": "$15$"
+      },
+      {
+       "id": "D",
+       "text": "$21$"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "With 13 stores the median is the 7th value in order; the first 6 stores fall in the ranges up to 18, so the 7th store is in the 19-to-24 range.",
+     "explanation": "Thirteen data values have their median at the 7th value when listed from least to greatest. Counting stores cumulatively: 2 stores have 1 to 6 employees, 5 stores have up to 12, and 6 stores have up to 18. The 7th through 12th stores have 19 to 24 employees, so the median must be between 19 and 24. Of the choices, only 21 falls in that range.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 20,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Percentages",
+     "difficulty": "Hard",
+     "questionType": "spr",
+     "questionText": "For the positive quantities $m$, $q$, and $r$, $m$ is 20% of $m + q + r$, $q$ is 30% of $q + r$, and the value of $r$ is 1,358. What is the value of $m$?",
+     "choices": [],
+     "correctAnswer": "485",
+     "rationale": "From $q = 0.3(q + 1{,}358)$, $q = 582$. Then $m = 0.2(m + 582 + 1{,}358)$ gives $0.8m = 388$, so $m = 485$.",
+     "explanation": "First find $q$: $q = 0.3(q + r) = 0.3q + 0.3(1{,}358) = 0.3q + 407.4$, so $0.7q = 407.4$ and $q = 582$. Now use the first relationship: $m = 0.2(m + q + r) = 0.2(m + 582 + 1{,}358) = 0.2m + 388$. Then $0.8m = 388$, so $m = 485$."
+    },
+    {
+     "number": 21,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Hard",
+     "image": "p026_x342_0.png",
+     "questionText": "The graph of $y = f(x) + 2$ is shown, where $f$ is defined by an equation of the form $f(x) = a(b)^x + c$. If $a$, $b$, and $c$ are integer constants and $c \\leq 0$, which equation could define $f$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$f(x) = -5(3)^x$"
+      },
+      {
+       "id": "B",
+       "text": "$f(x) = -5(3)^x - 1$"
+      },
+      {
+       "id": "C",
+       "text": "$f(x) = -5(3)^x - 3$"
+      },
+      {
+       "id": "D",
+       "text": "$f(x) = -5(3)^x - 5$"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The graph of $y = f(x) + 2$ has horizontal asymptote $y = 2$, so $c + 2 = 2$ and $c = 0$; its $y$-intercept of $-3$ then confirms $a = -5$.",
+     "explanation": "For $f(x) = a(b)^x + c$ with $b > 1$, the horizontal asymptote is $y = c$, so the graph of $y = f(x) + 2$ has asymptote $y = c + 2$. The graph shown levels off at $y = 2$ as $x$ decreases, so $c + 2 = 2$ and $c = 0$. Only choice A has $c = 0$. Check the $y$-intercept: the graph passes through about $(0, -3)$, and $f(0) + 2 = -5(1) + 0 + 2 = -3$, which matches. Choices B, C, and D would place the asymptote at $y = 1$, $y = -1$, and $y = -3$, respectively.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 22,
+     "domain": "Algebra",
+     "skill": "Systems of Equations",
+     "difficulty": "Hard",
+     "questionText": "$30x = 1{,}800y - 2{,}700$\n\nOne of the two equations in a system of linear equations is given. The system has no solution. Which equation could be the second equation in this system?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$\\frac{1}{30}x = 2y$"
+      },
+      {
+       "id": "B",
+       "text": "$\\frac{1}{30}x = 60y - 90$"
+      },
+      {
+       "id": "C",
+       "text": "$x = 2y$"
+      },
+      {
+       "id": "D",
+       "text": "$x = 60y - 90$"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The given line is $x = 60y - 90$. A system with no solution needs a parallel, distinct line; $\\frac{1}{30}x = 2y$ is $x = 60y$, which is parallel but different.",
+     "explanation": "Divide the given equation by 30: $x = 60y - 90$. Two linear equations have no solution when their graphs are parallel lines with different intercepts. Choice A, multiplied by 30, becomes $x = 60y$ — the same slope but a different intercept, so the lines never meet. Choice B multiplied by 30 gives $x = 1{,}800y - 2{,}700$, and choice D is $x = 60y - 90$; both are the same line as the given equation, producing infinitely many solutions. Choice C, $x = 2y$, has a different slope and intersects the given line at exactly one point.",
+     "questionType": "multiple_choice"
+    }
+   ]
+  },
+  {
+   "section": "Math",
+   "module": 2,
+   "questions": [
+    {
+     "number": 1,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Easy",
+     "questionText": "A candle is made of 18 ounces of wax. When the candle is burning, the amount of wax in the candle decreases by 1 ounce every 4 hours. If 8 ounces of wax remain in this candle, for how many hours has it been burning?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$3$"
+      },
+      {
+       "id": "B",
+       "text": "$7$"
+      },
+      {
+       "id": "C",
+       "text": "$32$"
+      },
+      {
+       "id": "D",
+       "text": "$40$"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "$18 - 8 = 10$ ounces have burned, at 4 hours per ounce, so $10 \\times 4 = 40$ hours.",
+     "explanation": "The candle started with 18 ounces and now has 8, so $18 - 8 = 10$ ounces of wax have burned away. Each ounce takes 4 hours to burn, so the candle has been burning for $10 \\times 4 = 40$ hours. Choice A is $\\frac{10}{4}$ rounded, choice B is $\\frac{18 + 10}{4}$, and choice C is $8 \\times 4$ — the time it would take to burn the remaining wax, not the time already elapsed.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 2,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Data Interpretation",
+     "difficulty": "Medium",
+     "image": "p028_x356_0.png",
+     "questionText": "The scatterplot shows the relationship between two variables, $x$ and $y$, for data set A. A line of best fit for the data is also shown. Data set B is created by subtracting 8 units from the value of $y$ for each data point from data set A. Which of the following is closest to the $y$-coordinate of the $y$-intercept of the line of best fit for data set B?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$39.17$"
+      },
+      {
+       "id": "B",
+       "text": "$48$"
+      },
+      {
+       "id": "C",
+       "text": "$52.22$"
+      },
+      {
+       "id": "D",
+       "text": "$72.33$"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Extending the line of best fit to $x = 0$ gives a $y$-intercept near 48 for data set A; shifting every point down 8 units moves the line down 8, to about 40, so 39.17 is closest.",
+     "explanation": "The line of best fit passes through roughly $(10, 41)$ and $(40, 21)$, a slope of about $-\\frac{2}{3}$, so at $x = 0$ it is near $41 + \\frac{2}{3}(10) \\approx 48$. Subtracting 8 from every $y$-value translates the entire data set — and therefore its line of best fit — down by 8 units without changing the slope. The new $y$-intercept is about $48 - 8 = 40$, and the closest choice is 39.17. Choice B is data set A's intercept, and choices C and D would result from moving the line up rather than down.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 3,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Easy",
+     "questionText": "$q(x) = 12(2^x)$\n\nWhich table gives three values of $x$ and their corresponding values of $q(x)$ for function $q$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "",
+       "image": "p028_x358_0.png"
+      },
+      {
+       "id": "B",
+       "text": "",
+       "image": "p028_x359_0.png"
+      },
+      {
+       "id": "C",
+       "text": "",
+       "image": "p029_x365_0.png"
+      },
+      {
+       "id": "D",
+       "text": "",
+       "image": "p029_x366_0.png"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "$q(-1) = 12 \\cdot \\frac{1}{2} = 6$, $q(0) = 12 \\cdot 1 = 12$, and $q(1) = 12 \\cdot 2 = 24$.",
+     "explanation": "Evaluate the function at each $x$-value in the tables. $q(0) = 12(2^0) = 12(1) = 12$, which immediately rules out choices A and B (they list 0 and 2 for $x = 0$). $q(-1) = 12(2^{-1}) = 12 \\cdot \\frac{1}{2} = 6$, which rules out choice C (it lists $\\frac{1}{6}$). Finally $q(1) = 12(2) = 24$. The table with $6$, $12$, and $24$ is choice D.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 4,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Medium",
+     "questionType": "spr",
+     "questionText": "For the exponential function $g$, the value of $g(x)$ doubles for every increase of 2 in the value of $x$. If $g(5) = 13$, what is the value of $g(7)$?",
+     "choices": [],
+     "correctAnswer": "26",
+     "rationale": "Going from $x = 5$ to $x = 7$ is an increase of exactly 2, so the value doubles: $2 \\times 13 = 26$.",
+     "explanation": "The function doubles whenever $x$ increases by 2. Since $7 - 5 = 2$, $g(7)$ is double $g(5)$: $g(7) = 2 \\cdot g(5) = 2 \\cdot 13 = 26$."
+    },
+    {
+     "number": 5,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Lines/Angles/Triangles",
+     "difficulty": "Medium",
+     "questionText": "The length of a rectangle's diagonal is $\\sqrt{34}$, and the length of one of the rectangle's sides is 5. What is the perimeter of the rectangle?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$34$"
+      },
+      {
+       "id": "B",
+       "text": "$16$"
+      },
+      {
+       "id": "C",
+       "text": "$15$"
+      },
+      {
+       "id": "D",
+       "text": "$8$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "By the Pythagorean theorem the other side is $\\sqrt{34 - 25} = 3$, so the perimeter is $2(5 + 3) = 16$.",
+     "explanation": "The diagonal of a rectangle forms a right triangle with two adjacent sides. If the unknown side is $s$, then $5^2 + s^2 = (\\sqrt{34})^2$, so $25 + s^2 = 34$ and $s = 3$. The perimeter is $2(5) + 2(3) = 16$. Choice D is the sum of the two sides, not the perimeter; choice C is the product of the sides (the area); and choice A is the square of the diagonal.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 6,
+     "domain": "Algebra",
+     "skill": "Systems of Equations",
+     "difficulty": "Medium",
+     "questionText": "$2x + 12y = 6$\n\n$x + 8y = 1$\n\nThe solution to the given system of equations is $(x, y)$. What is the value of $x + 4y$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$9$"
+      },
+      {
+       "id": "B",
+       "text": "$7$"
+      },
+      {
+       "id": "C",
+       "text": "$5$"
+      },
+      {
+       "id": "D",
+       "text": "$1$"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Subtracting the second equation from the first gives $x + 4y = 5$ directly.",
+     "explanation": "Notice that $(2x + 12y) - (x + 8y) = x + 4y$, exactly the expression asked for. Subtracting the equations: $6 - 1 = 5$, so $x + 4y = 5$. (Solving fully confirms it: from $x = 1 - 8y$, substituting gives $2 - 16y + 12y = 6$, so $y = -1$ and $x = 9$; then $x + 4y = 9 - 4 = 5$.) Choice A is the value of $x$ alone.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 7,
+     "domain": "Advanced Math",
+     "skill": "Equivalent Expressions",
+     "difficulty": "Medium",
+     "questionText": "The expression $\\frac{6x^{24}}{18x^{7}}$ is equivalent to $\\frac{1}{3}x^{b}$, where $b$ is a constant and $x > 0$. What is the value of $b$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$\\frac{7}{24}$"
+      },
+      {
+       "id": "B",
+       "text": "$\\frac{24}{7}$"
+      },
+      {
+       "id": "C",
+       "text": "$17$"
+      },
+      {
+       "id": "D",
+       "text": "$31$"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "$\\frac{6}{18} = \\frac{1}{3}$ and $\\frac{x^{24}}{x^{7}} = x^{24 - 7} = x^{17}$, so $b = 17$.",
+     "explanation": "Simplify the coefficient and the variable separately. The coefficient $\\frac{6}{18}$ reduces to $\\frac{1}{3}$. When dividing powers with the same base, subtract the exponents: $\\frac{x^{24}}{x^{7}} = x^{24 - 7} = x^{17}$. So the expression equals $\\frac{1}{3}x^{17}$ and $b = 17$. Choice D adds the exponents (which applies to multiplication, not division), and choices A and B divide them.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 8,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "An object is kicked from a platform. The equation $h = -4.9t^2 + 8t + 11$ represents this situation, where $h$ is the height of the object above the ground, in meters, $t$ seconds after it is kicked. According to the equation, what is the height, in meters, from which the object was kicked?",
+     "choices": [],
+     "correctAnswer": "11",
+     "rationale": "The object is kicked at $t = 0$, and $h(0) = -4.9(0)^2 + 8(0) + 11 = 11$.",
+     "explanation": "The height from which the object was kicked is its height at time $t = 0$. Substituting $t = 0$ into the equation makes the first two terms zero, leaving $h = 11$. The constant term in a quadratic height equation always gives the initial height."
+    },
+    {
+     "number": 9,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Medium",
+     "image": "p030_x376_0.png",
+     "questionText": "The table shows the linear relationship between the number of cars, $c$, on a commuter train and the maximum number of passengers and crew, $p$, that the train can carry. Which equation represents the linear relationship between $c$ and $p$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$44c - p = -7$"
+      },
+      {
+       "id": "B",
+       "text": "$44c - p = 7$"
+      },
+      {
+       "id": "C",
+       "text": "$44p - c = -7$"
+      },
+      {
+       "id": "D",
+       "text": "$44p - c = 7$"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Each extra car adds 44 people ($\\frac{271 - 139}{6 - 3} = 44$), and $139 - 44(3) = 7$, so $p = 44c + 7$, i.e. $44c - p = -7$.",
+     "explanation": "Find the rate of change from two rows: $\\frac{271 - 139}{6 - 3} = \\frac{132}{3} = 44$ people per car. Use one point to find the constant: $139 = 44(3) + k$, so $k = 7$, and $p = 44c + 7$. (Check with the third row: $44(10) + 7 = 447$.) Rearranging, $44c - p = -7$, which is choice A. Choice B has the wrong sign on the constant, and choices C and D swap the roles of $c$ and $p$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 10,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Equations",
+     "difficulty": "Medium",
+     "questionText": "$x(x + 3) - 1 = 0$\n\nWhat are the solutions to the given equation?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$x = \\frac{-3 \\pm \\sqrt{13}}{2}$"
+      },
+      {
+       "id": "B",
+       "text": "$x = \\frac{-3 \\pm \\sqrt{5}}{2}$"
+      },
+      {
+       "id": "C",
+       "text": "$x = \\frac{3 \\pm \\sqrt{13}}{2}$"
+      },
+      {
+       "id": "D",
+       "text": "$x = \\frac{3 \\pm \\sqrt{5}}{2}$"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Expanding gives $x^2 + 3x - 1 = 0$; the quadratic formula gives $x = \\frac{-3 \\pm \\sqrt{9 + 4}}{2} = \\frac{-3 \\pm \\sqrt{13}}{2}$.",
+     "explanation": "Distribute to write the equation in standard form: $x^2 + 3x - 1 = 0$, so $a = 1$, $b = 3$, $c = -1$. The quadratic formula gives $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} = \\frac{-3 \\pm \\sqrt{9 - 4(1)(-1)}}{2} = \\frac{-3 \\pm \\sqrt{13}}{2}$. Choice B uses $9 - 4 = 5$ under the radical (a sign error with $c$), and choices C and D use $+3$ instead of $-b = -3$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 11,
+     "domain": "Algebra",
+     "skill": "Linear Inequalities",
+     "difficulty": "Medium",
+     "questionText": "$y \\leq x + 14$\n\n$y \\geq -3x - 14$\n\nWhich point $(x, y)$ is a solution to the given system of inequalities in the $xy$-plane?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$(0, -15)$"
+      },
+      {
+       "id": "B",
+       "text": "$(0, 15)$"
+      },
+      {
+       "id": "C",
+       "text": "$(-8, 0)$"
+      },
+      {
+       "id": "D",
+       "text": "$(8, 0)$"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "For $(8, 0)$: $0 \\leq 8 + 14 = 22$ is true and $0 \\geq -3(8) - 14 = -38$ is true; each other point fails one inequality.",
+     "explanation": "Test each point in both inequalities. Choice A, $(0, -15)$: $-15 \\leq 14$ is true, but $-15 \\geq -14$ is false. Choice B, $(0, 15)$: $15 \\leq 14$ is false. Choice C, $(-8, 0)$: $0 \\leq 6$ is true, but $0 \\geq 24 - 14 = 10$ is false. Choice D, $(8, 0)$: $0 \\leq 22$ is true and $0 \\geq -38$ is true, so $(8, 0)$ satisfies the system.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 12,
+     "domain": "Algebra",
+     "skill": "Linear Equations",
+     "difficulty": "Hard",
+     "questionText": "$35x + 3 = k(7x + 3) + 7x$\n\nIn the given equation, $k$ is a constant. The equation has exactly one solution. Which value CANNOT be the value of $k$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$5$"
+      },
+      {
+       "id": "B",
+       "text": "$4$"
+      },
+      {
+       "id": "C",
+       "text": "$0$"
+      },
+      {
+       "id": "D",
+       "text": "$-4$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Rearranging gives $(28 - 7k)x = 3k - 3$; there is exactly one solution only when $28 - 7k \\neq 0$, so $k$ cannot be 4.",
+     "explanation": "Expand the right side: $35x + 3 = 7kx + 3k + 7x$. Collect the $x$-terms on the left and constants on the right: $35x - 7x - 7kx = 3k - 3$, or $(28 - 7k)x = 3k - 3$. A linear equation has exactly one solution when the coefficient of $x$ is nonzero. If $k = 4$, the coefficient becomes $28 - 28 = 0$ and the equation reduces to $0 = 9$, which has no solution. So $k$ cannot be 4; any other value, including 5, 0, and $-4$, gives exactly one solution.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 13,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Hard",
+     "image": "p031_x386_0.png",
+     "questionText": "The table shows three values of $x$ and their corresponding values of $y$, where $a$ and $b$ are constants. There is a linear relationship between $x$ and $y$. In the $xy$-plane, the $y$-intercept of the line representing this relationship is $(0, -14)$. What is the value of $a + b$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$-30$"
+      },
+      {
+       "id": "B",
+       "text": "$-29$"
+      },
+      {
+       "id": "C",
+       "text": "$-20$"
+      },
+      {
+       "id": "D",
+       "text": "$-19$"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The line through $(-12, 46)$ and $(0, -14)$ is $y = -5x - 14$; then $16 = -5a - 14$ gives $a = -6$, and $b = -5(2) - 14 = -24$, so $a + b = -30$.",
+     "explanation": "Use the known point $(-12, 46)$ and the $y$-intercept $(0, -14)$ to find the slope: $\\frac{-14 - 46}{0 - (-12)} = \\frac{-60}{12} = -5$. The equation is $y = -5x - 14$. For the row where $y = 16$: $16 = -5a - 14$, so $-5a = 30$ and $a = -6$. For the row where $x = 2$: $b = -5(2) - 14 = -24$. Therefore $a + b = -6 + (-24) = -30$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 14,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Hard",
+     "questionType": "spr",
+     "questionText": "Line $s$ is perpendicular to line $t$ in the $xy$-plane. Line $s$ passes through the points $\\left(6, \\frac{7}{8}\\right)$ and $\\left(-3, -\\frac{17}{8}\\right)$. Line $t$ passes through the points $(-8, 39)$ and $(k, 78)$. What is the value of $k$?",
+     "choices": [],
+     "correctAnswer": "-21",
+     "rationale": "Line $s$ has slope $\\frac{1}{3}$, so line $t$ has slope $-3$; then $\\frac{78 - 39}{k + 8} = -3$ gives $k = -21$.",
+     "explanation": "Slope of line $s$: $\\frac{\\frac{7}{8} - \\left(-\\frac{17}{8}\\right)}{6 - (-3)} = \\frac{\\frac{24}{8}}{9} = \\frac{3}{9} = \\frac{1}{3}$. Perpendicular lines have slopes whose product is $-1$, so line $t$ has slope $-3$. Using the two points on line $t$: $\\frac{78 - 39}{k - (-8)} = -3$, so $\\frac{39}{k + 8} = -3$, giving $39 = -3k - 24$, $-3k = 63$, and $k = -21$."
+    },
+    {
+     "number": 15,
+     "domain": "Advanced Math",
+     "skill": "Equivalent Expressions",
+     "difficulty": "Medium",
+     "questionText": "$y = 2x^2 - 24x + 54$\n\nThe given equation represents a parabola in the $xy$-plane. Which of the following equations that represent the same parabola displays the $x$-intercepts as constants or coefficients?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$y = 2(x^2 - 12x) + 54$"
+      },
+      {
+       "id": "B",
+       "text": "$y = 2x(x - 12) + 54$"
+      },
+      {
+       "id": "C",
+       "text": "$y = 2(x - 6)^2 - 18$"
+      },
+      {
+       "id": "D",
+       "text": "$y = 2(x - 9)(x - 3)$"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Factoring gives $y = 2(x^2 - 12x + 27) = 2(x - 9)(x - 3)$, and the factored form shows the $x$-intercepts $x = 9$ and $x = 3$ as constants.",
+     "explanation": "The $x$-intercepts appear as constants in the factored (intercept) form $y = a(x - r_1)(x - r_2)$. Factor out 2: $y = 2(x^2 - 12x + 27)$. Since $27 = (-9)(-3)$ and $-12 = -9 + (-3)$, this is $y = 2(x - 9)(x - 3)$, so the intercepts are at $x = 9$ and $x = 3$ (choice D). Choice C is vertex form, which displays the vertex $(6, -18)$, not the intercepts. Choices A and B are partially factored forms that reveal neither intercept.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 16,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Lines/Angles/Triangles",
+     "difficulty": "Hard",
+     "image": "p032_x398_0.png",
+     "questionText": "In the figure, line $m$ is parallel to line $n$, and lines $AE$ and $CD$ intersect at point $B$. Which additional piece of information is sufficient to prove that triangle $ABC$ is congruent to triangle $EBD$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$AB = 12$ and $DB = 12$."
+      },
+      {
+       "id": "B",
+       "text": "$AB = 12$ and $EB = 12$."
+      },
+      {
+       "id": "C",
+       "text": "Triangles $ABC$ and $EBD$ are isosceles."
+      },
+      {
+       "id": "D",
+       "text": "No additional information is necessary to determine that the two triangles are congruent."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The parallel lines already make the two triangles similar (equal angles), so one pair of corresponding sides being equal — $AB = EB$ — proves congruence by ASA.",
+     "explanation": "Because $m \\parallel n$, the alternate interior angles are equal: $\\angle BAC = \\angle BED$ and $\\angle BCA = \\angle BDE$; the angles at $B$ are vertical angles and therefore equal too. So the triangles are similar with $A \\leftrightarrow E$, $B \\leftrightarrow B$, $C \\leftrightarrow D$. Similar triangles are congruent only if a pair of corresponding sides is equal. $AB$ corresponds to $EB$, so $AB = EB$ (choice B) is sufficient (ASA). In choice A, $AB$ and $DB$ are not corresponding sides ($DB$ corresponds to $CB$), so it proves nothing. Choice C does not give any side lengths. Choice D is wrong because similarity alone does not guarantee congruence — one triangle could be a larger copy of the other.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 17,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Medium",
+     "questionText": "$f(x) = 12(7)^x$\n\nThe function $f$ is defined by the given equation. If $g(x) = f(x + 2)$, which of the following equations defines the function $g$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$g(x) = 24(7)^x$"
+      },
+      {
+       "id": "B",
+       "text": "$g(x) = 588(7)^x$"
+      },
+      {
+       "id": "C",
+       "text": "$g(x) = 24(14)^x$"
+      },
+      {
+       "id": "D",
+       "text": "$g(x) = 144(49)^x$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "$g(x) = 12(7)^{x + 2} = 12 \\cdot 7^2 \\cdot 7^x = 588(7)^x$.",
+     "explanation": "Replace $x$ with $x + 2$ in $f$: $g(x) = 12(7)^{x + 2}$. By the product rule for exponents, $7^{x + 2} = 7^x \\cdot 7^2 = 49 \\cdot 7^x$. So $g(x) = 12 \\cdot 49 \\cdot 7^x = 588(7)^x$. Choice A incorrectly doubles the coefficient, choice C also changes the base, and choice D squares both the coefficient and the base, which would correspond to $f(x)^2$ rather than $f(x + 2)$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 18,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Percentages",
+     "difficulty": "Hard",
+     "questionText": "The value of a painting increased by 179% from the end of 2017 to the end of 2018 and then decreased by 23% from the end of 2018 to the end of 2019. What was the net percentage increase in the value of the painting from the end of 2017 to the end of 2019?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "114.83%"
+      },
+      {
+       "id": "B",
+       "text": "137.83%"
+      },
+      {
+       "id": "C",
+       "text": "156.00%"
+      },
+      {
+       "id": "D",
+       "text": "243.17%"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The value is multiplied by $2.79$ and then by $0.77$: $2.79 \\times 0.77 = 2.1483$, a net increase of 114.83%.",
+     "explanation": "An increase of 179% multiplies the value by $1 + 1.79 = 2.79$. A decrease of 23% multiplies by $1 - 0.23 = 0.77$. Combined, the value is multiplied by $2.79 \\times 0.77 = 2.1483$, which is an increase of $2.1483 - 1 = 1.1483$, or 114.83%. Choice C ($179 - 23$) wrongly subtracts the percentages, which ignores that the 23% decrease applies to the larger 2018 value.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 19,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Equations",
+     "difficulty": "Hard",
+     "questionType": "spr",
+     "questionText": "$\\frac{2}{7}(2x + 7)\\left(x + \\sqrt{2k + 7}\\right)\\left(x - \\sqrt{2k + 7}\\right) = 0$\n\nIn the given equation, $k$ is a positive constant. The product of the solutions to the equation is 63. What is the value of $k$?",
+     "choices": [],
+     "correctAnswer": "5.5",
+     "rationale": "The solutions are $-\\frac{7}{2}$, $\\sqrt{2k + 7}$, and $-\\sqrt{2k + 7}$; their product is $\\frac{7}{2}(2k + 7) = 63$, so $2k + 7 = 18$ and $k = 5.5$.",
+     "explanation": "A product equals zero when one of its factors is zero (the constant $\\frac{2}{7}$ is never zero). $2x + 7 = 0$ gives $x = -\\frac{7}{2}$; the other two factors give $x = -\\sqrt{2k + 7}$ and $x = \\sqrt{2k + 7}$. The product of all three solutions is $\\left(-\\frac{7}{2}\\right)\\left(-\\sqrt{2k + 7}\\right)\\left(\\sqrt{2k + 7}\\right) = \\frac{7}{2}(2k + 7)$. Setting this equal to 63: $2k + 7 = 18$, so $2k = 11$ and $k = 5.5$ (equivalently $\\frac{11}{2}$)."
+    },
+    {
+     "number": 20,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Equations",
+     "difficulty": "Hard",
+     "questionText": "$4x^2 - px + w = -87$\n\nIn the given equation, $p$ and $w$ are integer constants. The equation has exactly one real solution. Which is NOT a possible value of $w$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$-23$"
+      },
+      {
+       "id": "B",
+       "text": "$13$"
+      },
+      {
+       "id": "C",
+       "text": "$81$"
+      },
+      {
+       "id": "D",
+       "text": "$313$"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "One real solution means the discriminant is zero: $p^2 = 16(w + 87)$, so $w + 87$ must be a perfect square. $81 + 87 = 168$ is not a perfect square.",
+     "explanation": "Rewrite as $4x^2 - px + (w + 87) = 0$. Exactly one real solution requires the discriminant to be zero: $p^2 - 4(4)(w + 87) = 0$, so $p^2 = 16(w + 87)$ and $w + 87 = \\left(\\frac{p}{4}\\right)^2$. Since $p$ is an integer and $p^2$ is a multiple of 16, $\\frac{p}{4}$ is an integer, so $w + 87$ must be a perfect square. Check each choice: $-23 + 87 = 64 = 8^2$, $13 + 87 = 100 = 10^2$, and $313 + 87 = 400 = 20^2$ all work (with $p = 32$, $40$, $80$). But $81 + 87 = 168$ is not a perfect square, so $w = 81$ is not possible.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 21,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Area and Volume",
+     "difficulty": "Medium",
+     "questionType": "spr",
+     "image": "p034_x417_0.png",
+     "questionText": "Trapezoid $ABCD$ is similar to trapezoid $EFGH$, where $A$, $B$, $C$, and $D$ correspond to $E$, $F$, $G$, and $H$, respectively. The length of side $AB$ is 55 inches. What is the length, in inches, of side $EF$?",
+     "choices": [],
+     "correctAnswer": "275",
+     "rationale": "The ratio of areas is $\\frac{11{,}000}{440} = 25$, so the ratio of side lengths is $\\sqrt{25} = 5$ and $EF = 5 \\times 55 = 275$.",
+     "explanation": "For similar figures, the ratio of areas equals the square of the ratio of corresponding side lengths. The areas are 440 and 11,000 square inches, so the area ratio is $\\frac{11{,}000}{440} = 25$, and the length ratio is $\\sqrt{25} = 5$. Side $EF$ corresponds to side $AB$, so $EF = 5 \\times 55 = 275$ inches."
+    },
+    {
+     "number": 22,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Right Triangle Trig",
+     "difficulty": "Hard",
+     "questionText": "In triangle $JKL$, the measure of angle $J$ is $(90b)^\\circ$, the measure of angle $K$ is $(69a)^\\circ$, and the measure of angle $L$ is $(21a)^\\circ$, where $a$ and $b$ are constants. Which of the following must be true?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$\\cos L > \\sin K$"
+      },
+      {
+       "id": "B",
+       "text": "$\\cos L = \\sin K$"
+      },
+      {
+       "id": "C",
+       "text": "$\\cos L < \\sin K$"
+      },
+      {
+       "id": "D",
+       "text": "There is not enough information to compare the values of $\\cos L$ and $\\sin K$."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The angle sum only gives $a + b = 2$; angles $K$ and $L$ are complementary (making $\\cos L = \\sin K$) only if $b = 1$, which is not required.",
+     "explanation": "The angles of a triangle sum to $180^\\circ$: $90b + 69a + 21a = 180$, so $90b + 90a = 180$ and $a + b = 2$. The identity $\\cos L = \\sin K$ holds only when $K + L = 90^\\circ$, i.e. when $90a = 90$ and $a = 1$ (so $b = 1$ and $J$ is a right angle). But other values are possible: if $a = 1.5$ and $b = 0.5$, then $L = 31.5^\\circ$ and $K = 103.5^\\circ$, giving $\\cos L \\approx 0.85 < \\sin K \\approx 0.97$; if $a = 0.5$ and $b = 1.5$, then $L = 10.5^\\circ$ and $K = 34.5^\\circ$, giving $\\cos L \\approx 0.98 > \\sin K \\approx 0.57$. Since any of the three relationships can occur, there is not enough information (choice D).",
+     "questionType": "multiple_choice"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "dev-local-pglite",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54329/postgres?sslmode=disable&& set SESSION_SECRET=local-dev-only-secret&& npm run dev"
+      ],
+      "port": 3000
+    }
+  ]
+}
