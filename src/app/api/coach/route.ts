@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
         const messages: StoredMessage[] = JSON.parse(existing.messages);
         messages.push(userTurn, assistantTurn);
         await db
-          .prepare("UPDATE coach_conversations SET messages = ?, updated_at = datetime('now') WHERE id = ?")
+          .prepare("UPDATE coach_conversations SET messages = ?, updated_at = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') WHERE id = ?")
           .run(JSON.stringify(messages), conversationId);
       } else {
         conversationId = undefined; // stale id from client — fall through to create new

@@ -39,3 +39,8 @@ next-env.d.ts
 bluemind.db
 bluemind.db-*
 .env
+
+# College Board question bank cache (rebuilt by npm run db:import-qbank)
+content/qbank/raw/
+content/qbank/converted.json
+content/qbank/import-report.json

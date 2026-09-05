@@ -883,7 +883,20 @@ export default function GuestPracticePage({
 }) {
   const { mockId, section: sectionParam, module: moduleParam } = params;
   const section = decodeURIComponent(sectionParam);
-  const module = Number(moduleParam) as 1 | 2;
+  // Question Bank practice sets reuse this exact exam screen at
+  // /practice/qbank/<section>/<setId>: the third segment is the set id
+  // instead of a module number, questions load from the set endpoint, and
+  // grading records per-question bank history instead of a module result.
+  const isBank = mockId === "qbank";
+  const setId = isBank ? moduleParam : null;
+  const module = (isBank ? 1 : Number(moduleParam)) as 1 | 2;
+  const moduleSuffix = isBank ? "" : ` — Module ${module}`;
+  const moduleDot = isBank ? "" : ` · Module ${module}`;
+  const examPath = `/practice/${mockId}/${encodeURIComponent(section)}/${isBank ? setId : module}`;
+  const loadUrl = isBank
+    ? `/api/qbank/sets/${setId}`
+    : `/api/public/module?mockId=${mockId}&section=${encodeURIComponent(section)}&module=${module}`;
+  const gradeUrl = isBank ? `/api/qbank/sets/${setId}/grade` : "/api/public/module/grade";
   const isMath = section === "Math";
   const sectionNumber = section === "Reading and Writing" ? 1 : 2;
 
@@ -910,6 +923,9 @@ export default function GuestPracticePage({
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [marked, setMarked] = useState<Record<string, boolean>>({});
   const [secondsLeft, setSecondsLeft] = useState(0);
+  // Full length of this module/set — the "5 minutes left" warning only makes
+  // sense when the sitting is longer than that (a 1-question bank set is 2 min).
+  const [totalSeconds, setTotalSeconds] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [results, setResults] = useState<{ total: number; correctCount: number; accuracyPct: number; results: GradedQuestion[] } | null>(
     null
@@ -1100,7 +1116,7 @@ export default function GuestPracticePage({
   // before finishing or explicitly deleting it.
   const [leaveModalOpen, setLeaveModalOpen] = useState(false);
   const [restoredProgress, setRestoredProgress] = useState(false);
-  const progressKey = `bluemind_progress_${mockId}_${section}_${module}`;
+  const progressKey = `bluemind_progress_${mockId}_${section}_${isBank ? setId : module}`;
 
   // One-time "5 minutes left" warning — fires once when the countdown
   // crosses the 5-minute mark, not on every render/re-check, and never
@@ -1109,10 +1125,10 @@ export default function GuestPracticePage({
   const firedFiveMinWarningRef = useRef(false);
   useEffect(() => {
     if (firedFiveMinWarningRef.current) return;
-    if (loading || results || secondsLeft <= 0 || secondsLeft > 300) return;
+    if (loading || results || secondsLeft <= 0 || secondsLeft > 300 || totalSeconds <= 300) return;
     firedFiveMinWarningRef.current = true;
     setShowFiveMinWarning(true);
-  }, [secondsLeft, loading, results]);
+  }, [secondsLeft, loading, results, totalSeconds]);
 
   function saveProgressToStorage() {
     try {
@@ -1132,7 +1148,7 @@ export default function GuestPracticePage({
 
   function handleSaveAndExit() {
     saveProgressToStorage();
-    window.location.href = signedIn ? "/mocks" : "/";
+    window.location.href = isBank ? "/practice/browse" : signedIn ? "/mocks" : "/";
   }
 
   function handleLeaveAndDelete() {
@@ -1141,7 +1157,7 @@ export default function GuestPracticePage({
     } catch {
       // nothing to clean up if storage isn't available
     }
-    window.location.href = signedIn ? "/mocks" : "/";
+    window.location.href = isBank ? "/practice/browse" : signedIn ? "/mocks" : "/";
   }
 
   function openReport(questionId: string) {
@@ -1366,7 +1382,7 @@ export default function GuestPracticePage({
   // transitions the page out of the "no questions yet" admin empty state)
   // so the newly saved content shows immediately without a full page reload.
   async function refetchModule(jumpTo?: number | "last") {
-    const res = await fetch(`/api/public/module?mockId=${mockId}&section=${encodeURIComponent(section)}&module=${module}`);
+    const res = await fetch(loadUrl);
     const data = await res.json();
     if (!res.ok) throw new Error(data.error ?? "Failed to refresh questions");
     setMockTitle(data.mockTitle);
@@ -1535,23 +1551,24 @@ export default function GuestPracticePage({
   useEffect(() => {
     if (reviewMode === null) return; // wait until we've read the URL
     if (reviewMode) {
-      fetch(`/api/module-results/one?mockId=${mockId}&section=${encodeURIComponent(section)}&module=${module}`)
+      fetch(isBank ? loadUrl : `/api/module-results/one?mockId=${mockId}&section=${encodeURIComponent(section)}&module=${module}`)
         .then((res) => {
           if (!res.ok) throw new Error("failed");
           return res.json();
         })
         .then((data) => {
+          if (isBank && !Array.isArray(data.results)) throw new Error("not completed yet");
           setMockTitle(data.mockTitle ?? "");
           setResults({ total: data.total, correctCount: data.correctCount, accuracyPct: 0, results: data.results });
           setLoading(false);
         })
         .catch(() => {
-          setLoadError("No saved result found for this module yet — take it once to see it here.");
+          setLoadError(isBank ? "This practice set hasn't been submitted yet — solve it once to review it here." : "No saved result found for this module yet — take it once to see it here.");
           setLoading(false);
         });
       return;
     }
-    fetch(`/api/public/module?mockId=${mockId}&section=${encodeURIComponent(section)}&module=${module}`)
+    fetch(loadUrl)
       .then(async (res) => {
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
@@ -1569,6 +1586,7 @@ export default function GuestPracticePage({
       .then((data) => {
         setMockTitle(data.mockTitle);
         setQuestions(data.questions);
+        setTotalSeconds((data.minutes ?? 0) * 60);
 
         // Restore a previously "Save & exit"-ed session for this exact
         // module, if one exists and still matches the current question set.
@@ -1595,7 +1613,7 @@ export default function GuestPracticePage({
         setLoading(false);
       })
       .catch((err: Error & { status?: number }) => {
-        if (err.status === 404) {
+        if (err.status === 404 && !isBank) {
           // Zero questions banked yet — not a real error. Which screen this
           // shows (admin empty-state vs a plain "not available" message)
           // is decided at render time from the current isAdminUser state,
@@ -1609,7 +1627,7 @@ export default function GuestPracticePage({
           setLoading(false);
           return;
         }
-        setLoadError("This module isn't available right now.");
+        setLoadError(isBank ? "This practice set isn't available — it may belong to another account." : "This module isn't available right now.");
         setLoading(false);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1716,10 +1734,10 @@ export default function GuestPracticePage({
     if (submitting || results) return;
     setSubmitting(true);
     try {
-      const res = await fetch("/api/public/module/grade", {
+      const res = await fetch(gradeUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mockId, section, module, answers }),
+        body: JSON.stringify(isBank ? { answers } : { mockId, section, module, answers }),
       });
       const data = await res.json();
       if (res.ok) {
@@ -1729,7 +1747,9 @@ export default function GuestPracticePage({
         } catch {
           // nothing to clean up if storage isn't available
         }
-        if (signedIn) {
+        if (signedIn && !isBank) {
+          // Bank sets are recorded by their own grade endpoint (per-question
+          // history + the set's saved breakdown) — no module result to save.
           fetch("/api/module-results", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -1758,10 +1778,10 @@ export default function GuestPracticePage({
   useEffect(() => {
     if (!moduleReviewOpen || questions.length === 0) return;
     setPreviewLoading(true);
-    fetch("/api/public/module/grade", {
+    fetch(gradeUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mockId, section, module, answers }),
+      body: JSON.stringify(isBank ? { answers, preview: true } : { mockId, section, module, answers }),
     })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
@@ -1873,7 +1893,7 @@ export default function GuestPracticePage({
             <div>
               <h1 className="text-lg font-bold text-brand-navy">No questions in this module yet</h1>
               <p className="text-sm text-brand-slate mt-1">
-                {mockTitle} — {section} · Module {module}
+                {mockTitle} — {section}{moduleDot}
               </p>
             </div>
             <div className="space-y-2.5">
@@ -1888,8 +1908,8 @@ export default function GuestPracticePage({
         ) : (
           <p className="text-brand-red text-sm">{loadError ?? "This module isn't available yet."}</p>
         )}
-        <Link href="/" className="btn-secondary text-sm">
-          Back to mock library
+        <Link href={isBank ? "/practice/browse" : "/"} className="btn-secondary text-sm">
+          {isBank ? "Back to Question Bank" : "Back to mock library"}
         </Link>
         {adminEditOpen && adminCreateMode && (
           <AdminQuestionEditModal
@@ -1949,7 +1969,7 @@ export default function GuestPracticePage({
               </button>
               <button
                 onClick={() => {
-                  window.location.href = `/practice/${mockId}/${encodeURIComponent(section)}/${module}`;
+                  window.location.href = examPath;
                 }}
                 className="btn-primary text-sm"
               >
@@ -1961,11 +1981,11 @@ export default function GuestPracticePage({
                   // get served a stale cached render of /mocks (from before
                   // this result was saved) by Next's router cache, showing
                   // the old "Start Practice" state instead of the new score.
-                  window.location.href = signedIn ? "/mocks" : "/";
+                  window.location.href = isBank ? "/practice/browse" : signedIn ? "/mocks" : "/";
                 }}
                 className="btn-secondary text-sm"
               >
-                Back to Mocks
+                {isBank ? "Back to Question Bank" : "Back to Mocks"}
               </button>
             </div>
           </div>
@@ -1981,7 +2001,7 @@ export default function GuestPracticePage({
               <BrainMark size={22} />
             </button>
             <p className="text-xs text-brand-slate uppercase tracking-wide mb-1">
-              {mockTitle} · {section} · Module {module}
+              {mockTitle} · {section}{moduleDot}
             </p>
             <div className="text-4xl font-extrabold text-brand-blue">
               {results.correctCount}/{results.total}
@@ -2053,7 +2073,9 @@ export default function GuestPracticePage({
                     </button>
                   </div>
                 </div>
-                <p className="text-sm text-brand-navy whitespace-pre-line mb-2">{r.questionText}</p>
+                <p className="text-sm text-brand-navy whitespace-pre-line mb-2">
+                  <MathText text={r.questionText} />
+                </p>
                 {/* Explicit "your answer / correct answer" summary — shown for
                     EVERY question, not just multiple-choice ones. Grid-in
                     (SPR) questions have no choices array at all, so before
@@ -2122,7 +2144,7 @@ export default function GuestPracticePage({
                 )}
                 <p className="text-xs text-brand-slate">
                   <strong className="text-brand-navy">Explanation: </strong>
-                  {r.explanation}
+                  <MathText text={r.explanation} />
                 </p>
               </div>
             ))}
@@ -2197,7 +2219,7 @@ export default function GuestPracticePage({
           </span>
           <div className="min-w-0">
             <p className="text-lg font-bold text-brand-navy truncate leading-none">
-              {mockTitle} — Module {module}
+              {mockTitle}{moduleSuffix}
             </p>
             <button
               onClick={() => setDirectionsOpen(true)}
@@ -3109,7 +3131,7 @@ export default function GuestPracticePage({
           <div className="card w-full max-w-xl p-6 shadow-card-hover" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-4 gap-3">
               <span className="text-base font-semibold text-brand-navy">
-                {section} — Module {module} — {questions.filter((q) => !!answers[q.id]).length}/{questions.length} answered
+                {section}{moduleSuffix} — {questions.filter((q) => !!answers[q.id]).length}/{questions.length} answered
               </span>
               <button onClick={() => setNavigatorOpen(false)} className="text-brand-slate hover:text-brand-navy shrink-0">
                 <CloseIcon />
@@ -3196,7 +3218,7 @@ export default function GuestPracticePage({
               <h2 className="text-3xl sm:text-4xl font-bold text-brand-navy mb-3 leading-snug">
                 You've reached the end of
                 <br />
-                {section} — Module {module}
+                {section}{moduleSuffix}
               </h2>
               <p className="text-base text-brand-slate mb-8">Review your answers below. You can jump back to any question.</p>
 
@@ -3346,7 +3368,7 @@ export default function GuestPracticePage({
                   disabled={submitting}
                   className="flex items-center gap-2 text-base font-semibold text-white bg-brand-navy px-7 py-3 rounded-lg hover:bg-brand-navy/90 disabled:opacity-60"
                 >
-                  {submitting ? "Submitting…" : "Submit Module"}
+                  {submitting ? "Submitting…" : isBank ? "Submit Set" : "Submit Module"}
                   <ArrowRightIcon />
                 </button>
               </div>

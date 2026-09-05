@@ -170,6 +170,19 @@ async function runMigrations(client: PoolClient) {
     // run every startup: only touches rows still NULL, so it's a no-op
     // once everything's been backfilled once.
     "UPDATE questions SET module_pool = 'higher' WHERE module = 2 AND module_pool IS NULL",
+    // College Board Question Bank import (src/scripts/import-qbank.ts):
+    // external_id holds the official 8-character question ID so re-running
+    // the importer upserts in place instead of duplicating, and so the
+    // student-facing bank can show the same ID the official site shows.
+    "ALTER TABLE questions ADD COLUMN IF NOT EXISTS external_id TEXT",
+    "CREATE UNIQUE INDEX IF NOT EXISTS idx_questions_external_id ON questions(external_id) WHERE external_id IS NOT NULL",
+    "CREATE INDEX IF NOT EXISTS idx_questions_bank_filters ON questions(section, domain, skill, difficulty) WHERE mock_id IS NULL",
+    // Question Bank practice sets — a saved list of bank question ids that
+    // the exam-style page (/practice/qbank/<section>/<setId>) serves like a
+    // module. results_json keeps the graded breakdown for the Review view.
+    "ALTER TABLE practice_sessions ADD COLUMN IF NOT EXISTS section TEXT",
+    "ALTER TABLE practice_sessions ADD COLUMN IF NOT EXISTS title TEXT",
+    "ALTER TABLE practice_sessions ADD COLUMN IF NOT EXISTS results_json TEXT",
   ];
   for (const sql of migrations) {
     await client.query(sql);

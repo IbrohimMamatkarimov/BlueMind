@@ -644,6 +644,20 @@ export default function PracticePage() {
           </button>
         </div>
 
+        <Link
+          href="/practice/browse"
+          className="card p-5 flex items-center justify-between gap-4 flex-wrap hover:shadow-card-hover transition-shadow"
+        >
+          <div>
+            <p className="text-sm font-semibold text-brand-navy">Browse every question</p>
+            <p className="text-xs text-brand-slate mt-0.5">
+              Filter the whole bank by domain, skill and difficulty, see which ones you've solved, and practice any set
+              in the real exam screen.
+            </p>
+          </div>
+          <span className="btn-primary text-sm px-4 py-2 shrink-0">Open the bank →</span>
+        </Link>
+
         <div>
           <div className="flex items-center gap-2 mb-4">
             <span className="w-8 h-8 rounded-lg border border-brand-border flex items-center justify-center text-brand-slate">
@@ -707,6 +721,13 @@ export default function PracticePage() {
 
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-brand-navy">{activeSection === "Math" ? "Math" : "Reading and Writing"}</h1>
+          <div className="flex items-center gap-2">
+          <Link
+            href={`/practice/browse?section=${encodeURIComponent(activeSection)}`}
+            className="flex items-center gap-1.5 text-sm font-medium text-brand-blue border border-brand-blue/40 rounded-full px-3 py-1.5 hover:bg-brand-blue-light"
+          >
+            Browse all questions
+          </Link>
           <div className="relative">
             <button
               onClick={() => setMoreOpen((v) => !v)}
@@ -749,6 +770,7 @@ export default function PracticePage() {
                 </button>
               </div>
             )}
+          </div>
           </div>
         </div>
 
@@ -927,6 +949,16 @@ export default function PracticePage() {
                         <span className="flex items-center gap-0.5 shrink-0 text-[10px] font-semibold text-brand-red bg-brand-red-light px-1.5 py-0.5 rounded">
                           <ZapIcon /> Weak
                         </span>
+                      )}
+                      {s.total > 0 && (
+                        <Link
+                          href={`/practice/browse?section=${encodeURIComponent(activeSection)}&skill=${encodeURIComponent(s.skill)}`}
+                          onClick={(e) => e.stopPropagation()}
+                          title={`Browse every ${s.skill} question`}
+                          className="ml-auto shrink-0 text-[11px] font-medium text-brand-blue hover:underline"
+                        >
+                          Browse
+                        </Link>
                       )}
                     </span>
                     <div className="flex items-center gap-2">

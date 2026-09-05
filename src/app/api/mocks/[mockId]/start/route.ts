@@ -24,7 +24,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ moc
     await db
       .prepare(
         `INSERT INTO attempts (id, user_id, mock_id, status, current_section, current_module, current_module_started_at)
-         VALUES (?, ?, ?, 'in_progress', 'Reading and Writing', 1, datetime('now'))`
+         VALUES (?, ?, ?, 'in_progress', 'Reading and Writing', 1, to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'))`
       )
       .run(attemptId, user.id, mockId);
     return NextResponse.json({ attemptId, resumed: false });

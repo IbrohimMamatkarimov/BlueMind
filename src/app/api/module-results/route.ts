@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     if (existing) {
       await db
         .prepare(
-          "UPDATE module_results SET correct_count = ?, total = ?, results_json = ?, completed_at = datetime('now') WHERE id = ?"
+          "UPDATE module_results SET correct_count = ?, total = ?, results_json = ?, completed_at = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') WHERE id = ?"
         )
         .run(correctCount, total, JSON.stringify(results ?? []), existing.id);
     } else {

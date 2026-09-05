@@ -12,7 +12,9 @@
     "db:seed-test-mock": "tsx src/scripts/seed-one-test-mock.ts",
     "db:clear-questions": "tsx src/scripts/clear-question-bank.ts",
     "db:migrate-to-supabase": "tsx src/scripts/migrate-sqlite-to-supabase.ts",
-    "db:import-mock": "tsx src/scripts/import-mock.ts"
+    "db:import-mock": "tsx src/scripts/import-mock.ts",
+    "db:import-qbank": "tsx src/scripts/import-qbank.ts",
+    "db:copy": "tsx src/scripts/copy-database.ts"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",

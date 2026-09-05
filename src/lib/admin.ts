@@ -423,7 +423,7 @@ export async function updateQuestionAdmin(
   }
   if (sets.length === 0) return { ok: true };
 
-  sets.push("version = version + 1", "updated_at = datetime('now')");
+  sets.push("version = version + 1", "updated_at = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"')");
   values.push(id);
 
   const result = await db.prepare(`UPDATE questions SET ${sets.join(", ")} WHERE id = ?`).run(...values);
@@ -527,7 +527,7 @@ export async function setModuleReleased(
   if (existing) {
     await db
       .prepare(
-        "UPDATE module_releases SET released = ?, released_at = CASE WHEN ? THEN datetime('now') ELSE released_at END WHERE mock_id = ? AND section = ? AND module = ?"
+        "UPDATE module_releases SET released = ?, released_at = CASE WHEN ? THEN to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') ELSE released_at END WHERE mock_id = ? AND section = ? AND module = ?"
       )
       .run(released ? 1 : 0, released ? 1 : 0, mockId, section, module);
   } else {

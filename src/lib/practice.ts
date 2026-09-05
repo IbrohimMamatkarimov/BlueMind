@@ -37,10 +37,12 @@ export async function getPracticeCounts(userId?: string): Promise<SkillCount[]> 
   for (const r of rows) {
     const key = `${r.section}::${r.skill}`;
     const entry = bySkill.get(key) ?? { total: 0, easy: 0, medium: 0, hard: 0 };
-    entry.total += r.total;
-    if (r.difficulty === "Easy") entry.easy += r.total;
-    if (r.difficulty === "Medium") entry.medium += r.total;
-    if (r.difficulty === "Hard") entry.hard += r.total;
+    // pg returns COUNT(*) as a string (bigint) — coerce or "+=" concatenates.
+    const n = Number(r.total);
+    entry.total += n;
+    if (r.difficulty === "Easy") entry.easy += n;
+    if (r.difficulty === "Medium") entry.medium += n;
+    if (r.difficulty === "Hard") entry.hard += n;
     bySkill.set(key, entry);
   }
 
@@ -206,7 +208,7 @@ export async function gradePracticeAnswer(
   if (existing) {
     await db
       .prepare(
-        `UPDATE skill_stats SET correct = correct + ?, attempted = attempted + 1, last_updated = datetime('now') WHERE id = ?`
+        `UPDATE skill_stats SET correct = correct + ?, attempted = attempted + 1, last_updated = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') WHERE id = ?`
       )
       .run(isCorrect ? 1 : 0, existing.id);
   } else {
