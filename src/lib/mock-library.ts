@@ -91,7 +91,8 @@ async function buildMockLibrary({ gateOnRelease }: { gateOnRelease: boolean }): 
   }
   async function moduleCount(mockId: string, section: string, module: 1 | 2): Promise<number> {
     if (gateOnRelease && !(await isReleased(mockId, section, module))) return 0;
-    return ((await countStmt.get(mockId, section, module)) as { n: number }).n;
+    // Postgres COUNT returns a bigint string; the public API exposes numbers.
+    return Number(((await countStmt.get(mockId, section, module)) as { n: string | number }).n);
   }
 
   const cards: (PublicMockCard & { group_label: string })[] = [];
@@ -142,12 +143,12 @@ async function buildMockLibrary({ gateOnRelease }: { gateOnRelease: boolean }): 
 export async function getModuleQuestionsPublic(mockId: string, section: string, module: 1 | 2) {
   if (module === 1) {
     return (await db
-      .prepare("SELECT * FROM questions WHERE mock_id = ? AND section = ? AND module = 1 ORDER BY position, created_at")
+      .prepare("SELECT * FROM questions WHERE mock_id = ? AND section = ? AND module = 1 AND (module_pool IS NULL OR module_pool = 'higher') ORDER BY position, created_at")
       .all(mockId, section)) as unknown as any[];
   }
   return (await db
     .prepare(
-      "SELECT * FROM questions WHERE mock_id = ? AND section = ? AND module = 2 AND module_pool = 'higher' ORDER BY position, created_at"
+      "SELECT * FROM questions WHERE mock_id = ? AND section = ? AND module = 2 AND (module_pool IS NULL OR module_pool = 'higher') ORDER BY position, created_at"
     )
     .all(mockId, section)) as unknown as any[];
 }

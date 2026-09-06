@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { FullExamCardAction } from "@/components/FullExamCardAction";
+import { fullExamAvailable, TestSection } from "@/lib/test-session";
 import { SAT_STRUCTURE, SAT_TEST_MONTHS } from "@/lib/sat-constants";
 import { BrainWatermark } from "@/components/BrainLogo";
 import { useTheme } from "@/components/AppShell";
@@ -25,7 +27,7 @@ interface Group {
   mocks: MockCard[];
 }
 
-type SectionTab = "Math" | "Reading and Writing";
+type SectionTab = TestSection | "Full Exam";
 
 const SECTION_META: Record<SectionTab, { label: string; questions: number; minutes: number }> = {
   Math: { label: "Math", questions: SAT_STRUCTURE.math.totalQuestions, minutes: SAT_STRUCTURE.math.totalMinutes },
@@ -34,6 +36,7 @@ const SECTION_META: Record<SectionTab, { label: string; questions: number; minut
     questions: SAT_STRUCTURE.readingWriting.totalQuestions,
     minutes: SAT_STRUCTURE.readingWriting.totalMinutes,
   },
+  "Full Exam": { label: "Full Exam", questions: SAT_STRUCTURE.totalQuestions, minutes: SAT_STRUCTURE.totalMinutes + SAT_STRUCTURE.breakMinutes },
 };
 
 const BADGE_LETTERS = "ABCDEFGHIJ";
@@ -175,13 +178,14 @@ export default function MocksPage() {
 
       {/* Section switcher — centered on its own row, dark-mode toggle pinned
           to the right edge of that same row. Matches PublicLanding.tsx. */}
-      <div className="relative flex items-center justify-center">
-        <div className="flex items-center gap-1 bg-slate-100 rounded-full p-1">
+      <div className="relative flex items-center justify-center pr-10 sm:pr-12">
+        <div className="flex flex-wrap justify-center items-center gap-1 bg-slate-100 rounded-full p-1">
           {(Object.keys(SECTION_META) as SectionTab[]).map((tab) => (
             <button
               key={tab}
               onClick={() => handleTabChange(tab)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+              aria-pressed={activeTab === tab}
+              className={`px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
                 activeTab === tab ? "bg-white text-brand-navy shadow-sm" : "text-brand-slate hover:text-brand-navy"
               }`}
             >
@@ -279,7 +283,7 @@ export default function MocksPage() {
                   </span>
                 </div>
                 <div className="mt-4 space-y-2 relative z-10">
-                  {modules.map((m) => {
+                  {displayedTab === "Full Exam" ? <FullExamCardAction mockId={mock.id} available={fullExamAvailable(mock)} /> : modules.map((m) => {
                     const saved = savedScores[`${mock.id}|${displayedTab}|${m.module}`];
                     return (
                       <ModuleRow
@@ -332,7 +336,7 @@ function ModuleRow({
   onCountChange,
 }: {
   mockId: string;
-  section: SectionTab;
+  section: TestSection;
   module: 1 | 2;
   available: boolean;
   questionCount: number;
