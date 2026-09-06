@@ -6,8 +6,10 @@ import { isAnswerCorrect } from "./spr-grading";
 /**
  * "Practice by category" — separate from the timed Mock flow. Lets a
  * signed-in student drill a specific skill (e.g. "Linear Equations") across
- * every question in the bank tagged with it, regardless of which mock it
- * came from. Answers/rationale are never sent to the client until grading.
+ * the standalone Question Bank (mock_id IS NULL — the imported College Board
+ * bank plus admin-added questions). Mock questions stay out of these counts
+ * so drilling never spoils a mock. Answers/rationale are never sent to the
+ * client until grading.
  */
 
 export interface SkillCount {
@@ -27,6 +29,7 @@ export async function getPracticeCounts(userId?: string): Promise<SkillCount[]> 
     .prepare(
       `SELECT domain, skill, section, difficulty, COUNT(*) as total
        FROM questions
+       WHERE mock_id IS NULL
        GROUP BY domain, skill, section, difficulty`
     )
     .all()) as { domain: string; skill: string; section: string; difficulty: string; total: number }[];
@@ -258,7 +261,7 @@ export interface SectionOverview {
 
 export async function getQuestionBankOverview(userId: string): Promise<SectionOverview[]> {
   const totals = (await db
-    .prepare(`SELECT section, COUNT(*) as total FROM questions GROUP BY section`)
+    .prepare(`SELECT section, COUNT(*) as total FROM questions WHERE mock_id IS NULL GROUP BY section`)
     .all()) as { section: string; total: number }[];
 
   const solvedRows = (await db
@@ -347,7 +350,7 @@ export interface TopicRow {
  * counts only each question's first attempt rather than every retry. */
 export async function getSectionTopicList(userId: string, section: string, firstTryOnly: boolean): Promise<TopicRow[]> {
   const totalRows = (await db
-    .prepare(`SELECT domain, skill, COUNT(*) as total FROM questions WHERE section = ? GROUP BY domain, skill`)
+    .prepare(`SELECT domain, skill, COUNT(*) as total FROM questions WHERE section = ? AND mock_id IS NULL GROUP BY domain, skill`)
     .all(section)) as { domain: string; skill: string; total: number }[];
 
   const attemptRows = (firstTryOnly

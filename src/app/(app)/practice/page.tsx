@@ -2,10 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { MathText } from "@/components/MathText";
-import { DesmosCalculator } from "@/components/DesmosCalculator";
-import { Celebration } from "@/components/Celebration";
-import { CoachSlideshow } from "@/components/CoachSlideshow";
 
 /* ---------------------------------------------------------------------- */
 /* Types                                                                   */
@@ -22,35 +18,7 @@ interface SkillCount {
   attempted: number;
   correct: number;
 }
-interface Choice {
-  id: string;
-  text: string;
-}
-interface PracticeQuestion {
-  id: string;
-  section: string;
-  domain: string;
-  skill: string;
-  difficulty: string;
-  passageText: string | null;
-  questionText: string;
-  choices: Choice[];
-  questionType: "multiple_choice" | "spr";
-}
-interface GradeResult {
-  questionId: string;
-  isCorrect: boolean;
-  correctAnswer: string;
-  rationale: string;
-  explanation: string;
-}
-interface MistakeRecord {
-  question: PracticeQuestion;
-  selectedAnswer: string | null;
-  result: GradeResult;
-}
 
-type CoachMode = "hint" | "explain" | "teach" | "diagnose";
 
 const SECTIONS = ["Reading and Writing", "Math"] as const;
 type SectionName = (typeof SECTIONS)[number];
@@ -59,32 +27,6 @@ type SectionName = (typeof SECTIONS)[number];
 /* Small icons                                                            */
 /* ---------------------------------------------------------------------- */
 
-function CalculatorIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" strokeWidth="1.6" />
-      <rect x="7.5" y="5.5" width="9" height="3.5" rx="0.5" stroke="currentColor" strokeWidth="1.4" />
-      <circle cx="8.2" cy="13" r="0.9" fill="currentColor" />
-      <circle cx="12" cy="13" r="0.9" fill="currentColor" />
-      <circle cx="15.8" cy="13" r="0.9" fill="currentColor" />
-    </svg>
-  );
-}
-function CloseIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-function CheckCircleIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M8 12l2.5 2.5L16 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 function ChevronIcon({ collapsed }: { collapsed: boolean }) {
   return (
     <svg
@@ -144,72 +86,12 @@ function DotsIcon() {
     </svg>
   );
 }
-function FlagIcon({ filled }: { filled: boolean }) {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} aria-hidden="true">
-      <path d="M6 3v18M6 4h11l-3 4 3 4H6" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-    </svg>
-  );
-}
-function EliminatorIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <text x="12" y="15" textAnchor="middle" fontSize="10" fontWeight="700" fill="currentColor">
-        ABC
-      </text>
-      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" strokeWidth="1.6" />
-    </svg>
-  );
-}
-function PauseIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <rect x="6" y="5" width="4" height="14" rx="1" />
-      <rect x="14" y="5" width="4" height="14" rx="1" />
-    </svg>
-  );
-}
-function ResumeIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M7 4l13 8-13 8V4z" />
-    </svg>
-  );
-}
-function NavGridIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <rect x="3" y="3" width="7" height="7" rx="1.2" />
-      <rect x="14" y="3" width="7" height="7" rx="1.2" />
-      <rect x="3" y="14" width="7" height="7" rx="1.2" />
-      <rect x="14" y="14" width="7" height="7" rx="1.2" />
-    </svg>
-  );
-}
-function XCircleIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-function BookIllustration() {
-  // Uploaded image (public/images/rwsqb.png), sized large and prominent
-  // instead of the old cramped small-icon-in-the-corner look.
-  return <img src="/images/rwsqb.png" alt="" className="w-[220px] h-[200px] object-contain" aria-hidden="true" />;
-}
-function MathIllustration() {
-  // Uploaded image (public/images/mathsqb.png), sized large and prominent
-  // instead of the old cramped small-icon-in-the-corner look.
-  return <img src="/images/mathsqb.png" alt="" className="w-[220px] h-[200px] object-contain" aria-hidden="true" />;
-}
 
 /* ---------------------------------------------------------------------- */
 /* Page                                                                    */
 /* ---------------------------------------------------------------------- */
 
-type Stage = "hub" | "section" | "drilling" | "summary";
+type Stage = "hub" | "section";
 
 export default function PracticePage() {
   const [stage, setStage] = useState<Stage>("hub");
@@ -307,50 +189,10 @@ export default function PracticePage() {
     return { attempted, accuracy: attempted > 0 ? Math.round((correct / attempted) * 100) : null };
   }, [sectionSummary]);
 
-  // Drill state — per-question maps (not single "current" state) so
-  // Previous/Next/jump-to-any-question from the navigator all work and
-  // restore exactly what was there before, matching the real Bluebook
-  // question-bank navigation model instead of a forward-only flow.
-  const [skillLabel, setSkillLabel] = useState<string | null>(null);
-  const [questions, setQuestions] = useState<PracticeQuestion[]>([]);
+  // Launching a set: the topic picker shows a spinner / error while the
+  // Question Bank set is created and the exam page takes over.
   const [loadingDrill, setLoadingDrill] = useState(false);
   const [drillError, setDrillError] = useState<string | null>(null);
-  const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [results, setResults] = useState<Record<string, GradeResult>>({});
-  const [marked, setMarked] = useState<Record<string, boolean>>({});
-  const [crossedOut, setCrossedOut] = useState<Record<string, string[]>>({});
-  const [eliminatorMode, setEliminatorMode] = useState(false);
-  const [navigatorOpen, setNavigatorOpen] = useState(false);
-  const [groupAnswered, setGroupAnswered] = useState(false);
-  const [directionsOpen, setDirectionsOpen] = useState(false);
-  const [timerPaused, setTimerPaused] = useState(false);
-  const [grading, setGrading] = useState(false);
-  const [calcOpen, setCalcOpen] = useState(false);
-  const [celebrateTrigger, setCelebrateTrigger] = useState(0);
-  const [elapsedSeconds, setElapsedSeconds] = useState(0);
-
-  // Per-question stopwatch — counts up from 0, resets the instant the
-  // question index changes. Pausable, and pausing does NOT lock the rest of
-  // the UI — you can keep answering while paused, only the clock stops.
-  useEffect(() => {
-    if (stage !== "drilling") return;
-    setElapsedSeconds(0);
-  }, [stage, index]);
-  useEffect(() => {
-    if (stage !== "drilling" || timerPaused) return;
-    const t = setInterval(() => setElapsedSeconds((s) => s + 1), 1000);
-    return () => clearInterval(t);
-  }, [stage, timerPaused, index]);
-
-  // Derived from the results map rather than tracked as separate running
-  // state, since results can now change at any index (Previous/Next/jump).
-  const correctCount = useMemo(() => Object.values(results).filter((r) => r.isCorrect).length, [results]);
-  const mistakes: MistakeRecord[] = useMemo(() => {
-    return questions
-      .filter((q) => results[q.id] && !results[q.id].isCorrect)
-      .map((q) => ({ question: q, selectedAnswer: answers[q.id] ?? null, result: results[q.id] }));
-  }, [questions, results, answers]);
 
   // Per-section topic picker: checkboxes per skill, difficulty + a couple
   // of filter toggles, a "select all" banner, and a Math-only "weakest
@@ -367,12 +209,6 @@ export default function PracticePage() {
   const [completedOpen, setCompletedOpen] = useState(false);
   const [completedFilter, setCompletedFilter] = useState<"all" | "completed" | "not_started">("all");
   const [moreOpen, setMoreOpen] = useState(false);
-  const [lastFilters, setLastFilters] = useState<{
-    skills: string[];
-    difficulties: string[];
-    shuffle: boolean;
-    excludeSeen: boolean;
-  } | null>(null);
 
   function toggleSkill(skillName: string) {
     setSelectedSkills((prev) => {
@@ -408,35 +244,32 @@ export default function PracticePage() {
     });
   }
 
-  async function startDrill(
-    filters: { skills: string[]; difficulties: string[]; shuffle: boolean; excludeSeen: boolean }
-  ) {
+  // Every drill runs in the Bluebook-style exam screen: build a Question
+  // Bank set from the chosen topics/difficulties and hand off to
+  // /practice/qbank/<section>/<setId> — the same page the mocks use — so
+  // practice looks and behaves exactly like the real test.
+  async function startDrill(filters: { skills: string[]; difficulties: string[]; shuffle: boolean; excludeSeen: boolean }) {
     setLoadingDrill(true);
     setDrillError(null);
-    setIndex(0);
-    setAnswers({});
-    setResults({});
-    setMarked({});
-    setCrossedOut({});
-    setEliminatorMode(false);
     try {
-      const p = new URLSearchParams();
-      p.set("skills", filters.skills.join(","));
-      p.set("difficulties", filters.difficulties.join(","));
-      p.set("limit", "20");
-      if (filters.shuffle) p.set("shuffle", "1");
-      if (filters.excludeSeen) p.set("excludeSeen", "1");
-
-      const res = await fetch(`/api/practice/questions?${p.toString()}`);
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "No questions available");
-      setQuestions(data.questions);
-      setSkillLabel(filters.skills.length === 1 ? filters.skills[0] : `${filters.skills.length} topics selected`);
-      setLastFilters(filters);
-      setStage("drilling");
+      const res = await fetch("/api/qbank/sets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          section: activeSection,
+          skills: filters.skills,
+          difficulties: filters.difficulties,
+          status: filters.excludeSeen ? "unattempted" : "all",
+          // A full module's worth, timed like the real thing (27 R&W / 22 Math).
+          count: activeSection === "Math" ? 22 : 27,
+          shuffle: filters.shuffle,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error ?? "No questions available for those filters.");
+      window.location.href = data.href ?? `/practice/qbank/${encodeURIComponent(activeSection)}/${data.setId}`;
     } catch (err) {
-      setDrillError(err instanceof Error ? err.message : "Couldn't load this drill.");
-    } finally {
+      setDrillError(err instanceof Error ? err.message : "Couldn't start this practice set.");
       setLoadingDrill(false);
     }
   }
@@ -480,126 +313,6 @@ export default function PracticePage() {
     const skills = weakestTopics.map((t) => t.skill);
     if (skills.length === 0) return;
     startDrill({ skills, difficulties: ["Easy", "Medium", "Hard"], shuffle: true, excludeSeen: false });
-  }
-
-  const current = questions[index];
-  const isMath = current?.section === "Math";
-  const currentResult = current ? results[current.id] ?? null : null;
-  const answerValue = current ? answers[current.id] ?? null : null;
-
-  function isCrossedOut(questionId: string, choiceId: string) {
-    return (crossedOut[questionId] ?? []).includes(choiceId);
-  }
-  function toggleCrossOut(questionId: string, choiceId: string) {
-    setCrossedOut((prev) => {
-      const list = prev[questionId] ?? [];
-      return {
-        ...prev,
-        [questionId]: list.includes(choiceId) ? list.filter((c) => c !== choiceId) : [...list, choiceId],
-      };
-    });
-  }
-  function toggleMark(questionId: string) {
-    setMarked((prev) => ({ ...prev, [questionId]: !prev[questionId] }));
-  }
-  function selectAnswer(questionId: string, value: string) {
-    if (results[questionId]) return; // locked once graded, matching one-submit-per-question scoring
-    setAnswers((prev) => ({ ...prev, [questionId]: value }));
-  }
-  function goToQuestion(i: number) {
-    if (i < 0 || i >= questions.length) return;
-    setIndex(i);
-    setNavigatorOpen(false);
-  }
-
-  async function submitAnswer() {
-    if (!current || grading || currentResult) return;
-    setGrading(true);
-    try {
-      const res = await fetch("/api/practice/grade", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId: current.id, selectedAnswer: answerValue ?? null }),
-      });
-      const data: GradeResult = await res.json();
-      if (!res.ok) throw new Error();
-      setResults((prev) => ({ ...prev, [current.id]: data }));
-    } catch {
-      setDrillError("Couldn't grade that answer — try again.");
-    } finally {
-      setGrading(false);
-    }
-  }
-
-  function nextQuestion() {
-    if (index + 1 >= questions.length) {
-      setStage("summary");
-      if (correctCount >= Math.ceil(questions.length * 0.8)) {
-        setCelebrateTrigger((t) => t + 1);
-      }
-      // Refresh counts so the hub/section progress bars reflect this session.
-      fetch("/api/practice/counts")
-        .then((res) => (res.ok ? res.json() : null))
-        .then((data) => data && setCounts(data.counts))
-        .catch(() => {});
-      loadOverview();
-      loadTopics(activeSection, firstTryOnly);
-      return;
-    }
-    setIndex((i) => i + 1);
-  }
-  function previousQuestion() {
-    setIndex((i) => Math.max(0, i - 1));
-  }
-
-  function backToSection() {
-    setStage("section");
-    setSkillLabel(null);
-    setQuestions([]);
-  }
-
-  // -------------------- Coach drawer (inline, per-question) --------------------
-  const [coachOpen, setCoachOpen] = useState(false);
-  const [coachLoading, setCoachLoading] = useState(false);
-  const [coachData, setCoachData] = useState<{ mode: CoachMode; text: string } | null>(null);
-  const [coachConversationId, setCoachConversationId] = useState<string | undefined>(undefined);
-
-  async function askCoach(mode: CoachMode, question: PracticeQuestion, studentSelected: string | null) {
-    setCoachOpen(true);
-    setCoachLoading(true);
-    setCoachData(null);
-    try {
-      const res = await fetch("/api/coach", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          mode,
-          questionId: question.id,
-          conversationId: coachConversationId,
-          questionText: question.questionText,
-          choices: question.choices,
-          skill: question.skill,
-          difficulty: question.difficulty,
-          studentAnswer: question.choices.find((c) => c.id === studentSelected)?.text ?? studentSelected ?? undefined,
-          examMode: !currentResult,
-        }),
-      });
-      const data = await res.json();
-      setCoachConversationId(data.conversationId);
-      const text =
-        mode === "hint"
-          ? data.hint
-          : mode === "diagnose"
-            ? `${data.diagnosis}\n\n${data.next_step}`
-            : mode === "teach"
-              ? `${data.concept}\n\n${data.explanation}`
-              : data.explanation;
-      setCoachData({ mode, text });
-    } catch {
-      setCoachData({ mode, text: "Coach is unavailable right now — nothing was lost, try again shortly." });
-    } finally {
-      setCoachLoading(false);
-    }
   }
 
   /* ---------------------------------------------------------------- */
@@ -1002,533 +715,5 @@ export default function PracticePage() {
     );
   }
 
-  /* ---------------------------------------------------------------- */
-  /* Render: Summary                                                   */
-  /* ---------------------------------------------------------------- */
-
-  if (stage === "summary") {
-    return (
-      <div className="max-w-3xl mx-auto space-y-6">
-        <Celebration trigger={celebrateTrigger} />
-        <div className="card p-6 text-center">
-          <p className="text-xs text-brand-slate uppercase tracking-wide mb-1">{skillLabel}</p>
-          <div className="text-4xl font-extrabold text-brand-blue">
-            {correctCount}/{questions.length}
-          </div>
-          <div className="flex items-center justify-center gap-3 mt-5">
-            <button onClick={backToSection} className="btn-secondary text-sm">
-              Pick another topic
-            </button>
-            <button onClick={() => lastFilters && startDrill(lastFilters)} className="btn-primary text-sm">
-              Drill again
-            </button>
-          </div>
-        </div>
-
-        {mistakes.length > 0 && (
-          <div className="space-y-4">
-            <h2 className="text-sm font-semibold text-brand-navy">Review your mistakes</h2>
-            {mistakes.map((m, i) => (
-              <div key={m.question.id} className="card p-5">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <span className="text-xs font-semibold text-brand-slate">Mistake {i + 1}</span>
-                  <button
-                    onClick={() => askCoach("diagnose", m.question, m.selectedAnswer)}
-                    className="btn-secondary text-xs px-3 py-1.5 shrink-0"
-                  >
-                    Ask Coach why
-                  </button>
-                </div>
-                <p className="text-sm text-brand-navy mb-3">
-                  <MathText text={m.question.questionText} />
-                </p>
-                <div className="space-y-1.5 mb-3">
-                  {m.question.choices.map((c) => {
-                    const isCorrectChoice = c.id === m.result.correctAnswer;
-                    const isSelected = c.id === m.selectedAnswer;
-                    return (
-                      <div
-                        key={c.id}
-                        className={`text-sm px-3 py-2 rounded-lg border ${
-                          isCorrectChoice
-                            ? "border-brand-green bg-brand-green-light text-brand-navy"
-                            : isSelected
-                              ? "border-brand-red bg-brand-red-light text-brand-navy"
-                              : "border-brand-border text-brand-slate"
-                        }`}
-                      >
-                        {c.id}) <MathText text={c.text} mathOnly />
-                      </div>
-                    );
-                  })}
-                </div>
-                <p className="text-xs text-brand-slate">
-                  <strong className="text-brand-navy">Explanation: </strong>
-                  {m.result.explanation}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <CoachDrawer open={coachOpen} loading={coachLoading} data={coachData} onClose={() => setCoachOpen(false)} />
-      </div>
-    );
-  }
-
-  /* ---------------------------------------------------------------- */
-  /* Render: Drilling                                                   */
-  /* ---------------------------------------------------------------- */
-
-  if (loadingDrill || !current) {
-    return (
-      <div className="flex items-center justify-center py-24">
-        <div className="animate-pulse text-brand-slate text-sm">Loading drill…</div>
-      </div>
-    );
-  }
-
-  const timeStr = `${Math.floor(elapsedSeconds / 60)}:${String(elapsedSeconds % 60).padStart(2, "0")}`;
-
-  return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
-      {/* Top chrome — Go back / Directions, Timer + Pause, ABC handled per-
-          question below, Calculator (Math), More */}
-      <div className="flex items-center justify-between px-1 pb-3 border-b border-brand-border shrink-0">
-        <div className="flex items-center gap-3 min-w-0">
-          <button onClick={backToSection} className="text-sm text-brand-slate hover:text-brand-navy shrink-0">
-            ‹ Go back
-          </button>
-          <button
-            onClick={() => setDirectionsOpen(true)}
-            className="flex items-center gap-1 text-sm text-brand-slate hover:text-brand-navy shrink-0"
-          >
-            Directions <ChevronIcon collapsed={false} />
-          </button>
-          <span className="text-xs font-semibold text-brand-blue uppercase tracking-wide truncate">
-            {skillLabel} · {current.difficulty}
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2 shrink-0">
-          <span className="text-lg font-bold text-brand-navy tabular-nums">{timeStr}</span>
-          <button
-            onClick={() => setTimerPaused((v) => !v)}
-            title={timerPaused ? "Resume timer" : "Pause timer — you can keep answering while paused"}
-            className={`flex items-center gap-1 text-xs font-medium rounded-full px-2.5 py-1 border ${
-              timerPaused ? "border-brand-blue bg-brand-blue text-white" : "border-brand-border text-brand-navy hover:bg-slate-50"
-            }`}
-          >
-            {timerPaused ? <ResumeIcon /> : <PauseIcon />}
-          </button>
-        </div>
-
-        <div className="flex items-center gap-2 shrink-0">
-          {isMath && (
-            <button
-              onClick={() => setCalcOpen((v) => !v)}
-              className={`flex items-center gap-1.5 text-xs font-medium border rounded-full px-3 py-1.5 ${
-                calcOpen ? "border-brand-blue bg-brand-blue-light text-brand-blue" : "border-brand-border text-brand-navy hover:bg-slate-50"
-              }`}
-            >
-              <CalculatorIcon />
-              Calculator
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Question header — number, Mark for Review, ABC eliminator toggle */}
-      <div className="flex items-center justify-between px-1 py-2.5 bg-slate-50 border-b border-brand-border shrink-0 mt-3 rounded-t-lg">
-        <span className="w-7 h-7 ml-2 rounded bg-brand-navy text-white text-sm font-bold flex items-center justify-center">
-          {index + 1}
-        </span>
-        <button
-          onClick={() => toggleMark(current.id)}
-          className={`flex items-center gap-1.5 text-sm font-medium px-2 py-1 rounded ${
-            marked[current.id] ? "text-brand-amber" : "text-brand-slate hover:text-brand-navy"
-          }`}
-        >
-          <FlagIcon filled={!!marked[current.id]} />
-          Mark for Review
-        </button>
-        <button
-          onClick={() => setEliminatorMode((v) => !v)}
-          title={eliminatorMode ? "Turn off Answer Eliminator" : "Turn on Answer Eliminator"}
-          className={`mr-2 rounded-[6px] w-10 h-7 flex items-center justify-center border transition-colors ${
-            eliminatorMode ? "bg-brand-navy border-brand-navy text-white" : "bg-white border-brand-border text-brand-navy hover:bg-slate-50"
-          }`}
-        >
-          <EliminatorIcon />
-        </button>
-      </div>
-
-      {current.passageText ? (
-        <div className="flex-1 min-h-0 flex flex-col md:flex-row overflow-hidden rounded-b-lg border border-t-0 border-brand-border">
-          <div className="md:w-[46%] overflow-y-auto px-5 py-5 border-b md:border-b-0 md:border-r border-brand-border bg-white">
-            <div className="text-[15px] text-brand-navy leading-relaxed">
-              <MathText text={current.passageText} />
-            </div>
-          </div>
-          <div className="flex-1 overflow-y-auto px-5 py-5 bg-white">
-            <QuestionBody
-              current={current}
-              result={currentResult}
-              selected={answerValue}
-              onSelect={(id) => selectAnswer(current.id, id)}
-              sprValue={answerValue ?? ""}
-              onSprChange={(v) => selectAnswer(current.id, v)}
-              eliminatorMode={eliminatorMode}
-              isCrossedOut={(choiceId) => isCrossedOut(current.id, choiceId)}
-              onToggleCrossOut={(choiceId) => toggleCrossOut(current.id, choiceId)}
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="flex-1 min-h-0 overflow-y-auto rounded-b-lg border border-t-0 border-brand-border">
-          <div className="max-w-2xl mx-auto bg-white p-6">
-            <QuestionBody
-              current={current}
-              result={currentResult}
-              selected={answerValue}
-              onSelect={(id) => selectAnswer(current.id, id)}
-              sprValue={answerValue ?? ""}
-              onSprChange={(v) => selectAnswer(current.id, v)}
-              eliminatorMode={eliminatorMode}
-              isCrossedOut={(choiceId) => isCrossedOut(current.id, choiceId)}
-              onToggleCrossOut={(choiceId) => toggleCrossOut(current.id, choiceId)}
-            />
-          </div>
-        </div>
-      )}
-
-      <div className="border-t border-dashed border-brand-border pt-3 mt-3 shrink-0 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <button onClick={() => askCoach("hint", current, answerValue)} className="btn-secondary text-xs px-3 py-1.5">
-            Hint
-          </button>
-          <button
-            onClick={() => askCoach(currentResult ? "explain" : "teach", current, answerValue)}
-            className="btn-secondary text-xs px-3 py-1.5"
-          >
-            {currentResult ? "Explain more" : "Teach me"}
-          </button>
-        </div>
-
-        <button
-          onClick={() => setNavigatorOpen(true)}
-          className="flex items-center gap-2 text-sm font-medium text-brand-navy border border-brand-border rounded-full px-4 py-1.5 hover:bg-slate-50"
-        >
-          <NavGridIcon />
-          Question {index + 1} of {questions.length}
-        </button>
-
-        <div className="flex items-center gap-2">
-          <button
-            onClick={previousQuestion}
-            disabled={index === 0}
-            className="btn-secondary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-          >
-            Previous
-          </button>
-          {currentResult ? (
-            <button onClick={nextQuestion} className="btn-primary text-sm">
-              {index + 1 >= questions.length ? "Finish" : "Next"}
-            </button>
-          ) : (
-            <button
-              onClick={submitAnswer}
-              disabled={grading || !answerValue}
-              className="btn-primary text-sm disabled:opacity-50"
-            >
-              {grading ? "Checking…" : "Submit"}
-            </button>
-          )}
-        </div>
-      </div>
-
-      <CoachDrawer open={coachOpen} loading={coachLoading} data={coachData} onClose={() => setCoachOpen(false)} />
-
-      {isMath && <DesmosCalculator open={calcOpen} onOpenChange={setCalcOpen} />}
-
-      {/* Directions modal */}
-      {directionsOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-brand-navy/30" onClick={() => setDirectionsOpen(false)}>
-          <div className="card max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-sm font-bold text-brand-navy mb-2">Directions</h3>
-            <p className="text-sm text-brand-slate leading-relaxed">
-              This is untimed practice from BlueMind's Question Bank — answer at your own pace, check
-              your work immediately after each question, and use Hint or Teach me any time. Mark
-              questions for review to revisit them from the question navigator below.
-            </p>
-            <button onClick={() => setDirectionsOpen(false)} className="btn-primary text-sm w-full mt-4">
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Question Bank navigator */}
-      {navigatorOpen && (
-        <div className="fixed inset-0 z-40" onClick={() => setNavigatorOpen(false)}>
-          <div
-            className="absolute left-1/2 -translate-x-1/2 bottom-24 w-full max-w-xl px-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="card w-full p-5 shadow-card-hover">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-base font-bold text-brand-navy">Question Bank</h3>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setGroupAnswered((v) => !v)}
-                    className={`flex items-center gap-1.5 text-xs font-medium rounded-full px-3 py-1 border ${
-                      groupAnswered ? "border-brand-blue bg-brand-blue-light text-brand-blue" : "border-brand-border text-brand-slate hover:bg-slate-50"
-                    }`}
-                  >
-                    <NavGridIcon /> Group Answered
-                  </button>
-                  <button onClick={() => setNavigatorOpen(false)} className="text-brand-slate hover:text-brand-navy">
-                    <CloseIcon />
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4 mb-4 text-xs text-brand-slate">
-                <span className="flex items-center gap-1">
-                  <span className="w-3.5 h-3.5 rounded-full bg-brand-green-light text-brand-green flex items-center justify-center">
-                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  Correct
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="w-3.5 h-3.5 rounded-full bg-brand-red-light text-brand-red flex items-center justify-center">
-                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none">
-                      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                  Incorrect
-                </span>
-                <span className="flex items-center gap-1">
-                  <FlagIcon filled /> For Review
-                </span>
-              </div>
-
-              <div className="grid grid-cols-8 sm:grid-cols-10 gap-2 max-h-64 overflow-y-auto">
-                {questions
-                  .map((q, i) => ({ q, i }))
-                  .sort((a, b) => {
-                    if (!groupAnswered) return a.i - b.i;
-                    const aAnswered = !!results[a.q.id];
-                    const bAnswered = !!results[b.q.id];
-                    if (aAnswered === bAnswered) return a.i - b.i;
-                    return aAnswered ? -1 : 1;
-                  })
-                  .map(({ q, i }) => {
-                    const r = results[q.id];
-                    const isFlagged = !!marked[q.id];
-                    const isCurrent = i === index;
-                    let colorClass = "border-brand-border text-brand-navy hover:bg-slate-50";
-                    if (r) colorClass = r.isCorrect ? "border-brand-green bg-brand-green-light text-brand-green" : "border-brand-red bg-brand-red-light text-brand-red";
-                    return (
-                      <button
-                        key={q.id}
-                        onClick={() => goToQuestion(i)}
-                        className={`relative w-9 h-9 rounded-lg border text-xs font-semibold flex items-center justify-center ${colorClass} ${
-                          isCurrent ? "ring-2 ring-brand-navy ring-offset-1" : ""
-                        }`}
-                      >
-                        {i + 1}
-                        {isFlagged && (
-                          <span className="absolute -top-1 -right-1 text-brand-amber">
-                            <FlagIcon filled />
-                          </span>
-                        )}
-                      </button>
-                    );
-                  })}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-/* ---------------------------------------------------------------------- */
-/* Question body                                                          */
-/* ---------------------------------------------------------------------- */
-
-function QuestionBody({
-  current,
-  result,
-  selected,
-  onSelect,
-  sprValue,
-  onSprChange,
-  eliminatorMode,
-  isCrossedOut,
-  onToggleCrossOut,
-}: {
-  current: PracticeQuestion;
-  result: GradeResult | null;
-  selected: string | null;
-  onSelect: (id: string) => void;
-  sprValue: string;
-  onSprChange: (v: string) => void;
-  eliminatorMode: boolean;
-  isCrossedOut: (choiceId: string) => boolean;
-  onToggleCrossOut: (choiceId: string) => void;
-}) {
-  return (
-    <>
-      <p className="text-[15px] text-brand-navy leading-relaxed mb-5">
-        <MathText text={current.questionText} />
-      </p>
-
-      {current.questionType === "spr" ? (
-        <div className="max-w-xs mb-2">
-          <label className="block text-xs font-semibold text-brand-slate mb-1.5">Answer</label>
-          <input
-            type="text"
-            value={sprValue}
-            onChange={(e) => onSprChange(e.target.value)}
-            disabled={!!result}
-            placeholder="Enter your answer"
-            className="w-full px-3 py-2.5 rounded-lg border border-brand-border focus:border-brand-blue outline-none text-sm disabled:bg-slate-50"
-          />
-        </div>
-      ) : (
-        <div className="space-y-2.5">
-          {current.choices.map((c) => {
-            const isSelected = selected === c.id;
-            const showFeedback = !!result;
-            const isCorrectChoice = showFeedback && c.id === result.correctAnswer;
-            const isWrongSelected = showFeedback && isSelected && !result.isCorrect;
-            const crossedOut = !showFeedback && isCrossedOut(c.id);
-            return (
-              <div key={c.id} className="flex items-center gap-2.5">
-                <button
-                  type="button"
-                  onClick={() => !result && !crossedOut && onSelect(c.id)}
-                  disabled={!!result || crossedOut}
-                  className={`relative flex-1 flex items-center gap-3 text-left px-4 py-3 rounded-lg border transition-colors overflow-hidden ${
-                    isCorrectChoice
-                      ? "border-brand-green bg-brand-green-light"
-                      : isWrongSelected
-                        ? "border-brand-red bg-brand-red-light"
-                        : isSelected
-                          ? "border-brand-blue bg-brand-blue-light"
-                          : crossedOut
-                            ? "border-brand-border bg-slate-100 cursor-not-allowed"
-                            : "border-brand-border hover:bg-slate-50"
-                  }`}
-                >
-                  <span
-                    className={`shrink-0 w-7 h-7 rounded-full border flex items-center justify-center text-xs font-bold ${
-                      isSelected || isCorrectChoice ? "bg-brand-blue border-brand-blue text-white" : "border-brand-navy text-brand-navy bg-white"
-                    } ${isCorrectChoice ? "!bg-brand-green !border-brand-green" : ""} ${isWrongSelected ? "!bg-brand-red !border-brand-red" : ""} ${
-                      crossedOut ? "!bg-white !border-brand-slate/50 !text-brand-slate" : ""
-                    }`}
-                  >
-                    {c.id}
-                  </span>
-                  <span className={`text-sm leading-snug ${crossedOut ? "text-brand-slate" : "text-brand-navy"}`}>
-                    <MathText text={c.text} mathOnly />
-                  </span>
-                  {crossedOut && (
-                    <span className="absolute left-4 right-4 top-1/2 -translate-y-1/2 h-px bg-brand-slate/70 pointer-events-none" />
-                  )}
-                </button>
-                {eliminatorMode &&
-                  !result &&
-                  (crossedOut ? (
-                    <button
-                      type="button"
-                      onClick={() => onToggleCrossOut(c.id)}
-                      title="Restore choice"
-                      className="shrink-0 w-7 h-7 rounded-full border border-brand-blue text-brand-blue hover:bg-brand-blue-light flex items-center justify-center text-[13px] font-bold"
-                    >
-                      ↺
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => onToggleCrossOut(c.id)}
-                      title="Cross out choice"
-                      className="shrink-0 w-7 h-7 rounded-full border border-brand-border text-brand-slate hover:bg-slate-50 flex items-center justify-center text-[11px] font-semibold"
-                    >
-                      {c.id}
-                    </button>
-                  ))}
-              </div>
-            );
-          })}
-        </div>
-      )}
-
-      {result && (
-        <div
-          className={`mt-5 p-4 rounded-lg border ${
-            result.isCorrect ? "border-brand-green bg-brand-green-light" : "border-brand-red bg-brand-red-light"
-          }`}
-        >
-          <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-brand-navy">
-            <CheckCircleIcon />
-            {result.isCorrect ? "Correct!" : `Not quite — correct answer is ${result.correctAnswer}`}
-          </div>
-          <p className="text-sm text-brand-navy">{result.explanation}</p>
-        </div>
-      )}
-    </>
-  );
-}
-
-/* ---------------------------------------------------------------------- */
-/* Coach drawer                                                           */
-/* ---------------------------------------------------------------------- */
-
-function CoachDrawer({
-  open,
-  loading,
-  data,
-  onClose,
-}: {
-  open: boolean;
-  loading: boolean;
-  data: { mode: CoachMode; text: string } | null;
-  onClose: () => void;
-}) {
-  if (!open) return null;
-  return (
-    <div className="fixed inset-0 z-50 flex justify-end">
-      <div className="flex-1 bg-brand-navy/20" onClick={onClose} />
-      <div className="w-full max-w-sm h-full bg-white border-l border-brand-border shadow-card-hover flex flex-col">
-        <div className="flex items-center justify-between px-4 h-14 border-b border-brand-border shrink-0">
-          <span className="text-sm font-semibold text-brand-navy">BlueMind Coach</span>
-          <button onClick={onClose} className="text-brand-slate hover:text-brand-navy">
-            <CloseIcon />
-          </button>
-        </div>
-        <div className="flex-1 overflow-y-auto px-4 py-4">
-          {loading ? (
-            <div className="text-sm text-brand-slate">BlueMind Coach is thinking…</div>
-          ) : data ? (
-            <div className="bg-brand-blue-light rounded-lg p-3">
-              <CoachSlideshow text={data.text} />
-            </div>
-          ) : (
-            <p className="text-sm text-brand-slate">Ask for a hint, an explanation, or a full teach-through.</p>
-          )}
-        </div>
-        <div className="px-4 pb-4">
-          <Link href="/coach" className="text-xs text-brand-blue hover:underline">
-            Open full Coach chat →
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+  return null;
 }
