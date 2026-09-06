@@ -8,6 +8,7 @@ import { BrandLockup } from "./BrainLogo";
 const NAV_ITEMS = [
   { href: "/mocks", label: "Mock Tests" },
   { href: "/practice", label: "Practice" },
+  { href: "/mistakes", label: "Mistakes Notebook" },
   { href: "/progress", label: "Progress" },
 ];
 

@@ -59,6 +59,13 @@ interface GradedQuestion {
   rationale: string;
   explanation: string;
 }
+interface CheckedAnswer {
+  questionId: string;
+  isCorrect: boolean;
+  correctAnswer: string;
+  rationale: string;
+  explanation: string;
+}
 
 
 const SELECTION_COLORS = [
@@ -773,6 +780,8 @@ function ChoiceRow({
   eliminatorMode,
   onSelect,
   onToggleCrossOut,
+  feedback,
+  disabled = false,
 }: {
   letter: string;
   text: string;
@@ -782,32 +791,42 @@ function ChoiceRow({
   eliminatorMode: boolean;
   onSelect: () => void;
   onToggleCrossOut: () => void;
+  feedback?: "correct" | "incorrect";
+  disabled?: boolean;
 }) {
   const hasText = text.trim().length > 0;
   return (
     <div className="flex items-center gap-3">
       <div
         role="button"
-        tabIndex={crossedOut ? -1 : 0}
-        onClick={() => !crossedOut && onSelect()}
+        tabIndex={crossedOut || disabled ? -1 : 0}
+        onClick={() => !crossedOut && !disabled && onSelect()}
         onKeyDown={(e) => {
-          if (!crossedOut && (e.key === "Enter" || e.key === " ")) {
+          if (!crossedOut && !disabled && (e.key === "Enter" || e.key === " ")) {
             e.preventDefault();
             onSelect();
           }
         }}
-        aria-disabled={crossedOut}
+        aria-disabled={crossedOut || disabled}
         className={`relative flex-1 flex items-center gap-3 text-left px-3.5 py-2.5 rounded-lg border bg-white overflow-hidden ${
-          selected
+          feedback === "correct"
+            ? "border-brand-green bg-brand-green-light shadow-[inset_0_0_0_1px_var(--success)] cursor-default"
+            : feedback === "incorrect"
+              ? "border-brand-red bg-brand-red-light shadow-[inset_0_0_0_1px_var(--danger)] cursor-default"
+              : selected
             ? "border-[#324dc7] shadow-[inset_0_0_0_1px_#324dc7] cursor-pointer"
             : crossedOut
               ? "border-[#8f8f8f] cursor-not-allowed"
-              : "border-[#1e1e1e] hover:bg-[#f5f5f5] cursor-pointer"
+            : disabled ? "border-[#8f8f8f] cursor-default" : "border-[#1e1e1e] hover:bg-[#f5f5f5] cursor-pointer"
         }`}
       >
         <span
           className={`shrink-0 w-[26px] h-[26px] rounded-full border-[1.5px] flex items-center justify-center text-[13px] font-bold ${
-            selected
+            feedback === "correct"
+              ? "bg-brand-green border-brand-green text-white"
+              : feedback === "incorrect"
+                ? "bg-brand-red border-brand-red text-white"
+                : selected
               ? "bg-[#324dc7] border-[#324dc7] text-white"
               : crossedOut
                 ? "border-[#8f8f8f] text-[#8f8f8f] bg-white"
@@ -842,7 +861,7 @@ function ChoiceRow({
       {/* Eliminator target — only present while the ABC tool is on: a small
           struck-through letter next to every choice, or "Undo" once that
           choice has been crossed out. */}
-      {eliminatorMode &&
+      {eliminatorMode && !disabled &&
         (crossedOut ? (
           <button
             type="button"
@@ -1060,7 +1079,7 @@ export default function PracticeExam({
     setReviewMode(params.get("review") === "1");
   }, []);
 
-  const [testMode, setTestMode] = useState<TestMode>(fullExam?.mode ?? "timed");
+  const [testMode, setTestMode] = useState<TestMode>(fullExam?.mode ?? (isBank ? "untimed" : "timed"));
   const [started, setStarted] = useState(!!fullExam);
   const [pauseReason, setPauseReason] = useState("Take as much time as you need.");
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -1076,6 +1095,9 @@ export default function PracticeExam({
   const [questions, setQuestions] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [checkedAnswers, setCheckedAnswers] = useState<Record<string, CheckedAnswer>>({});
+  const [checkingAnswer, setCheckingAnswer] = useState(false);
+  const [checkError, setCheckError] = useState<string | null>(null);
   const [marked, setMarked] = useState<Record<string, boolean>>({});
   const [secondsLeft, setSecondsLeft] = useState(0);
   // Full length of this module/set — the "5 minutes left" warning only makes
@@ -1114,6 +1136,20 @@ export default function PracticeExam({
   // Chrome
   const [timerHidden, setTimerHidden] = useState(false);
   const [timerPaused, setTimerPaused] = useState(false);
+  const [showDifficulty, setShowDifficulty] = useState(true);
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem("bluemind_question_difficulty_indicator");
+      if (saved !== null) setShowDifficulty(saved !== "off");
+    } catch { /* use the default when browser storage is unavailable */ }
+  }, []);
+  function toggleDifficultyIndicator() {
+    setShowDifficulty((previous) => {
+      const next = !previous;
+      try { window.localStorage.setItem("bluemind_question_difficulty_indicator", next ? "on" : "off"); } catch { /* preference remains for this visit */ }
+      return next;
+    });
+  }
   const [directionsOpen, setDirectionsOpen] = useState(false);
   const [referenceOpen, setReferenceOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -1260,7 +1296,7 @@ export default function PracticeExam({
       if (!submissionId.current) submissionId.current = crypto.randomUUID();
       window.localStorage.setItem(progressKey, JSON.stringify({
         submissionId: submissionId.current,
-        answers, marked, crossedOut,
+        answers, checkedAnswers, marked, crossedOut,
         secondsLeft: deadlineRef.current === null ? secondsLeft : remainingSeconds(deadlineRef.current),
         index, mode: testMode, savedAt: Date.now(),
       }));
@@ -1277,7 +1313,7 @@ export default function PracticeExam({
   useEffect(() => {
     if (!started || loading || results || !questions.length || finishedRef.current) return;
     saveRef.current();
-  }, [started, loading, results, questions.length, answers, marked, crossedOut, index, secondsLeft, testMode]);
+  }, [started, loading, results, questions.length, answers, checkedAnswers, marked, crossedOut, index, secondsLeft, testMode]);
 
   useEffect(() => {
     if (!started || loading || results || !questions.length) return;
@@ -1763,11 +1799,12 @@ export default function PracticeExam({
             const saved = JSON.parse(raw);
             if (saved && typeof saved === "object") {
               if (typeof saved.submissionId === "string") submissionId.current = saved.submissionId;
-              setAnswers(saved.answers ?? {});
+               setAnswers(saved.answers ?? {});
+               setCheckedAnswers(saved.checkedAnswers ?? {});
               setMarked(saved.marked ?? {});
               setCrossedOut(saved.crossedOut ?? {});
               setIndex(Math.max(0, Math.min(saved.index ?? 0, data.questions.length - 1)));
-              if (!fullExam && isTestMode(saved.mode)) setTestMode(saved.mode);
+               if (!fullExam && isTestMode(saved.mode)) setTestMode(isBank && saved.mode === "exam" ? "untimed" : saved.mode);
               setSecondsLeft(typeof saved.secondsLeft === "number" && Number.isFinite(saved.secondsLeft) ? Math.max(0, Math.min(saved.secondsLeft, data.minutes * 60)) : data.minutes * 60);
               restored = true;
               setRestoredProgress(true);
@@ -1817,7 +1854,7 @@ export default function PracticeExam({
   }, [started, testMode, loading, results, timerPaused, submitting, submitError]);
 
   useEffect(() => {
-    if (started && testMode !== "untimed" && !loading && !results && !timerPaused && !submitting && !submitError && secondsLeft === 0 && questions.length > 0) handleSubmit();
+    if (!isBank && started && testMode !== "untimed" && !loading && !results && !timerPaused && !submitting && !submitError && secondsLeft === 0 && questions.length > 0) handleSubmit();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [secondsLeft, started, testMode, loading, results, timerPaused, submitting, submitError]);
 
@@ -1875,7 +1912,34 @@ export default function PracticeExam({
   }, [secondsLeft]);
 
   function selectAnswer(qId: string, choiceId: string) {
+    if (isBank && checkedAnswers[qId]) return;
     setAnswers((prev) => ({ ...prev, [qId]: choiceId }));
+    setCheckError(null);
+  }
+
+  async function handleCheckAnswer() {
+    if (!isBank || !current || checkedAnswers[current.id] || checkingAnswer) return;
+    const selectedAnswer = answers[current.id]?.trim();
+    if (!selectedAnswer) {
+      setCheckError("Choose or enter an answer before checking.");
+      return;
+    }
+    setCheckingAnswer(true);
+    setCheckError(null);
+    try {
+      const response = await fetch(`/api/qbank/sets/${setId}/check`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId: current.id, selectedAnswer }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error ?? "Your answer could not be checked.");
+      setCheckedAnswers((previous) => ({ ...previous, [current.id]: data as CheckedAnswer }));
+    } catch (error) {
+      setCheckError(error instanceof Error ? error.message : "Your answer could not be checked.");
+    } finally {
+      setCheckingAnswer(false);
+    }
   }
   function toggleMark(qId: string) {
     setMarked((prev) => ({ ...prev, [qId]: !prev[qId] }));
@@ -1907,6 +1971,12 @@ export default function PracticeExam({
 
   async function handleSubmit() {
     if (submittingRef.current || finishedRef.current || results || pausedRef.current) return;
+    if (isBank && Object.keys(checkedAnswers).length < questions.length) {
+      const firstUnchecked = questions.findIndex((question) => !checkedAnswers[question.id]);
+      if (firstUnchecked >= 0) setIndex(firstUnchecked);
+      setCheckError("Check every answer before finishing this practice session.");
+      return;
+    }
     if (!submissionId.current) submissionId.current = crypto.randomUUID();
     submittingRef.current = true;
     if (deadlineRef.current !== null) setSecondsLeft(remainingSeconds(deadlineRef.current));
@@ -1947,7 +2017,7 @@ export default function PracticeExam({
   // this screen opens so it reflects any answers changed since the last
   // preview (e.g. left review, changed an answer, came back).
   useEffect(() => {
-    if (!moduleReviewOpen || questions.length === 0 || fullExam || testMode === "exam") return;
+    if (!moduleReviewOpen || questions.length === 0 || fullExam || isBank || testMode === "exam") return;
     setPreviewLoading(true);
     fetch(gradeUrl, {
       method: "POST",
@@ -2349,8 +2419,34 @@ export default function PracticeExam({
   }
 
   if (!results && !started) {
-    return <TestSetup title={mockTitle} detail={section + moduleDot + " · " + questions.length + " questions · " + totalSeconds / 60 + " minutes in timed modes"}
-      savedMode={restoredProgress ? testMode : undefined} onStart={(mode) => { setTestMode(mode); setStarted(true); }} />;
+    return <TestSetup
+      title={mockTitle}
+      detail={isBank ? `${section} · ${questions.length} questions · check each answer for immediate feedback` : section + moduleDot + " · " + questions.length + " questions · " + totalSeconds / 60 + " minutes in timed modes"}
+      savedMode={restoredProgress ? testMode : undefined}
+      allowedModes={isBank ? ["untimed", "timed"] : undefined}
+      practiceOnly={isBank}
+      backHref={isBank ? "/practice/browse" : undefined}
+      onStart={(mode) => { setTestMode(mode); setStarted(true); }}
+    >
+      {isBank && (
+        <div className="mt-5 rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-slate-900">Question difficulty indicator</p>
+            <p className="text-xs text-slate-600 mt-1">Show Easy, Medium, or Hard above each question.</p>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={showDifficulty}
+            aria-label="Question difficulty indicator"
+            onClick={toggleDifficultyIndicator}
+            className={`w-12 h-7 rounded-full p-1 transition-colors ${showDifficulty ? "bg-blue-600" : "bg-slate-300"}`}
+          >
+            <span className={`block w-5 h-5 rounded-full bg-white transition-transform ${showDifficulty ? "translate-x-5" : "translate-x-0"}`} />
+          </button>
+        </div>
+      )}
+    </TestSetup>;
   }
 
   const isCrossedOut = (qId: string, choiceId: string) => (crossedOut[qId] ?? []).includes(choiceId);
@@ -2432,9 +2528,9 @@ export default function PracticeExam({
               {timerPaused ? <PlayIcon /> : <PauseIcon />}
             </button>
           </div>
-          {isPracticeMode && (
+          {(isPracticeMode || isBank) && (
             <div className="flex items-center gap-2 mt-1.5">
-              <span
+              {showDifficulty && <span
                 title="Question difficulty"
                 className={`h-6 flex items-center text-[10px] font-semibold px-2 rounded-full whitespace-nowrap ${
                   current.difficulty === "Hard"
@@ -2445,7 +2541,7 @@ export default function PracticeExam({
                 }`}
               >
                 {current.difficulty}
-              </span>
+              </span>}
               <span
                 title="Time on this question"
                 className="h-6 flex items-center text-[10px] font-semibold text-brand-slate tabular-nums px-2 rounded-full bg-slate-100 whitespace-nowrap"
@@ -2536,6 +2632,18 @@ export default function PracticeExam({
                   >
                     <MoonIcon size={17} /> {darkMode ? "Light background" : "Dark background"}
                   </button>
+                  {isBank && (
+                    <button
+                      onClick={() => {
+                        setMoreOpen(false);
+                        toggleDifficultyIndicator();
+                      }}
+                      className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0]"
+                    >
+                      <span className={`w-3 h-3 rounded-full ${showDifficulty ? "bg-brand-green" : "bg-slate-300"}`} />
+                      Question difficulty indicator: {showDifficulty ? "On" : "Off"}
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       setMoreOpen(false);
@@ -2743,8 +2851,17 @@ export default function PracticeExam({
 
           {current.questionType !== "spr" && (
             <div className={`space-y-3 ${!isMath ? "bluebook-serif" : ""}`}>
-              {current.choices.map((c) => (
-                <ChoiceRow
+              {current.choices.map((c) => {
+                const checked = checkedAnswers[current.id];
+                const accepted = checked?.correctAnswer.split(",").map((value) => value.trim()).filter(Boolean) ?? [];
+                const feedback = checked
+                  ? accepted.includes(c.id)
+                    ? "correct"
+                    : answers[current.id] === c.id
+                      ? "incorrect"
+                      : undefined
+                  : undefined;
+                return <ChoiceRow
                   key={c.id}
                   letter={c.id}
                   text={c.text}
@@ -2754,8 +2871,10 @@ export default function PracticeExam({
                   eliminatorMode={eliminatorMode}
                   onSelect={() => selectAnswer(current.id, c.id)}
                   onToggleCrossOut={() => toggleCrossOut(current.id, c.id)}
-                />
-              ))}
+                  feedback={feedback}
+                  disabled={!!checked}
+                />;
+              })}
             </div>
           )}
 
@@ -2765,6 +2884,7 @@ export default function PracticeExam({
                 type="text"
                 value={answers[current.id] ?? ""}
                 onChange={(e) => selectAnswer(current.id, e.target.value)}
+                disabled={!!checkedAnswers[current.id]}
                 aria-label="Your answer"
                 className="w-[176px] h-[44px] px-3 rounded-[4px] border border-[#1e1e1e] focus:border-[#324dc7] focus:shadow-[inset_0_0_0_1px_#324dc7] outline-none text-[18px] bg-white text-[#1e1e1e]"
               />
@@ -2776,6 +2896,31 @@ export default function PracticeExam({
               </p>
             </div>
           )}
+
+          {isBank && checkedAnswers[current.id] && (
+            <div
+              role="status"
+              className={`mt-6 rounded-xl border p-4 ${
+                checkedAnswers[current.id].isCorrect
+                  ? "border-brand-green bg-brand-green-light"
+                  : "border-brand-red bg-brand-red-light"
+              }`}
+            >
+              <p className={`font-bold ${checkedAnswers[current.id].isCorrect ? "text-brand-green" : "text-brand-red"}`}>
+                {checkedAnswers[current.id].isCorrect ? "Correct" : "Not quite"}
+              </p>
+              {!checkedAnswers[current.id].isCorrect && (
+                <p className="text-sm text-brand-navy mt-1">
+                  Correct answer: <strong>{checkedAnswers[current.id].correctAnswer}</strong>
+                </p>
+              )}
+              <div className="mt-3 text-sm leading-relaxed text-brand-navy">
+                <p className="font-semibold mb-1">Explanation</p>
+                <MathText text={checkedAnswers[current.id].explanation || checkedAnswers[current.id].rationale || "An explanation is not available yet."} />
+              </div>
+            </div>
+          )}
+          {isBank && checkError && <p role="alert" className="mt-4 text-sm font-medium text-brand-red">{checkError}</p>}
           </div>
             </div>
           </div>
@@ -3265,13 +3410,19 @@ export default function PracticeExam({
                   marked={!!marked[q.id]}
                   current={i === index}
                   onClick={() => {
+                    if (isBank && !checkedAnswers[current.id]) {
+                      setNavigatorOpen(false);
+                      setCheckError("Check this answer before moving to another question.");
+                      return;
+                    }
                     setIndex(i);
+                    setCheckError(null);
                     setNavigatorOpen(false);
                   }}
                 />
               ))}
             </div>
-            <div className="mt-8 flex justify-center">
+            {!isBank && <div className="mt-8 flex justify-center">
               <button
                 onClick={() => {
                   setNavigatorOpen(false);
@@ -3281,7 +3432,7 @@ export default function PracticeExam({
               >
                 Go to Review Page
               </button>
-            </div>
+            </div>}
             <span className="absolute left-1/2 -translate-x-1/2 -bottom-[9px] w-4 h-4 bg-white border-r border-b border-[#d9d9d9] rotate-45" />
           </div>
         </div>
@@ -3476,7 +3627,33 @@ export default function PracticeExam({
                 Back
               </button>
             )}
-            {index < questions.length - 1 ? (
+            {isBank ? (
+              checkedAnswers[current.id] ? (
+                index < questions.length - 1 ? (
+                  <button onClick={() => { setIndex((i) => i + 1); setCheckError(null); }} className="bb-btn-primary">
+                    Next Question
+                  </button>
+                ) : Object.keys(checkedAnswers).length < questions.length ? (
+                  <button
+                    onClick={() => {
+                      const next = questions.findIndex((question) => !checkedAnswers[question.id]);
+                      if (next >= 0) setIndex(next);
+                    }}
+                    className="bb-btn-primary"
+                  >
+                    Next Unchecked
+                  </button>
+                ) : (
+                  <button onClick={handleSubmit} disabled={submitting} className="bb-btn-primary">
+                    {submitting ? "Finishing…" : "Finish Session"}
+                  </button>
+                )
+              ) : (
+                <button onClick={handleCheckAnswer} disabled={checkingAnswer || !answers[current.id]?.trim()} className="bb-btn-primary disabled:opacity-50">
+                  {checkingAnswer ? "Checking…" : "Check Answer"}
+                </button>
+              )
+            ) : index < questions.length - 1 ? (
               <button onClick={() => setIndex((i) => i + 1)} className="bb-btn-primary">
                 Next
               </button>

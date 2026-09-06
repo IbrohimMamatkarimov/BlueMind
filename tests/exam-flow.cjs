@@ -13,6 +13,11 @@ const questions = (section, module) => Array.from({length: section === 'Math' ? 
   questionText: `Question ${i + 1}: Which answer is correct?`, passageText: section === 'Math' ? null : 'A short reading passage for this test.',
   choices: [{id:'A',text:'Answer A'},{id:'B',text:'Answer B'},{id:'C',text:'Answer C'},{id:'D',text:'Answer D'}], questionType:'multiple_choice',
 }));
+const bankQuestions = Array.from({length:3}, (_, i) => ({
+  id:`bank-${i}`,domain:'Algebra',skill:'Linear equations',difficulty:i === 0 ? 'Medium' : 'Hard',
+  questionText:`Study question ${i + 1}`,passageText:null,
+  choices:[{id:'A',text:'Answer A'},{id:'B',text:'Answer B'}],questionType:'multiple_choice',
+}));
 const complete = {id:fixtureId,title:'March 2026',subtitle:'Validation paper',month:'March',year:2026,
   math:[{module:1,questionCount:22},{module:2,questionCount:22}], readingWriting:[{module:1,questionCount:27},{module:2,questionCount:27}]};
 
@@ -35,6 +40,14 @@ const complete = {id:fixtureId,title:'March 2026',subtitle:'Validation paper',mo
     else if (url.pathname === '/api/public/module') {
       const section = url.searchParams.get('section'); const module = Number(url.searchParams.get('module'));
       body = {mockTitle:'March 2026',section,module,minutes:section === 'Math' ? 35 : 32,questions:questions(section,module)};
+    } else if (url.pathname === '/api/qbank/sets/study-set') {
+      body={setId:'study-set',mockTitle:'Question Bank · Linear equations',section:'Math',module:1,minutes:5,questions:bankQuestions,total:3,correctCount:0,completedAt:null,results:null};
+    } else if (url.pathname === '/api/qbank/sets/study-set/check') {
+      const {questionId,selectedAnswer}=route.request().postDataJSON();
+      body={questionId,isCorrect:selectedAnswer==='A',correctAnswer:'A',rationale:'A is correct.',explanation:'Answer A follows from the equation. Answer B does not satisfy it.'};
+    } else if (url.pathname === '/api/qbank/sets/study-set/grade') {
+      const {answers}=route.request().postDataJSON(); const results=bankQuestions.map(q=>({questionId:q.id,questionText:q.questionText,choices:q.choices,skill:q.skill,difficulty:q.difficulty,selectedAnswer:answers[q.id]||null,correctAnswer:'A',isCorrect:answers[q.id]==='A',rationale:'A is correct.',explanation:'Answer A follows from the equation. Answer B does not satisfy it.'}));
+      body={total:3,correctCount:results.filter(r=>r.isCorrect).length,accuracyPct:0,results};
     } else if (url.pathname === '/api/public/module/grade') {
       gradeCalls++;
       if (failGrade) return route.fulfill({status:503,json:{error:'Connection interrupted. Please retry.'}});
@@ -186,6 +199,21 @@ const complete = {id:fixtureId,title:'March 2026',subtitle:'Validation paper',mo
     await visible('Fullscreen permission denied');
     assert.equal(await read(moduleKey),null);
     console.log('PASS fullscreen denial leaves the test unstarted');
+
+    await page.goto(base + '/practice/qbank/Math/study-set');
+    await page.getByRole('radio',{name:/Untimed practice/}).waitFor();
+    assert.equal(await page.getByRole('radio',{name:/Real exam environment/}).count(),0);
+    assert.equal(await page.getByRole('radio',{name:/Untimed practice/}).isChecked(),true);
+    await page.getByRole('button',{name:'Start practice',exact:true}).click();
+    await visible('Medium');
+    await page.getByText('Answer B',{exact:true}).click();
+    assert.equal(await page.getByRole('button',{name:'Next Question',exact:true}).count(),0);
+    await page.getByRole('button',{name:'Check Answer',exact:true}).click();
+    await visible('Not quite');
+    await visible('Answer A follows from the equation. Answer B does not satisfy it.');
+    await page.getByRole('button',{name:'Next Question',exact:true}).click();
+    await visible('Study question 2');
+    console.log('PASS Question Bank study mode checks before moving on and excludes exam mode');
 
     await page.setViewportSize({width:390,height:844});
     await page.goto(base);

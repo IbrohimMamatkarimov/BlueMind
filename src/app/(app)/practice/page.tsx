@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { PageHeader, SubjectCard } from "@/components/ui";
+import { countMatchingQuestions } from "@/lib/qbank-selection";
 
 /* ---------------------------------------------------------------------- */
 /* Types                                                                   */
@@ -245,10 +246,8 @@ export default function PracticePage() {
     });
   }
 
-  // Every drill runs in the Bluebook-style exam screen: build a Question
-  // Bank set from the chosen topics/difficulties and hand off to
-  // /practice/qbank/<section>/<setId> — the same page the mocks use — so
-  // practice looks and behaves exactly like the real test.
+  // A category drill contains every question matching the learner's filters.
+  // The backend may return fewer only when "exclude answered" removes items.
   async function startDrill(filters: { skills: string[]; difficulties: string[]; shuffle: boolean; excludeSeen: boolean }) {
     setLoadingDrill(true);
     setDrillError(null);
@@ -261,8 +260,7 @@ export default function PracticePage() {
           skills: filters.skills,
           difficulties: filters.difficulties,
           status: filters.excludeSeen ? "unattempted" : "all",
-          // A full module's worth, timed like the real thing (27 R&W / 22 Math).
-          count: activeSection === "Math" ? 22 : 27,
+          count: countMatchingQuestions(counts ?? [], activeSection, filters.skills, filters.difficulties),
           shuffle: filters.shuffle,
         }),
       });
@@ -344,8 +342,8 @@ export default function PracticePage() {
           <div>
             <p className="text-sm font-semibold text-brand-navy">Browse every question</p>
             <p className="text-xs text-brand-slate mt-0.5">
-              Filter the whole bank by domain, skill and difficulty, see which ones you've solved, and practice any set
-              in the real exam screen.
+              Filter the whole bank by domain, skill and difficulty, see which ones you've solved, and study the exact
+              questions you choose.
             </p>
           </div>
           <span className="btn-primary text-sm px-4 py-2 shrink-0">Open the bank →</span>

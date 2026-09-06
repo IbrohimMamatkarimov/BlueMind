@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { TEST_MODES, TestMode } from "@/lib/test-session";
+import { availableTestModes, TestMode } from "@/lib/test-session";
 
 export async function enterExamFullscreen() {
   if (!document.fullscreenElement) {
@@ -34,11 +34,13 @@ export function useExamGuard(enabled: boolean, onPause: (reason: string) => void
   }, [enabled]);
 }
 
-export function TestSetup({ title, detail, savedMode, onStart, children }: {
+export function TestSetup({ title, detail, savedMode, onStart, children, allowedModes, practiceOnly = false, backHref }: {
   title: string; detail: string; savedMode?: TestMode;
   onStart: (mode: TestMode) => void; children?: React.ReactNode;
+  allowedModes?: TestMode[]; practiceOnly?: boolean; backHref?: string;
 }) {
-  const [mode, setMode] = useState<TestMode>(savedMode ?? "timed");
+  const options = availableTestModes(allowedModes, savedMode);
+  const [mode, setMode] = useState<TestMode>(savedMode ?? options[0]?.value ?? "untimed");
   const [error, setError] = useState("");
   const [starting, setStarting] = useState(false);
   async function start() {
@@ -60,18 +62,18 @@ export function TestSetup({ title, detail, savedMode, onStart, children }: {
         {children}
         <fieldset className="space-y-3 mt-6">
           <legend className="font-semibold mb-3">{savedMode ? "Continue in your saved mode" : "How would you like to practice?"}</legend>
-          {TEST_MODES.filter((option) => !savedMode || option.value === savedMode).map((option) => (
+          {options.map((option) => (
             <label key={option.value} className={`flex items-start gap-3 border rounded-xl p-4 cursor-pointer ${mode === option.value ? "border-blue-600 bg-blue-50" : "border-slate-200"}`}>
               <input type="radio" name="test-mode" value={option.value} checked={mode === option.value} onChange={() => setMode(option.value)} className="mt-1 accent-blue-600" />
               <span><span className="block font-semibold">{option.label}</span><span className="block text-sm text-slate-600 mt-1">{option.description}</span></span>
             </label>
           ))}
         </fieldset>
-        <p className="text-sm text-slate-600 mt-5">You can pause, save, and resume in every mode. Progress is saved in this browser on this device.</p>
+        <p className="text-sm text-slate-600 mt-5">{practiceOnly ? "Check each answer to see the correct response and explanation. You can save and resume at any time." : "You can pause, save, and resume in every mode. Progress is saved in this browser on this device."}</p>
         {error && <p role="alert" className="text-sm text-red-700 mt-3">{error}</p>}
         <div className="mt-6 flex items-center justify-between gap-4">
-          <a href="/" className="text-sm font-semibold text-slate-600">Back to mocks</a>
-          <button onClick={start} disabled={starting} className="rounded-full bg-blue-600 px-6 py-3 font-semibold text-white disabled:opacity-50">{starting ? "Starting…" : savedMode ? "Resume test" : "Start test"}</button>
+          <a href={backHref ?? "/"} className="text-sm font-semibold text-slate-600">{practiceOnly ? "Back to Question Bank" : "Back to mocks"}</a>
+          <button onClick={start} disabled={starting} className="rounded-full bg-blue-600 px-6 py-3 font-semibold text-white disabled:opacity-50">{starting ? "Starting…" : savedMode ? (practiceOnly ? "Resume practice" : "Resume test") : (practiceOnly ? "Start practice" : "Start test")}</button>
         </div>
       </div>
     </main>

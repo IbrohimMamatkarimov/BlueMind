@@ -205,8 +205,11 @@ CREATE TABLE IF NOT EXISTS practice_attempts (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL,
   question_id TEXT NOT NULL,
+  session_id TEXT,
   section TEXT NOT NULL,
   skill TEXT NOT NULL,
+  selected_answer TEXT,
+  correct_answer TEXT,
   is_correct INTEGER NOT NULL,
   attempt_number INTEGER NOT NULL DEFAULT 1, -- 1st, 2nd... time this user has answered this exact question
   created_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'))
@@ -214,6 +217,8 @@ CREATE TABLE IF NOT EXISTS practice_attempts (
 
 CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_skill ON practice_attempts(user_id, skill);
 CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_question ON practice_attempts(user_id, question_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_practice_attempts_session_question
+  ON practice_attempts(user_id, session_id, question_id) WHERE session_id IS NOT NULL;
 
 CREATE INDEX IF NOT EXISTS idx_questions_mock ON questions(mock_id);
 CREATE INDEX IF NOT EXISTS idx_questions_skill ON questions(skill);

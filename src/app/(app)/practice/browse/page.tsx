@@ -6,10 +6,7 @@ import Link from "next/link";
 /**
  * Question Bank → Browse: the full list of standalone bank questions (the
  * imported College Board bank), filterable by skill / difficulty / your
- * status, with a "Solve" per row and a "Practice N questions" session
- * builder. Both open the exact exam screen the mocks use
- * (/practice/qbank/<section>/<setId>), so practice here feels like the
- * real test rather than a quiz widget.
+ * status, with a "Solve" per row and a full filtered practice session.
  */
 
 type Section = "Reading and Writing" | "Math";
@@ -115,7 +112,6 @@ export default function BrowseQuestionBankPage() {
   const [data, setData] = useState<ListResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [setSize, setSetSize] = useState(10);
   const [shuffle, setShuffle] = useState(true);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [starting, setStarting] = useState<string | null>(null); // "set" or a question id
@@ -272,10 +268,6 @@ export default function BrowseQuestionBankPage() {
   }
 
   async function startSet(questionIds?: string[]) {
-    if (questionIds && questionIds.length > 60) {
-      setStartError("Choose up to 60 questions for one practice session.");
-      return;
-    }
     const key = questionIds?.length === 1 ? questionIds[0] : "set";
     setStarting(key);
     setStartError(null);
@@ -292,7 +284,7 @@ export default function BrowseQuestionBankPage() {
                 difficulties: Array.from(difficulties),
                 status,
                 search: search.trim(),
-                count: setSize,
+                count: total,
                 shuffle,
               }
         ),
@@ -309,8 +301,6 @@ export default function BrowseQuestionBankPage() {
   const total = data?.total ?? 0;
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
   const firstIndex = data ? (data.page - 1) * data.pageSize : 0;
-  const fullModule = section === "Math" ? 22 : 27;
-  const sizeOptions = Array.from(new Set([5, 10, 15, 20, fullModule, 40])).sort((a, b) => a - b);
   const activeFilterCount = skills.size + difficulties.size + (status !== "all" ? 1 : 0) + (search.trim() ? 1 : 0);
 
   return (
@@ -323,7 +313,7 @@ export default function BrowseQuestionBankPage() {
         <div>
           <h1 className="text-2xl font-bold text-brand-navy">Browse questions</h1>
           <p className="text-sm text-brand-slate mt-1">
-            Every question in the bank, filtered your way. Solve any of them in the full exam screen.
+            Every question in the bank, filtered your way. Check each answer and learn from the explanation.
           </p>
         </div>
         <div className="flex items-center gap-1 rounded-full border border-brand-border bg-white p-1">
@@ -519,25 +509,11 @@ export default function BrowseQuestionBankPage() {
         <div className="space-y-4 min-w-0">
           <div className="card p-4 flex flex-wrap items-center gap-3">
             <div className="flex-1 min-w-[180px]">
-              <p className="text-sm font-semibold text-brand-navy">Practice a set</p>
+              <p className="text-sm font-semibold text-brand-navy">Practice all matching questions</p>
               <p className="text-xs text-brand-slate mt-0.5">
-                Pulls questions matching your filters into a timed, exam-style session.
+                Creates a study session with all {formatCount(total)} questions matching your filters.
               </p>
             </div>
-            <label className="flex items-center gap-2 text-sm text-brand-navy">
-              <select
-                value={setSize}
-                onChange={(e) => setSetSize(Number(e.target.value))}
-                className="px-2.5 py-1.5 rounded-lg border border-brand-border bg-white text-sm text-brand-navy"
-              >
-                {sizeOptions.map((n) => (
-                  <option key={n} value={n}>
-                    {n} question{n === 1 ? "" : "s"}
-                    {n === fullModule ? " (full module)" : ""}
-                  </option>
-                ))}
-              </select>
-            </label>
             <label className="flex items-center gap-2 text-sm text-brand-navy cursor-pointer">
               <input type="checkbox" checked={shuffle} onChange={() => setShuffle((v) => !v)} className="w-4 h-4 accent-brand-blue" />
               Shuffle
@@ -547,7 +523,7 @@ export default function BrowseQuestionBankPage() {
               disabled={starting !== null || total === 0}
               className="btn-primary text-sm px-4 py-2 flex items-center gap-1.5"
             >
-              <PlayIcon /> {starting === "set" ? "Starting…" : `Start ${Math.min(setSize, total || setSize)}`}
+              <PlayIcon /> {starting === "set" ? "Starting…" : `Start all ${formatCount(total)}`}
             </button>
             {startError && <p className="w-full text-xs text-brand-red">{startError}</p>}
           </div>

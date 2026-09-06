@@ -183,6 +183,14 @@ async function runMigrations(client: PoolClient) {
     "ALTER TABLE practice_sessions ADD COLUMN IF NOT EXISTS section TEXT",
     "ALTER TABLE practice_sessions ADD COLUMN IF NOT EXISTS title TEXT",
     "ALTER TABLE practice_sessions ADD COLUMN IF NOT EXISTS results_json TEXT",
+    // Study-mode Question Bank checks are saved as soon as the learner asks
+    // to check an answer.  session_id makes that write idempotent, while the
+    // answer snapshots power the Mistakes Notebook even if an answer key is
+    // corrected later.
+    "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS session_id TEXT",
+    "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS selected_answer TEXT",
+    "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS correct_answer TEXT",
+    "CREATE UNIQUE INDEX IF NOT EXISTS idx_practice_attempts_session_question ON practice_attempts(user_id, session_id, question_id) WHERE session_id IS NOT NULL",
   ];
   for (const sql of migrations) {
     await client.query(sql);

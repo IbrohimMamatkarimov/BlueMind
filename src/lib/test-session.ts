@@ -8,6 +8,13 @@ export const TEST_MODES: { value: TestMode; label: string; description: string }
   { value: "exam", label: "Real exam environment", description: "Standard timing in fullscreen. Leaving fullscreen or switching away pauses the test and shows a warning." },
 ];
 
+export function availableTestModes(allowedModes?: TestMode[], savedMode?: TestMode) {
+  const ordered = allowedModes
+    ? allowedModes.map((value) => TEST_MODES.find((option) => option.value === value)).filter((option): option is (typeof TEST_MODES)[number] => !!option)
+    : TEST_MODES;
+  return ordered.filter((option) => !savedMode || option.value === savedMode);
+}
+
 export const FULL_EXAM_STEPS = [
   { section: "Reading and Writing", module: 1, minutes: SAT_STRUCTURE.readingWriting.minutesPerModule },
   { section: "Reading and Writing", module: 2, minutes: SAT_STRUCTURE.readingWriting.minutesPerModule },

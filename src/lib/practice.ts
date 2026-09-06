@@ -181,7 +181,8 @@ export async function gradePracticeAnswer(
   userId: string,
   questionId: string,
   selectedAnswer: string | null,
-  database = db
+  database = db,
+  sessionId?: string
 ): Promise<GradePracticeResult | null> {
   const q = (await database
     .prepare(
@@ -204,6 +205,27 @@ export async function gradePracticeAnswer(
   if (!q) return null;
 
   const isCorrect = isAnswerCorrect(q.question_type, selectedAnswer, q.correct_answer);
+
+  // A checked Question Bank answer is immutable within its session. Returning
+  // the original result makes retries, refreshes, and double-clicks safe and
+  // prevents skill statistics from being incremented twice.
+  if (sessionId) {
+    const saved = (await database
+      .prepare(
+        `SELECT is_correct FROM practice_attempts
+         WHERE user_id = ? AND session_id = ? AND question_id = ?`
+      )
+      .get(userId, sessionId, questionId)) as { is_correct: number } | undefined;
+    if (saved) {
+      return {
+        questionId: q.id,
+        isCorrect: !!saved.is_correct,
+        correctAnswer: q.correct_answer,
+        rationale: q.rationale,
+        explanation: q.explanation,
+      };
+    }
+  }
 
   const existing = (await database
     .prepare("SELECT id, correct, attempted FROM skill_stats WHERE user_id = ? AND skill = ?")
@@ -235,10 +257,22 @@ export async function gradePracticeAnswer(
   ).n;
   await database
     .prepare(
-      `INSERT INTO practice_attempts (id, user_id, question_id, section, skill, is_correct, attempt_number)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO practice_attempts
+         (id, user_id, question_id, session_id, section, skill, selected_answer, correct_answer, is_correct, attempt_number)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
-    .run(newId("pa"), userId, questionId, q.section, q.skill, isCorrect ? 1 : 0, Number(priorAttempts) + 1);
+    .run(
+      newId("pa"),
+      userId,
+      questionId,
+      sessionId ?? null,
+      q.section,
+      q.skill,
+      selectedAnswer,
+      q.correct_answer,
+      isCorrect ? 1 : 0,
+      Number(priorAttempts) + 1
+    );
 
   return {
     questionId: q.id,

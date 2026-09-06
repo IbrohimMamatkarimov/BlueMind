@@ -40,7 +40,9 @@ export interface BankRow {
 }
 
 export const BANK_PAGE_SIZE_MAX = 100;
-export const BANK_SET_SIZE_MAX = 60;
+// Large topic categories (for example Inferences) are intentionally practiced
+// in full.  This is a safety ceiling, not a Bluebook-module-sized product cap.
+export const BANK_SET_SIZE_MAX = 2000;
 
 /** Seconds per question used to size a set's timer — the real per-module
  * pacing (32 min / 27 R&W questions, 35 min / 22 Math questions). */
@@ -278,6 +280,7 @@ export interface CreateSetInput {
   shuffle: boolean;
   questionIds?: string[];
   title?: string;
+  allowMockQuestions?: boolean;
 }
 
 function describeFilters(f: BankFilters): string {
@@ -305,7 +308,7 @@ export async function createBankSet(
   if (input.questionIds && input.questionIds.length > 0) {
     const wanted = Array.from(new Set(input.questionIds)).slice(0, BANK_SET_SIZE_MAX);
     const rows = (await db
-      .prepare(`SELECT id, section, skill FROM questions WHERE mock_id IS NULL AND id IN (${wanted.map(() => "?").join(",")})`)
+      .prepare(`SELECT id, section, skill FROM questions WHERE ${input.allowMockQuestions ? "1 = 1" : "mock_id IS NULL"} AND id IN (${wanted.map(() => "?").join(",")})`)
       .all(...wanted)) as { id: string; section: string; skill: string }[];
     const found = new Map(rows.map((r) => [r.id, r.section]));
     const skills = new Set(rows.map((r) => r.skill));
@@ -537,7 +540,7 @@ export async function gradeBankSet(
     // timed set shouldn't brand it "incorrect" in the bank listing.
     for (const r of results) {
       if (r.selectedAnswer === null) continue;
-      await gradePracticeAnswer(userId, r.questionId, r.selectedAnswer, tx);
+      await gradePracticeAnswer(userId, r.questionId, r.selectedAnswer, tx, setId);
     }
     await tx
       .prepare(
