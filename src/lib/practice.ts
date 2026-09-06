@@ -180,9 +180,10 @@ export interface GradePracticeResult {
 export async function gradePracticeAnswer(
   userId: string,
   questionId: string,
-  selectedAnswer: string | null
+  selectedAnswer: string | null,
+  database = db
 ): Promise<GradePracticeResult | null> {
-  const q = (await db
+  const q = (await database
     .prepare(
       `SELECT id, section, domain, skill, difficulty, correct_answer, rationale, explanation, question_type
        FROM questions WHERE id = ?`
@@ -204,18 +205,18 @@ export async function gradePracticeAnswer(
 
   const isCorrect = isAnswerCorrect(q.question_type, selectedAnswer, q.correct_answer);
 
-  const existing = (await db
+  const existing = (await database
     .prepare("SELECT id, correct, attempted FROM skill_stats WHERE user_id = ? AND skill = ?")
     .get(userId, q.skill)) as { id: string; correct: number; attempted: number } | undefined;
 
   if (existing) {
-    await db
+    await database
       .prepare(
         `UPDATE skill_stats SET correct = correct + ?, attempted = attempted + 1, last_updated = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') WHERE id = ?`
       )
       .run(isCorrect ? 1 : 0, existing.id);
   } else {
-    await db
+    await database
       .prepare(
         `INSERT INTO skill_stats (id, user_id, section, domain, skill, correct, attempted)
          VALUES (?, ?, ?, ?, ?, ?, 1)`
@@ -228,16 +229,16 @@ export async function gradePracticeAnswer(
   // skill_stats' running totals alone can't answer (it can't tell you how
   // many *distinct* questions were solved, only a correct/attempted tally).
   const priorAttempts = (
-    (await db
+    (await database
       .prepare("SELECT COUNT(*) as n FROM practice_attempts WHERE user_id = ? AND question_id = ?")
       .get(userId, questionId)) as { n: number }
   ).n;
-  await db
+  await database
     .prepare(
       `INSERT INTO practice_attempts (id, user_id, question_id, section, skill, is_correct, attempt_number)
        VALUES (?, ?, ?, ?, ?, ?, ?)`
     )
-    .run(newId("pa"), userId, questionId, q.section, q.skill, isCorrect ? 1 : 0, priorAttempts + 1);
+    .run(newId("pa"), userId, questionId, q.section, q.skill, isCorrect ? 1 : 0, Number(priorAttempts) + 1);
 
   return {
     questionId: q.id,

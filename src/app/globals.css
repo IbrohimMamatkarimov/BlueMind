@@ -200,7 +200,7 @@ textarea:focus-visible,
 }
 
 /* Site-wide dark mode for the signed-in dashboard (Mocks / Practice /
-   Coach / Progress / Admin) — toggled by the moon button in the Navbar.
+   Progress / Admin) — toggled by the moon button in the Navbar.
    Same technique as .exam-dark above: override the Tailwind utility
    classes already used throughout those pages instead of adding a dark:
    variant to every element, and scope it to .app-dark on the shell wrapper
@@ -452,3 +452,7 @@ textarea:focus-visible,
 .app-dark .text-slate-600, .app-dark .text-slate-500 { color: var(--muted); }
 .auth-shell { background: var(--canvas); }
 @media (max-width: 639px) { .page-header { margin-bottom: 22px; } .action-bar { bottom: 8px; padding: 12px; } }
+
+.app-dark .text-brand-blue { color: #91b3ff; }
+.app-dark .divide-brand-border > :not([hidden]) ~ :not([hidden]) { border-color: var(--line); }
+.app-dark .app-sidebar img[src="/logo.png"], .app-dark .mobile-header img[src="/logo.png"] { filter: brightness(1.8) saturate(.8); }

@@ -12,20 +12,20 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const mockId = searchParams.get("mockId");
   const section = searchParams.get("section");
-  const module = Number(searchParams.get("module"));
-  if (!mockId || !section || (module !== 1 && module !== 2)) {
+  const moduleNumber = Number(searchParams.get("module"));
+  if (!mockId || !section || (moduleNumber !== 1 && moduleNumber !== 2)) {
     return NextResponse.json({ error: "mockId, section, module are required" }, { status: 400 });
   }
 
   const row = (await db
     .prepare(
-      `SELECT mr.correct_count as correctCount, mr.total, mr.results_json as resultsJson,
-              mr.completed_at as completedAt, m.title as mockTitle
+      `SELECT mr.correct_count AS "correctCount", mr.total, mr.results_json AS "resultsJson",
+              mr.completed_at AS "completedAt", m.title AS "mockTitle"
        FROM module_results mr
        JOIN mocks m ON m.id = mr.mock_id
        WHERE mr.user_id = ? AND mr.mock_id = ? AND mr.section = ? AND mr.module = ?`
     )
-    .get(user.id, mockId, section, module)) as
+    .get(user.id, mockId, section, moduleNumber)) as
     | { correctCount: number; total: number; resultsJson: string; completedAt: string; mockTitle: string }
     | undefined;
 

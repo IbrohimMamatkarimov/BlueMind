@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Isolated local previews can run alongside the normal development server.
+  distDir: process.env.BLUEMIND_DIST_DIR || ".next",
   eslint: {
     ignoreDuringBuilds: true,
   },

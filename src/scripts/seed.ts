@@ -10,6 +10,7 @@ import { SAT_STRUCTURE, MISTAKE_TYPES } from "../lib/sat-constants";
 
 async function reset() {
   const tables = [
+    "study_results",
     "answers",
     "score_records",
     "score_conversions",

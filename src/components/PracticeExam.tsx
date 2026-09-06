@@ -2623,7 +2623,6 @@ export default function PracticeExam({
                 : undefined
             }
           >
-              <TextWatermarkOverlay dark={darkMode} mode="absolute" />
               {isDesktop && (
                 <div className="absolute top-2 right-2 z-20">
                   <PaneExpandButton
@@ -2633,7 +2632,8 @@ export default function PracticeExam({
                   />
                 </div>
               )}
-              <div className="relative z-10">
+              <div className="relative z-10 min-h-full">
+                <TextWatermarkOverlay dark={darkMode} mode="absolute" />
                 {current.imageData && (
                   <img
                     src={current.imageData}
@@ -2689,7 +2689,6 @@ export default function PracticeExam({
                   : undefined
               }
             >
-              <TextWatermarkOverlay dark={darkMode} mode="absolute" />
               {/* Bluebook's response-pane top: the pane expand button, then the
                   gray strip with the question number, "Mark for Review" and
                   the ABC answer eliminator, closed off by the dashed rule. */}
@@ -2728,6 +2727,8 @@ export default function PracticeExam({
                 <div className="mx-6 sm:mx-8 dash-line" />
               </div>
             <div className="relative z-10 flex-1 overflow-y-auto px-6 sm:px-8 pt-5 pb-8" style={{ fontSize: fontSizePx }}>
+          <div className="relative min-h-full">
+          <TextWatermarkOverlay dark={darkMode} mode="absolute" />
           <Highlightable
             key={`${current.id}-right`}
             enabled={isMath || highlightMode}
@@ -2775,6 +2776,7 @@ export default function PracticeExam({
               </p>
             </div>
           )}
+          </div>
             </div>
           </div>
         </main>

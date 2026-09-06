@@ -1,81 +1,52 @@
-# BlueMind — Free SAT Prep Platform
+# BlueMind — SAT Practice
 
-## ⚠️ Status: Checkpoint build (in progress)
+BlueMind is a Next.js application for SAT mock tests, focused Question Bank practice, and progress tracking. The database is Postgres (Supabase).
 
-This is a **working checkpoint**, not the finished product yet. Here's exactly
-what works right now and what's still coming, so you know what to expect.
+## Student experience
 
-### ✅ Working right now
-- Full data model (SQLite via `better-sqlite3` — zero external services needed)
-- Sign up / log in / log out / guest sessions (bcrypt + signed session cookies)
-- Dashboard with **real data**: latest score, points gained, Next 100,
-  Today's Practice, Continue card, Your BlueMind weaknesses
-- Mocks library page — grouped by month (August 2026 down to March 2026),
-  18 mocks seeded, each with a full 98-question delivery set (plus higher/lower
-  adaptive pools — 147 questions banked per mock)
-- Scoring service (`src/lib/scoring.ts`) — configurable, distinguishes
-  Official College Board conversions from BlueMind estimates
-- Adaptive routing service (`src/lib/adaptive.ts`) — deterministic,
-  difficulty-weighted, fully disclosed as "BlueMind Adaptive Practice"
-  (not a reproduction of College Board's proprietary algorithm)
-- Gemini Coach server wrapper (`src/lib/gemini.ts`) — structured JSON output,
-  timeout + fallback, key is server-side only
+- Mock Tests: full papers and individual modules, with timed, untimed, and exam modes.
+- Question Bank: subject cards, skill and difficulty filters, question selection across pages, and focused practice sets.
+- Progress: real session history, accuracy by subject, daily trends, and direct links to practice weaker skills.
+- One responsive layout and light/dark preference across the catalog, student pages, and tests.
+- Repeated “Bluemind.uz” attribution appears on test questions, diagrams, passages, and result reviews. General navigation and browsing pages have no watermark.
 
-### 🚧 Not built yet (next pass)
-- The actual test-taking screen (timer, question navigation, answer selection)
-- Results page / mistake review page
-- Coach chat UI
-- Practice session UI
-- Progress page (charts)
+Coach is retired: its page redirects to Mock Tests and its API endpoints return HTTP 410. Existing conversations, inactive Coach source files, and shared admin AI helpers are retained. Admin extraction, classification, and explanation generation remain available.
 
-Clicking "Start Mock" right now will create a real attempt record in the
-database but the `/test/[attemptId]` page doesn't exist yet, so you'll hit a
-404 there. Everything else listed above under "Working" is fully functional.
+## Saved results
 
----
+New signed-in submissions are graded on the server and saved in the additive `study_results` table. Each attempt has a stable submission ID so retries do not duplicate history. Question Bank history and skill statistics are saved in one transaction. Module retakes update the catalog’s latest result while retaining earlier attempts for exact review.
+
+The schema initializes through `src/lib/db.ts` on the next database connection after deployment. It creates the new history table without deleting existing records. No destructive migration is required. Guest sessions remain local to the browser. Progress includes available older result snapshots; overwritten historical retakes cannot be reconstructed. Percentages are question accuracy, not official SAT scaled scores.
+
+## Verification
+
+See `tests/README.md` for session, persistence, and fixture-based browser checks.
 
 ## Setup
 
-```bash
+Create a local `.env` using `.env.example` as the starting point. Configure:
+
+```dotenv
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:6543/postgres"
+SESSION_SECRET="a-long-random-secret"
+GROQ_API_KEY="optional-admin-ai-key"
+```
+
+The Groq key powers admin question extraction, classification, and explanation tools. Gemini configuration is only needed for the separate mock-import helper.
+
+```sh
 npm install
-npm run db:seed     # creates bluemind.db with demo user + 18 mocks + history
-npm run dev          # http://localhost:3000
+npm run dev
 ```
 
-Demo login: **demo@bluemind.app** / **demo1234**
+Open http://localhost:3000. Use `npm run build` and `npm start` for a production build. Database schema additions run through the app’s normal database initialization. The seed and reset scripts are for disposable development databases; they clear existing data.
 
-## Environment variables (`.env`)
+## Architecture
 
-Already included for local dev with your Gemini key wired in. **Rotate this
-key** in [Google AI Studio](https://aistudio.google.com/apikey) once you're
-done testing, since it was shared in plaintext chat — treat it as exposed.
-
-```
-DATABASE_URL="file:./dev.db"        # reserved for a future Postgres migration
-GEMINI_API_KEY="..."                # server-side only, never sent to browser
-SESSION_SECRET="..."                # change this before any real deployment
-```
-
-Note: the app currently reads/writes `bluemind.db` directly via
-`better-sqlite3` (see `src/lib/db.ts`) rather than through the `DATABASE_URL`
-env var — that variable is reserved for when you migrate to Postgres/Supabase
-for production (see below).
-
-## Moving to production
-
-SQLite is great for local dev but won't survive most serverless hosts
-(Vercel's filesystem is ephemeral). Before deploying:
-
-1. Swap `src/lib/db.ts` for a Postgres client (e.g. `pg` or Supabase's client)
-   — the schema in `src/lib/schema.sql` translates 1:1 to Postgres types.
-2. Everything else (scoring, adaptive routing, Gemini) is already
-   backend-agnostic.
-
-## Architecture notes
-
-- `src/lib/scoring.ts` — the ONLY place score math happens. Call
-  `calculateBlueMindScore()`, never compute scores elsewhere.
-- `src/lib/adaptive.ts` — the ONLY place module-routing decisions happen.
-  Call `selectNextModule()`, never hardcode routing in a component.
-- `src/lib/gemini.ts` — the ONLY place the Gemini API is called. Runs
-  server-side only; the API key never reaches the browser.
+- `src/components/AppShell.tsx` and `Sidebar.tsx`: shared layout and navigation.
+- `src/lib/theme.ts`: shared light/dark preference, including the legacy homepage preference.
+- `src/components/TextWatermarkOverlay.tsx`: question attribution for tests and reviews.
+- `src/lib/study-history.ts`: immutable submissions and latest module results.
+- `src/lib/progress-summary.ts`: question-weighted accuracy and skill summaries.
+- `src/lib/groq.ts`: admin AI helpers, with inactive Coach code retained.
+- `src/lib/scoring.ts` and `adaptive.ts`: legacy score-estimation and adaptive-practice services. Full exams use fixed modules and report question accuracy.

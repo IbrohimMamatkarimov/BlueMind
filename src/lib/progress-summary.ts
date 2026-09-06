@@ -22,8 +22,9 @@ export function summarizeProgress(entries: StudyEntry[]) {
   const skillStats = [...skills.values()].map((skill) => ({ ...skill, accuracy: Math.round(skill.correct / skill.attempted * 100) })).sort((a, b) => a.accuracy - b.accuracy);
   const fullExams = new Map<string, Set<string>>();
   for (const entry of entries) if (entry.fullExamId) {
-    const modules = fullExams.get(entry.fullExamId) ?? new Set<string>();
-    modules.add(entry.section + "|" + entry.module); fullExams.set(entry.fullExamId, modules);
+    const sitting = entry.sourceId + "|" + entry.fullExamId;
+    const modules = fullExams.get(sitting) ?? new Set<string>();
+    modules.add(entry.section + "|" + entry.module); fullExams.set(sitting, modules);
   }
   return { questions, accuracy: questions ? Math.round(correct / questions * 100) : null, sections,
     sessions: entries.length, fullExams: [...fullExams.values()].filter((modules) => ["Math|1", "Math|2", "Reading and Writing|1", "Reading and Writing|2"].every((key) => modules.has(key))).length,

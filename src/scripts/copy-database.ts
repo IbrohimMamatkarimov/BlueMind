@@ -51,6 +51,7 @@ const TABLES_IN_ORDER = [
   "attempts",
   "answers",
   "module_results",
+  "study_results",
   "score_conversions",
   "score_records",
   "coach_conversations",

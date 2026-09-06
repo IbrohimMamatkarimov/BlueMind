@@ -55,7 +55,7 @@ export async function GET() {
 
   try {
     const rows = (await db
-      .prepare("SELECT mock_id as mockId, section, module, correct_count as correctCount, total FROM module_results WHERE user_id = ?")
+      .prepare("SELECT mock_id AS \"mockId\", section, module, correct_count AS \"correctCount\", total FROM module_results WHERE user_id = ?")
       .all(user.id)) as { mockId: string; section: string; module: number; correctCount: number; total: number }[];
 
     return NextResponse.json({ results: rows });

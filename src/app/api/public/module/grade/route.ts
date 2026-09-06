@@ -3,7 +3,7 @@ import { getModuleQuestionsPublic } from "@/lib/mock-library";
 import { isAnswerCorrect } from "@/lib/spr-grading";
 import { getCurrentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { readSavedGrade, saveStudyResult } from "@/lib/study-history";
+import { saveStudyResult } from "@/lib/study-history";
 
 // Previews and guest grading are read-only. Signed-in submissions save server-graded history.
 export async function POST(req: NextRequest) {
@@ -17,10 +17,6 @@ export async function POST(req: NextRequest) {
   if (section !== "Math" && section !== "Reading and Writing") return NextResponse.json({ error: "Invalid section" }, { status: 400 });
   const submissionId = typeof body.submissionId === "string" && /^[a-zA-Z0-9_-]{8,100}$/.test(body.submissionId) ? body.submissionId : null;
   const user = submissionId && body.preview !== true ? await getCurrentUser() : null;
-  if (user && submissionId) {
-    const saved = await readSavedGrade(user.id, submissionId, mockId);
-    if (saved) return NextResponse.json(saved);
-  }
   const rows = await getModuleQuestionsPublic(mockId, section, module);
   if (rows.length === 0) return NextResponse.json({ error: "Module not found" }, { status: 404 });
 

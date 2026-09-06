@@ -1,5 +1,6 @@
 "use client";
 
+import { PageHeader } from "@/components/ui";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { DOMAINS, DIFFICULTIES, SAT_TEST_MONTHS } from "@/lib/sat-constants";
 import { MathText } from "@/components/MathText";
@@ -1091,10 +1092,7 @@ export function AdminDashboard() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-brand-navy">Admin</h1>
-        <p className="text-brand-slate mt-1">Manage mocks, users, and question reports. Owner-only.</p>
-      </div>
+      <PageHeader eyebrow="Content workspace" title="Administration" description="Manage your mock library, question bank, and student reports." />
 
       <div className="flex gap-2 border-b border-brand-border">
         {(["mocks", "users", "reports"] as const).map((t) => (

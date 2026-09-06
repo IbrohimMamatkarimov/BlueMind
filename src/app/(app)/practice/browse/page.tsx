@@ -219,6 +219,7 @@ export default function BrowseQuestionBankPage() {
   function switchSection(next: Section) {
     if (next === section) return;
     setSection(next);
+    setSelectedIds(new Set());
     setSkills(new Set());
     setPage(1);
     setStartError(null);
@@ -271,6 +272,10 @@ export default function BrowseQuestionBankPage() {
   }
 
   async function startSet(questionIds?: string[]) {
+    if (questionIds && questionIds.length > 60) {
+      setStartError("Choose up to 60 questions for one practice session.");
+      return;
+    }
     const key = questionIds?.length === 1 ? questionIds[0] : "set";
     setStarting(key);
     setStartError(null);

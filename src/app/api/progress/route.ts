@@ -22,7 +22,7 @@ export async function GET() {
       UNION ALL
       SELECT p.id, 'qbank', p.id, COALESCE(p.title, 'Question Bank practice'), p.section, NULL, 'practice', NULL,
         p.correct_count, p.total_count, p.completed_at, COALESCE(p.results_json, '[]')::jsonb
-      FROM practice_sessions p WHERE p.user_id = ? AND p.completed_at IS NOT NULL AND p.total_count > 0
+      FROM practice_sessions p WHERE p.user_id = ? AND p.type = 'qbank' AND p.section IN ('Math', 'Reading and Writing') AND p.completed_at IS NOT NULL AND p.total_count > 0
         AND NOT EXISTS (SELECT 1 FROM study_results h WHERE h.user_id = p.user_id AND h.source = 'qbank' AND h.source_id = p.id)
     ) SELECT id, source, source_id AS "sourceId", title, section, module, mode,
       full_exam_id AS "fullExamId", correct_count AS "correctCount", total, completed_at AS "completedAt",

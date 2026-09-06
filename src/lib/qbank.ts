@@ -1,4 +1,5 @@
 import { db } from "./db";
+import { readSavedGrade, writeStudyResult } from "./study-history";
 import { newId } from "./id";
 import { DOMAINS } from "./sat-constants";
 import { isAnswerCorrect } from "./spr-grading";
@@ -493,7 +494,8 @@ export async function gradeBankSet(
   setId: string,
   answers: Record<string, string | null>,
   preview: boolean,
-  isAdmin = false
+  isAdmin = false,
+  submission?: { id: string; mode: string }
 ): Promise<BankGradeResult | null> {
   const set = await loadSet(userId, setId, isAdmin);
   if (!set) return null;
@@ -524,13 +526,20 @@ export async function gradeBankSet(
   });
 
   if (!preview && set.user_id === userId) {
+    return db.transaction(async (tx) => {
+      // Serialize submissions for this set and save all results atomically.
+      await tx.prepare("SELECT id FROM practice_sessions WHERE id = ? AND user_id = ? FOR UPDATE").get(setId, userId);
+      if (submission) {
+        const saved = await readSavedGrade(userId, submission.id, setId, tx);
+        if (saved) return saved as BankGradeResult;
+      }
     // Only answered questions count as attempts — leaving one blank in a
     // timed set shouldn't brand it "incorrect" in the bank listing.
     for (const r of results) {
       if (r.selectedAnswer === null) continue;
-      await gradePracticeAnswer(userId, r.questionId, r.selectedAnswer);
+      await gradePracticeAnswer(userId, r.questionId, r.selectedAnswer, tx);
     }
-    await db
+    await tx
       .prepare(
         `UPDATE practice_sessions
          SET completed_at = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'),
@@ -538,6 +547,12 @@ export async function gradeBankSet(
          WHERE id = ?`
       )
       .run(correctCount, results.length, JSON.stringify(results), setId);
+      const grade = { total: results.length, correctCount, accuracyPct: Math.round(correctCount / results.length * 100), results };
+      if (submission) return await writeStudyResult({ id: submission.id, userId, source: "qbank", sourceId: setId,
+        title: set.title ?? "Question Bank practice", section: set.section ?? questions[0].section, module: null,
+        mode: submission.mode, fullExamId: null, grade }, tx) as BankGradeResult;
+      return grade;
+    });
   }
 
   return {
