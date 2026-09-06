@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { PageHeader, SubjectCard } from "@/components/ui";
 
 /* ---------------------------------------------------------------------- */
 /* Types                                                                   */
@@ -324,37 +325,16 @@ export default function PracticePage() {
     const mathOverview = sectionOverview?.find((s) => s.section === "Math");
     const rw = { attempted: rwOverview?.solved ?? 0, total: rwOverview?.total ?? sectionSummary["Reading and Writing"].total };
     const math = { attempted: mathOverview?.solved ?? 0, total: mathOverview?.total ?? sectionSummary.Math.total };
-    const rwPct = rwOverview?.pct ?? (rw.total > 0 ? Math.round((rw.attempted / rw.total) * 100) : 0);
-    const mathPct = mathOverview?.pct ?? (math.total > 0 ? Math.round((math.attempted / math.total) * 100) : 0);
 
     return (
       <div className="space-y-8 max-w-6xl">
-        <div className="flex items-center gap-2">
-          <span className="w-8 h-8 rounded-lg border border-brand-border flex items-center justify-center text-brand-slate">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="1.6" />
-              <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.6" />
-            </svg>
-          </span>
-          <h1 className="text-2xl font-bold text-brand-navy">Question Bank</h1>
-        </div>
+        <PageHeader eyebrow="A little practice, every day" title="Question Bank" description="Pick a subject, focus on a skill, and build your own practice session." />
 
         {countsError && <p className="text-sm text-brand-red">{countsError}</p>}
 
         <div className="grid md:grid-cols-2 gap-5">
-          <button
-            onClick={() => openSection("Reading and Writing")}
-            className="relative rounded-2xl overflow-hidden text-left hover:opacity-90 transition-opacity"
-          >
-            <img src="/images/rwsqb.png" alt="Reading & Writing" className="w-full h-auto block" />
-          </button>
-
-          <button
-            onClick={() => openSection("Math")}
-            className="relative rounded-2xl overflow-hidden text-left hover:opacity-90 transition-opacity"
-          >
-            <img src="/images/mathsqb.png" alt="Math" className="w-full h-auto block" />
-          </button>
+          <SubjectCard section="Reading and Writing" solved={rw.attempted} total={rw.total} onClick={() => openSection("Reading and Writing")} />
+          <SubjectCard section="Math" solved={math.attempted} total={math.total} onClick={() => openSection("Math")} />
         </div>
 
         <Link
@@ -703,9 +683,9 @@ export default function PracticePage() {
           ))}
         </div>
 
-        <div className="sticky bottom-4 flex items-center gap-3 pt-2">
-          <button onClick={handleFindQuestions} disabled={loadingDrill} className="btn-primary text-sm px-6 shadow-card-hover">
-            {loadingDrill ? "Loading…" : "Find Questions"}
+        <div className="action-bar">
+          <button onClick={handleFindQuestions} disabled={loadingDrill || selectedSkills.size === 0 || selectedDifficulties.size === 0} className="btn-primary text-sm px-6">
+            {loadingDrill ? "Loading…" : "Start practice"}
           </button>
           <span className="text-xs text-brand-slate bg-white px-2">
             {selectedSkills.size === 0 ? "No topics selected" : `${selectedSkills.size} selected`}

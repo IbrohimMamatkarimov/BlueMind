@@ -117,6 +117,7 @@ export default function BrowseQuestionBankPage() {
   const [error, setError] = useState<string | null>(null);
   const [setSize, setSetSize] = useState(10);
   const [shuffle, setShuffle] = useState(true);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [starting, setStarting] = useState<string | null>(null); // "set" or a question id
   const [startError, setStartError] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -253,6 +254,14 @@ export default function BrowseQuestionBankPage() {
     });
     setPage(1);
   }
+  function toggleQuestion(id: string) {
+    setSelectedIds((previous) => { const next = new Set(previous); if (next.has(id)) next.delete(id); else next.add(id); return next; });
+  }
+  function togglePage() {
+    const ids = data?.rows.map((row) => row.id) ?? [];
+    const all = ids.length > 0 && ids.every((id) => selectedIds.has(id));
+    setSelectedIds((previous) => { const next = new Set(previous); ids.forEach((id) => all ? next.delete(id) : next.add(id)); return next; });
+  }
   function resetFilters() {
     setSkills(new Set());
     setDifficulties(new Set());
@@ -262,7 +271,7 @@ export default function BrowseQuestionBankPage() {
   }
 
   async function startSet(questionIds?: string[]) {
-    const key = questionIds ? questionIds[0] : "set";
+    const key = questionIds?.length === 1 ? questionIds[0] : "set";
     setStarting(key);
     setStartError(null);
     try {
@@ -361,6 +370,14 @@ export default function BrowseQuestionBankPage() {
           </div>
         </div>
       )}
+
+      {activeFilterCount > 0 && <div className="flex flex-wrap gap-2" aria-label="Active filters">
+        {[...skills].map((skill) => <button key={skill} className="filter-chip" onClick={() => toggleSkill(skill)}>{skill}<span aria-label="Remove filter">×</span></button>)}
+        {[...difficulties].map((difficulty) => <button key={difficulty} className="filter-chip" onClick={() => toggleDifficulty(difficulty)}>{difficulty}<span aria-label="Remove filter">×</span></button>)}
+        {status !== "all" && <button className="filter-chip" onClick={() => { setStatus("all"); setPage(1); }}>{status}<span aria-label="Remove filter">×</span></button>}
+        {search.trim() && <button className="filter-chip" onClick={() => { setSearch(""); setPage(1); }}>ID: {search}<span aria-label="Remove filter">×</span></button>}
+        <button onClick={resetFilters} className="text-xs font-semibold text-brand-blue px-2">Clear filters</button>
+      </div>}
 
       <button
         onClick={() => setFiltersOpen((v) => !v)}
@@ -541,12 +558,13 @@ export default function BrowseQuestionBankPage() {
                     : `Showing ${formatCount(firstIndex + 1)}–${formatCount(firstIndex + data.rows.length)} of ${formatCount(total)}`
                   : "Loading…"}
               </span>
-              <span className="hidden sm:inline">Click a question to solve it</span>
+              <span className="hidden sm:inline">Select questions to build your own set</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-sm min-w-[640px]">
                 <thead>
                   <tr className="text-left text-xs font-semibold text-brand-slate border-b border-brand-border">
+                    <th className="px-4 py-2 w-12"><input type="checkbox" aria-label="Select this page" checked={!!data?.rows.length && data.rows.every((row) => selectedIds.has(row.id))} onChange={togglePage} /></th>
                     <th className="px-4 py-2 w-12">#</th>
                     <th className="px-2 py-2 w-28">Question ID</th>
                     <th className="px-2 py-2">Topic</th>
@@ -559,7 +577,7 @@ export default function BrowseQuestionBankPage() {
                 <tbody>
                   {data && data.rows.length === 0 && !loading && (
                     <tr>
-                      <td colSpan={7} className="px-4 py-10 text-center text-sm text-brand-slate">
+                      <td colSpan={8} className="px-4 py-10 text-center text-sm text-brand-slate">
                         {facets && facets.total === 0
                           ? "No questions in this section yet."
                           : "Nothing matches — try clearing a filter."}
@@ -571,9 +589,10 @@ export default function BrowseQuestionBankPage() {
                     return (
                       <tr
                         key={r.id}
-                        onClick={() => !starting && startSet([r.id])}
+                        onClick={() => toggleQuestion(r.id)}
                         className="border-b border-brand-border last:border-0 hover:bg-slate-50 cursor-pointer"
                       >
+                        <td className="px-4 py-2.5" onClick={(event) => event.stopPropagation()}><input type="checkbox" aria-label={"Select question " + (r.externalId ?? r.id)} checked={selectedIds.has(r.id)} onChange={() => toggleQuestion(r.id)} /></td>
                         <td className="px-4 py-2.5 text-xs text-brand-slate tabular-nums">{firstIndex + i + 1}</td>
                         <td className="px-2 py-2.5 font-mono text-xs text-brand-navy">{r.externalId ?? "—"}</td>
                         <td className="px-2 py-2.5 min-w-0">
@@ -643,6 +662,7 @@ export default function BrowseQuestionBankPage() {
           )}
         </div>
       </div>
+      {selectedIds.size > 0 && <div className="action-bar" aria-live="polite"><div><p className="text-sm font-semibold text-brand-navy">{selectedIds.size} questions selected</p><p className="text-xs text-brand-slate mt-1">Selections stay with you across pages and filters.</p></div><div className="flex gap-2"><button onClick={() => setSelectedIds(new Set())} className="btn-secondary">Clear</button><button onClick={() => startSet([...selectedIds])} disabled={starting !== null} className="btn-primary">{starting ? "Starting…" : "Practice selected"}</button></div>{startError && <p role="alert" className="text-sm text-brand-red w-full">{startError}</p>}</div>}
     </div>
   );
 }

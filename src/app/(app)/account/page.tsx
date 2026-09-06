@@ -1,5 +1,6 @@
 "use client";
 
+import { PageHeader } from "@/components/ui";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -158,13 +159,11 @@ export default function AccountPage() {
   });
 
   return (
-    <div className="max-w-lg">
-      <h1 className="flex items-center gap-2 text-2xl font-bold text-brand-navy mb-6">
-        <PersonIcon /> Account
-      </h1>
+    <div className="max-w-2xl">
+      <PageHeader eyebrow="Make yourself at home" title="Your Account" description="Manage your profile and account details." />
 
       <div className="card p-6">
-        {error && <p className="text-sm text-brand-red mb-4">{error}</p>}
+        {error && <p role="alert" className="text-sm text-brand-red mb-4">{error}</p>}
 
         <div className="flex items-center gap-4 mb-6">
           {account.avatarData ? (

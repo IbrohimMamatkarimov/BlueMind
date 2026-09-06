@@ -10,7 +10,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "BlueMind",
   description:
-    "Free SAT mock tests and a personal learning coach. Take a mock, understand your mistakes, know what to practice next, track your improvement.",
+    "Free SAT mock tests and focused question practice. Take a mock, understand your mistakes, know what to practice next, track your improvement.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

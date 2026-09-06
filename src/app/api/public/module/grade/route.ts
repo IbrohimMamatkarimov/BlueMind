@@ -1,26 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getModuleQuestionsPublic } from "@/lib/mock-library";
 import { isAnswerCorrect } from "@/lib/spr-grading";
+import { getCurrentUser } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { readSavedGrade, saveStudyResult } from "@/lib/study-history";
 
-// Public grading for guest single-module practice. Stateless — computes the
-// score from the submitted answers against the DB's correct answers and
-// returns full explanations, but writes nothing anywhere. This is what
-// keeps "not signed in, nothing saved" true while still giving guests a
-// real results view instead of just a raw score.
+// Previews and guest grading are read-only. Signed-in submissions save server-graded history.
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const { mockId, section, module, answers } = body ?? {};
 
-  if (!mockId || !section || (module !== 1 && module !== 2) || typeof answers !== "object") {
+  if (!mockId || !section || (module !== 1 && module !== 2) || answers === null || typeof answers !== "object" || Array.isArray(answers)) {
     return NextResponse.json({ error: "mockId, section, module, and answers are required" }, { status: 400 });
   }
 
+  if (section !== "Math" && section !== "Reading and Writing") return NextResponse.json({ error: "Invalid section" }, { status: 400 });
+  const submissionId = typeof body.submissionId === "string" && /^[a-zA-Z0-9_-]{8,100}$/.test(body.submissionId) ? body.submissionId : null;
+  const user = submissionId && body.preview !== true ? await getCurrentUser() : null;
+  if (user && submissionId) {
+    const saved = await readSavedGrade(user.id, submissionId, mockId);
+    if (saved) return NextResponse.json(saved);
+  }
   const rows = await getModuleQuestionsPublic(mockId, section, module);
   if (rows.length === 0) return NextResponse.json({ error: "Module not found" }, { status: 404 });
 
   let correctCount = 0;
   const results = rows.map((q) => {
-    const selected: string | null = answers[q.id] ?? null;
+    const selected: string | null = typeof answers[q.id] === "string" ? answers[q.id] : null;
     // Student-produced-response questions ("grid-ins") accept any
     // mathematically equivalent form — "3/2", "1.5", "6/4", "1 1/2" are all
     // the same answer. Multiple-choice keeps exact choice-id matching.
@@ -41,10 +47,22 @@ export async function POST(req: NextRequest) {
     };
   });
 
-  return NextResponse.json({
+  const grade = {
     total: rows.length,
     correctCount,
     accuracyPct: Math.round((correctCount / rows.length) * 100),
     results,
-  });
+  };
+  if (user && submissionId) {
+    const mock = await db.prepare("SELECT title FROM mocks WHERE id = ?").get(mockId) as { title: string };
+    try {
+      const saved = await saveStudyResult({ id: submissionId, userId: user.id, source: "mock", sourceId: mockId,
+        title: mock.title, section, module, mode: ["timed", "untimed", "exam"].includes(body.mode) ? body.mode : "timed",
+        fullExamId: typeof body.fullExamId === "string" && /^[a-zA-Z0-9_-]{8,100}$/.test(body.fullExamId) ? body.fullExamId : null, grade });
+      return NextResponse.json(saved);
+    } catch {
+      return NextResponse.json({ error: "Your result could not be saved. Your answers are still here; please retry submission." }, { status: 503 });
+    }
+  }
+  return NextResponse.json(grade);
 }

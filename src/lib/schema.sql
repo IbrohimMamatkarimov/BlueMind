@@ -220,3 +220,22 @@ CREATE INDEX IF NOT EXISTS idx_questions_skill ON questions(skill);
 CREATE INDEX IF NOT EXISTS idx_answers_attempt ON answers(attempt_id);
 CREATE INDEX IF NOT EXISTS idx_attempts_user ON attempts(user_id);
 CREATE INDEX IF NOT EXISTS idx_skillstats_user ON skill_stats(user_id);
+
+-- Immutable session history; legacy Coach storage is intentionally retained.
+CREATE TABLE IF NOT EXISTS study_results (
+  id TEXT NOT NULL,
+  user_id TEXT NOT NULL REFERENCES users(id),
+  source TEXT NOT NULL CHECK (source IN ('mock', 'qbank')),
+  source_id TEXT NOT NULL,
+  title TEXT NOT NULL,
+  section TEXT NOT NULL,
+  module INTEGER,
+  mode TEXT NOT NULL,
+  full_exam_id TEXT,
+  correct_count INTEGER NOT NULL CHECK (correct_count >= 0),
+  total INTEGER NOT NULL CHECK (total > 0 AND correct_count <= total),
+  grade_json TEXT NOT NULL,
+  completed_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')),
+  PRIMARY KEY (user_id, id)
+);
+CREATE INDEX IF NOT EXISTS idx_study_results_user_date ON study_results(user_id, completed_at DESC);

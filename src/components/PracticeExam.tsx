@@ -9,6 +9,7 @@ export interface ExamResult { total: number; correctCount: number; accuracyPct: 
 export interface FullExamModule {
   mode: TestMode;
   storageKey: string;
+  sessionId?: string;
   onComplete: (result: ExamResult) => void;
   onDelete: () => void;
 }
@@ -16,12 +17,11 @@ import { DesmosCalculator } from "@/components/DesmosCalculator";
 import { MathText } from "@/components/MathText";
 import { Celebration } from "@/components/Celebration";
 import { BrainMark } from "@/components/BrainLogo";
-import { CoachSlideshow } from "@/components/CoachSlideshow";
-import { CoachMarkdown } from "@/components/CoachMarkdown";
 import { AdminQuestionEditModal } from "@/components/AdminQuestionEditModal";
 import { AdminAiPasteModal } from "@/components/AdminAiPasteModal";
 import { FormatToolbar } from "@/components/FormatToolbar";
 import { TextWatermarkOverlay } from "@/components/TextWatermarkOverlay";
+import { useAppTheme } from "@/lib/theme";
 // Bluebook's typefaces: Roboto for the chrome, a Times-compatible serif
 // (Tinos) for Reading & Writing passages, prompts and choices.
 import "@fontsource/roboto/400.css";
@@ -60,7 +60,6 @@ interface GradedQuestion {
   explanation: string;
 }
 
-type CoachMode = "strategy" | "explain";
 
 const SELECTION_COLORS = [
   { id: "yellow", hex: "#facc15" },
@@ -652,21 +651,7 @@ function LocationPinIcon({ size = 16 }: { size?: number }) {
     </svg>
   );
 }
-function CoachIcon({ size = 22 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H9l-4.2 3.4c-.4.3-.8 0-.8-.5V5.5z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path d="M8.5 9.5h7M8.5 12.5h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
 
-/** Bluebook header tool: an icon with its label underneath. */
 function ToolButton({
   label,
   icon,
@@ -1111,7 +1096,7 @@ export default function PracticeExam({
     setCelebrateTrigger((t) => t + 1);
   }
 
-  // Signed-in state — gates the AI Coach, supplies the name in the bottom bar
+  // Signed-in state supplies the name in the bottom bar
   const [signedIn, setSignedIn] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
   const [isAdminUser, setIsAdminUser] = useState(false);
@@ -1125,12 +1110,6 @@ export default function PracticeExam({
       })
       .catch(() => setSignedIn(false));
   }, []);
-
-  // AI coach — slide-in drawer, header-triggered, locked for guests
-  const [coachOpen, setCoachOpen] = useState(false);
-  const [coachLoading, setCoachLoading] = useState(false);
-  const [coachText, setCoachText] = useState<string | null>(null);
-  const [coachMode, setCoachMode] = useState<CoachMode | null>(null);
 
   // Chrome
   const [timerHidden, setTimerHidden] = useState(false);
@@ -1166,19 +1145,7 @@ export default function PracticeExam({
   // everywhere — including this page's own results/review screen below,
   // which previously had no dark-mode support at all. Defaults to light
   // ("sun mode") on a first-ever visit, same as the dashboard.
-  const [darkMode, setDarkModeState] = useState(false);
-  useEffect(() => {
-    const stored = window.localStorage.getItem("bluemind-app-theme");
-    setDarkModeState(stored === "1");
-  }, []);
-  function setDarkMode(next: boolean) {
-    setDarkModeState(next);
-    try {
-      window.localStorage.setItem("bluemind-app-theme", next ? "1" : "0");
-    } catch {
-      // best-effort persistence — the toggle still works for this session either way
-    }
-  }
+  const { dark: darkMode, setDark: setDarkMode } = useAppTheme();
   const [fontStep] = useState(0); // -1, 0, 1, 2 — kept fixed at default now that the size picker is gone
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [focusedPane, setFocusedPane] = useState<"left" | "right" | null>(null);
@@ -1271,6 +1238,7 @@ export default function PracticeExam({
   // restored automatically if the student comes back to the same module
   // before finishing or explicitly deleting it.
   const [leaveModalOpen, setLeaveModalOpen] = useState(false);
+  const submissionId = useRef<string>("");
   const [restoredProgress, setRestoredProgress] = useState(false);
   const progressKey = fullExam?.storageKey ?? `bluemind_progress_${mockId}_${section}_${isBank ? setId : module}`;
 
@@ -1289,7 +1257,9 @@ export default function PracticeExam({
   function saveProgressToStorage() {
     if (finishedRef.current) return true;
     try {
+      if (!submissionId.current) submissionId.current = crypto.randomUUID();
       window.localStorage.setItem(progressKey, JSON.stringify({
+        submissionId: submissionId.current,
         answers, marked, crossedOut,
         secondsLeft: deadlineRef.current === null ? secondsLeft : remainingSeconds(deadlineRef.current),
         index, mode: testMode, savedAt: Date.now(),
@@ -1471,7 +1441,7 @@ export default function PracticeExam({
   }
 
   // Downscale + compress a pasted/uploaded passage image before saving —
-  // same reasoning as the Coach photo flow: a chart/graph screenshot only
+  // For image extraction: a chart/graph screenshot only
   // ever needs to be legible at the size it renders on screen, not at
   // full camera/screenshot resolution, and a smaller payload means a
   // faster save and a faster page load for every student after.
@@ -1743,7 +1713,8 @@ export default function PracticeExam({
   useEffect(() => {
     if (reviewMode === null) return; // wait until we've read the URL
     if (reviewMode) {
-      fetch(isBank ? loadUrl : `/api/module-results/one?mockId=${mockId}&section=${encodeURIComponent(section)}&module=${module}`)
+      const historyId = new URLSearchParams(window.location.search).get("history");
+      fetch(historyId ? "/api/progress/" + encodeURIComponent(historyId) : isBank ? loadUrl : `/api/module-results/one?mockId=${mockId}&section=${encodeURIComponent(section)}&module=${module}`)
         .then((res) => {
           if (!res.ok) throw new Error("failed");
           return res.json();
@@ -1751,7 +1722,7 @@ export default function PracticeExam({
         .then((data) => {
           if (isBank && !Array.isArray(data.results)) throw new Error("not completed yet");
           setMockTitle(data.mockTitle ?? "");
-          setResults({ total: data.total, correctCount: data.correctCount, accuracyPct: 0, results: data.results });
+          setResults({ total: data.total, correctCount: data.correctCount, accuracyPct: data.total ? Math.round(data.correctCount / data.total * 100) : 0, results: data.results });
           setLoading(false);
         })
         .catch(() => {
@@ -1791,6 +1762,7 @@ export default function PracticeExam({
           if (raw) {
             const saved = JSON.parse(raw);
             if (saved && typeof saved === "object") {
+              if (typeof saved.submissionId === "string") submissionId.current = saved.submissionId;
               setAnswers(saved.answers ?? {});
               setMarked(saved.marked ?? {});
               setCrossedOut(saved.crossedOut ?? {});
@@ -1935,6 +1907,7 @@ export default function PracticeExam({
 
   async function handleSubmit() {
     if (submittingRef.current || finishedRef.current || results || pausedRef.current) return;
+    if (!submissionId.current) submissionId.current = crypto.randomUUID();
     submittingRef.current = true;
     if (deadlineRef.current !== null) setSecondsLeft(remainingSeconds(deadlineRef.current));
     deadlineRef.current = null;
@@ -1944,7 +1917,7 @@ export default function PracticeExam({
       const res = await fetch(gradeUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(isBank ? { answers } : { mockId, section, module, answers }),
+        body: JSON.stringify({ ...(isBank ? {} : { mockId, section, module }), answers, submissionId: submissionId.current, mode: testMode, fullExamId: fullExam?.sessionId }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Could not submit this module. Please try again.");
@@ -1959,25 +1932,6 @@ export default function PracticeExam({
           window.localStorage.removeItem(progressKey);
         } catch {
           // nothing to clean up if storage isn't available
-        }
-        if (signedIn && !isBank) {
-          // Bank sets are recorded by their own grade endpoint (per-question
-          // history + the set's saved breakdown) — no module result to save.
-          fetch("/api/module-results", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              mockId,
-              section,
-              module,
-              correctCount: data.correctCount,
-              total: data.total,
-              results: data.results,
-            }),
-          }).catch(() => {
-            // saving the result is best-effort — the student still sees their
-            // score either way, they just won't see it again from /mocks
-          });
         }
       }
     } catch (err) {
@@ -1998,7 +1952,7 @@ export default function PracticeExam({
     fetch(gradeUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(isBank ? { answers, preview: true } : { mockId, section, module, answers }),
+      body: JSON.stringify(isBank ? { answers, preview: true } : { mockId, section, module, answers, preview: true }),
     })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
@@ -2059,35 +2013,6 @@ export default function PracticeExam({
       alert("Failed to update the correct answer — try again.");
     } finally {
       setSavingAnswerKeyId(null);
-    }
-  }
-
-  async function askCoach(mode: CoachMode) {
-    if (!current || !signedIn) return;
-    setCoachOpen(true);
-    setCoachLoading(true);
-    setCoachText(null);
-    setCoachMode(mode);
-    try {
-      const res = await fetch("/api/public/coach", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          mode,
-          questionText: current.questionText,
-          choices: current.choices,
-          skill: current.skill,
-          difficulty: current.difficulty,
-          studentAnswer: current.choices.find((c) => c.id === answers[current.id])?.text,
-          examMode: true,
-        }),
-      });
-      const data = await res.json();
-      setCoachText(data.explanation);
-    } catch {
-      setCoachText("Coach is unavailable right now — nothing was lost, keep practicing.");
-    } finally {
-      setCoachLoading(false);
     }
   }
 
@@ -2167,7 +2092,6 @@ export default function PracticeExam({
 
     return (
       <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "exam-dark bg-[#0b1220]" : "bg-brand-bg"}`}>
-        <TextWatermarkOverlay dark={darkMode} />
         <Celebration trigger={celebrateTrigger} />
         <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-brand-border">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -2267,7 +2191,8 @@ export default function PracticeExam({
 
           <div className="space-y-4">
             {results.results.map((r, i) => (
-              <div key={r.questionId} id={`result-q-${i + 1}`} className="card p-5 scroll-mt-20">
+              <div key={r.questionId} id={`result-q-${i + 1}`} className="card p-5 scroll-mt-20 relative overflow-hidden">
+                <TextWatermarkOverlay dark={darkMode} mode="absolute" />
                 <div className="flex items-start justify-between mb-2 gap-3">
                   <span className="text-xs font-semibold text-brand-slate">
                     Question {i + 1} · {r.skill}
@@ -2443,7 +2368,6 @@ export default function PracticeExam({
           if (submitError) { setSubmitError(null); handleSubmit(); }
         }} onExit={handleSaveAndExit} />}
       {storageError && !timerPaused && !submitError && <div role="alert" className="bg-red-50 text-red-800 px-4 py-2 text-sm">{storageError}</div>}
-      <TextWatermarkOverlay dark={darkMode} />
       {/* ---------------- Top chrome bar — Bluebook layout: title + Directions on
           the left, timer with Hide underneath in the middle, labelled tool
           icons on the right ---------------- */}
@@ -2563,15 +2487,6 @@ export default function PracticeExam({
               className="hidden sm:flex"
             />
           )}
-
-          {testMode !== "exam" && !fullExam && <ToolButton
-            label="Coach"
-            active={coachOpen}
-            onClick={() => setCoachOpen(true)}
-            title={signedIn ? "AI Coach" : "Sign in to unlock AI Coach"}
-            icon={signedIn ? <CoachIcon size={22} /> : <LockIcon />}
-            className="hidden sm:flex"
-          />}
           <button onClick={handleSaveAndExit} disabled={submitting} className="text-xs font-semibold px-2 py-3 text-blue-700 disabled:opacity-50">Save &amp; exit</button>
 
           <div className="relative">
@@ -2612,15 +2527,6 @@ export default function PracticeExam({
                       <AnnotateIcon size={17} /> {highlightMode ? "Turn off Annotate" : "Annotate"}
                     </button>
                   )}
-                  {testMode !== "exam" && !fullExam && <button
-                    onClick={() => {
-                      setMoreOpen(false);
-                      setCoachOpen(true);
-                    }}
-                    className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0] sm:hidden"
-                  >
-                    <CoachIcon size={17} /> Coach
-                  </button>}
                   <button
                     onClick={() => {
                       setMoreOpen(false);
@@ -2873,58 +2779,6 @@ export default function PracticeExam({
           </div>
         </main>
       </div>
-
-      {/* ---------------- AI Coach drawer — available to everyone ---------------- */}
-      {coachOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end">
-          <div className="flex-1 bg-brand-navy/20" onClick={() => setCoachOpen(false)} />
-          <div className="w-full max-w-sm h-full bg-white border-l border-brand-border shadow-card-hover flex flex-col">
-            <div className="flex items-center justify-between px-4 h-14 border-b border-brand-border shrink-0">
-              <span className="text-sm font-semibold text-brand-navy">BlueMind Coach</span>
-              <button onClick={() => setCoachOpen(false)} className="text-brand-slate hover:text-brand-navy">
-                <CloseIcon />
-              </button>
-            </div>
-            <div className="p-4 flex items-center gap-2">
-              <button onClick={() => askCoach("strategy")} disabled={!signedIn} className="btn-secondary text-xs px-3 py-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
-                Strategy
-              </button>
-              <button onClick={() => askCoach("explain")} disabled={!signedIn} className="btn-secondary text-xs px-3 py-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
-                Explain
-              </button>
-            </div>
-            <div className="px-4 pb-4 text-[11px] text-brand-slate">
-              Coach won't reveal the final answer while you're still solving.
-            </div>
-            <div className="flex-1 overflow-y-auto px-4 pb-4">
-              {!signedIn ? (
-                <div className="text-center py-10">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-brand-slate">
-                    <LockIcon />
-                  </div>
-                  <p className="text-sm text-brand-navy font-medium mb-1">Coach is for signed-in students</p>
-                  <p className="text-xs text-brand-slate mb-4">
-                    Sign in to get hints and explanations while you practice — it's free.
-                  </p>
-                  <Link href="/login" className="btn-primary text-xs px-4 py-1.5 inline-block">
-                    Sign in
-                  </Link>
-                </div>
-              ) : coachLoading ? (
-                <div className="text-sm text-brand-navy bg-brand-blue-light rounded-lg p-3">
-                  BlueMind Coach is thinking…
-                </div>
-              ) : coachText ? (
-                <div className="bg-brand-blue-light rounded-lg p-3">
-                  {coachMode === "strategy" ? <CoachMarkdown text={coachText} /> : <CoachSlideshow text={coachText} />}
-                </div>
-              ) : (
-                <p className="text-sm text-brand-slate">Pick Hint or Explain to get help with this question.</p>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* ---------------- Report a problem modal ---------------- */}
       {reportOpen && (

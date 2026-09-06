@@ -33,3 +33,6 @@ the left pane and `questionText` is the question stem; paired passages use
 | Folder | Test | Questions |
 | --- | --- | --- |
 | `2026-march-int-a` | March 2026 International, Form A | 98 (R&W 27 + 27, Math 22 + 22) |
+| `2026-march-us-a` | March 2026 US, Form A | 98 (R&W 27 + 27, Math 22 + 22) |
+| `2026-march-int-b` | March 2026 International, Form B | 98 (R&W 27 + 27, Math 22 + 22) |
+| `2026-march-us-b` | March 2026 US, Form B | 98 (R&W 27 + 27, Math 22 + 22) |

@@ -6,9 +6,8 @@ import { useState } from "react";
 import { BrandLockup } from "./BrainLogo";
 
 const NAV_ITEMS = [
-  { href: "/mocks", label: "Mocks" },
+  { href: "/mocks", label: "Mock Tests" },
   { href: "/practice", label: "Practice" },
-  { href: "/coach", label: "Coach" },
   { href: "/progress", label: "Progress" },
 ];
 

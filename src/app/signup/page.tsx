@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useAppTheme } from "@/lib/theme";
+import { Moon, Sun } from "lucide-react";
 import { BrandLockup } from "@/components/BrainLogo";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 
 export default function SignupPage() {
   const router = useRouter();
+  const { dark, toggleDark } = useAppTheme();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,17 +42,18 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-brand-bg">
+    <div className={["auth-shell min-h-screen flex items-center justify-center px-4 py-12", dark ? "app-dark" : ""].join(" ")}>
+      <button onClick={toggleDark} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} className="fixed right-5 top-5 sidebar-utility">{dark ? <Sun size={20} /> : <Moon size={20} />}</button>
       <div className="w-full max-w-sm">
         <div className="flex justify-center mb-8">
           <BrandLockup size={32} />
         </div>
-        <div className="card p-8">
-          <h1 className="text-xl font-bold text-brand-navy mb-1">Create your free account</h1>
+        <div className="card p-7 sm:p-9">
+          <h1 className="text-2xl font-bold text-brand-navy mb-1">Create your free account</h1>
           <p className="text-sm text-brand-slate mb-6">Everything in BlueMind is free — no card required.</p>
 
           {error && (
-            <div className="mb-4 px-3 py-2 rounded-lg bg-brand-red-light text-brand-red text-sm">
+            <div role="alert" className="mb-4 px-3 py-2 rounded-lg bg-brand-red-light text-brand-red text-sm">
               {error}
             </div>
           )}

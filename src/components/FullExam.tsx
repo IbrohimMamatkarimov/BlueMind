@@ -5,9 +5,12 @@ import PracticeExam, { ExamResult } from "./PracticeExam";
 import { PauseScreen, TestSetup, useExamGuard } from "./TestSessionControls";
 import { FULL_EXAM_STEPS, formatTime, fullExamKey, isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
 import { MathText } from "./MathText";
+import { TextWatermarkOverlay } from "./TextWatermarkOverlay";
+import { useAppTheme } from "@/lib/theme";
 
 interface FullSession {
   version: 1;
+  sessionId?: string;
   mode: TestMode;
   step: number;
   breakSeconds: number;
@@ -15,6 +18,7 @@ interface FullSession {
 }
 
 export default function FullExam({ mockId }: { mockId: string }) {
+  const { dark } = useAppTheme();
   const [title, setTitle] = useState("");
   const [session, setSession] = useState<FullSession | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -45,6 +49,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
           if (saved.version !== 1 || !isTestMode(saved.mode) || !Number.isInteger(saved.step) || saved.step < 0 || saved.step > 5 || !saved.results || !Number.isFinite(saved.breakSeconds)) {
             throw new Error("This saved exam could not be restored. Your stored progress has been kept.");
           }
+          saved.sessionId ??= crypto.randomUUID();
           setSession(saved);
           setBreakLeft(Math.max(0, Math.min(600, saved.breakSeconds)));
         }
@@ -67,7 +72,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
   }
 
   function start(mode: TestMode) {
-    const next: FullSession = session ?? { version: 1, mode, step: 0, breakSeconds: 600, results: {} };
+    const next: FullSession = session ?? { version: 1, sessionId: crypto.randomUUID(), mode, step: 0, breakSeconds: 600, results: {} };
     persist(next);
     setStarted(true);
   }
@@ -139,7 +144,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
     const results = Object.values(session.results);
     const correct = results.reduce((sum, result) => sum + result.correctCount, 0);
     const total = results.reduce((sum, result) => sum + result.total, 0);
-    return <main className="min-h-screen bg-slate-50 text-slate-900 px-4 py-10">
+    return <main className={["min-h-screen bg-brand-bg text-brand-navy px-4 py-10", dark ? "app-dark" : ""].join(" ")}>
       <div className="max-w-3xl mx-auto space-y-6">
         <div className="rounded-2xl bg-white border border-slate-200 p-8">
           <p className="text-blue-600 font-semibold">Full exam complete</p>
@@ -152,7 +157,8 @@ export default function FullExam({ mockId }: { mockId: string }) {
           if (!result) return null;
           return <details key={index} className="bg-white rounded-xl border border-slate-200 p-5">
             <summary className="cursor-pointer font-semibold">{step.section} · Module {step.module}<span className="float-right">{result.correctCount}/{result.total}</span></summary>
-            <div className="mt-5 space-y-5">{result.results.map((question, number) => <div key={question.questionId} className="border-t border-slate-200 pt-4 space-y-2 text-sm">
+            <div className="mt-5 space-y-5">{result.results.map((question, number) => <div key={question.questionId} className="border-t border-brand-border p-4 space-y-2 text-sm relative overflow-hidden">
+              <TextWatermarkOverlay dark={dark} mode="absolute" />
               <p className={question.isCorrect ? "text-emerald-700 font-semibold" : "text-red-700 font-semibold"}>Question {number + 1} · {question.isCorrect ? "Correct" : "Incorrect"}</p>
               <MathText text={question.questionText} />
               {question.imageData && <img src={question.imageData} alt="Question diagram" className="max-w-full max-h-80 object-contain" />}
@@ -205,7 +211,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
 
   const step = FULL_EXAM_STEPS[session.step];
   return <PracticeExam key={session.step} params={{ mockId, section: step.section, module: String(step.module) }}
-    fullExam={{ mode: session.mode, storageKey: `${key}_module_${session.step}`, onComplete: completeModule, onDelete: () => {
+    fullExam={{ mode: session.mode, sessionId: session.sessionId, storageKey: `${key}_module_${session.step}`, onComplete: completeModule, onDelete: () => {
       localStorage.removeItem(key);
       for (const index of [0, 1, 3, 4]) localStorage.removeItem(`${key}_module_${index}`);
     } }} />;
