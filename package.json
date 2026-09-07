@@ -13,6 +13,7 @@
     "db:clear-questions": "tsx src/scripts/clear-question-bank.ts",
     "db:migrate-to-supabase": "tsx src/scripts/migrate-sqlite-to-supabase.ts",
     "db:import-mock": "tsx src/scripts/import-mock.ts",
+    "db:resync-mock-text": "tsx src/scripts/resync-mock-text.ts",
     "db:import-qbank": "tsx src/scripts/import-qbank.ts",
     "db:copy": "tsx src/scripts/copy-database.ts"
   },
