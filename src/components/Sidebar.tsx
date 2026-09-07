@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, ChartNoAxesCombined, FileText, LogOut, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, ShieldCheck, Sun, UserRound } from "lucide-react";
+import { BookMarked, BookOpen, ChartNoAxesCombined, FileText, LogOut, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, ShieldCheck, Sun, UserRound } from "lucide-react";
 import { useTheme } from "./AppShell";
 export const NAV_ITEMS = [
   { href: "/mocks", label: "Mock Tests", icon: FileText },
   { href: "/practice", label: "Question Bank", icon: BookOpen },
   { href: "/mistakes", label: "Mistakes Notebook", icon: NotebookPen },
+  { href: "/vocabulary", label: "Vocabulary", icon: BookMarked },
   { href: "/progress", label: "Progress", icon: ChartNoAxesCombined },
 ];
 type Profile = { userName?: string | null; isAdmin?: boolean; avatarData?: string | null; guest?: boolean };
