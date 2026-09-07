@@ -1,0 +1,1542 @@
+{
+  "$schema": "../mock.schema.json",
+  "mock": {
+    "title": "March 2023",
+    "subtitle": "Reading & Writing only",
+    "groupLabel": "2023",
+    "month": "March",
+    "year": 2023,
+    "source": "March 2023 digital SAT (Reading & Writing)",
+    "notes": "Transcribed from Bluebook screenshots of the March 2023 administration. This paper covers Reading & Writing only — there is no Math section in the source — and its modules are non-standard sizes: Module 1 (Routing, 37 minutes) has 31 questions and Module 2 (Easier, 25 minutes) has 21. Module 2 is the lower adaptive path but is banked as the visible Module 2 so the set can be practised end to end. One answer departs from the source answer key, which appears to be wrong there: R&W M2 Q8 is keyed here as C (\"Indeed,\") rather than A, because the sentence restates the previous one rather than giving an example of it. Figures are cropped from the source PDF; rationales and explanations were written for BlueMind.",
+    "totalQuestions": 52,
+    "durationMinutes": 62
+  },
+  "modules": [
+    {
+      "section": "Reading and Writing",
+      "module": 1,
+      "questionCount": 31,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "The Al-Fattah Al-Aleem Mosque in the New Administrative Capital of Egypt is a massive mosque that can accommodate approximately 17,000 people at once, making it an ______ sight to behold.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "idealized"
+            },
+            {
+              "id": "B",
+              "text": "intricate"
+            },
+            {
+              "id": "C",
+              "text": "illusory"
+            },
+            {
+              "id": "D",
+              "text": "imposing"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "A \"massive\" mosque holding 17,000 people is impressive in scale — an imposing sight.",
+          "explanation": "The only detail given about the mosque is its enormous size, so the blank must describe the effect of that scale. \"Imposing\" means grand and impressive in size, which fits exactly. \"Intricate\" describes fine detail rather than scale. \"Idealized\" would mean the mosque is presented as more perfect than it is, and \"illusory\" would mean it is not really there at all — neither follows from the capacity figure."
+        },
+        {
+          "number": 2,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "The Lascaux Cave paintings — detailed paintings of animals found in what is now France and dating from around 17,000 years ago — are sometimes said to be emotionally powerful despite their age, but in fact the paintings are ______ precisely because of their age. It is the link of shared humanity with the artists across so many centuries that gives the Lascaux Cave paintings such resonance.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "ingenious"
+            },
+            {
+              "id": "B",
+              "text": "meticulous"
+            },
+            {
+              "id": "C",
+              "text": "pristine"
+            },
+            {
+              "id": "D",
+              "text": "affecting"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The blank restates \"emotionally powerful\" — the paintings move viewers, which is what *affecting* means.",
+          "explanation": "The sentence corrects one claim with another about the same quality: not powerful *despite* their age but *because* of it. So the blank must mean emotionally powerful, and the following sentence confirms it with \"resonance.\" \"Affecting\" means moving or touching. \"Ingenious\" praises cleverness, \"meticulous\" praises careful execution, and \"pristine\" describes physical condition — none of them is about emotional effect."
+        },
+        {
+          "number": 3,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Some robots such as Surena (developed in 2008) and COMAN (developed in 2012) feature humanoid characteristics like bipedal locomotion so that people will find it easier to interact with them. While these features can help to ______ feelings of comfort in people, a robot that looks too like human can fall into the \"uncanny valley,\" meaning that its appearance unintentionally unsettles those who encounter it.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "engender"
+            },
+            {
+              "id": "B",
+              "text": "constrict"
+            },
+            {
+              "id": "C",
+              "text": "counterbalance"
+            },
+            {
+              "id": "D",
+              "text": "repudiate"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Humanlike features are meant to *produce* comfort — that is what \"engender\" means.",
+          "explanation": "The clause beginning \"While\" concedes a benefit before the \"uncanny valley\" drawback, so the blank must be positive: the features create comfort. \"Engender\" means to give rise to. \"Constrict\" and \"repudiate\" would have the robot limiting or rejecting comfort, which destroys the concession. \"Counterbalance\" would set comfort against something else, but no opposing feeling has been introduced at that point."
+        },
+        {
+          "number": 4,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Hard",
+          "passageText": "Text corpora such as the International Corpus of English are enormous collections of electronically stored texts that can be used for empirical testing of hypotheses regarding how ______ a word is in spoken and written English. For instance, one might have a guess about the incidence of the word \"first,\" but only an analysis of a corpus can prove that \"first\" is the third most commonly used adjective.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "pervasive"
+            },
+            {
+              "id": "B",
+              "text": "credible"
+            },
+            {
+              "id": "C",
+              "text": "assertive"
+            },
+            {
+              "id": "D",
+              "text": "profound"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The example is about \"incidence\" and how commonly a word is used — that is how widespread, or pervasive, it is.",
+          "explanation": "The second sentence defines what corpora measure: the incidence of a word, illustrated by \"first\" being the third most commonly used adjective. The blank must therefore mean widespread or frequent, which is \"pervasive.\" \"Credible,\" \"assertive,\" and \"profound\" are all qualities that could be attributed to a claim or a person, but none of them describes how often a word appears in a language."
+        },
+        {
+          "number": 5,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Hard",
+          "passageText": "The following text is adapted from Matthew Arnold's 1869 nonfiction book *Culture and Anarchy*.\n\n__*The Times* [a British newspaper], replying to some foreign strictures on the dress, looks, and behavior of the English abroad, urges that the English ideal is that everyone should be free to do and to look just as he likes.__ But culture indefatigably tries, not to make what each raw person may like the rule by which he fashions himself; but to draw ever nearer to a sense of what is indeed beautiful, graceful, and becoming, and to get the raw person to like that.",
+          "questionText": "Which choice best describes the function of the underlined sentence in the text as a whole?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It suggests that opinions regarding culture change over time."
+            },
+            {
+              "id": "B",
+              "text": "It asserts that the English are not as well known for their sense of taste as they ought to be."
+            },
+            {
+              "id": "C",
+              "text": "It details an example that supports the author's primary claim."
+            },
+            {
+              "id": "D",
+              "text": "It presents an opinion with which the author disagrees."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The \"But\" that follows sets Arnold's view of culture directly against *The Times*'s \"do as you like\" ideal.",
+          "explanation": "The underlined sentence reports someone else's position — the newspaper's claim that everyone should be free to look and act as they like. The next sentence begins \"But\" and argues the opposite: culture works to refine what people like rather than accept it. So the underlined sentence sets up a view the author rejects, which is D. C reverses the relationship, treating the newspaper as support rather than a foil. A introduces change over time, which the passage never discusses, and B misreads the sentence as a claim about English taste being underappreciated."
+        },
+        {
+          "number": 6,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "passageText": "The bird species *Myiobius barbatus* (the bearded flycatcher), which forages in relatively dense vegetation, and *Platyrinchus saturatus* (the cinnamon-crested spadebill), which forages in open areas or low-density vegetation, share territory in French Guiana with *Thamnomanes caesius* (the cinereous antshrike), which emits a loud alarm call when it detects predators. Biologist Ari Martinez and colleagues, who studied the ecological community the species share, hypothesized that there is an inverse relationship between birds' field of vision while foraging and their sensitivity to alarm calls from neighboring species.",
+          "questionText": "Which finding, if true, would most directly support Martinez and colleagues' hypothesis?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "When Martinez and colleagues played T. caesius alarm calls, M. barbatus and P. saturatus displayed no reaction, whereas T. caesius displayed predator-avoidance behavior."
+            },
+            {
+              "id": "B",
+              "text": "Many local bird species with similar foraging habits to those of M. barbatus displayed no reaction when Martinez and colleagues played T. caesius alarm calls, whereas M. barbatus displayed predator-avoidance behavior."
+            },
+            {
+              "id": "C",
+              "text": "Some individuals of P. saturatus displayed predator-avoidance behavior when Martinez and colleagues played T. caesius alarm calls, whereas nearly all did when M. barbatus alarm calls were played."
+            },
+            {
+              "id": "D",
+              "text": "P. saturatus displayed no reaction when Martinez and colleagues played T. caesius alarm calls, whereas M. barbatus displayed predator-avoidance behavior in response to the calls."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "An inverse relationship predicts that the dense-vegetation forager (poor field of vision) reacts strongly and the open-area forager (good field of vision) does not — exactly what D reports.",
+          "explanation": "\"Inverse\" means that as field of vision goes up, sensitivity to alarm calls goes down. *M. barbatus* forages in dense vegetation, so it has the poorer field of vision and should be the more sensitive species; *P. saturatus* forages in the open and should be less sensitive. D matches both predictions. A has neither species reacting, which shows no relationship at all. B compares *M. barbatus* to unnamed species whose fields of vision are never established. C shows *P. saturatus* reacting more to a different species' calls, which speaks to call source rather than to field of vision."
+        },
+        {
+          "number": 7,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "image": "march_m1_q7_women_judges.png",
+          "passageText": "A report from an international organization that monitors the numbers of women serving as judges or magistrates on various nations' highest courts, such as the Supreme Court in Finland and the Supreme Court in the Dominican Republic. From 2009 to 2013, the number of women serving as justices or magistrates on highest courts in most countries increased. However, there are also countries where the number decreased or remained unchanged; for example, ______",
+          "questionText": "Which choice most effectively uses data from the graph to complete the example?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Slovenia was greater in 2013 than in 2009, whereas the number in the Dominican Republic was lower in 2013 than in 2009."
+            },
+            {
+              "id": "B",
+              "text": "Slovenia was greater in 2013 than in 2009, whereas the number in Finland was the same in 2013 as in 2009."
+            },
+            {
+              "id": "C",
+              "text": "Finland was the same in 2013 as in 2009, but it had more women on its high courts than either Slovenia or the Dominican Republic did in 2013."
+            },
+            {
+              "id": "D",
+              "text": "the Dominican Republic was lower in 2013 than in 2009, whereas the number in Finland was the same in 2013 as in 2009."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The example needs countries that *decreased or stayed the same*: the Dominican Republic fell from 5 to 4 and Finland held at 7.",
+          "explanation": "The sentence promises examples of countries where the number decreased or remained unchanged, so an increase does not belong in the example at all. The graph shows the Dominican Republic at 5 in 2009 and 4 in 2013 (a decrease) and Finland at 7 in both years (unchanged) — D covers both cases. A and B each lead with Slovenia, which *increased* from 4 to about 5, so neither illustrates the point. C reports Finland correctly but then adds a comparison of 2013 totals, which is about rank rather than change over time."
+        },
+        {
+          "number": 8,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "image": "march_m1_q8_tilling_yields.png",
+          "passageText": "Danijel Jug and colleagues found that tilling — the practice of turning soil with hoes, plows, or other machines before planting crops — was associated with an increased yield of winter wheat. But some studies of other crops have found the opposite effect, for example ______",
+          "questionText": "Which choice most effectively uses data from the table to complete the assertion?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Min Huang and colleagues reported an even larger positive effect of no tilling on the yield of rice."
+            },
+            {
+              "id": "B",
+              "text": "Bharat Sharma Acharya and colleagues found a similar association in a study using soybeans."
+            },
+            {
+              "id": "C",
+              "text": "crop yields with tilling have ranged from 2,420 kilograms per hectare for maize to 4,860 kilograms per hectare for winter wheat."
+            },
+            {
+              "id": "D",
+              "text": "a study using winter wheat yielded 4,860 kilograms per hectare with tilling and only 3,910 kilograms per hectare without tilling."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The \"opposite effect\" means no tilling beats tilling, and rice shows the biggest such gap: 5,226 without tilling versus 2,534 with it.",
+          "explanation": "Jug's winter wheat result was that tilling raised the yield, so the opposite effect is a crop that yields *more* without tilling. The table shows rice at 2,534 with tilling and 5,226 without — a large advantage for no tilling, which A describes. B points to soybeans, where tilling gave the higher yield (3,062 versus 2,670), the same association as Jug's rather than the opposite. C simply lists tilling yields without any comparison. D restates the winter wheat result the sentence is already contrasting against."
+        },
+        {
+          "number": 9,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "image": "march_m1_q9_city_population.png",
+          "passageText": "Population figures for a city can vary significantly depending on what areas are included in the count. Often, governments will report a value for the city proper (including only residents within the city limits) and another for the larger metropolitan area (including residents from nearby places beyond the city limits). Citing the data in the table, a journalist claims the population estimates from the United Nations (UN) most likely included people outside the cities proper.",
+          "questionText": "Which choice best describes data in the table that support the journalist's claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The UN estimated Bogota's population to be 10,574,000, which is significantly larger than the reported population for the city proper."
+            },
+            {
+              "id": "B",
+              "text": "The metropolitan area of Bangkok is significantly larger than 1,569 square kilometers."
+            },
+            {
+              "id": "C",
+              "text": "The reported city proper population of Bogota is significantly larger than the reported city proper population of Houston."
+            },
+            {
+              "id": "D",
+              "text": "All the city proper areas are below 3,000 square kilometers."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "A UN figure far above the city-proper count is exactly what you would expect if the UN counted people outside the city limits.",
+          "explanation": "The claim is about the UN estimates specifically, so the supporting data must compare a UN figure with a city-proper figure. Bogota's UN estimate of 10,574,000 far exceeds its reported city proper population of 7,963,000, which is what A states — the extra millions must come from beyond the city limits. B and D concern land area, which says nothing about who was counted. C compares two cities' city-proper populations to each other and never involves the UN estimates at all."
+        },
+        {
+          "number": 10,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Hard",
+          "passageText": "The Study on Global Ageing and Adult Health (SAGE) seeks to discover long-term trends related to aging by compiling and analyzing evidence from approximately 66,000 participants in multiple countries. As with most longitudinal studies, extensive funding support is needed for SAGE to collect the relevant data over timescales and at intervals that will support robust conclusions. But the quality of a more constrained investigation, such as a sociology study seeking only to yield the average age at which people in a given city first become parents, is much less dependent on high levels of funding because ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "such studies are likely to be a lower priority for funding than SAGE."
+            },
+            {
+              "id": "B",
+              "text": "the sociology study is unlikely to be able to recruit 66,000 participants."
+            },
+            {
+              "id": "C",
+              "text": "expanding the scope of such studies is unlikely to be feasible."
+            },
+            {
+              "id": "D",
+              "text": "such studies are not trying to identify trends over time."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "SAGE's cost comes from collecting data over long timescales; a study that only needs one average figure has no such requirement.",
+          "explanation": "The text ties SAGE's need for heavy funding to gathering data \"over timescales and at intervals\" — that is, to tracking trends longitudinally. A constrained study that just reports one average age needs no repeated measurement over years, so it escapes that cost, which is D. A talks about funding priorities rather than about how much funding is needed. B names a difference in sample size but never links it to cost, and the text attributes the expense to duration. C claims expansion is infeasible, which does not explain why the smaller study is cheap."
+        },
+        {
+          "number": 11,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Hard",
+          "passageText": "Anne Brontë's 1847 novel *Agnes Grey* contains elements drawn from Brontë's own life: there are many parallels between the experiences of the novel's title character and those of Brontë, and as a result *Agnes Grey* is regularly described as an autobiographical novel. This characterization can be useful, but it also presents drawbacks in terms of how the work is perceived, as it may lead readers to believe that Brontë merely fictionalized true events, which, in an artistic field where creativity and inventiveness are prized, can suggest that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Agnes Grey is less of an imaginative achievement than it actually is."
+            },
+            {
+              "id": "B",
+              "text": "the real-world counterparts of other characters in Agnes Grey are hard to identify."
+            },
+            {
+              "id": "C",
+              "text": "Brontë should not have claimed that Agnes Grey is based on real events."
+            },
+            {
+              "id": "D",
+              "text": "critics disagree about whether Agnes Grey shows greater originality than works without autobiographical elements."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "If readers think Brontë merely wrote down real events, they will undervalue the novel's inventiveness in a field that prizes exactly that.",
+          "explanation": "The sentence names a drawback: the autobiographical label makes readers think the book is fictionalized fact rather than invention, and creativity is what the field prizes. The natural consequence is that the novel's imaginative achievement gets underrated — A. B raises an identification problem the text never mentions. C turns a description of readers' perceptions into advice for Brontë, and the text never says Brontë made such a claim. D introduces a critical dispute that the passage does not report."
+        },
+        {
+          "number": 12,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Hard",
+          "passageText": "Previous research has shown that plant species with a narrow geographical range tend to be more genetically homogeneous than plant species with extensive ranges are. Based on these findings, researchers recently ran simulations to predict how the genetic variation of several species of *Mammillaria*, a genus of cactus found throughout the Americas, might change in different distribution conditions. One of these species, *M. klissingiana*, is found only in the state of Tamaulipas. The researchers simulated what would happen if *M. klissingiana* spread to new habitats outside Tamaulipas, and, consistent with previous findings, the results showed that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "several other Mammillaria species could survive in Tamaulipas in the future."
+            },
+            {
+              "id": "B",
+              "text": "the genetic homogeneity of M. klissingiana decreased over time."
+            },
+            {
+              "id": "C",
+              "text": "there was a gradual increase in the genetic homogeneity of Mammillaria species in states neighboring Tamaulipas."
+            },
+            {
+              "id": "D",
+              "text": "Mammillaria species other than M. klissingiana would become more common in Tamaulipas."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "A wider range goes with less homogeneity, so simulating a spread beyond Tamaulipas should show homogeneity falling.",
+          "explanation": "The stated principle is that narrow-range species are *more* genetically homogeneous than wide-range species. The simulation widens *M. klissingiana*'s range, so to be \"consistent with previous findings\" its genetic homogeneity must go down — B. C moves in the wrong direction and shifts attention to other species in neighbouring states. A and D are about which species live where, a question of distribution that the principle about genetic variation does not address."
+        },
+        {
+          "number": 13,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Hard",
+          "passageText": "Arthurian legends (tales related to the character of King Arthur) derive from many sources, such as *Annales Cambriae*, composed around 970, and the *Mabinogion* from the 12th and 13th centuries. One of the most significant sources, Geoffrey of Monmouth's *History of the Kings of Britain*, was written in Latin in the 1130s; some material from it was later adapted by the Norman poet Wace into *Roman de Brut* in 1155. But while no source before 1155 includes references to the famous Round Table at which Arthur's knights assembled, both the *Roman de Brut* and Sir Thomas Malory's 15th-century compilation of Arthurian legends, *Le Morte d'Arthur*, do. It can therefore be inferred that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Malory did not use Annales Cambriae as a source for information [when] he presented about the Round Table."
+            },
+            {
+              "id": "B",
+              "text": "Geoffrey of Monmouth's accounts of Arthurian legends in his History are more similar overall in content to the accounts in the Mabinogion than they are to the accounts in Roman de Brut."
+            },
+            {
+              "id": "C",
+              "text": "Geoffrey of Monmouth was unaware of stories of the Round Table when composing his History, though historians know that works containing such stories were available to him."
+            },
+            {
+              "id": "D",
+              "text": "Le Morte d'Arthur is more historically accurate than History, because the Mabinogion had not been written when Geoffrey of Monmouth was writing his work."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "*Annales Cambriae* predates 1155, so it contains no Round Table material — Malory's Round Table content cannot have come from it.",
+          "explanation": "The text states that no source before 1155 mentions the Round Table. *Annales Cambriae* was composed around 970, so it is one of those sources without any Round Table material, and Malory's Round Table content therefore had to come from somewhere else — A. C is contradicted by the same rule: no such works existed before 1155, so none could have been available to Geoffrey in the 1130s. B compares overall content across three works, which the passage never assesses. D asserts a claim about historical accuracy and misdates the *Mabinogion*, which the text places in the 12th and 13th centuries."
+        },
+        {
+          "number": 14,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "Few new parents ______ that their baby will someday become an astronaut. Yet if Jerry L. Ross's parents had made this prediction when he was born in 1948, they would have been correct, for NASA selected him for the job in 1980.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "disagree"
+            },
+            {
+              "id": "B",
+              "text": "ignore"
+            },
+            {
+              "id": "C",
+              "text": "require"
+            },
+            {
+              "id": "D",
+              "text": "anticipate"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The second sentence calls it \"this prediction,\" so the blank must mean to predict — anticipate.",
+          "explanation": "The follow-up sentence refers back to the blank as a \"prediction\" that parents might have made at their child's birth. \"Anticipate\" means to expect in advance, which matches. \"Disagree\" needs something to disagree with and does not describe forming an expectation. \"Ignore\" would mean parents overlook the idea rather than foresee it, and \"require\" would have parents demanding their baby become an astronaut."
+        },
+        {
+          "number": 15,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "The following text is from Kenneth Grahame's 1908 novel *The Wind in the Willows*. The Rat is looking for the Mole, his friend, in the woods.\n\n[The Rat] had patiently hunted through the wood for an hour or more, when at last to his joy he heard a little answering cry. __Guiding__ himself by the sound, he made his way through the gathering darkness to the foot of an old beech tree.",
+          "questionText": "As used in the text, what does the word \"guiding\" most nearly mean?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Withdrawing"
+            },
+            {
+              "id": "B",
+              "text": "Presenting"
+            },
+            {
+              "id": "C",
+              "text": "Instructing"
+            },
+            {
+              "id": "D",
+              "text": "Steering"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The Rat uses the sound to direct his own movement toward the beech tree — he steers himself by it.",
+          "explanation": "The sentence describes physical navigation: the Rat hears a cry and uses it to make his way through the darkness. \"Steering\" captures directing one's own course. \"Instructing\" is the teaching sense of \"guide,\" but the Rat is not teaching himself anything. \"Withdrawing\" reverses the motion, since he moves toward the sound, and \"presenting\" has nothing to do with movement."
+        },
+        {
+          "number": 16,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Alfred Nobel intended for the Nobel Prize to be an award honoring those who have contributed \"the greatest benefit to mankind.\" Indeed, the work of Richard Laurence Millington Synge represented a significant ______ the field of chemistry, and in 1952 he was among those awarded the Nobel Prize in Chemistry for \"their invention of partition chromatography.\"",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "controversy in"
+            },
+            {
+              "id": "B",
+              "text": "exposure to"
+            },
+            {
+              "id": "C",
+              "text": "dependence on"
+            },
+            {
+              "id": "D",
+              "text": "advancement in"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "An invention worth a Nobel Prize \"of the greatest benefit to mankind\" is an advancement in its field.",
+          "explanation": "The sentence begins with \"Indeed,\" presenting Synge as an example of Nobel's ideal, and ends with a prize for inventing partition chromatography. The blank must therefore be positive and describe progress: \"advancement in.\" \"Controversy in\" would make the work divisive rather than beneficial. \"Exposure to\" and \"dependence on\" describe a relationship the person has with the field, not a contribution made to it."
+        },
+        {
+          "number": 17,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "The arrival of humans to the Americas is thought to have ______ a sudden decrease in biodiversity throughout the continents. Although the extinction of species like the toxodon was likely the result of a combination of factors, from decreasing food sources to habitat destruction, most of these factors can be directly tied to the presence of humans.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "followed"
+            },
+            {
+              "id": "B",
+              "text": "prolonged"
+            },
+            {
+              "id": "C",
+              "text": "counteracted"
+            },
+            {
+              "id": "D",
+              "text": "triggered"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The second sentence ties the causes of extinction to human presence, so human arrival *caused* the decline.",
+          "explanation": "The passage attributes the factors behind extinction \"directly to the presence of humans,\" making human arrival the cause and the biodiversity decline the effect. \"Triggered\" states that causal relationship. \"Followed\" makes the arrival merely later in time, removing the cause. \"Counteracted\" reverses it entirely. \"Prolonged\" would require the decrease to have already begun, which contradicts \"sudden.\""
+        },
+        {
+          "number": 18,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Hard",
+          "passageText": "Some robots such as Surena (developed in 2008) and COMAN (developed in 2012) are designed to resemble humans so that people will find it easier to interact with them. To this end, certain features such as the ability to respond to voice commands can help to create the comforting semblance of humanity, but a robot that appears too similar to humans can make people feel more unsettled than ______",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "soothed"
+            },
+            {
+              "id": "B",
+              "text": "indifferent"
+            },
+            {
+              "id": "C",
+              "text": "revolted"
+            },
+            {
+              "id": "D",
+              "text": "vindicated"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The contrast is with the \"comforting\" effect the designers intended, so the blank is the comforted state: soothed.",
+          "explanation": "The sentence pits the intended result — a \"comforting semblance of humanity\" — against the actual result, being unsettled. The word after \"than\" must name the intended comfort, and \"soothed\" is its one-word form. \"Revolted\" is even more negative than unsettled, so the comparison would collapse. \"Indifferent\" is neutral rather than comforting, and \"vindicated\" concerns being proved right, which the passage never raises."
+        },
+        {
+          "number": 19,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Medium",
+          "passageText": "The following text is Rainer Maria Rilke's 1897 poem \"Evening\" (translated by Jessie Lamont in 1918).\n\n__The bleak fields are asleep,\nMy heart alone wakes;__\nThe evening in the harbour\nDown his red sails takes.\n\nNight, guardian of dreams,\nNow wanders through the land;\nThe moon, a lily white,\nBlossoms within her hand.",
+          "questionText": "Which choice best states the function of the underlined portion in the text as a whole?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It conveys the speaker's sense that he is alone while experiencing the evening."
+            },
+            {
+              "id": "B",
+              "text": "It shows that the speaker would rather look at the fields than at the water."
+            },
+            {
+              "id": "C",
+              "text": "It indicates the speaker's disappointment that other people dislike rural settings."
+            },
+            {
+              "id": "D",
+              "text": "It explains why the speaker has woken up from sleeping."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The fields \"are asleep\" while the speaker's heart \"alone wakes\" — the word *alone* sets him apart from a sleeping world.",
+          "explanation": "The two underlined lines contrast a sleeping landscape with the speaker's waking heart, and \"alone\" makes the isolation explicit. The rest of the poem then describes the evening scene that he alone is awake to see, so A. B invents a preference between fields and water that the poem never states. C attributes an opinion about rural settings to other people who do not appear in the poem. D treats \"wakes\" as literal waking from sleep and asks for a cause, but no reason for waking is given."
+        },
+        {
+          "number": 20,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Easy",
+          "passageText": "When people think of dinosaurs with feathers, they typically think of winged dinosaurs, such as the bat-like *Ambopteryx*. However, many dinosaurs that didn't have wings also had feathers on their bodies. For instance, research indicates that the wingless, large *Yutyrannus* likely had feathers.",
+          "questionText": "Which choice best states the main purpose of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "To discuss the presence of feathers on certain types of dinosaurs"
+            },
+            {
+              "id": "B",
+              "text": "To point out the differences between dinosaur feathers and bird feathers"
+            },
+            {
+              "id": "C",
+              "text": "To explain why feathered dinosaurs went extinct"
+            },
+            {
+              "id": "D",
+              "text": "To argue that only one species of dinosaur had feathers"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The text covers feathers on both winged and wingless dinosaurs, correcting a common assumption.",
+          "explanation": "The passage moves from what people typically assume (feathers mean wings) to the broader fact that wingless dinosaurs had feathers too, illustrated by *Yutyrannus*. That is a discussion of which dinosaurs had feathers, so A. B brings in bird feathers, which never appear. C raises extinction, also absent. D is contradicted directly, since the text names two feathered dinosaurs and says \"many\" wingless ones had feathers."
+        },
+        {
+          "number": 21,
+          "domain": "Information and Ideas",
+          "skill": "Cross-Text Connections",
+          "difficulty": "Hard",
+          "passageText": "Text 1\n\nIn 2017 Buenaventura, Colombia, was named a City of Gastronomy by UNESCO in recognition of the city's unique food culture. The honor is well known among residents of the city as well as tourists who visit. __It's obvious that the selection of Buenaventura by UNESCO has brought awareness to local recipes, cooking practices, and chefs and has provided a boost to the city's tourism industry.__\n\nText 2\n\nMany people in Buenaventura's restaurant industry hoped that food tourism would increase after the city was chosen as City of Gastronomy in 2017. However, as researcher Eerang Park and colleagues argue, cities must still create effective marketing strategies to benefit fully from being named a City of Gastronomy. Without an intentional effort to promote the city's food scene, many current and potential visitors to Buenaventura may not even be aware that it's home to uniquely delicious food.",
+          "questionText": "Based on the texts, what would the author of Text 2 most likely say in response to the underlined claim in Text 1?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "A city that UNESCO officially names as a City of Gastronomy should still make deliberate efforts to attract visitors [in order to boost] tourism."
+            },
+            {
+              "id": "B",
+              "text": "Many people worked together to help Buenaventura be recognized by UNESCO, but chefs deserve the most credit for Buenaventura's selection as a City of Gastronomy."
+            },
+            {
+              "id": "C",
+              "text": "There are other benefits to being named a UNESCO City of Gastronomy besides increased tourism."
+            },
+            {
+              "id": "D",
+              "text": "The naming of Buenaventura as a City of Gastronomy was long overdue, given the city's delicious food."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Text 2's whole point is that the designation alone is not enough — deliberate marketing is still required to draw visitors.",
+          "explanation": "Text 1 treats the tourism boost as an automatic consequence of the UNESCO title. Text 2 disputes exactly that, citing Park's argument that cities \"must still create effective marketing strategies\" and warning that without promotion visitors may never learn about the food. A states that response directly. B is about who deserves credit for the designation, a question Text 2 never takes up. C concerns other benefits, but Text 2 focuses on whether the tourism benefit materialises. D endorses the designation's merit rather than responding to the claim about its effects."
+        },
+        {
+          "number": 22,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "In a study by Mika R. Moran, Daniel A. Rodriguez, and colleagues, residents of Panama City, Panama, and Fortaleza, Brazil, were surveyed about parks in their cities. Of the 318 respondents from Panama City, 53.5% indicated that they use the city's parks, and of 938 respondents from Fortaleza 35.7% indicated using city parks. Given that the percentage of Panama City respondents who reported living within a 10-minute walk of a park was much lower than that reported by Fortaleza respondents, greater proximity alone can't explain the difference in park use.",
+          "questionText": "The text makes which point about the difference between the proportions of Panama City residents and Fortaleza residents using parks?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It was much larger than the researchers conducting the study expected."
+            },
+            {
+              "id": "B",
+              "text": "It could be due to inaccuracies in the survey results."
+            },
+            {
+              "id": "C",
+              "text": "It was calculated using sources that predate the survey."
+            },
+            {
+              "id": "D",
+              "text": "It is caused by something other than the parks' proximity to the residents."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Panama City residents used parks more despite living farther from them, so proximity cannot be the explanation.",
+          "explanation": "The final sentence draws the conclusion explicitly: since Panama City respondents were *less* likely to live within a 10-minute walk of a park yet used parks more, \"greater proximity alone can't explain the difference.\" D restates that. A attributes a reaction to the researchers that the text never reports. B questions the survey's accuracy, which the passage treats as sound. C invents a methodological detail about older sources."
+        },
+        {
+          "number": 23,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Hard",
+          "passageText": "The following text is adapted from Daniel Defoe's 1704 nonfiction book *The Storm*.\n\nThe sermon is a sound of words spoken to the ear, and prepared only for present meditation and extends no farther than the strength of memory can convey it; a book printed is a record, remaining in every man's possession, always ready to renew its acquaintance with his memory, and always ready to be produced as an authority or voucher to any reports he makes out of it, and conveys its contents for ages to come, to the eternity of mortal time, when the author is forgotten in his grave.",
+          "questionText": "Which choice best states the main idea of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "People are less likely to forget a message when they hear it spoken aloud than they are when they read it in print."
+            },
+            {
+              "id": "B",
+              "text": "Unless a spoken message is delivered by [a confident orator, it may be] ignored."
+            },
+            {
+              "id": "C",
+              "text": "Most authors have little hope of being remembered well past their lifetimes."
+            },
+            {
+              "id": "D",
+              "text": "Words committed to print have a greater permanence than messages that are merely spoken aloud."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Speech lasts only as long as memory holds it; print \"conveys its contents for ages to come\" — a contrast in permanence.",
+          "explanation": "Defoe sets a sermon, which \"extends no farther than the strength of memory can convey it,\" against a printed book, which remains in one's possession and lasts \"for ages to come.\" That is precisely the durability contrast D describes. A reverses it, favouring speech. B introduces the orator's delivery, which Defoe never discusses. C picks up the closing image of the forgotten author but misses the point — the passage stresses that the *work* survives even when the author does not."
+        },
+        {
+          "number": 24,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "*The Far Side of the World*, first published in 1984, is a novel in Patrick O'Brian's Aubrey/Maturin series, which includes twenty books plus an unfinished fragment of a twenty-first. Like the rest of the books in the series, *The Far Side of the World* has a rather abrupt ending, but the following book, *The Reverse of the Medal*, picks up neatly where *The Far Side of the World* leaves off. Thus, the sudden ending is only an issue if one considers the books as independent texts — the Aubrey/Maturin series is best thought of as a single incredibly long work, similar to other multivolume stories, such as John Galsworthy's *The Forsyte Saga*.",
+          "questionText": "Which choice best states the main idea of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It is unfair that the Aubrey/Maturin series does not have the critical reputation of The Forsyte Saga, which has a similar structure."
+            },
+            {
+              "id": "B",
+              "text": "The Far Side of the World and The Reverse of the Medal are [two] of the most complex of Patrick O'Brian's [novels of the Aubrey/Maturin series] with unconventional structures."
+            },
+            {
+              "id": "C",
+              "text": "The structure of each of the novels of the Aubrey/Maturin series suggests that the series should be considered a single continuous story."
+            },
+            {
+              "id": "D",
+              "text": "Many readers find the Aubrey/Maturin novels to be remarkably entertaining despite flaws in the novels' structures."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The abrupt endings only look like flaws if the books are read separately; read as one continuous work, they flow into each other.",
+          "explanation": "The passage's argument runs: each book ends abruptly, the next picks up neatly, therefore the series \"is best thought of as a single incredibly long work.\" C states that conclusion. A raises critical reputation and fairness, neither of which the text discusses. B calls the novels complex and unconventional, but the text's point is that the structure makes sense once the series is read as a whole. D concedes the structures are flawed, which is exactly what the passage denies."
+        },
+        {
+          "number": 25,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Easy",
+          "image": "march_m1_q25_pyramids.png",
+          "passageText": "One student is writing an essay about four pyramids for a history class and wants to indicate how long ago each pyramid was built. Consulting the table, the student finds that the Tikal Temple IV was built ______",
+          "questionText": "Which choice most effectively uses data from the table to complete the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "1,900 to 2,300 years ago."
+            },
+            {
+              "id": "B",
+              "text": "1,300 years ago."
+            },
+            {
+              "id": "C",
+              "text": "4,500 to 4,600 years ago."
+            },
+            {
+              "id": "D",
+              "text": "3,800 to 4,000 years ago."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The table lists the Tikal Temple IV's age as 1,300 years before present.",
+          "explanation": "Find the Tikal Temple IV row and read the \"Age (years before present)\" column, which gives 1,300. Choice A is La Danta's age, choice C is the Pyramid of Khafre's, and choice D is the Pyramid of Amenemhet I's — all correct figures from the table, but for the wrong pyramids."
+        },
+        {
+          "number": 26,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "*Life Among the Paiutes* is an 1882 autobiographical narrative by Sarah Winnemucca Hopkins. In the work, Winnemucca directly addresses the reader to establish her authority and credibility, writing ______",
+          "questionText": "Which quotation from *Life Among the Paiutes* most effectively illustrates the claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "\"My dear reader, I have not lived in this world for over thirty or forty years for nothing, and I know what I am talking about.\""
+            },
+            {
+              "id": "B",
+              "text": "\"I was born somewhere near 1844, but am not sure of the precise time.\""
+            },
+            {
+              "id": "C",
+              "text": "\"Oh, dear readers, these soldiers had gone only sixty miles away to Muddy Lake, where my people were then living and fishing.\""
+            },
+            {
+              "id": "D",
+              "text": "\"But how can I describe the scene that followed? Some of you, dear readers, can imagine.\""
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "A both addresses the reader (\"My dear reader\") and asserts her authority (\"I know what I am talking about\").",
+          "explanation": "The claim has two parts: direct address and an assertion of authority or credibility. Only A does both — it speaks to \"my dear reader\" and grounds her knowledge in decades of lived experience. B admits uncertainty about her own birth date, which undercuts credibility rather than establishing it. C addresses readers but only relays where the soldiers went. D addresses readers while confessing that she cannot describe the scene."
+        },
+        {
+          "number": 27,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "passageText": "Hypothesizing that lullabies, characterized by their slow tempos, are universally calming to infants, Constance M. Bainbridge and colleagues played a lullaby sung in the Scottish Gaelic language and a non-lullaby sung in the Seri language to a group of infants. The team found that the infants' heart rates decreased more during the lullaby than during the non-lullaby. Since a decrease in heart rate is associated with relaxation, the team concluded that the lullaby relaxed the infants. Noting that reduced heart rate can also be associated with increased attention, one critic argues that instead, the lullaby simply attracted the infants' attention. Bainbridge and colleagues also measured pupil size, as pupils typically become larger when a stimulus captures a person's attention.",
+          "questionText": "Which finding, if true, would most directly weaken the critic's claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Blinking, which indicates attention, was equally frequent whether infants were listening to the song in Scottish Gaelic or the song in Seri."
+            },
+            {
+              "id": "B",
+              "text": "Neither the Scottish Gaelic language nor the melody of the traditional Scots lullaby was familiar to infants in the study."
+            },
+            {
+              "id": "C",
+              "text": "The infants' pupils were smaller when the infants were listening to lullabies than when they were listening to non-lullabies."
+            },
+            {
+              "id": "D",
+              "text": "Parents of infants in the study chose the lullaby over the non-lullaby when asked which song they would use to calm their child."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Larger pupils signal captured attention, so smaller pupils during the lullaby undercut the claim that the lullaby merely grabbed the infants' attention.",
+          "explanation": "The passage supplies the test: pupils enlarge when a stimulus captures attention. The critic says the lullaby held the infants' attention rather than relaxing them, which predicts *larger* pupils during the lullaby. Finding the opposite — smaller pupils, as in C — directly contradicts that prediction. A reports no difference in blinking, which is at best neutral. B concerns the infants' unfamiliarity with the language and melody, which does not bear on attention versus relaxation. D reports parents' opinions rather than the infants' physiological response."
+        },
+        {
+          "number": 28,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "In the early 19th century, ships in the British Royal Navy were ranked based on military strength. The system considered the number of a ship's cannons and decks. \"First rate\" was the highest ranking, and \"sixth-rate\" was the lowest ranking, followed by unranked ships. This ranking determined the size of a ship's crew: first-rate ships had between 850 and 875 crewmen, while lower-ranked ships had fewer. Two of the ships in the British Royal Navy from this period were the *Dreadnought* (98 cannons and three decks) and the *Royal George* (120 cannons and three decks). Of these two, only the *Royal George* was ranked a first-rate ship. It can therefore be concluded that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "the Dreadnought had between 850 and 875 crewmen."
+            },
+            {
+              "id": "B",
+              "text": "all ships with at least 98 cannons were ranked as first-rate ships."
+            },
+            {
+              "id": "C",
+              "text": "the Royal George needed a crew larger than 875 people in order to operate efficiently."
+            },
+            {
+              "id": "D",
+              "text": "not all ships with three decks were ranked as first-rate ships."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The *Dreadnought* had three decks yet was not first-rate, so three decks alone did not earn that rank.",
+          "explanation": "Both ships had three decks, but only the *Royal George* was ranked first-rate. That single counterexample establishes D. A is wrong because the crew range of 850–875 belongs to first-rate ships, and the *Dreadnought* was not one, so it had fewer. B is refuted by the *Dreadnought* itself, which had 98 cannons and was not first-rate. C claims the *Royal George* needed more than 875 crew, but the text caps first-rate crews at 875."
+        },
+        {
+          "number": 29,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Some features, such as the mihrab (or niche), are present in nearly every mosque. But mosques often reflect multiple architectural styles, resulting in a unique ______ of those influences, as in the case of the Sheikh Zayed Mosque, which combines elements from the Persian, Mughal, and Moorish styles.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "fusion"
+            },
+            {
+              "id": "B",
+              "text": "dismissal"
+            },
+            {
+              "id": "C",
+              "text": "critique"
+            },
+            {
+              "id": "D",
+              "text": "simplification"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The Sheikh Zayed Mosque \"combines elements\" from three styles, so the result is a fusion of influences.",
+          "explanation": "The example after the blank supplies its meaning: a mosque that combines Persian, Mughal, and Moorish elements. \"Fusion\" is the blending of several things into one, exactly what \"combines\" describes. \"Dismissal\" and \"critique\" would have the mosque rejecting or judging the styles rather than merging them. \"Simplification\" would reduce the influences, but the mosque multiplies them."
+        },
+        {
+          "number": 30,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Hard",
+          "passageText": "The following text is from E. Pauline Johnson's poem \"Shadow Lake.\"\n\nThe little fern-leaf, bending\nUpon the brink, its green reflection greets,\nAnd kisses soft the shadow that it meets\nWith touch so fine,\nThe border line\nThe keenest vision can't __define__;\nSo perfect is the blending.",
+          "questionText": "As used in the text, what does the word \"define\" most nearly mean?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "explain"
+            },
+            {
+              "id": "B",
+              "text": "state"
+            },
+            {
+              "id": "C",
+              "text": "detect"
+            },
+            {
+              "id": "D",
+              "text": "reduce"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "It is *vision* that cannot manage it, and the blending is so perfect that the border line cannot be made out — detected.",
+          "explanation": "The subject of the verb is \"the keenest vision,\" and the closing line explains why: \"So perfect is the blending.\" The line between leaf and reflection cannot be picked out by the eye, so \"define\" here means to make out or detect. \"Explain\" and \"state\" are verbal acts that vision cannot perform. \"Reduce\" would mean making the border line smaller, which does not fit an act of seeing."
+        },
+        {
+          "number": 31,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "*The Underdogs* is a 1915 novel by Mariano Azuela, originally written in Spanish. In the novel, the town of Juchipila is depicted as a striking sight for a group of soldiers as they view it from afar: ______",
+          "questionText": "Which quotation from a translation of *The Underdogs* most effectively illustrates the claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "\"All day long [the soldiers] rode through the canyon, up and down the steep, round hills, dirty and bald as a man's head, hill after hill in endless succession.\""
+            },
+            {
+              "id": "B",
+              "text": "\"[The soldiers] entered the streets of Juchipila as the church bells rang, loud and joyfully, with that peculiar tone that thrills every mountaineer.\""
+            },
+            {
+              "id": "C",
+              "text": "\"Juchipila rose in the distance, white, bathed in sunlight, shining in the midst of a thick forest at the foot of a proud, lofty mountain.\""
+            },
+            {
+              "id": "D",
+              "text": "\"The sierra is clad in gala colors. Over its inaccessible peaks the opalescent fog settles like a snowy veil on the forehead of a bride.\""
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Only C shows Juchipila itself seen from a distance — \"rose in the distance, white, bathed in sunlight\" — a striking view.",
+          "explanation": "The claim requires the town of Juchipila viewed from afar and described as striking. C delivers exactly that: the town rising in the distance, white and sunlit against forest and mountain. A describes the canyon and hills the soldiers ride through, with no view of the town. B places the soldiers already inside the streets, so they are no longer viewing from afar. D describes the sierra and fog rather than Juchipila."
+        }
+      ]
+    },
+    {
+      "section": "Reading and Writing",
+      "module": 2,
+      "questionCount": 21,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "The writer Maya Angelou, along with others such as Lorenzo Thomas and Gwendolyn Brooks, ______ commonly associated with the Black Arts movement, a loose-knit group of writers and artists active in the 1960s and the 1970s who were interested in exploring the Black American experience through their work.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "have been"
+            },
+            {
+              "id": "B",
+              "text": "is"
+            },
+            {
+              "id": "C",
+              "text": "are"
+            },
+            {
+              "id": "D",
+              "text": "were"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The subject is the singular \"The writer Maya Angelou\"; \"along with others…\" is a modifier that does not make it plural.",
+          "explanation": "Phrases beginning with \"along with,\" \"as well as,\" or \"in addition to\" do not join nouns into a compound subject — only \"and\" does that. So the subject remains singular \"Maya Angelou,\" and the verb must be singular: \"is.\" Choices A, C, and D are all plural forms, and D additionally shifts to the past tense even though the association still holds."
+        },
+        {
+          "number": 2,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Today, the Michelin Guide is widely known as the arbiter of fine dining, but when it was created in 1889, it was little more than a marketing gimmick; brothers Andre and Edouard Michelin sought to increase profits for their tire company by encouraging their customers to drive across France, visiting the guide's recommended hotels and restaurants along the way. Nevertheless, the guide soon grew in scope and ______ its modest French eateries were replaced with some of the most esteemed restaurants from around the world, including Ishikawa in Tokyo and Jade Dragon in Macau.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "influence"
+            },
+            {
+              "id": "B",
+              "text": "influence,"
+            },
+            {
+              "id": "C",
+              "text": "influence, and"
+            },
+            {
+              "id": "D",
+              "text": "influence and"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Two independent clauses need a comma plus a coordinating conjunction between them.",
+          "explanation": "\"The guide soon grew in scope and influence\" and \"its modest French eateries were replaced with…\" are both complete sentences. Standard English joins them with a comma followed by a coordinating conjunction, which is exactly \"influence, and.\" Choice A leaves the two clauses fused with no punctuation. Choice B produces a comma splice, since a comma alone cannot join independent clauses. Choice D supplies the conjunction but omits the required comma."
+        },
+        {
+          "number": 3,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Writer Silvia Moreno-Garcia's love of short fiction began when she read a collection of Edgar Allan Poe's stories as a child, and she would develop into a prolific short story writer herself, publishing pieces like \"Ahuizotl\" (2015) and \"Water\" (2007). Yet she's best known as novelist, in part due to her ______ *Gothic* (2020) earning a spot on the *New York Times* Best Sellers list.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "novel (Mexican"
+            },
+            {
+              "id": "B",
+              "text": "novel Mexican"
+            },
+            {
+              "id": "C",
+              "text": "novel: Mexican"
+            },
+            {
+              "id": "D",
+              "text": "novel, Mexican"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The title identifies which novel is meant, so it is a restrictive appositive and takes no punctuation.",
+          "explanation": "Moreno-Garcia has written more than one novel, so *Mexican Gothic* is essential information telling the reader which one — a restrictive appositive, which is never set off by punctuation. B alone leaves the phrase unbroken. A opens a parenthesis that is never closed. C uses a colon, which requires a complete independent clause before it. D adds a comma that would wrongly mark the title as non-essential and cut the noun off from its identifier."
+        },
+        {
+          "number": 4,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Hard",
+          "passageText": "Within Earth's biomes, there are four main types of deserts: arid, semiarid, coastal, and cold. The Great Salt Desert in western Asia is an arid ______ it is one of the largest deserts in the world, with a total area of about 77,000 km².",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "desert, for example;"
+            },
+            {
+              "id": "B",
+              "text": "desert, for example,"
+            },
+            {
+              "id": "C",
+              "text": "desert; for example,"
+            },
+            {
+              "id": "D",
+              "text": "desert, for example"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "\"For example\" belongs with the first clause, and a semicolon then separates the two independent clauses.",
+          "explanation": "The first clause offers the Great Salt Desert as an example of an arid desert, so \"for example\" attaches there, set off by a comma. What follows — \"it is one of the largest deserts in the world\" — is a second independent clause, which needs a semicolon (or a period) to separate it. A puts both pieces in the right places. B and D leave the clauses joined by only a comma or nothing, producing a splice or a fused sentence. C shifts \"for example\" into the second clause, where it makes no sense: the desert's enormous size is not an example of anything previously mentioned."
+        },
+        {
+          "number": 5,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Sociologist Alton Okinaka sits on the review board tasked with adding new sites to the Hawaii Register of Historic Places, which includes the Pufu'opae Bridge, built in 1915, and the Ma'alaea General Store, built in 1910. Okinaka doesn't make such decisions single-handedly, ______ historical designations must be approved by a group of nine other experts.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "however, all"
+            },
+            {
+              "id": "B",
+              "text": "however and all"
+            },
+            {
+              "id": "C",
+              "text": "however all"
+            },
+            {
+              "id": "D",
+              "text": "however. All"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "\"However\" is an adverb, not a conjunction, so a period is needed before the next independent clause.",
+          "explanation": "Both halves are complete sentences: \"Okinaka doesn't make such decisions single-handedly, however\" and \"All historical designations must be approved by a group of nine other experts.\" Because \"however\" cannot join clauses the way \"and\" or \"but\" can, only a period (or semicolon) works — choice D. A creates a comma splice. C runs the two clauses together with no punctuation at all. B inserts \"and\" after \"however,\" producing an ungrammatical double connector and still no comma."
+        },
+        {
+          "number": 6,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "After finding information about Harold Eugene Ford, who represented Tennessee in the United States House of Representatives, the student discovered biographical sketches of two other Black Americans who served in ______ Harold Washington of Illinois and Augustus (Gus) Freeman Hawkins of California.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Congress."
+            },
+            {
+              "id": "B",
+              "text": "Congress;"
+            },
+            {
+              "id": "C",
+              "text": "Congress"
+            },
+            {
+              "id": "D",
+              "text": "Congress,"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "A comma introduces the appositive naming the two Black Americans just referred to.",
+          "explanation": "The names \"Harold Washington of Illinois and Augustus (Gus) Freeman Hawkins of California\" rename \"two other Black Americans who served in Congress,\" so a comma is the right way to attach that appositive. Choices A and B both end the sentence, leaving the names stranded as a fragment with no verb. Choice C omits punctuation entirely, running \"Congress\" straight into \"Harold Washington\" as though it were part of the same noun phrase."
+        },
+        {
+          "number": 7,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "The Organisation for Economic Co-operation and Development (OECD) tracks comparative price list data for its thirty-eight member countries. According to this data, in July 2021, a \"basket\" of goods and services priced at 100 US dollars (USD) in the United States would have cost 62 USD in fellow OECD member ______",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "nation Chile."
+            },
+            {
+              "id": "B",
+              "text": "nation: Chile."
+            },
+            {
+              "id": "C",
+              "text": "nation, Chile."
+            },
+            {
+              "id": "D",
+              "text": "nation—Chile."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "\"Chile\" identifies which OECD member nation is meant, so the appositive is restrictive and takes no punctuation.",
+          "explanation": "The OECD has thirty-eight member nations, so naming Chile is essential to say which one produced the 62 USD figure. Restrictive appositives are written with no punctuation before them: \"fellow OECD member nation Chile.\" Choices B, C, and D all insert punctuation — a colon, a comma, and a dash — which would wrongly mark the name as extra, non-essential information."
+        },
+        {
+          "number": 8,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "\"Of Names,\" an essay by French philosopher Michel de Montaigne, explores a relatively light subject, while his essay \"Of the Punishment of Cowardice\" takes on heavier fare. No matter the essay topic, Montaigne challenges his own ideas, beliefs, and values. ______ he questions his own perspective, regardless of subject matter.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "For example,"
+            },
+            {
+              "id": "B",
+              "text": "At that time,"
+            },
+            {
+              "id": "C",
+              "text": "Indeed,"
+            },
+            {
+              "id": "D",
+              "text": "However,"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The final sentence restates the previous one with emphasis — challenging his ideas *is* questioning his perspective — which is what \"Indeed\" signals.",
+          "explanation": "The last sentence says the same thing as the one before it in different words: \"challenges his own ideas, beliefs, and values\" becomes \"questions his own perspective,\" and \"No matter the essay topic\" becomes \"regardless of subject matter.\" A transition of emphatic restatement is needed, so \"Indeed\" fits. \"For example\" would require a specific instance — a particular essay or argument — but none is given. \"However\" signals a contrast the two sentences do not have. \"At that time\" marks a point in time, and no time frame is under discussion."
+        },
+        {
+          "number": 9,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "Though Middle English was widely spoken in fourteenth-century England, the language was rarely employed in literature until poet Geoffrey Chaucer helped pioneer its literary use. ______ his manuscripts contain the first documented uses of over 2,000 English words — like the word \"exaltation\" in his 1386 poem \"The Squire's Tale\" — which led a contemporary to dub him \"the first finder of our fair language.\"",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "However,"
+            },
+            {
+              "id": "B",
+              "text": "That being said,"
+            },
+            {
+              "id": "C",
+              "text": "Besides,"
+            },
+            {
+              "id": "D",
+              "text": "Indeed,"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The 2,000 first-documented words confirm and intensify the claim that Chaucer pioneered literary Middle English.",
+          "explanation": "The first sentence credits Chaucer with pioneering the literary use of Middle English; the second backs that up emphatically with the 2,000 words first recorded in his manuscripts and a contemporary's praise. \"Indeed\" is the transition for confirming and strengthening a point. \"However\" and \"That being said\" both signal contrast, but the second sentence agrees with the first. \"Besides\" would add a separate, secondary point rather than reinforce the one just made."
+        },
+        {
+          "number": 10,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "Built at a scale of 1:110, the Eiffel Tower in Baku, Azerbaijan, is one of many replicas of the famous Eiffel Tower in Paris, France. ______ towers like the Metallic Tower of Fourviere in Lyon, France, though not exact replicas, pay homage to the Eiffel's iconic spire-like design.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "On the contrary,"
+            },
+            {
+              "id": "B",
+              "text": "Consequently,"
+            },
+            {
+              "id": "C",
+              "text": "Invariably,"
+            },
+            {
+              "id": "D",
+              "text": "Moreover,"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The second sentence adds a further category of Eiffel-inspired towers to the replicas already mentioned.",
+          "explanation": "The first sentence gives replicas of the Eiffel Tower; the second adds towers that are not exact replicas but still echo its design. That is an additional, related point, which \"Moreover\" introduces. \"On the contrary\" would contradict the first sentence, but the two agree. \"Consequently\" would make the Lyon tower a result of the Baku replica. \"Invariably\" claims something happens without exception, a stronger claim than either sentence supports."
+        },
+        {
+          "number": 11,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "The Cheruku rasamu mango variety is from the South Asian country of India. ______ in 2018, 18.8 million metric tons of mangoes were produced.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Hence,"
+            },
+            {
+              "id": "B",
+              "text": "There,"
+            },
+            {
+              "id": "C",
+              "text": "In fact,"
+            },
+            {
+              "id": "D",
+              "text": "Specifically,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"There\" points back to India, the place named in the first sentence, where the 18.8 million tons were produced.",
+          "explanation": "The second sentence gives a production figure that needs a location, and the first sentence has just supplied one: India. \"There\" makes that link explicit. \"Hence\" would present the mango tonnage as a consequence of the Cheruku rasamu variety's origin, which does not follow. \"In fact\" and \"Specifically\" both signal elaboration on the previous claim, but the tonnage is new information about India rather than a sharpening of the point about one variety."
+        },
+        {
+          "number": 12,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes:\n\n- Merle Oberon (1911–1979) was an actress born in Mumbai (then known as Bombay), India.\n- She was of Indian, Maori, and Irish heritage.\n- She was the first Indian-born actress to be nominated for an Academy Award.\n- Early in her career, she played many nameless, uncredited roles, such as her role in *Aren't We All?* (1932).\n- Later, she played many named, credited roles, such as Sue Mayberry in *Affectionately Yours* (1941).",
+          "questionText": "The student wants to begin a narrative about Merle Oberon's life. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Merle Oberon's story begins in Mumbai (then known as Bombay), India, in 1911."
+            },
+            {
+              "id": "B",
+              "text": "Merle Oberon appeared in many films, including Aren't We All? (1932) and Affectionately Yours (1941), and was the first Indian-born actress to be nominated for an Academy Award."
+            },
+            {
+              "id": "C",
+              "text": "In 1941, Merle Oberon played the role of Sue Mayberry in the film Affectionately Yours."
+            },
+            {
+              "id": "D",
+              "text": "Though she would go on to receive many films, Merle Oberon also played nameless, uncredited roles in many films such as the movie Aren't we all? (1932)."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "A narrative of a life begins at the beginning — Oberon's birth in Mumbai in 1911 — and A says so explicitly.",
+          "explanation": "The goal is to *begin* a narrative, so the sentence should open at the earliest point in Oberon's life and read like a story's first line. A does both: \"Merle Oberon's story begins in Mumbai… in 1911.\" B summarises her whole career, which is a conclusion rather than an opening. C starts in the middle, in 1941. D is muddled (\"receive many films\") and also begins mid-career, with her uncredited roles."
+        },
+        {
+          "number": 13,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Hard",
+          "passageText": "While researching a topic, a student has taken the following notes:\n\n- The Music by Black Composers (MBC) project aims to inspire aspiring music students by archiving and sharing information about the music of Black classical composers.\n- George Theophilus Walker is a Black classical music composer included in MBC's Historic Composers Directory.\n- He was born in 1922 and died in 2018.",
+          "questionText": "Which choice most effectively uses information from the given sentences to set up a discussion of Walker's career for an audience already familiar with the MBC Project?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "While George Theophilus Walker is considered a great composer included in MBC's Historic Composers Directory."
+            },
+            {
+              "id": "B",
+              "text": "Born in 1922, George Theophilus Walker passed away in 2018 according to the MBC project."
+            },
+            {
+              "id": "C",
+              "text": "Among the many talented figures included in the MBC project is classical music composer George Theophilus Walker."
+            },
+            {
+              "id": "D",
+              "text": "The MBC project's Historic Composers Directory highlights Black classical composers of the past, such as George Theophilus Walker (1922–2018), in order to inspire music students to become the classical composers of the future."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "For readers who already know the MBC project, C skips the explanation and moves straight to introducing Walker.",
+          "explanation": "The audience already knows what the MBC project is, so the sentence should not spend itself explaining the project — it should introduce Walker and open onto his career. C does exactly that, treating the project as shared knowledge and putting Walker in the spotlight. D explains the project's purpose in full, which is redundant for this audience. B leads with his birth and death dates and attributes them to MBC, setting up an obituary rather than a career discussion. A is a sentence fragment beginning with \"While.\""
+        },
+        {
+          "number": 14,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes:\n\n- Sister cities are pairs of cities that form social or legal partnerships to promote each other's cultures.\n- Previously known as \"town twinning,\" the concept of sister cities evolved in Europe after World War II as a way to repair bonds between cities.\n- Many cities in New York State maintain such partnerships with cities around the world.\n- Rhinebeck, New York, and Larreynaga, Nicaragua, became sister cities in 1989.",
+          "questionText": "The student wants to emphasize the duration of Rhinebeck and Larreynaga's sister city relationship. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Since the end of World War II, sister cities such as Rhinebeck, New York, and Larreynaga, Nicaragua, have continued to form social partnership to promote each other's cultures."
+            },
+            {
+              "id": "B",
+              "text": "As sister cities, Rhinebeck, New York, and Larreynaga, Nicaragua, have engaged in cultural exchange and partnership since 1989."
+            },
+            {
+              "id": "C",
+              "text": "Larreyna, which in 1089 became a sister city—or \"twin town\"—to Rhinebeck, New York, is located in Nicaragua."
+            },
+            {
+              "id": "D",
+              "text": "Despite their distance from each other, the sister cities of Rhinebeck, New York, and Larreyna Nicaragua have enjoyed the same partnership as many other sister cities."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"Since 1989\" states how long the relationship has lasted, which is exactly what duration means.",
+          "explanation": "To emphasise duration, the sentence must give the starting date and signal that the relationship has continued. B does both with \"have engaged… since 1989.\" A misdates the partnership to the end of World War II, which the notes attribute to the origin of the concept, not to these two cities. C gives a date but garbles it as 1089 and ends by stating where Larreynaga is, shifting the emphasis to geography. D stresses distance and similarity to other sister cities, never mentioning how long the partnership has lasted."
+        },
+        {
+          "number": 15,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "At 1,006 meters, the Forth Road Bridge in the United Kingdom is one of the longest suspension bridges in the ______ the Yavuz Sultan Selim Bridge in Turkey, at 1,408 meters, is even longer.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "world, but,"
+            },
+            {
+              "id": "B",
+              "text": "world,"
+            },
+            {
+              "id": "C",
+              "text": "world, but"
+            },
+            {
+              "id": "D",
+              "text": "world but"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Two independent clauses in contrast take a comma plus the coordinating conjunction \"but.\"",
+          "explanation": "Each half is a complete sentence, and the second contradicts the expectation set by the first, so a comma followed by \"but\" is required. C supplies exactly that. A adds a stray comma after \"but,\" separating the conjunction from the clause it introduces. B leaves only a comma, producing a comma splice. D drops the comma, which Standard English requires before a coordinating conjunction joining independent clauses."
+        },
+        {
+          "number": 16,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Easy",
+          "passageText": "Both Heinrich Böll and Camilo José Cela have been commended for ______ contributions to literature, perhaps most notably when the Swedish Academy awarded Böll the Nobel Prize in Literature in 1972 and Cela in 1989.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "it's"
+            },
+            {
+              "id": "B",
+              "text": "their"
+            },
+            {
+              "id": "C",
+              "text": "its"
+            },
+            {
+              "id": "D",
+              "text": "they're"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The possessive refers to two people — Böll and Cela — so the plural possessive \"their\" is needed.",
+          "explanation": "\"Both Heinrich Böll and Camilo José Cela\" is a plural subject, and the blank modifies \"contributions,\" so a plural possessive pronoun is required: \"their.\" \"Its\" is a singular possessive. \"It's\" and \"they're\" are contractions of \"it is\" and \"they are,\" and inserting a verb here would make the phrase ungrammatical."
+        },
+        {
+          "number": 17,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Easy",
+          "passageText": "On the other hand, Newark Liberty International Airport, which ______ located in Newark, New Jersey, saw an overall increase in departing passengers over the same time period, from 16,704,844 total passengers to 23,171,827.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "is"
+            },
+            {
+              "id": "B",
+              "text": "are"
+            },
+            {
+              "id": "C",
+              "text": "were"
+            },
+            {
+              "id": "D",
+              "text": "have been"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The relative pronoun refers to the singular \"Newark Liberty International Airport,\" and its location is a present, ongoing fact.",
+          "explanation": "\"Which\" stands for the airport, a singular noun, so the verb must be singular. The airport's location has not changed, so the present tense \"is\" is right. \"Are,\" \"were,\" and \"have been\" are all plural, and \"were\" and \"have been\" also put a permanent fact into the past."
+        },
+        {
+          "number": 18,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Easy",
+          "passageText": "Rising 11,371 feet above sea level, Mount Leuser ______ among the world's tallest mountains.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "is ranked"
+            },
+            {
+              "id": "B",
+              "text": "to rank"
+            },
+            {
+              "id": "C",
+              "text": "ranking"
+            },
+            {
+              "id": "D",
+              "text": "having ranked"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The sentence has no other main verb, so the blank must be a finite verb agreeing with the singular \"Mount Leuser.\"",
+          "explanation": "\"Rising 11,371 feet above sea level\" is a participial modifier, not a main clause, so the sentence still needs its main verb. \"Is ranked\" supplies a singular, present-tense verb. \"To rank\" is an infinitive, and \"ranking\" and \"having ranked\" are participles; none can serve as a main verb, so each leaves the sentence a fragment."
+        },
+        {
+          "number": 19,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "As an object-oriented computer programming language, Kotlin is used by coders like Black Girls Code founder Kimberly Bryant to create programs by manipulating \"objects\" (that is, specifically defined variables or combinations of variables) into interacting with each other. Conversely Pascal, ______ in software development and educational instruction, is not an object-oriented language.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "to use"
+            },
+            {
+              "id": "B",
+              "text": "used"
+            },
+            {
+              "id": "C",
+              "text": "the use"
+            },
+            {
+              "id": "D",
+              "text": "using"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The phrase between the commas modifies Pascal passively — Pascal is *used* in software development — so the past participle is required.",
+          "explanation": "The main clause is \"Pascal… is not an object-oriented language,\" and the material between the commas is a modifier describing Pascal. Pascal receives the action rather than performing it, so the past participle \"used\" is correct. \"Using\" would make Pascal the one doing the using. \"To use\" is an infinitive that cannot open a participial modifier here, and \"the use\" is a noun phrase that leaves the modifier without a verb form to attach to Pascal."
+        },
+        {
+          "number": 20,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Easy",
+          "passageText": "Fans of the film *The Princess and the Frog* (2009) likely ______ the commanding bass voice behind the character Dr. Facilier. It belongs to actor Keith David. The veteran actor has performed in everything from commercials to Broadway musicals, but he is most known for his voice acting.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "recognizes"
+            },
+            {
+              "id": "B",
+              "text": "has recognized"
+            },
+            {
+              "id": "C",
+              "text": "recognize"
+            },
+            {
+              "id": "D",
+              "text": "is recognizing"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The subject is the plural \"Fans,\" so the verb takes the plural form \"recognize.\"",
+          "explanation": "The subject is \"Fans,\" not \"the film\" — the prepositional phrase \"of the film *The Princess and the Frog*\" only modifies it. A plural subject takes \"recognize.\" \"Recognizes,\" \"has recognized,\" and \"is recognizing\" are all singular forms, so none agrees with \"Fans.\""
+        },
+        {
+          "number": 21,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Easy",
+          "passageText": "While researching a topic, a student has taken the following notes:\n\n- Blackberries are fruits that contain ascorbic acid, an essential nutrient for humans.\n- Every 100 grams (g) of blackberries contains 21 milligrams (mg) of ascorbic acid.\n- Many animals can make ascorbic acid in their bodies, but humans cannot.\n- Humans must get ascorbic acid from foods, including fruits and vegetables.\n- Ascorbic acid is also known as vitamin C.",
+          "questionText": "The student wants to specify how much vitamin C is in blackberries. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Many animals can make ascorbic acid, which is also known as vitamin C, in their bodies, but humans cannot."
+            },
+            {
+              "id": "B",
+              "text": "There is 21 mg of vitamin C in every 100 g of blackberries."
+            },
+            {
+              "id": "C",
+              "text": "Since humans cannot make vitamin C in their bodies, they must get this essential nutrient from foods like blackberries."
+            },
+            {
+              "id": "D",
+              "text": "Blackberries contain vitamin C, which humans must get from food."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Only B gives an amount — 21 mg per 100 g — which is what \"how much\" asks for.",
+          "explanation": "The goal is quantitative, so the sentence must state a measured amount of vitamin C in blackberries. B alone reports the figure from the notes. A explains which animals can synthesise ascorbic acid. C explains why humans need it from food. D says blackberries contain vitamin C but never says how much."
+        }
+      ]
+    }
+  ]
+}

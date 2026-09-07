@@ -217,8 +217,15 @@ CREATE TABLE IF NOT EXISTS practice_attempts (
 
 CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_skill ON practice_attempts(user_id, skill);
 CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_question ON practice_attempts(user_id, question_id);
-CREATE UNIQUE INDEX IF NOT EXISTS idx_practice_attempts_session_question
-  ON practice_attempts(user_id, session_id, question_id) WHERE session_id IS NOT NULL;
+-- idx_practice_attempts_session_question is created by runMigrations() in
+-- db.ts, NOT here. session_id was added to this table after some databases
+-- already existed, so on those the CREATE TABLE above is a no-op and the
+-- column arrives via "ALTER TABLE ... ADD COLUMN IF NOT EXISTS session_id".
+-- This whole file is executed as a SINGLE query, so an index over session_id
+-- here throws "column session_id does not exist" before runMigrations() can
+-- add it — leaving the column, the index, and every later migration
+-- permanently unreachable. Creating it in runMigrations() (right after the
+-- ALTER) is correct for both fresh and pre-existing databases.
 
 CREATE INDEX IF NOT EXISTS idx_questions_mock ON questions(mock_id);
 CREATE INDEX IF NOT EXISTS idx_questions_skill ON questions(skill);

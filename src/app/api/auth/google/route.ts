@@ -82,8 +82,8 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("Google sign-in failed:", err);
     return NextResponse.json(
-      { error: "Something went wrong signing you in" },
-      { status: 500 }
+      { error: "The sign-in service is temporarily unavailable. Please try again shortly." },
+      { status: 503 }
     );
   }
 }

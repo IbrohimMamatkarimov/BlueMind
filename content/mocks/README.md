@@ -36,3 +36,20 @@ the left pane and `questionText` is the question stem; paired passages use
 | `2026-march-us-a` | March 2026 US, Form A | 98 (R&W 27 + 27, Math 22 + 22) |
 | `2026-march-int-b` | March 2026 International, Form B | 98 (R&W 27 + 27, Math 22 + 22) |
 | `2026-march-us-b` | March 2026 US, Form B | 98 (R&W 27 + 27, Math 22 + 22) |
+| `2023-june-v1` | June 2023 International, Version 1 | 97 (R&W 26 + 27, Math 22 + 22) |
+| `2023-june-v2` | June 2023 International, Version 2 | 98 (R&W 27 + 27, Math 22 + 22) |
+| `2023-october-int-a` | October 2023 International, Form A | 72 (R&W 26 + 25, Math 21) |
+| `2023-october-int-b` | October 2023 International, Form B | 27 (R&W Module 1 only) |
+| `2023-march` | March 2023, Reading & Writing only | 52 (R&W 31 + 21) |
+| `2023-may` | May 2023, Reading & Writing only | 37 (R&W 23 + 14) |
+
+Not every real paper is the standard 27/22, and not every source reconstruction
+is complete. Some of the 2023 sets are Reading & Writing only, some have modules
+of other sizes, and several are missing individual questions the source never
+captured — `2023-october-int-a` has no second Math module at all, and
+`2023-october-int-b` is a single Reading & Writing module. A module that is
+deliberately a different size declares its own `questionCount`; that opts out of
+the standard 27/22 check but still pins the module to an exact number, so a
+genuine transcription slip is still caught. Where questions are missing, the
+remaining ones are renumbered 1..n. Each mock's `notes` records what is missing
+and where the transcription departs from the source answer key.

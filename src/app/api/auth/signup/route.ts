@@ -40,32 +40,39 @@ export async function POST(req: NextRequest) {
   const { name, email, password } = parsed.data;
   const normalizedEmail = email.toLowerCase();
 
-  // findUserByEmail is async, so it must be awaited.
-  const existingUser = await findUserByEmail(normalizedEmail);
+  try {
+    const existingUser = await findUserByEmail(normalizedEmail);
 
-  if (existingUser) {
+    if (existingUser) {
+      return NextResponse.json(
+        { error: "An account with this email already exists" },
+        { status: 409 }
+      );
+    }
+
+    const passwordHash = await hashPassword(password);
+
+    const userId = await createUser(
+      normalizedEmail,
+      name,
+      passwordHash
+    );
+
+    await setSessionCookie(userId);
+
+    return NextResponse.json({
+      ok: true,
+      user: {
+        id: userId,
+        name,
+        email: normalizedEmail,
+      },
+    });
+  } catch (err) {
+    console.error("Account creation failed:", err);
     return NextResponse.json(
-      { error: "An account with this email already exists" },
-      { status: 409 }
+      { error: "The sign-in service is temporarily unavailable. Please try again shortly." },
+      { status: 503 }
     );
   }
-
-  const passwordHash = await hashPassword(password);
-
-  const userId = await createUser(
-    normalizedEmail,
-    name,
-    passwordHash
-  );
-
-  await setSessionCookie(userId);
-
-  return NextResponse.json({
-    ok: true,
-    user: {
-      id: userId,
-      name,
-      email: normalizedEmail,
-    },
-  });
 }

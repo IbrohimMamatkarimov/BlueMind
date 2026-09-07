@@ -37,37 +37,43 @@ export async function POST(req: NextRequest) {
 
   const { email, password } = parsed.data;
 
-  // FIX: findUserByEmail is asynchronous, so we must await it.
-  const user = await findUserByEmail(email.toLowerCase());
+  try {
+    const user = await findUserByEmail(email.toLowerCase());
 
-  if (!user) {
+    if (!user) {
+      return NextResponse.json(
+        { error: "Incorrect email or password" },
+        { status: 401 }
+      );
+    }
+
+    const valid = await verifyPassword(
+      password,
+      user.password_hash
+    );
+
+    if (!valid) {
+      return NextResponse.json(
+        { error: "Incorrect email or password" },
+        { status: 401 }
+      );
+    }
+
+    await setSessionCookie(user.id);
+
+    return NextResponse.json({
+      ok: true,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (err) {
+    console.error("Email sign-in failed:", err);
     return NextResponse.json(
-      { error: "Incorrect email or password" },
-      { status: 401 }
+      { error: "The sign-in service is temporarily unavailable. Please try again shortly." },
+      { status: 503 }
     );
   }
-
-  const valid = await verifyPassword(
-    password,
-    user.password_hash
-  );
-
-  if (!valid) {
-    return NextResponse.json(
-      { error: "Incorrect email or password" },
-      { status: 401 }
-    );
-  }
-
-  await setSessionCookie(user.id);
-
-  return NextResponse.json({
-    ok: true,
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    },
-  });
 }
-

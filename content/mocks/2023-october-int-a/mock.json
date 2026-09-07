@@ -1,0 +1,2089 @@
+{
+ "$schema": "../mock.schema.json",
+ "mock": {
+  "title": "October 2023",
+  "subtitle": "International Form A",
+  "groupLabel": "2023",
+  "month": "October",
+  "year": 2023,
+  "source": "October 2023 International (Form A)",
+  "notes": "Transcribed from the \"2023 Oct Int-A\" reproduction of the October 7, 2023 international digital SAT. The source paper is incomplete: Section 2 Module 2 (the second Math module) is absent entirely, and four individual items are printed as MISSING with no answer in the paper's key — Reading & Writing Module 1 question 2, Reading & Writing Module 2 questions 14 and 15, and Math Module 1 question 21 (whose stem references a constant that never appears in the given function). Those items are omitted and the remaining questions renumbered, so the modules hold 26, 25 and 21 questions instead of 27, 27 and 22. One deliberate deviation from the paper's key: in Math Module 1 the ratio question (question 20 here and in the source) is keyed C, but for the stem as printed — x : y = 7 : 9 with x = 10t — the answer is y = (90/7)t, choice D, which is what this set uses. Figures are cropped from the source PDF; rationales and explanations were written for BlueMind."
+ },
+ "modules": [
+  {
+   "section": "Reading and Writing",
+   "module": 1,
+   "questionCount": 26,
+   "questions": [
+    {
+     "number": 1,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Easy",
+     "passageText": "The following text is adapted from Kenneth Grahame's 1908 novel *The Wind in the Willows*. The Mole is dazed after briefly meeting a stranger while traveling with a friend.\n\n[The] Mole stood still a moment, held in thought. As one wakened __underline__suddenly__underline__ from a beautiful dream, who struggles to recall it, and can re-capture nothing but a dim sense of the beauty of it, the beauty! Till that, too, fades away in its turn.",
+     "questionText": "As used in the text, what does the word \"suddenly\" most nearly mean?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Abruptly"
+      },
+      {
+       "id": "B",
+       "text": "Repeatedly"
+      },
+      {
+       "id": "C",
+       "text": "Voluntarily"
+      },
+      {
+       "id": "D",
+       "text": "Tenderly"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Being wakened \"suddenly\" from a dream means being pulled out of it all at once — abruptly.",
+     "explanation": "The comparison describes a sleeper jolted out of a dream so quickly that only \"a dim sense of the beauty\" survives, which matches the Mole's dazed state. \"Abruptly\" captures that instantaneous quality. \"Repeatedly\" would describe waking many times, but only one waking is described. \"Voluntarily\" would mean the sleeper chose to wake, contradicting the involuntary loss of the dream. \"Tenderly\" describes a gentle manner, the opposite of the jarring waking the passage evokes.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 2,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "From sculptures like *Miró's Chicago* by Joan Miró, found at Brunswick Plaza, to street art like Justus Roe's mural *South Shore* on South Exchange Avenue, Chicago offers an array of works to ______ the tastes of art lovers.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "supplant"
+      },
+      {
+       "id": "B",
+       "text": "mitigate"
+      },
+      {
+       "id": "C",
+       "text": "venerate"
+      },
+      {
+       "id": "D",
+       "text": "satiate"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The city's \"array of works\" is presented as abundant enough to satisfy — satiate — what art lovers want.",
+     "explanation": "The sentence lists works ranging from monumental sculpture to street murals to show that Chicago's art has something for everyone, so the blank must mean fully satisfying those tastes. \"Satiate\" does. \"Supplant\" would mean the works replace art lovers' tastes, and \"mitigate\" would mean they lessen them; both treat taste as a problem to be removed rather than met. \"Venerate\" means to revere, but artworks do not revere the tastes of their viewers.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 3,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "Writer Lydia Davis observed that while traditional literary forms, such as the novel, are recognizable as such even as they evolve, there are rarer \"intergeneric\" forms that might, for example, use elements of both fiction and essays to create something ______. The late-period pieces of James Tate arguably fit this description, since they straddle the line between prose and poetry.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "orthodox"
+      },
+      {
+       "id": "B",
+       "text": "unequivocal"
+      },
+      {
+       "id": "C",
+       "text": "recurrent"
+      },
+      {
+       "id": "D",
+       "text": "unclassifiable"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Traditional forms are \"recognizable as such,\" while intergeneric works straddle categories — so what they create resists classification.",
+     "explanation": "The sentence contrasts forms you can identify at a glance with rarer works that mix genres, and the Tate example \"straddle[s] the line between prose and poetry.\" The blank therefore needs a word meaning impossible to sort into a category: \"unclassifiable.\" \"Orthodox\" describes the conventional forms on the other side of the contrast. \"Unequivocal\" means unambiguous, which is the opposite of straddling a line. \"Recurrent\" describes frequency, but the text calls these forms rare.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 4,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "Alfred Nobel intended for the Nobel Prize to be an award honoring those who have contributed \"the greatest benefit to mankind.\" Indeed, the work of Richard Laurence Millington Synge represented a significant ______ the field of chemistry. and in 1952 he was among those awarded the Nobel Prize in Chemistry for \"their invention of partition chromatography.\"",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "exposure to"
+      },
+      {
+       "id": "B",
+       "text": "advancement in"
+      },
+      {
+       "id": "C",
+       "text": "dependence on"
+      },
+      {
+       "id": "D",
+       "text": "controversy in"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Synge's Nobel-winning invention benefited chemistry, so his work represented a significant advancement in the field.",
+     "explanation": "The first sentence frames the prize as honoring great benefit to humankind, and Synge won it for inventing partition chromatography — a contribution that moved chemistry forward. \"Advancement in\" fits. \"Exposure to\" and \"dependence on\" describe relationships to a field rather than contributions to it. \"Controversy in\" would suggest dispute, which the passage's admiring tone and the award itself contradict.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 5,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Medium",
+     "passageText": "The following text is adapted from Adib Khorram's 2018 novel *Darius the Great Is Not Okay*. Darius, a teenager from the United States, is visiting his grandparents, Babou and Mamou, in Iran. They are preparing for a holiday celebration.\n\nI felt like a tourist.\n\nBut Babou fussed with my cap a little more, even though Mamou had already gotten it settled. He looked me in the eye from time to time, like he was looking for something, and thought maybe—just maybe—I had it in me after all.\n\nBabou hummed to himself as he smoothed out my shoulder seams and rested his hands on them.\n\n\"I am glad you are here to see this, Darioush-jan.\"\n\nMaybe I wasn't such a tourist.",
+     "questionText": "Which choice best states the main purpose of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "To emphasize that Darius has been looking forward to an event"
+      },
+      {
+       "id": "B",
+       "text": "To demonstrate that Darius and Babou would prefer not to travel"
+      },
+      {
+       "id": "C",
+       "text": "To show that Babou affects the way Darius thinks of himself"
+      },
+      {
+       "id": "D",
+       "text": "To suggest that Babou and Mamou will visit Darius in the United States soon"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The passage opens with \"I felt like a tourist\" and closes with \"Maybe I wasn't such a tourist\" — a change produced entirely by Babou's attention.",
+     "explanation": "The text is bracketed by two statements about how Darius sees himself, and everything between them describes Babou's care: fussing with the cap, meeting his eye, smoothing his seams, and welcoming him by name. That sequence is what shifts Darius's self-image, which is choice C. Choice A is wrong because Darius's feelings about the celebration itself are never described. Choice B misreads the passage; no one expresses a preference about travel. Choice D imagines a future visit the text never mentions.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 6,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Medium",
+     "passageText": "The following text is from Lady Gregory's 1904 play *Spreading the News*. Mrs. Tarpey, Bartley, and Mrs. Fallon have been buying and selling goods at the local fair.\n\nMRS. TARPEY: Good morrow, Bartley Fallon; good morrow, Mrs. Fallon. Well, Bartley, you'll find no cause for complaining to-day; they are all saying it was a good fair.\n\nBARTLEY: (*Raising his voice.*) It was not a good fair. Mrs. Tarpey. It was a scattered sort of a fair. If we didn't expect more, we got less. That's the way with me always; whatever I have to sell goes down and whatever I have to buy goes up. If there's ever any misfortune coming to this world, it's on myself it pitches, __underline__like a flock of crows on seed potatoes.__underline__",
+     "questionText": "Which choice best describes the function of the underlined portion in the text as a whole?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "It presents a vivid image to emphasize a claim that Bartley makes."
+      },
+      {
+       "id": "B",
+       "text": "It describes an event that Bartley observed at the fair."
+      },
+      {
+       "id": "C",
+       "text": "It expresses doubt about the truth of a claim that Bartley made."
+      },
+      {
+       "id": "D",
+       "text": "It indicates the degree to which Mrs. Tarpey doubts a certain event will occur."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The simile of crows descending on seed potatoes is a striking image that dramatizes Bartley's claim that every misfortune lands on him.",
+     "explanation": "Bartley has just asserted that any misfortune in the world \"pitches\" on him, and the underlined simile pictures that happening the way a flock of crows swarms a field — an image that drives the complaint home, as choice A says. Choice B is wrong because the crows are a comparison, not something Bartley saw at the fair. Choice C is wrong because the phrase is Bartley's own and reinforces rather than questions his claim. Choice D attributes the words to Mrs. Tarpey, who is not speaking here.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 7,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Medium",
+     "passageText": "The 2017 novella *Mapping the Interior* confirmed that Stephen Graham Jones is one of the most talented writers of horror fiction today. __underline__By featuring main characters who are Blackfeet, like Jones himself, the novella also helped to ensure that Indigenous people have a place within the horror genre.__underline__ But Jones is hardly the only Indigenous voice in horror: Métis author Cherie Dimaline has also written in the genre. Her acclaimed 2019 novel *Empire of Wild* is set in a Métis community in southern Canada.",
+     "questionText": "Which choice best describes the function of the underlined sentence?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "It challenges the widely held view that Stephen Graham Jones based *Mapping the Interior* on events in his own life."
+      },
+      {
+       "id": "B",
+       "text": "It asks why so many readers who don't enjoy the horror genre have purchased *Mapping the Interior*."
+      },
+      {
+       "id": "C",
+       "text": "It highlights the significance of the portrayal of Indigenous people in *Mapping the Interior*."
+      },
+      {
+       "id": "D",
+       "text": "It predicts that non-Indigenous authors will include more Indigenous characters in their work."
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The sentence explains what the novella's Blackfeet main characters accomplished: securing a place for Indigenous people within horror.",
+     "explanation": "The first sentence praises Jones's talent; the underlined sentence adds a second kind of importance, tied specifically to how the novella portrays Indigenous characters. That is what choice C describes. Choice A is wrong because the sentence notes a similarity between Jones and his characters without disputing any view about autobiography. Choice B is wrong because the sentence asks nothing and never mentions readers or sales. Choice D concerns non-Indigenous authors, whereas the sentence and the rest of the text are about Indigenous writers.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 8,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Easy",
+     "passageText": "The following text is from Frances E. W. Harper's 1892 novel *Iola Leroy*. The text describes Robert Johnson, who has recently joined the US Army.\n\nHe was daring, without being rash: prompt, but not thoughtless; firm, without being harsh. Kind and devoted to the company he drilled, he soon won the respect of his superior officers and the love of his comrades.",
+     "questionText": "Which choice best states the main idea of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Robert has put great effort into getting the attention of his superior officers."
+      },
+      {
+       "id": "B",
+       "text": "Robert is well suited to his role in the military."
+      },
+      {
+       "id": "C",
+       "text": "Robert is content with his life despite having made some mistakes."
+      },
+      {
+       "id": "D",
+       "text": "Robert does whatever his comrades need done even if his superiors don't order him to do so."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Every detail lists a quality that fits a soldier — daring but not rash, prompt, firm, devoted — and the result is respect from officers and love from comrades.",
+     "explanation": "The passage is a catalog of balanced virtues, each stated as a strength without its matching flaw, and it closes with the effect those qualities have on everyone around him. Together they add up to a portrait of a man well matched to military life, which is choice B. Choice A misstates his aim: the respect he wins is a consequence of his character, not a goal he pursued. Choice C introduces mistakes and contentment, neither of which appears. Choice D describes insubordinate initiative, but the text says only that he was kind and devoted to the company he drilled.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 9,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Medium",
+     "passageText": "Researchers César A. Hidalgo, Elisa Castañer, and Andres Sevtsuk created a computer model to predict the mix of gyms, beauty salons, and other businesses found in a given neighborhood. How we define a neighborhood and its boundaries is subjective, so the team used a clustering algorithm to locate dense groupings of amenities that represent human-identified neighborhoods like Boston's Central Square. The predictive model, which incorporates this algorithm, is sure to be invaluable in determining the optimal mix of a city's amenities.",
+     "questionText": "According to the text, why did the team employ a clustering algorithm?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The algorithm provided insight into how customers are made aware of new gyms and beauty salons."
+      },
+      {
+       "id": "B",
+       "text": "The algorithm gave them an objective way to identify neighborhoods."
+      },
+      {
+       "id": "C",
+       "text": "The algorithm could be used to evaluate the reasons for a business's closing."
+      },
+      {
+       "id": "D",
+       "text": "The algorithm could predict which types of businesses would be successful in a given neighborhood."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The text says defining a neighborhood \"is subjective, so the team used a clustering algorithm\" to locate dense groupings — supplying an objective method.",
+     "explanation": "The word \"so\" links the problem to the solution: because human definitions of neighborhoods are subjective, the researchers turned to an algorithm that finds neighborhoods from the density of amenities. Choice B names that motive. Choice A concerns customer awareness and advertising, which the text never raises. Choice C is about business closures, again absent. Choice D describes what the overall predictive model does, not the reason the clustering step was added.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 10,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Easy",
+     "passageText": "A student is writing an essay about four pyramids for a history class and wants to note how long ago each pyramid was built and how tall each pyramid is. Consulting the table, the student finds that the Pyramid of Djoser was built 4,600 to 4,700 years ago and is ______",
+     "questionText": "Which choice most effectively uses data from the table to complete the text?",
+     "image": "m1q11_pyramids.png",
+     "choices": [
+      {
+       "id": "A",
+       "text": "60 meters tall."
+      },
+      {
+       "id": "B",
+       "text": "47 meters tall."
+      },
+      {
+       "id": "C",
+       "text": "33 meters tall."
+      },
+      {
+       "id": "D",
+       "text": "40 meters tall."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The table lists the Pyramid of Djoser at 60 meters.",
+     "explanation": "The sentence has already fixed the pyramid — the Pyramid of Djoser, aged 4,600 to 4,700 years — so the only task is to read its height from the table: 60 meters. Choice B gives the height of the Pyramid of Sahure, choice C that of The Great Pyramid in Mexico, and choice D that of El Castillo.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 11,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Medium",
+     "passageText": "In a paper for an art history class, a student claims that Gwen John's circa 1915 painting *Mère Poussepin* marks a significant change in John's artistic development.",
+     "questionText": "Which quotation from an art history textbook would most effectively support the student's claim?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "\"*Mère Poussepin* has been analyzed extensively since it was first exhibited, as no two viewers seem to agree about exactly what the painting means.\""
+      },
+      {
+       "id": "B",
+       "text": "\"Of all John's paintings, none so clearly represents her abilities and ideas as *Mère Poussepin*.\""
+      },
+      {
+       "id": "C",
+       "text": "\"The paintings that John produced before *Mère Poussepin* can be thought of as belonging to her earlier style, to which she never returned.\""
+      },
+      {
+       "id": "D",
+       "text": "\"Although John was clearly influenced by other artists of her time, she was also an artist ahead of her time, as *Mère Poussepin* demonstrates.\""
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Choice C places *Mère Poussepin* at the boundary between an earlier style and everything after it — exactly the significant change the student claims.",
+     "explanation": "To support a claim about a turning point, the quotation must show that John's work was one way before the painting and different afterward. Choice C does: her pre-*Mère Poussepin* work forms an \"earlier style, to which she never returned.\" Choice A describes disagreement about the painting's meaning, which says nothing about her development. Choice B calls the painting her most representative work, implying continuity rather than change. Choice D contrasts John with other artists of her era, not with her own earlier self.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 12,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Hard",
+     "passageText": "*Drosophila* (fruit flies) have generation times of 10-12 days, so seasonal changes in humidity and other environmental conditions can drive seasonal fluctuations in chromosome rearrangements in species such as *D. persimilis* and *D. subobscura*. *Drosophila* body size (for which wing centroid size serves as a proxy measure) correlates with life span. Banu Sebnem Önder and Cansu Fidan Aksoy measured the wing sizes of members of a *D. melanogaster* population in Yesilöz, Turkey, that were collected monthly between May and October over three years. Their research suggests that *Drosophila* collected in relatively warmer months should tend to have a longer life span, as is illustrated by the finding that ______",
+     "questionText": "Which choice most effectively uses data from the table to complete the assertion?",
+     "image": "m1q13_fruit_flies.png",
+     "choices": [
+      {
+       "id": "A",
+       "text": "the average female wing centroid size was consistently larger than the average male wing centroid size in all four months in the table."
+      },
+      {
+       "id": "B",
+       "text": "the average male wing centroid size was larger in July than in October."
+      },
+      {
+       "id": "C",
+       "text": "the average female wing centroid size was 2.02 mm in July but was 2.27 mm in September."
+      },
+      {
+       "id": "D",
+       "text": "the average monthly low temperature was higher in September than in May."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "July is the warmest month in the table and October the coolest, and the male wing centroid size is larger in July (2.02 mm) than in October (1.98 mm) — bigger flies in the warmer month.",
+     "explanation": "The chain of reasoning is warmer month → larger body size → longer life span, and wing centroid size is the stated proxy for body size. So the supporting data must compare wing size between a warmer and a cooler month. Choice B does exactly that, using the highest average temperatures (87°F/62°F in July) against the lowest (67°F/44°F in October). Choice A compares the sexes rather than the months, which says nothing about temperature. Choice C misreads the table: 2.02 mm is the *male* July value, not the female one. Choice D reports temperatures only and never mentions wing size, so it cannot illustrate a link to life span.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 13,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Medium",
+     "passageText": "Over 600 languages are spoken in New York City in addition to English—one can find Acehnese spoken in the neighborhood of Astoria, or Ilocano in Woodside. Most speakers of Chinese languages reside in the neighborhood of Flushing (part of New York City's borough of Queens), where the dominant Chinese language is Mandarin, and in Chinatown, in the borough of Manhattan, where the dominant Chinese languages are Cantonese and Fuzhounese. Mandarin is widely spoken in north China, while Cantonese and Fuzhounese are widely spoken in south China. It can therefore be inferred that ______",
+     "questionText": "Which choice most logically completes the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "people who emigrate from north China tend to settle in Flushing, while people who emigrate from south China tend to settle in Chinatown."
+      },
+      {
+       "id": "B",
+       "text": "Chinese immigrants regularly change their residences between Queens and Manhattan after they emigrate, rather than staying in one borough."
+      },
+      {
+       "id": "C",
+       "text": "Chinese immigrants who emigrated to New York City many years ago are more likely to speak several Chinese languages than are more recent Chinese immigrants."
+      },
+      {
+       "id": "D",
+       "text": "taken together, there are more Cantonese and Fuzhounese speakers among Chinese immigrants in New York than there are Mandarin speakers."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Flushing is dominated by Mandarin, spoken in north China, and Chinatown by Cantonese and Fuzhounese, spoken in south China — so speakers appear to settle by region of origin.",
+     "explanation": "The passage pairs each neighborhood with a dominant Chinese language and then pairs each of those languages with a region of China. Putting the two pairings together yields choice A. Choice B contradicts the picture of settled, language-defined neighborhoods. Choice C introduces a comparison between older and newer immigrants that the text gives no basis for. Choice D would require population figures, and the text supplies none — only which language dominates in each neighborhood.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 14,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Hard",
+     "passageText": "The Bronze Age in Britain lasted from around 2500 BCE to approximately 700 BCE. Collections of metal items (called hoards) from all periods of the Bronze Age have been found in Britain, including the Llanarmon-yn-Iâl hoard of artifacts from the 16th century BCE, unearthed around 1982, and the much later Horsehope Craig hoard of artifacts from the 7th century BCE, unearthed around 1865. Sometime in the Middle Bronze Age (approximately from the 14th century BCE to the 10th century BCE), metalsmiths in Britain began to develop swords for the first time. This fact helps explain why, whereas evidence of sword production was found in ______",
+     "questionText": "Which choice most logically completes the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "both the Llanarmon-yn-Iâl hoard and the Horsehope Craig hoard, only the latter included evidence of more refined sword production."
+      },
+      {
+       "id": "B",
+       "text": "hoards discovered before 1865, no such evidence was found in hoards that were discovered later."
+      },
+      {
+       "id": "C",
+       "text": "the Llanarmon-yn-Iâl hoard, no intact swords were found among the items in the hoard."
+      },
+      {
+       "id": "D",
+       "text": "the Horsehope Craig hoard, no such evidence was found in the Llanarmon-yn-Iâl hoard."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Swords first appear in the Middle Bronze Age (14th–10th century BCE), so the 7th-century Horsehope Craig hoard could contain sword evidence while the 16th-century Llanarmon-yn-Iâl hoard predates swords entirely.",
+     "explanation": "The completion must be explained by *when* swords were invented. The Llanarmon-yn-Iâl artifacts date to the 16th century BCE, two centuries before metalsmiths began making swords, while the Horsehope Craig artifacts date to the 7th century BCE, long after — so only the later hoard could show sword production, as choice D says. Choice A requires both hoards to contain sword evidence, which the invention date rules out for the earlier one. Choice B sorts hoards by when archaeologists dug them up rather than when the artifacts were made, and the dates run the wrong way besides. Choice C is about intact swords versus production evidence, a distinction the invention date does nothing to explain.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 15,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "Home to roughly 710,000 people, ______",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "the city of Riga contains an impressive 35 percent of Latvia's total population."
+      },
+      {
+       "id": "B",
+       "text": "contained within the city of Riga is an impressive 35 percent of Latvia's total population."
+      },
+      {
+       "id": "C",
+       "text": "of Latvia's total population, an impressive 35 percent is contained in the city of Riga."
+      },
+      {
+       "id": "D",
+       "text": "an impressive 35 percent of Latvia's total population is contained within the city of Riga."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The opening modifier \"Home to roughly 710,000 people\" must describe whatever noun follows it, and only choice A puts \"the city of Riga\" in that position.",
+     "explanation": "A sentence that begins with a descriptive phrase must place the thing being described immediately after the comma. Riga is the place that is home to 710,000 people, so \"the city of Riga\" has to be the subject — choice A. Choices B, C, and D all put a percentage or a prepositional phrase there, which would absurdly claim that a percentage, rather than a city, is home to 710,000 people.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 16,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "The size of bird eggs varies widely across species, and the researchers, ______ computer imaging to compare the lengths of eggs from species like *Buteo albicaudatus* and *Treron vernans*, aimed to shed light on the evolutionary basis for such variation.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "to use"
+      },
+      {
+       "id": "B",
+       "text": "using"
+      },
+      {
+       "id": "C",
+       "text": "used"
+      },
+      {
+       "id": "D",
+       "text": "use"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The commas set off a nonessential phrase describing the researchers, so the blank needs the participle \"using,\" leaving \"aimed\" as the main verb.",
+     "explanation": "The clause already has its subject (\"the researchers\") and its verb (\"aimed\"); the material between the commas is a modifying phrase. \"Using computer imaging to compare the lengths of eggs\" fills that role. Choices C and D supply finite verbs, which would leave the sentence with two competing predicates and no punctuation to join them. Choice A's infinitive would say the researchers existed in order to use imaging, breaking the connection to \"aimed.\"",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 17,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "Featuring works by the photographers Liselotte Grschebina and Else \"Yva\" Neuländer-Simon, the 2021 exhibition *The New Woman Behind the Camera* set out to provide a wide-ranging overview of photography by women in the 1920s through the ______ given the collection's breadth of more than 120 photos, its efforts were largely successful.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "1950s, and"
+      },
+      {
+       "id": "B",
+       "text": "1950s"
+      },
+      {
+       "id": "C",
+       "text": "1950s,"
+      },
+      {
+       "id": "D",
+       "text": "1950s and"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Two independent clauses must be joined by a comma plus a coordinating conjunction, so \"1950s, and\" is required.",
+     "explanation": "Everything up to \"1950s\" is a complete sentence, and \"given the collection's breadth of more than 120 photos, its efforts were largely successful\" is another. Joining them takes both the comma and \"and,\" as in choice A. Choice C leaves only a comma, producing a comma splice. Choice B provides no joining punctuation at all, and choice D supplies the conjunction without the comma that a compound sentence of this length requires.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 18,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "In their 2019 study of butterfly diversity at Rupa Lake in Nepal, researcher Bandana Subedi and her colleagues counted 1,535 butterflies from 138 different species, including one specimen of the ______ *Doleschallia bisaltide*, a very rare butterfly known among lepidopterists as the autumn leaf.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "species"
+      },
+      {
+       "id": "B",
+       "text": "species;"
+      },
+      {
+       "id": "C",
+       "text": "species:"
+      },
+      {
+       "id": "D",
+       "text": "species,"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "\"*Doleschallia bisaltide*\" specifies which species is meant, so it is essential and takes no punctuation before it.",
+     "explanation": "\"The species\" on its own does not identify anything; the scientific name is what pins it down, making the name restrictive and unpunctuated. Choice D's comma would wrongly signal that the name is an aside that could be dropped. Choices B and C use a semicolon and a colon, both of which require a complete clause before them and, in the semicolon's case, after them as well — neither condition holds inside this phrase.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 19,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "Sei Shōnagon composed many ______ \"Things That Have Lost Their Power,\" which appears in her tenth-century account of Japanese courtly life, *Pillow Book*, she bemoans boats run aground, toppled trees, and defeated wrestlers.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "lists;"
+      },
+      {
+       "id": "B",
+       "text": "lists in"
+      },
+      {
+       "id": "C",
+       "text": "lists. In"
+      },
+      {
+       "id": "D",
+       "text": "lists:"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The second half needs the preposition \"In\" to introduce \"Things That Have Lost Their Power,\" and a period must close the first independent clause.",
+     "explanation": "\"Sei Shōnagon composed many lists\" is complete on its own, and what follows — \"In 'Things That Have Lost Their Power' … she bemoans …\" — is a second complete sentence that requires \"In\" to attach the title to the clause. Only choice C supplies both the sentence break and the preposition. Choices A and D punctuate correctly for a boundary but omit \"In,\" leaving the title dangling with no grammatical role. Choice B supplies \"in\" but no punctuation, running the two clauses together.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 20,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Easy",
+     "passageText": "When ______ debuted in January 1983 as part of the exhibit *Women of Clay*, the artworks brought vibrant visual texture to the bustling terminals of San Francisco International Airport.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "they"
+      },
+      {
+       "id": "B",
+       "text": "that"
+      },
+      {
+       "id": "C",
+       "text": "it"
+      },
+      {
+       "id": "D",
+       "text": "this"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The pronoun stands for \"the artworks,\" which is plural, so the plural subject pronoun \"they\" is required.",
+     "explanation": "The main clause names what debuted: \"the artworks.\" A pronoun referring forward to that plural noun must itself be plural and must serve as the subject of \"debuted.\" Choices C and D are singular and would mismatch the antecedent. Choice B, \"that,\" is singular as a demonstrative and cannot introduce the subordinate clause here in any case, since \"When\" already does.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 21,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Medium",
+     "passageText": "One might assume that Germany's Amrumbank West offshore wind farm produces the same amount of energy as land-based wind farms of a similar size. ______ because wind speeds over open water are generally higher than those over land, Amrumbank West's turbines turn faster and produce more energy than do most land farms' turbines.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Actually,"
+      },
+      {
+       "id": "B",
+       "text": "For example,"
+      },
+      {
+       "id": "C",
+       "text": "Therefore,"
+      },
+      {
+       "id": "D",
+       "text": "Finally,"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The second sentence corrects the assumption stated in the first, and \"Actually\" is the transition that introduces such a correction.",
+     "explanation": "The first sentence sets up something \"one might assume,\" and the second reveals that the truth is different: the offshore turbines produce *more* energy. \"Actually\" signals that reversal. \"Therefore\" would make the second sentence a consequence of the assumption, when it contradicts it. \"For example\" would offer an instance of the assumption holding, and \"Finally\" would mark the last item in a sequence that the text never begins.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 22,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Medium",
+     "passageText": "Those who looked up at the right time on July 9, 1926, would have witnessed an annular solar eclipse, during which the Moon blocks most of the Sun and causes it to look like a ring of light. ______ stargazers on December 24, 1927, would have seen a partial solar eclipse, during which the Moon only blocks a portion of the Sun and causes it to look like a crescent.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "As a result,"
+      },
+      {
+       "id": "B",
+       "text": "On the other hand,"
+      },
+      {
+       "id": "C",
+       "text": "Simultaneously,"
+      },
+      {
+       "id": "D",
+       "text": "Indeed,"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The two sentences set one kind of eclipse against another — a ring of light versus a crescent — so a contrasting transition is needed.",
+     "explanation": "Each sentence describes a different eclipse type on a different date, with different appearances, so the relationship is contrast. \"On the other hand\" marks it. \"As a result\" would make the 1927 eclipse a consequence of the 1926 one. \"Simultaneously\" would place both events at the same moment, contradicting the dates a year and a half apart. \"Indeed\" would present the second sentence as confirming the first, but it describes a different phenomenon.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 23,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Medium",
+     "passageText": "For several centuries after the birth of opera in sixteenth-century Florence, Italian remained the default language in which most opera scores were written. ______ opera singers today, such as the mezzo-soprano J'Nai Bridges, encounter a wide range of Italian terms—from *con amore* (with love) to *moderato* (at a moderate tempo)—when following many eighteenth-century opera scores.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Consequently,"
+      },
+      {
+       "id": "B",
+       "text": "However,"
+      },
+      {
+       "id": "C",
+       "text": "Lastly,"
+      },
+      {
+       "id": "D",
+       "text": "Granted,"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Because scores were written in Italian for centuries, today's singers meet Italian terms in eighteenth-century scores — a straightforward cause and effect.",
+     "explanation": "The first sentence gives the cause (Italian was the default language of opera scores) and the second its present-day effect (singers still encounter Italian terms). \"Consequently\" marks that. \"However\" and \"Granted\" both signal a contrast or a concession, but the second sentence follows naturally from the first. \"Lastly\" would end a list, and no list is under way.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 24,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• Silent films can be valuable historical documents of their time.\n• Ninety percent of silent films made before 1930 are now lost.\n• A film is considered lost when no remaining copies are known to exist.\n• Director Oscar Micheaux's 1922 silent film *The Dungeon* is lost.\n• Director Jay Marchant's 1925 silent film *The Fighting Ranger* is lost.\n• Archives such as the Pacific Film Archive in Berkeley, California, help preserve some of the remaining films from the 1920s.",
+     "questionText": "Which choice most effectively uses information from the given sentences to emphasize a similarity between the two movies?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "*The Dungeon* (1922) was directed by Oscar Micheaux, and *The Fighting Ranger* (1925) was made by Jay Marchant."
+      },
+      {
+       "id": "B",
+       "text": "Archives such as the Pacific Film Archive in Berkeley, California, play an integral part in preserving some of the surviving silent films from the 1920s."
+      },
+      {
+       "id": "C",
+       "text": "Jay Marchant's 1925 film *The Fighting Ranger* is now considered lost, meaning no copies are known to exist."
+      },
+      {
+       "id": "D",
+       "text": "*The Dungeon* (1922) and *The Fighting Ranger* (1925) would be valuable historical documents of the era, but sadly both silent films are lost."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Only choice D names both films and states what they have in common: both are valuable silent-era documents, and both are lost.",
+     "explanation": "Emphasizing a similarity requires a sentence that covers both films with a shared description, and \"both silent films are lost\" does exactly that. Choice A names both films but pairs each with a different director, stressing what distinguishes them. Choice B is about archives rather than about either film. Choice C describes only *The Fighting Ranger*, leaving nothing to compare it with.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 25,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• The Botswana Federation of Trade Unions (BFTU) is a national union federation for the African nation of Botswana.\n• It helps improve conditions for workers in that nation.\n• ITUC-Africa is a regional union federation that represents national union federations across Africa.\n• It represents the BFTU.",
+     "questionText": "Which choice most effectively uses information from the given sentences to explain the relationship between ITUC-Africa and the BFTU?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "ITUC-Africa is a regional union federation."
+      },
+      {
+       "id": "B",
+       "text": "The BFTU is one of the national union federations represented by ITUC-Africa."
+      },
+      {
+       "id": "C",
+       "text": "National union federations, such as the BFTU, work to improve conditions for workers in their member nations."
+      },
+      {
+       "id": "D",
+       "text": "The BFTU is a national union federation."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Only choice B links the two organizations, stating that ITUC-Africa represents the BFTU as one of its national federations.",
+     "explanation": "Explaining a relationship requires naming both parties and how they are connected. Choice B does: the BFTU is among the national federations that the regional ITUC-Africa represents. Choices A and D each describe just one organization, so no relationship emerges. Choice C mentions the BFTU but connects it to workers rather than to ITUC-Africa.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 26,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• The United States has designated more than 500 areas National Wildlife Refuges (NWRs).\n• Some NWRs were established specifically to protect endangered species.\n• The James River NWR is a 4,147-acre area in Virginia, on the Atlantic coast.\n• It was established to protect the endangered bald eagle.\n• The Hopper Mountain NWR is a 2,471-acre area in California, on the Pacific coast.\n• It was established to protect the endangered California condor.",
+     "questionText": "The student wants to contrast the two NWRs. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "While the James River NWR is in Virginia, on the Atlantic coast, the Hopper Mountain NWR is in California, on the Pacific coast."
+      },
+      {
+       "id": "B",
+       "text": "The US has designated more than 500 areas NWRs, including the James River NWR in Virginia."
+      },
+      {
+       "id": "C",
+       "text": "Both the James River NWR and the Hopper Mountain NWR were established to protect endangered species."
+      },
+      {
+       "id": "D",
+       "text": "Some NWRs were established specifically to protect endangered species such as the California condor."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Only choice A sets the two refuges against each other, using \"While\" to mark opposite coasts and different states.",
+     "explanation": "A contrast needs both refuges and a point on which they differ. Choice A supplies both locations and signals the opposition with \"While.\" Choice C names both but emphasizes what they share, which is the opposite goal. Choice B mentions only the James River NWR, in the context of the national total. Choice D refers to the California condor without naming either refuge.",
+     "questionType": "multiple_choice"
+    }
+   ]
+  },
+  {
+   "section": "Reading and Writing",
+   "module": 2,
+   "questionCount": 25,
+   "questions": [
+    {
+     "number": 1,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Easy",
+     "passageText": "British painter Peter Edwards has a ______ painting portraits of notable figures from a variety of different fields. These characteristic works include his esteemed portraits of poet Seamus Heaney and casting director Ruth Lambert.",
+     "questionText": "Which choice completes the text with most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "reputation for"
+      },
+      {
+       "id": "B",
+       "text": "requirement for"
+      },
+      {
+       "id": "C",
+       "text": "complaint about"
+      },
+      {
+       "id": "D",
+       "text": "question about"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The portraits are called \"characteristic\" and \"esteemed,\" so Edwards is known — has a reputation — for painting notable figures.",
+     "explanation": "The second sentence describes the portraits as typical of Edwards's output and well regarded, which is exactly what having a reputation for something means. \"Requirement for\" would say he is obliged to paint them, which nothing suggests. \"Complaint about\" and \"question about\" both imply he objects to or doubts this work, contradicting the admiring description of his \"esteemed\" portraits.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 2,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Easy",
+     "passageText": "Ji-li Jiang's book *Red Kite, Blue Kite* has earned a lot of praise. In fact, the book ______ the Asian/Pacific American Award for Literature.",
+     "questionText": "Which choice completes the text with most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "guessed"
+      },
+      {
+       "id": "B",
+       "text": "blamed"
+      },
+      {
+       "id": "C",
+       "text": "received"
+      },
+      {
+       "id": "D",
+       "text": "forgot"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "\"In fact\" intensifies the praise mentioned first, and the strongest evidence of praise is that the book was given — received — an award.",
+     "explanation": "The first sentence says the book \"earned a lot of praise,\" and the second offers a concrete instance of that praise, so the blank must describe the book being honored. \"Received\" is what a book does with an award. \"Guessed,\" \"blamed,\" and \"forgot\" are all actions a person performs, and none of them names a way of being praised.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 3,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "The equipment from the Apollo Moon landings (1969–1972), such as solar wind sensors and seismic sensors, remains there to this day, but the data from these missions were mostly inaccessible until a recent data-transfer project made them ______. This project has allowed researcher Renee Weber to make use of the information in investigating tectonic activity on the Moon.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "complicated"
+      },
+      {
+       "id": "B",
+       "text": "representative"
+      },
+      {
+       "id": "C",
+       "text": "available"
+      },
+      {
+       "id": "D",
+       "text": "predictable"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The data were \"mostly inaccessible\" until the project changed that, so the project made them accessible — available.",
+     "explanation": "The blank must be the opposite of \"inaccessible,\" and the next sentence confirms the change: a researcher can now \"make use of the information.\" \"Available\" fits both. \"Complicated\" would describe the data's difficulty, not whether anyone can reach them. \"Representative\" and \"predictable\" describe qualities of the data themselves, neither of which a transfer project would alter or which would explain new access.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 4,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "One way to ______ the importance of a scholar's research is to track how often other scholars refer to that research. For example, University of California-Berkeley economist Ulrike Malmendier, who studies behavioral economics, is among the world's most frequently cited researchers in her field, indicating that her work has been quite significant.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "assess"
+      },
+      {
+       "id": "B",
+       "text": "utilize"
+      },
+      {
+       "id": "C",
+       "text": "influence"
+      },
+      {
+       "id": "D",
+       "text": "undermine"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Citation counts are described as a way of gauging importance — Malmendier's citation record \"indicat[es]\" how significant her work is.",
+     "explanation": "The sentence introduces a method for judging how important research is, and the example shows citation frequency serving as an indicator of significance. \"Assess\" names that act of measuring or judging. \"Utilize\" would mean putting the importance to use, which makes no sense. \"Influence\" and \"undermine\" would mean tracking citations changes or weakens a scholar's importance, but counting citations only reveals it.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 5,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Medium",
+     "passageText": "Horizontal gene transfer involves the exchange of genetic material between organisms not in a parent-offspring relationship. It is common among prokaryotes (single-celled organisms, such as the bacteria *Carnobacterium viridans* and *Lactococcus lactis*). The process can have the effect of increasing bacterial resistance to antibiotics; as such, an understanding of how to prevent horizontal gene transfer might result in the mitigation of dangerous pathogens (organisms that cause disease).",
+     "questionText": "Which choice best describes the overall structure of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "It provides a history of research into a biological process and suggests a direction for further investigation."
+      },
+      {
+       "id": "B",
+       "text": "It explains why an organism poses a threat and then suggests how that threat might be avoided."
+      },
+      {
+       "id": "C",
+       "text": "It depicts two organisms and presents their similarities and differences."
+      },
+      {
+       "id": "D",
+       "text": "It describes a biological process and explains why researching it is important."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The first two sentences define horizontal gene transfer and say where it occurs; the last explains the payoff of understanding it — mitigating dangerous pathogens.",
+     "explanation": "The text moves from definition to significance: what the process is, then why learning to prevent it matters for antibiotic resistance. Choice D captures that two-part structure. Choice A is wrong because no history of research is given. Choice B misidentifies the subject: the threat comes from a process, not from a particular organism, and the two bacteria are named only as examples of prokaryotes. Choice C is wrong for the same reason — those bacteria are never compared.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 6,
+     "domain": "Craft and Structure",
+     "skill": "Cross-Text Connections",
+     "difficulty": "Hard",
+     "passageText": "Text 1\nIn 2019 Bergamo, Italy, was named a City of Gastronomy by UNESCO in recognition of the city's unique food culture. __underline__The honor is well known among both residents of the city and tourists who visit.__underline__ It's obvious that the selection of Bergamo by UNESCO has brought awareness to local recipes, cooking practices, and chefs and has provided a boost to the city's tourism industry.\n\nText 2\nMany residents of Bergamo hoped that food tourism would increase after the city was chosen as a City of Gastronomy in 2019. However, as researcher Eerang Park and colleagues argue, cities must still create effective marketing strategies to benefit fully from being named a City of Gastronomy. Without an intentional effort to promote the city's food scene, many current and potential visitors to Bergamo may not even be aware that it's home to uniquely delicious food.",
+     "questionText": "Based on the texts, how would the author of Text 2 most likely respond to the underlined claim in Text 1?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "By arguing that UNESCO's recognition of Bergamo was well deserved because of the city's delicious food"
+      },
+      {
+       "id": "B",
+       "text": "By suggesting that Bergamo's status as a City of Gastronomy may not be well known outside of Italy"
+      },
+      {
+       "id": "C",
+       "text": "By noting that there are other benefits to being named a City of Gastronomy besides increased tourism"
+      },
+      {
+       "id": "D",
+       "text": "By claiming that Bergamo's chefs were mainly responsible for the city's recognition by UNESCO"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Text 2 warns that without deliberate promotion, \"many current and potential visitors … may not even be aware\" of Bergamo's food — directly disputing Text 1's claim that tourists know about the honor.",
+     "explanation": "The underlined claim asserts that the designation is well known among residents *and* tourists. Text 2 accepts nothing of the kind: it argues that awareness depends on marketing that the city has not necessarily done, and that visitors may not know about Bergamo's food at all. Choice B captures that pushback. Choice A concerns whether the honor was deserved, which Text 2 never disputes. Choice C would add benefits rather than question awareness. Choice D assigns credit for the designation, a point Text 2 does not address.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 7,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Medium",
+     "passageText": "Known for the albums *Quiet Nights* and *Milestones*, jazz trumpeter Miles Davis collaborated several times with pianist Gil Evans. Their 1958 adaptation of George Gershwin's opera *Porgy and Bess* bears little resemblance to the 1935 original. Davis and Evans felt no desire to please listeners expecting an exact duplication of the opera. They omitted parts, such as the aria \"I Got Plenty of Nuthin',\" and sometimes made only brief gestures toward Gershwin's melodies. But Davis and Evans's willingness to recompose Gershwin's work led to one of the most enduring albums in Davis's catalog.",
+     "questionText": "According to the text, what is true about the aria \"I Got Plenty of Nuthin' \"?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "It appears in the Gershwin opera *Porgy and Bess* but not in the adaptation by Davis and Evans."
+      },
+      {
+       "id": "B",
+       "text": "A brief quotation from it appears in Davis and Evans's adaptation of *Porgy and Bess*."
+      },
+      {
+       "id": "C",
+       "text": "Listeners familiar with Gershwin's body of work generally disliked it."
+      },
+      {
+       "id": "D",
+       "text": "It was adapted by Davis in a recording that appears on his album *Milestones*."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The text names the aria as one of the parts Davis and Evans \"omitted\" from their adaptation of Gershwin's opera.",
+     "explanation": "The aria appears once in the text, as an example of what the pair left out: \"They omitted parts, such as the aria 'I Got Plenty of Nuthin'.'\" Since it belongs to Gershwin's opera but was cut from the adaptation, choice A is correct. Choice B confuses the omitted aria with the melodies the pair gestured at briefly. Choice C describes listeners' opinion of the aria, which the text never reports. Choice D attaches the aria to *Milestones*, an album mentioned only in the opening as one Davis is known for.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 8,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Medium",
+     "passageText": "The following text is adapted from Daniel Defoe's 1704 nonfiction book *The Storm*.\n\nThe sermon is a sound of words spoken to the ear, and prepared only for present meditation, and extends no farther than the strength of memory can convey it; a book printed is a record, remaining in every man's possession, always ready to renew its acquaintance with his memory, and always ready to be produced as an authority or voucher to any reports he makes out of it, and conveys its contents for ages to come, to the eternity of mortal time, when the author is forgotten in his grave.",
+     "questionText": "Which choice best states the main idea of the text?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Words committed to print have a greater permanence than messages that are merely spoken aloud."
+      },
+      {
+       "id": "B",
+       "text": "People are less likely to forget a message when they hear it spoken aloud than they are when they read it in print."
+      },
+      {
+       "id": "C",
+       "text": "Unless a spoken message is delivered by an expert, it can be safely ignored."
+      },
+      {
+       "id": "D",
+       "text": "Most authors have little hope of being remembered well past their lifetimes."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Defoe contrasts a sermon, which \"extends no farther than the strength of memory can convey it,\" with a printed book, which \"conveys its contents for ages to come.\"",
+     "explanation": "The passage is built on a single contrast between the transient spoken word and the lasting printed one, and every detail about the book — that it remains in one's possession, can be produced as an authority, and survives its author — develops the idea of permanence. Choice B reverses the contrast. Choice C introduces expertise and whether to heed a message, neither of which appears. Choice D fastens on the closing image of the forgotten author, but Defoe raises it to stress that the book outlasts him, not to make a claim about authors' reputations.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 9,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Easy",
+     "passageText": "Scientists collected information about brown bears in Katmai National Park in Alaska. This information included each bear's sex, age, and approximate weight. The bear with the lowest approximate weight shown in the table was a ______",
+     "questionText": "Which choice most effectively uses data from the table to complete the statement?",
+     "image": "m2q9_brown_bears.png",
+     "choices": [
+      {
+       "id": "A",
+       "text": "female that was 13 years old."
+      },
+      {
+       "id": "B",
+       "text": "female that was 6 years old."
+      },
+      {
+       "id": "C",
+       "text": "male that was 10 years old."
+      },
+      {
+       "id": "D",
+       "text": "male that was 3 years old."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The lowest approximate weight in the table is 200 pounds, which belongs to bear 122 — a 3-year-old male.",
+     "explanation": "Scan the weight column for the smallest value: 200 pounds, well below 375, 400, and 800. Reading across that row gives a male aged 3, which is choice D. Choice A describes bear 183, the second-lightest at 375 pounds. Choice B describes bear 106 at 400 pounds, and choice C describes bear 119, the heaviest at 800 pounds.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 10,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Easy",
+     "passageText": "Lin-Tai Ho and colleagues tracked fish populations in three tide pool-monitoring stations in Taiwan from 1999 to 2018. The streaky rockskipper was especially common at station 3: there, the researchers counted ______",
+     "questionText": "Which choice most effectively uses data from the table to complete the assertion?",
+     "image": "m2q10_tide_pools.png",
+     "choices": [
+      {
+       "id": "A",
+       "text": "90 streaky rockskippers."
+      },
+      {
+       "id": "B",
+       "text": "610 streaky rockskippers."
+      },
+      {
+       "id": "C",
+       "text": "125 streaky rockskippers."
+      },
+      {
+       "id": "D",
+       "text": "249 streaky rockskippers."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The streaky rockskipper row shows 610 at station 3 — the largest count anywhere in the table.",
+     "explanation": "The sentence fixes both the species and the station, so the answer is the single cell where the streaky rockskipper row meets the Station 3 column: 610. That figure also supports the claim that the species was \"especially common\" there. Choice C gives the streaky rockskipper's count at station 1, choice A the Cocos frillgoby's count at station 3, and choice D the barred flagtail's count at station 1.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 11,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Medium",
+     "passageText": "*Cane* is a 1923 novel by Jean Toomer. In one portion of the novel, Toomer uses figurative language to connect the narrator's urban environment of Washington, DC, and the rural South of the narrator's past, writing, ______",
+     "questionText": "Which quotation from *Cane* most effectively illustrates the claim?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "\"And when the wind is from the South, soil of my homeland falls like a fertile shower upon the lean streets of [Washington, DC].\""
+      },
+      {
+       "id": "B",
+       "text": "\"The young trees had not outgrown their [planter] boxes then. V Street [in Washington, DC] was lined with them.\""
+      },
+      {
+       "id": "C",
+       "text": "\"The Capitol dome looked like a gray ghost ship drifting in from sea.\""
+      },
+      {
+       "id": "D",
+       "text": "\"The [train] engines of this valley have a whistle, the echoes of which sound like iterated gasps and sobs. I always think of them as crude music.\""
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Choice A uses a simile — southern soil falling \"like a fertile shower\" — to bring the rural South directly onto the city's streets.",
+     "explanation": "The claim requires figurative language that links two places: the narrator's urban present and rural southern past. Choice A does both, imagining the soil of the homeland raining down on Washington's \"lean streets.\" Choice B describes a city street plainly, with no figurative language and no reference to the South. Choice C contains a vivid simile but stays entirely within the city. Choice D is figurative and rural in feeling, but it never touches the urban environment.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 12,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Medium",
+     "passageText": "A student is writing a research paper on the history of irrigation in the southwestern United States, situating the development of Lake Sabrina (a man-made body of water created in Inyo County, California, in 1908) in a larger historical context. In order to emphasize irrigation's importance, the student claims that irrigation is humanity's principal use of water.",
+     "questionText": "Which quotation from a study of irrigation best supports the student's claim?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "\"The first known irrigation system was built in the 7th century CE by the Hohokam people, a Native population in the American Southwest that inhabited central Arizona.\""
+      },
+      {
+       "id": "B",
+       "text": "\"Roughly 70% of the world's water withdrawals, from sources such as rivers, lakes, and aquifers, is for irrigation water used to meet various agricultural demands.\""
+      },
+      {
+       "id": "C",
+       "text": "\"Today, many areas of the southwestern United States utilize sprinkler irrigation systems, which require machinery that can spray water in all directions.\""
+      },
+      {
+       "id": "D",
+       "text": "\"The irrigation system developed by the Hohokam people in the 7th century CE in what is now central Arizona was simple but applied hydraulic engineering design features that are still used today.\""
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The claim is that irrigation is the *principal* use of water, and only choice B quantifies it: roughly 70% of the world's water withdrawals go to irrigation.",
+     "explanation": "\"Principal use\" is a claim about share, so support must show irrigation accounting for more water than any other use. A figure of 70% does exactly that. Choice A establishes that irrigation is ancient, not that it dominates water use. Choice C describes the technology of modern sprinkler systems. Choice D praises the engineering of an early system; like A, it speaks to irrigation's history rather than its scale.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 13,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Hard",
+     "passageText": "The Arapaho language of the Plains region in the United States has 16 vowel and consonant sounds. In contrast, the Hadza language of eastern Africa has 70. Why would languages differ in this way? One researcher has hypothesized that when modern humans arose in Africa, they spoke a single language, but as humans gradually spread throughout Africa and then around the globe, that language developed into new languages. Those developed into still more languages as small bands of humans spread even farther, with each new language retaining fewer sounds from humanity's original language.",
+     "questionText": "Which finding, if true, would best support the researcher's hypothesis?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Languages that emerged in northwestern North America tend to have more sounds than languages that emerged in East Asia do, even though northwestern North America is farther away from Africa than East Asia is."
+      },
+      {
+       "id": "B",
+       "text": "Languages that emerged in Eastern Europe tend to have more sounds than languages that emerged in East Asia do, and Eastern Europe is closer to Africa than East Asia is."
+      },
+      {
+       "id": "C",
+       "text": "Languages that emerged in Western Europe tend to have fewer sounds than languages that emerged in East Asia do, and Western Europe is closer to Africa than East Asia is."
+      },
+      {
+       "id": "D",
+       "text": "Languages that emerged in Southeast Asia tend to have more sounds than languages that emerged in East Asia do, even though the two regions are roughly the same distance from Africa."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The hypothesis predicts that the farther a language spread from Africa, the fewer sounds it retains, so support means more sounds nearer Africa and fewer sounds farther away.",
+     "explanation": "The researcher's model ties sound count to distance from the African origin. Choice B provides exactly the predicted pattern: the closer region (Eastern Europe) has more sounds, the farther region (East Asia) fewer. Choice A shows the opposite — the farther region has more sounds — and so undercuts the hypothesis, as does choice C, where the closer region has fewer. Choice D compares two regions at the same distance, so the difference in sound count cannot be explained by distance at all.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 14,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "In 2014, actor Keith David voiced the character Old Buzzard in the film *Birds of Paradise*. David has acted in everything from commercials to Broadway musicals, but his voice acting work is why ______",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "has he become such a celebrated talent?"
+      },
+      {
+       "id": "B",
+       "text": "has he become such a celebrated talent."
+      },
+      {
+       "id": "C",
+       "text": "he has become such a celebrated talent?"
+      },
+      {
+       "id": "D",
+       "text": "he has become such a celebrated talent."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "\"Why he has become such a celebrated talent\" is an indirect question inside a statement, so it keeps statement word order and ends with a period.",
+     "explanation": "The sentence reports a reason rather than asking a question, so the clause after \"why\" must run subject-then-verb (\"he has become\") and the whole sentence must close with a period. Only choice D does both. Choices A and B invert the subject and verb as though asking directly. Choices A and C end with a question mark, but the main clause — \"his voice acting work is why …\" — is a statement.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 15,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "Ann Greely of Maine ______ a fierce advocate of women's voting rights in the late 1800s. The dedication of Greely and her fellow activists was rewarded in 1920, when the Nineteenth Amendment to the US Constitution guaranteed American women the right to vote.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "was"
+      },
+      {
+       "id": "B",
+       "text": "have been"
+      },
+      {
+       "id": "C",
+       "text": "are"
+      },
+      {
+       "id": "D",
+       "text": "were"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The subject \"Ann Greely\" is singular and the events are in the late 1800s, so the singular past-tense \"was\" is required.",
+     "explanation": "One person is described, and the time marker \"in the late 1800s\" — reinforced by the past-tense second sentence — fixes the tense as past. \"Was\" is the singular past form. Choices C and D are plural, agreeing wrongly with the nearby \"women's\" or \"rights\" rather than with Greely. Choice B is both plural and in the present perfect, which would place her advocacy in a period reaching to the present.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 16,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Easy",
+     "passageText": "The city of Quito in Ecuador ______ one of the rare places in the world located almost directly on the equator.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "is"
+      },
+      {
+       "id": "B",
+       "text": "have been"
+      },
+      {
+       "id": "C",
+       "text": "are"
+      },
+      {
+       "id": "D",
+       "text": "are being"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The subject is the singular \"The city of Quito,\" so the singular present-tense verb \"is\" is required.",
+     "explanation": "A single city is the subject; the prepositional phrase \"in Ecuador\" does not change that, and \"one of the rare places\" is the complement rather than the subject. Choices B, C, and D are all plural forms and would need a plural subject. Choice D's progressive \"are being\" would also wrongly suggest a temporary state, when a city's position on the equator is permanent.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 17,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "On February 1, 2018, Florida-based researchers Martha A. Scholl, Maoya Bassiouni, and Angel J. Torres-Sánchez compiled climate data from several sites in Puerto Rico's Luquillo Mountains. At CC1, the site with the highest elevation, the air temperature fluctuated slightly throughout the day, ______ 11:00 a.m. to 16.2°C at 7:00 p.m.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "from,18.4°C at"
+      },
+      {
+       "id": "B",
+       "text": "from,18.4°C at,"
+      },
+      {
+       "id": "C",
+       "text": "from 18.4°C at"
+      },
+      {
+       "id": "D",
+       "text": "from:18.4°C at,"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "\"From 18.4°C at 11:00 a.m. to 16.2°C at 7:00 p.m.\" is a single unbroken prepositional structure, so no punctuation belongs inside it.",
+     "explanation": "The \"from … to …\" construction links two readings, and neither the preposition nor the phrase \"at 11:00 a.m.\" may be cut off from what it governs. Choice C leaves the phrase intact. Choices A, B, and D insert a comma or colon immediately after \"from,\" severing the preposition from its object, and choices B and D add a further comma after \"at,\" separating it from the time it introduces.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 18,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "To study the ultrafast movements of atoms, chemist Ahmed Zewail had to devise a novel spectroscopy technique capable of measuring chemical reactions ______ within molecules at a quadrillionth of a second. Ultimately, Zewail succeeded and was eventually honored with the Robert A. Welch Award and the Albert Einstein World Award of Science for this groundbreaking achievement.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "occurred"
+      },
+      {
+       "id": "B",
+       "text": "occurring"
+      },
+      {
+       "id": "C",
+       "text": "occur"
+      },
+      {
+       "id": "D",
+       "text": "will occur"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The blank begins a participial phrase modifying \"chemical reactions,\" so the participle \"occurring\" is needed rather than a finite verb.",
+     "explanation": "The clause already has its subject (\"Zewail\") and verb (\"had to devise\"); \"occurring within molecules at a quadrillionth of a second\" simply describes which reactions the technique measures. Choices A, C, and D are all finite verb forms, which would require their own subject and a conjunction or punctuation to attach them — neither of which the sentence provides.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 19,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "Many experts, like lawyer and cycling advocate Ernesto Hernandez-Lopez, have proposed bike travel as one possible way to alleviate congestion on the busy roadways of Los Angeles County, California. Indeed, local bicycle paths like the Harbor Park bicycle ______ have become an increasingly popular means of travel for commuter and recreational trips alike.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "path, which is about 0.38 miles long"
+      },
+      {
+       "id": "B",
+       "text": "path which is about 0.38 miles long"
+      },
+      {
+       "id": "C",
+       "text": "path: which is about 0.38 miles long,"
+      },
+      {
+       "id": "D",
+       "text": "path, which is about 0.38 miles long,"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "\"Which is about 0.38 miles long\" is a nonessential clause, so it takes a comma on both sides.",
+     "explanation": "Punctuation that sets off a nonessential element must come in matching pairs. The clause adds a detail that could be removed without changing which path is meant, so it needs a comma before \"which\" and another before \"have become.\" Only choice D supplies both. Choice A opens the clause but never closes it, leaving \"long have become\" running together. Choice B omits punctuation entirely, treating the clause as essential. Choice C substitutes a colon, which cannot introduce a \"which\" clause.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 20,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Medium",
+     "passageText": "When using hairy coneflower for dyeing cloth, textile artists first soak it in water to release its color. Next, they add the cloth to the dye bath and simmer it for hours, perhaps even days. ______ they remove the cloth from the dyebath, revealing that the cloth has turned a vibrant blue color.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Finally,"
+      },
+      {
+       "id": "B",
+       "text": "However,"
+      },
+      {
+       "id": "C",
+       "text": "Therefore,"
+      },
+      {
+       "id": "D",
+       "text": "Actually,"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The text lays out the dyeing process step by step — \"first,\" then \"Next\" — and this sentence describes the last step.",
+     "explanation": "The sequence markers \"first\" and \"Next\" establish a procedure, and removing the cloth to reveal the finished color is where it ends. \"Finally\" closes such a sequence. \"However\" would signal a contrast, but the last step follows naturally from the simmering. \"Therefore\" would make removal a logical consequence rather than the next action. \"Actually\" would correct a misimpression, and none has been created.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 21,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Medium",
+     "passageText": "Though Middle English was widely spoken in fourteenth-century England, the English language was rarely employed in literature until poet Geoffrey Chaucer pioneered its literary use. ______ his manuscripts contain the first documented uses of over 2,000 English words—like the word \"conspiracy\" in his 1386 poem \"The Monk's Tale\"—which led a contemporary to dub him \"the first finder of our fair language.\"",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Besides,"
+      },
+      {
+       "id": "B",
+       "text": "However,"
+      },
+      {
+       "id": "C",
+       "text": "On the contrary,"
+      },
+      {
+       "id": "D",
+       "text": "In fact,"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The second sentence intensifies the first with striking evidence of Chaucer's pioneering role — over 2,000 first documented word uses — so an emphatic confirming transition is needed.",
+     "explanation": "The first sentence credits Chaucer with pioneering English literary use; the second confirms and strengthens that point with specifics. \"In fact\" marks that intensification. \"However\" and \"On the contrary\" both signal opposition, but the second sentence agrees with the first. \"Besides\" would introduce a separate, additional point, whereas this sentence is evidence for the very claim just made.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 22,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• Antonio Stradivari (1644–1737) made about 1,000 violins in his lifetime.\n• Musicians prize his Stradivarius violins for their famed sound quality.\n• Many of the 500 or so that exist today are named for a previous owner.\n• The Leonora Jackson Stradivarius is named for Leonora Jackson, an American violinist.",
+     "questionText": "Which choice most effectively uses information from the given sentences to emphasize why Stradivarius violins are prized by musicians?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Many Stradivarius violins, like the Leonora Jackson, get their name from a former owner."
+      },
+      {
+       "id": "B",
+       "text": "Among musicians, violins made by Antonio Stradivari are renowned for their sound quality."
+      },
+      {
+       "id": "C",
+       "text": "Antonio Stradivari, a famous violin maker, lived from 1644 to 1737."
+      },
+      {
+       "id": "D",
+       "text": "Leonora Jackson was an American violinist who once owned a Stradivarius violin."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The notes give one reason musicians prize the violins — their famed sound quality — and only choice B states it.",
+     "explanation": "The goal asks *why* musicians value these instruments, so the sentence must name the quality that earns that regard. Choice B does, and it keeps musicians as the audience doing the valuing. Choice A explains how the violins are named, not why they are prized. Choice C gives the maker's dates. Choice D identifies one former owner, which again bears on naming rather than on the instruments' merits.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 23,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• Gianpaolo Bellini is an Italian particle physicist.\n• Particle physicists study subatomic particles.\n• Neutrinos are some of the least understood subatomic particles.\n• Neutrinos were first discovered in the mid-twentieth century.\n• Bellini is known for his research on solar and geoneutrinos.",
+     "questionText": "Which choice most effectively uses information from the given sentences to specify Bellini's role in neutrino research?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "Particle physicist Gianpaolo Bellini has worked to advance the scientific understanding of neutrinos through his research on solar and geoneutrinos."
+      },
+      {
+       "id": "B",
+       "text": "Neutrinos are a type of subatomic particle that particle physicists are still trying to understand."
+      },
+      {
+       "id": "C",
+       "text": "First discovered in the mid-twentieth century, neutrinos are a type of subatomic particle."
+      },
+      {
+       "id": "D",
+       "text": "Gianpaolo Bellini is recognized for his particle physics research."
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Only choice A names Bellini, identifies him as a particle physicist, and states what he specifically contributes to neutrino research — work on solar and geoneutrinos.",
+     "explanation": "Specifying a role requires both the person and the particular work. Choice A supplies both and links them to the broader effort to understand neutrinos. Choices B and C describe neutrinos without mentioning Bellini at all. Choice D names him but characterizes his work only as \"particle physics research,\" which never gets to neutrinos.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 24,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• Hina Hanta is an online archive curated by the Choctaw Nation of Oklahoma.\n• It features images of cultural artifacts relevant to the history of the Choctaw people.\n• It features a spoon (*ivpish ishtimpa* in Choctaw) made of buffalo horn.\n• The spoon was made in 1800.\n• Hina Hanta features a purse (*shukcha* in Choctaw) made of beaded leather.\n• The purse was made in 1949.",
+     "questionText": "The student wants to emphasize a similarity between the two artifacts. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The buffalo horn spoon (*ivpish ishtimpa* in Choctaw) is featured in the Hina Hanta archive."
+      },
+      {
+       "id": "B",
+       "text": "Featured in the Hina Hanta archive, the buffalo horn spoon and the beaded leather purse are both cultural artifacts relevant to the history of the Choctaw people."
+      },
+      {
+       "id": "C",
+       "text": "Not all artifacts in the Hina Hanta archive are from the 1800s; indeed, the beaded leather purse is from 1949."
+      },
+      {
+       "id": "D",
+       "text": "There are more recent artifacts in the Hina Hanta archive than the buffalo horn spoon from 1800."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "Only choice B names both artifacts and joins them under a shared description: both are Choctaw cultural artifacts in the same archive.",
+     "explanation": "Emphasizing a similarity requires covering both objects with one statement, and \"both cultural artifacts relevant to the history of the Choctaw people\" does that. Choice A describes only the spoon. Choices C and D each stress the difference in dates, 1800 versus 1949, which is the opposite of the stated goal.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 25,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• At London and New York Fashion Weeks, fashion designers debut new clothing collections.\n• Color consultants create trend reports on the popular colors at a given Fashion Week.\n• A report on 2018 London Fashion Week noted the popularity of an imaginative purple shade that was cool in tone and bright in intensity.\n• A report on 2019 New York Fashion Week noted the popularity of a deep red shade that was warm in tone and rich in intensity.",
+     "questionText": "Which choice most effectively uses information from the given sentences to explain the role of color consultants at Fashion Week?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "A shade of imaginative purple was an on-trend addition to one color consultant's report on 2018 London Fashion Week."
+      },
+      {
+       "id": "B",
+       "text": "A color consultant report on 2019 New York Fashion Week highlighted the popularity of a deep red shade."
+      },
+      {
+       "id": "C",
+       "text": "At Fashion Weeks in 2018 and 2019, shades favored by designers included an imaginative purple and a deep red."
+      },
+      {
+       "id": "D",
+       "text": "Each Fashion Week, color consultants compile reports on the shades that have proved popular with fashion designers."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Only choice D states what color consultants generally do at Fashion Week: compile reports on the shades that proved popular.",
+     "explanation": "Explaining a role calls for a general statement of the job rather than a single instance of its output. Choice D gives it: consultants produce trend reports on popular shades, at every Fashion Week. Choices A and B each report one finding from one such report, illustrating the work without describing it. Choice C lists the popular shades themselves and never mentions color consultants at all.",
+     "questionType": "multiple_choice"
+    }
+   ]
+  },
+  {
+   "section": "Math",
+   "module": 1,
+   "questionCount": 21,
+   "questions": [
+    {
+     "number": 1,
+     "domain": "Algebra",
+     "skill": "Linear Equations",
+     "difficulty": "Easy",
+     "questionText": "$$s = 50 + 4t$$\n\nThe equation gives the speed $s$, in miles per hour, of a certain car $t$ seconds after it began to accelerate. What is the speed, in miles per hour, of the car 2 seconds after it began to accelerate?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "50"
+      },
+      {
+       "id": "B",
+       "text": "52"
+      },
+      {
+       "id": "C",
+       "text": "54"
+      },
+      {
+       "id": "D",
+       "text": "58"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Substituting $t = 2$ gives $s = 50 + 4(2) = 58$.",
+     "explanation": "The variable $t$ is the number of seconds since the car began accelerating, so substitute 2 for $t$: $s = 50 + 8 = 58$ miles per hour. Choice A is the speed at $t = 0$, before any acceleration. Choice B adds only 2 instead of $4 \\times 2$, and choice C adds 4, treating the coefficient as the whole increase.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 2,
+     "domain": "Advanced Math",
+     "skill": "Equivalent Expressions",
+     "difficulty": "Easy",
+     "questionText": "Which expression is equivalent to $7x^2 + 8x$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$x(7x + 8)$"
+      },
+      {
+       "id": "B",
+       "text": "$7x(x + 8)$"
+      },
+      {
+       "id": "C",
+       "text": "$8x(7x + 1)$"
+      },
+      {
+       "id": "D",
+       "text": "$x^2(7x + 8)$"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The greatest common factor of $7x^2$ and $8x$ is $x$, and factoring it out leaves $x(7x + 8)$.",
+     "explanation": "Both terms contain exactly one factor of $x$ ($7x^2 = x \\cdot 7x$ and $8x = x \\cdot 8$), so pulling out $x$ gives $x(7x+8)$. Checking the others by expanding: choice B gives $7x^2 + 56x$, choice C gives $56x^2 + 8x$, and choice D gives $7x^3 + 8x^2$ — none matches the original.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 3,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Easy",
+     "questionText": "The function $f$ is defined by $f(x) = x^2 + 24$. What is the value of $f(5)$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "5"
+      },
+      {
+       "id": "B",
+       "text": "24"
+      },
+      {
+       "id": "C",
+       "text": "29"
+      },
+      {
+       "id": "D",
+       "text": "49"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "$f(5) = 5^2 + 24 = 25 + 24 = 49$.",
+     "explanation": "Substitute 5 for $x$ and square it first: $5^2 = 25$, then add 24 to get 49. Choice C comes from adding $5 + 24$ without squaring. Choice B is the constant term alone, and choice A is the input rather than the output.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 4,
+     "domain": "Advanced Math",
+     "skill": "Equivalent Expressions",
+     "difficulty": "Easy",
+     "questionText": "Which expression is equivalent to $(x^3 + 3x^2 - 6x) + 4(x^2 + 6)$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$x^3 + 7x^2 - 6x + 24$"
+      },
+      {
+       "id": "B",
+       "text": "$x^3 + 3x^2 - 6x + 24$"
+      },
+      {
+       "id": "C",
+       "text": "$x^3 + 4x^2 - 6x + 24$"
+      },
+      {
+       "id": "D",
+       "text": "$x^3 + 6x^2 - 6x + 24$"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Distributing the 4 gives $4x^2 + 24$, and combining $3x^2 + 4x^2$ gives $7x^2$.",
+     "explanation": "First distribute: $4(x^2 + 6) = 4x^2 + 24$. Then combine like terms with the first group: $x^3 + (3x^2 + 4x^2) - 6x + 24 = x^3 + 7x^2 - 6x + 24$. Choice B forgets to add the $4x^2$ at all, choice C keeps only the new $4x^2$ and drops the original $3x^2$, and choice D combines the coefficients as $3 + 3$ or otherwise miscounts.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 5,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Right Triangle Trig",
+     "difficulty": "Medium",
+     "questionText": "*Note: Figure not drawn to scale.*\n\nWhat is the value of $\\cos A$ in the triangle shown?",
+     "image": "s2m1q5_triangle.png",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$\\frac{32}{31}$"
+      },
+      {
+       "id": "B",
+       "text": "$\\frac{31}{32}$"
+      },
+      {
+       "id": "C",
+       "text": "$\\frac{1}{32}$"
+      },
+      {
+       "id": "D",
+       "text": "$\\frac{1}{31}$"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The right angle is at $C$, so the side adjacent to angle $A$ is 31 and the hypotenuse is 32, giving $\\cos A = \\frac{31}{32}$.",
+     "explanation": "Cosine is the ratio of the adjacent leg to the hypotenuse. With the right angle at $C$, the hypotenuse is $\\overline{AB} = 32$ and the leg adjacent to angle $A$ is $\\overline{AC} = 31$, so $\\cos A = \\frac{31}{32}$. Choice A inverts the ratio, which is impossible since a cosine cannot exceed 1. Choices C and D use 1 as the numerator, which corresponds to no side of this triangle.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 6,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Percentages",
+     "difficulty": "Easy",
+     "questionText": "Jasmin grows bean pods in her garden. This year, she harvested 490 bean pods and saved 10% of them to plant next year. How many of the harvested bean pods did Jasmin save to plant next year?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "39"
+      },
+      {
+       "id": "B",
+       "text": "49"
+      },
+      {
+       "id": "C",
+       "text": "57"
+      },
+      {
+       "id": "D",
+       "text": "59"
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "10% of 490 is $0.10 \\times 490 = 49$.",
+     "explanation": "Finding 10% of a number means dividing it by 10, so $490 \\div 10 = 49$ bean pods. Choices A, C, and D do not result from taking any straightforward percentage of 490; the only figure that does is 49.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 7,
+     "domain": "Algebra",
+     "skill": "Linear Equations",
+     "difficulty": "Easy",
+     "questionText": "If $3x - 8 = 7$, what is the value of $3x + 8$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$-1$"
+      },
+      {
+       "id": "B",
+       "text": "5"
+      },
+      {
+       "id": "C",
+       "text": "13"
+      },
+      {
+       "id": "D",
+       "text": "23"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "From $3x - 8 = 7$, $3x = 15$, so $3x + 8 = 23$.",
+     "explanation": "Add 8 to both sides of the given equation to get $3x = 15$; there is no need to find $x$ itself. Then $3x + 8 = 15 + 8 = 23$. Equivalently, $3x+8$ is 16 more than $3x-8$, so it equals $7 + 16 = 23$. Choice B is the value of $x$, and choice C comes from adding 8 to 5 instead of to $3x$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 8,
+     "domain": "Algebra",
+     "skill": "Linear Inequalities",
+     "difficulty": "Medium",
+     "questionText": "$$y < x$$\n$$x < 24$$\n\nFor which of the following tables are all the values of $x$ and their corresponding values of $y$ solutions to the given system of inequalities?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "",
+       "image": "s2m1q8_tableA.png"
+      },
+      {
+       "id": "B",
+       "text": "",
+       "image": "s2m1q8_tableB.png"
+      },
+      {
+       "id": "C",
+       "text": "",
+       "image": "s2m1q8_tableC.png"
+      },
+      {
+       "id": "D",
+       "text": "",
+       "image": "s2m1q8_tableD.png"
+      }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Only in table A is every $y$ value less than its $x$ value, and every $x$ value is also less than 24.",
+     "explanation": "Both conditions must hold in every row. All four tables use $x = 21, 22, 23$, so $x < 24$ is satisfied throughout; the deciding condition is $y < x$. Table A pairs 21 with 20, 22 with 21, and 23 with 22 — each $y$ one less than its $x$. In table B every $y$ exceeds its $x$ by 1, in table C by 3, and in table D by 5, so all three violate $y < x$ in every row.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 9,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Lines/Angles/Triangles",
+     "difficulty": "Medium",
+     "questionText": "*Note: Figures not drawn to scale.*\n\nFor the triangles shown, triangle $ABC$ is dilated by a scale factor of 3 to obtain triangle $XYZ$, where $d = 16$. What is the measure, in degrees, of angle $X$?",
+     "image": "s2m1q9_triangles.png",
+     "choices": [
+      {
+       "id": "A",
+       "text": "20"
+      },
+      {
+       "id": "B",
+       "text": "57"
+      },
+      {
+       "id": "C",
+       "text": "60"
+      },
+      {
+       "id": "D",
+       "text": "63"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "A dilation changes side lengths but not angle measures, so angle $X$ equals its corresponding angle $A$, which measures 60°.",
+     "explanation": "Dilating a figure produces a similar figure: lengths scale by the given factor while every angle keeps its measure. Since triangle $XYZ$ is a dilation of triangle $ABC$ with $A$ corresponding to $X$, angle $X$ is 60°. Choice A divides 60 by the scale factor of 3, treating the angle like a length. The side length $d = 16$ is a distractor — it determines that $\\overline{XZ} = 48$ but has no bearing on any angle. Choices B and D correspond to no quantity in the problem.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 10,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Probability",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "A box contains 23 red buttons and 27 blue buttons. If one of these buttons is selected at random, what is the probability of selecting a red button? (Express your answer as a decimal or fraction, not as a percent.)",
+     "choices": [],
+     "correctAnswer": "23/50,.46,0.46",
+     "rationale": "There are $23 + 27 = 50$ buttons in all, and 23 of them are red, so the probability is $\\frac{23}{50}$.",
+     "explanation": "Every button is equally likely to be chosen, so the probability equals the number of red buttons divided by the total number of buttons: $\\frac{23}{23 + 27} = \\frac{23}{50} = 0.46$. Either form is accepted, but 46 (the percent) would be marked wrong, since the question asks for a decimal or fraction.",
+     "estimatedTime": 70
+    },
+    {
+     "number": 11,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Equations",
+     "difficulty": "Medium",
+     "questionType": "spr",
+     "questionText": "What is an $x$-coordinate of an $x$-intercept of the graph of $y = 4(x - 13)(x + 5)(x + 1)$ in the $xy$-plane?",
+     "choices": [],
+     "correctAnswer": "13,-5,-1",
+     "rationale": "The graph crosses the $x$-axis where $y = 0$, which happens when any factor is zero: $x = 13$, $x = -5$, or $x = -1$.",
+     "explanation": "An $x$-intercept has $y = 0$, so set $4(x-13)(x+5)(x+1) = 0$. A product is zero exactly when one of its factors is zero, and the constant 4 never is, so $x - 13 = 0$, $x + 5 = 0$, or $x + 1 = 0$. That gives $x = 13$, $x = -5$, and $x = -1$; the question asks for one of them, so any of the three is accepted. Note the sign flip: the factor $(x+5)$ gives the intercept $-5$, not $5$.",
+     "estimatedTime": 90
+    },
+    {
+     "number": 12,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Area and Volume",
+     "difficulty": "Easy",
+     "questionText": "The length of a side of square X is 9 centimeters. The area of rectangle Y is 24 square centimeters. What is the total area, in square centimeters, of square X and rectangle Y?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "66"
+      },
+      {
+       "id": "B",
+       "text": "81"
+      },
+      {
+       "id": "C",
+       "text": "105"
+      },
+      {
+       "id": "D",
+       "text": "129"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Square X has area $9^2 = 81$, so the total area is $81 + 24 = 105$ square centimeters.",
+     "explanation": "The area of a square is the square of its side length, so square X covers $81$ square centimeters. Adding rectangle Y's given area gives $81 + 24 = 105$. Choice B is square X's area alone. Choice A comes from $9 \\times 9 - 24$ or from using the perimeter somewhere, and choice D adds 24 twice.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 13,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Ratios and Proportions",
+     "difficulty": "Medium",
+     "questionType": "spr",
+     "questionText": "Before liftoff, one of a space shuttle's solid rocket boosters contained 489,000 kilograms (kg) of propellant. Exactly 23 seconds after liftoff, 374,046 kg of this propellant remained. On average, how much propellant, in kg, did this solid rocket booster burn each second after liftoff?",
+     "choices": [],
+     "correctAnswer": "4998",
+     "rationale": "The booster burned $489{,}000 - 374{,}046 = 114{,}954$ kg over 23 seconds, so $114{,}954 \\div 23 = 4{,}998$ kg per second.",
+     "explanation": "An average rate is the total change divided by the total time. Subtract to find how much propellant was consumed: $489{,}000 - 374{,}046 = 114{,}954$ kg. Divide by the 23 seconds elapsed: $114{,}954 \\div 23 = 4{,}998$ kg per second. Dividing the starting amount rather than the amount burned would be the common error here.",
+     "estimatedTime": 100
+    },
+    {
+     "number": 14,
+     "domain": "Advanced Math",
+     "skill": "Nonlinear Functions",
+     "difficulty": "Medium",
+     "questionText": "$$y = 0.25x^2 - 7.5x + 80.25$$\n\nThe equation gives the estimated stock price $y$, in dollars, for a certain company $x$ days after the company went public, where $0 \\le x \\le 20$. Which statement is the best interpretation of $(x, y) = (1, 73)$ in this context?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The company's estimated stock price increased 73 dollars every day after the company went public."
+      },
+      {
+       "id": "B",
+       "text": "The company's estimated stock price increased 1 dollar every 73 days after the company went public."
+      },
+      {
+       "id": "C",
+       "text": "1 day after the company went public, the company's estimated stock price is 73 dollars."
+      },
+      {
+       "id": "D",
+       "text": "73 days after the company went public, the company's estimated stock price is 1 dollar."
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "In this model $x$ counts days and $y$ is the price in dollars, so the point $(1, 73)$ means the price is 73 dollars one day after the company went public.",
+     "explanation": "An ordered pair on the graph pairs an input with its output: $x = 1$ day gives $y = 73$ dollars. Choice D swaps the two coordinates. Choices A and B describe rates of change, but a single point gives one price at one moment, not a rate — and the model is quadratic, so the price does not change by a constant amount per day anyway. Note also that $x = 73$ would fall outside the stated domain $0 \\le x \\le 20$.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 15,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Data Interpretation",
+     "difficulty": "Medium",
+     "questionText": "The graph gives the estimated population $y$, in thousands, of a town $x$ years since 2001, where $0 \\le x \\le 5$. Which of the following best describes the increase in the estimated population from $x = 0$ to $x = 1$?",
+     "image": "s2m1q15_population.png",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The estimated population at $x = 1$ is 0.5 times the estimated population at $x = 0$."
+      },
+      {
+       "id": "B",
+       "text": "The estimated population at $x = 1$ is 1.5 times the estimated population at $x = 0$."
+      },
+      {
+       "id": "C",
+       "text": "The estimated population at $x = 1$ is 2.5 times the estimated population at $x = 0$."
+      },
+      {
+       "id": "D",
+       "text": "The estimated population at $x = 1$ is 3.5 times the estimated population at $x = 0$."
+      }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The curve starts at about 5 thousand when $x = 0$ and reaches about 7.5 thousand at $x = 1$, and $7.5 \\div 5 = 1.5$.",
+     "explanation": "Read both values off the graph: the curve meets the $y$-axis near 5 and passes through roughly 7.5 at $x = 1$. The ratio of the later value to the earlier one is $\\frac{7.5}{5} = 1.5$. Choice A would mean the population halved, but the graph rises. Choices C and D would put the population at 12.5 or 17.5 thousand after one year, far above the curve, which never even reaches 11 over the whole five-year span.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 16,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Percentages",
+     "difficulty": "Medium",
+     "questionText": "The population of City A increased by 9% from 2015 to 2016. If the 2016 population is $k$ times the 2015 population, what is the value of $k$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "0.09"
+      },
+      {
+       "id": "B",
+       "text": "0.9"
+      },
+      {
+       "id": "C",
+       "text": "1.09"
+      },
+      {
+       "id": "D",
+       "text": "1.9"
+      }
+     ],
+     "correctAnswer": "C",
+     "rationale": "A 9% increase multiplies the population by $1 + 0.09 = 1.09$.",
+     "explanation": "If $P$ is the 2015 population, the 2016 population is $P + 0.09P = 1.09P$, so $k = 1.09$. Choice A is the increase alone, which would mean the city shrank to 9% of its former size. Choice B represents a 10% decrease. Choice D would correspond to a 90% increase, not a 9% one.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 17,
+     "domain": "Geometry and Trigonometry",
+     "skill": "Circles",
+     "difficulty": "Medium",
+     "questionType": "spr",
+     "questionText": "Circle A in the $xy$-plane has the equation $(x + 8)^2 + (y - 8)^2 = 4$. Circle B has the same center as circle A. The radius of circle B is two times the radius of circle A. The equation defining circle B in the $xy$-plane is $(x + 8)^2 + (y - 8)^2 = k$, where $k$ is a constant. What is the value of $k$?",
+     "choices": [],
+     "correctAnswer": "16",
+     "rationale": "Circle A has radius $\\sqrt{4} = 2$, so circle B has radius 4 and $k = 4^2 = 16$.",
+     "explanation": "In the standard form $(x-h)^2 + (y-k)^2 = r^2$, the constant on the right is the square of the radius. Circle A's constant is 4, so its radius is 2. Doubling gives circle B a radius of 4, and the constant in its equation is $4^2 = 16$. Answering 8 would be the common trap — that is twice the constant rather than the square of twice the radius.",
+     "estimatedTime": 110
+    },
+    {
+     "number": 18,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Medium",
+     "questionText": "If a circuit consists of resistors connected in series, its resistance, in ohms, is equal to the sum of the resistances, in ohms, of all these resistors. A particular circuit consists of $x$ identical resistors of type X and $y$ identical resistors of type Y, which are connected in series. The resistance $R$, in ohms, of this circuit is given by the equation $R = 13x + 15$. Which of the following is the best interpretation of 13 in this context?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "The total resistance of all resistors of type X in the circuit is 13 ohms."
+      },
+      {
+       "id": "B",
+       "text": "The resistance of the circuit increases by 13 ohms with each addition of a resistor to the circuit."
+      },
+      {
+       "id": "C",
+       "text": "The resistance of the circuit increases by $13x$ ohms with each addition of a resistor of type X to the circuit."
+      },
+      {
+       "id": "D",
+       "text": "The resistance of the circuit increases by 13 ohms with each addition of a resistor of type X to the circuit."
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "13 is the coefficient of $x$, the number of type X resistors, so each additional type X resistor adds 13 ohms.",
+     "explanation": "In a linear equation, the coefficient of a variable is the rate of change per unit of that variable. Since $x$ counts type X resistors, increasing $x$ by 1 raises $R$ by 13 ohms — choice D. Choice A confuses a per-resistor rate with a total; the total for type X is $13x$, which equals 13 only when $x = 1$. Choice B drops the restriction to type X, but adding a type Y resistor is accounted for in the constant 15. Choice C misstates the rate as $13x$ rather than 13.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 19,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Easy",
+     "questionType": "spr",
+     "questionText": "The function $f$ is defined by $f(x) = 20x$. For what value of $x$ is $f(x) = 140$?",
+     "choices": [],
+     "correctAnswer": "7",
+     "rationale": "Setting $20x = 140$ and dividing by 20 gives $x = 7$.",
+     "explanation": "Substitute 140 for $f(x)$: $20x = 140$. Dividing both sides by 20 gives $x = 7$. Checking, $f(7) = 20(7) = 140$.",
+     "estimatedTime": 60
+    },
+    {
+     "number": 20,
+     "domain": "Problem-Solving and Data Analysis",
+     "skill": "Ratios and Proportions",
+     "difficulty": "Medium",
+     "questionText": "The ratio $x$ to $y$ is equivalent to the ratio 7 to 9. If $x = 10t$, what is the value of $y$ in terms of $t$?",
+     "choices": [
+      {
+       "id": "A",
+       "text": "$\\frac{7}{90}t$"
+      },
+      {
+       "id": "B",
+       "text": "$\\frac{9}{70}t$"
+      },
+      {
+       "id": "C",
+       "text": "$\\frac{70}{9}t$"
+      },
+      {
+       "id": "D",
+       "text": "$\\frac{90}{7}t$"
+      }
+     ],
+     "correctAnswer": "D",
+     "rationale": "From $\\frac{x}{y} = \\frac{7}{9}$ we get $y = \\frac{9x}{7}$, and substituting $x = 10t$ gives $y = \\frac{90}{7}t$.",
+     "explanation": "Write the ratio as an equation: $\\frac{x}{y} = \\frac{7}{9}$, so $9x = 7y$ and $y = \\frac{9}{7}x$. Substituting $x = 10t$ gives $y = \\frac{9}{7}(10t) = \\frac{90}{7}t$. Choice C inverts the ratio, solving as though $x : y$ were $9 : 7$. Choices A and B divide by 10 instead of multiplying, placing the 10 in the denominator.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 21,
+     "domain": "Algebra",
+     "skill": "Linear Functions",
+     "difficulty": "Hard",
+     "questionType": "spr",
+     "questionText": "The function $g$ is defined by $g(x) = \\frac{1}{m}x + 21$, where $m$ is an integer constant and $14 \\le m \\le 17$. For the graph of $y = g(x) - 9$ in the $xy$-plane, what is the $x$-coordinate of a possible $x$-intercept?",
+     "choices": [],
+     "correctAnswer": "-168,-180,-192,-204",
+     "rationale": "The graph is $y = \\frac{1}{m}x + 12$, whose $x$-intercept is $x = -12m$; with $m = 14, 15, 16, 17$ that gives $-168$, $-180$, $-192$, or $-204$.",
+     "explanation": "Subtracting 9 shifts the function down: $y = \\frac{1}{m}x + 21 - 9 = \\frac{1}{m}x + 12$. An $x$-intercept has $y = 0$, so $\\frac{1}{m}x = -12$ and $x = -12m$. Because $m$ is an integer between 14 and 17 inclusive, the possible intercepts are $-12(14) = -168$, $-12(15) = -180$, $-12(16) = -192$, and $-12(17) = -204$; any one of these is accepted. Forgetting to subtract the 9 would give $x = -21m$ instead.",
+     "estimatedTime": 140
+    }
+   ]
+  }
+ ]
+}

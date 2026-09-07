@@ -6,6 +6,11 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
+    // db.ts reads this file when a server process first connects. Include it
+    // in minimal/standalone bundles as well as full repository deploys.
+    outputFileTracingIncludes: {
+      "/*": ["./src/lib/schema.sql"],
+    },
     // Next 14's client-side router cache keeps a page's last-rendered
     // output around and reuses it on the next visit instead of refetching
     // – great for a static marketing site, actively wrong here, where

@@ -56,14 +56,24 @@ async function initPool(): Promise<Pool> {
     connectionTimeoutMillis: 8000,
   });
 
-  const client = await pool.connect();
   try {
-    const schema = fs.readFileSync(SCHEMA_PATH, "utf-8");
-    await client.query(schema);
-    await runMigrations(client);
-    await backfillModuleReleases(client);
-  } finally {
-    client.release();
+    const client = await pool.connect();
+    try {
+      const schema = fs.readFileSync(SCHEMA_PATH, "utf-8");
+      await client.query(schema);
+      await runMigrations(client);
+      await backfillModuleReleases(client);
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    // A failed initialization used to leave both a rejected promise in the
+    // global cache and an open Pool behind. One brief database outage could
+    // therefore keep every route broken until the whole server was restarted.
+    // Dispose this failed pool; getPool() also removes the rejected promise so
+    // the next request can establish a fresh connection.
+    await pool.end().catch(() => undefined);
+    throw error;
   }
 
   return pool;
@@ -71,7 +81,17 @@ async function initPool(): Promise<Pool> {
 
 function getPool(): Promise<Pool> {
   if (!global.__bluemindPoolPromise) {
-    global.__bluemindPoolPromise = initPool();
+    const pendingPool = initPool();
+    global.__bluemindPoolPromise = pendingPool;
+
+    // Do not permanently cache a rejected initialization. Supabase, DNS, or
+    // the network can fail briefly; a later request must be allowed to recover
+    // without requiring a process/PM2 restart.
+    void pendingPool.catch(() => {
+      if (global.__bluemindPoolPromise === pendingPool) {
+        global.__bluemindPoolPromise = undefined;
+      }
+    });
   }
   return global.__bluemindPoolPromise;
 }
@@ -321,7 +341,10 @@ export const db: DbHandle = {
     }
   },
   async close() {
-    const pool = await getPool();
+    const pendingPool = global.__bluemindPoolPromise;
+    global.__bluemindPoolPromise = undefined;
+    if (!pendingPool) return;
+    const pool = await pendingPool;
     await pool.end();
   },
 };

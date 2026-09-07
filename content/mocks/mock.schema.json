@@ -35,6 +35,7 @@
         "properties": {
           "section": { "type": "string", "enum": ["Reading and Writing", "Math"] },
           "module": { "type": "integer", "enum": [1, 2] },
+          "questionCount": { "type": "integer", "minimum": 1, "description": "Only for papers that are not the standard 27 (R&W) / 22 (Math): the module's real size. Declaring it opts out of the standard count check but still pins the module to an exact number." },
           "questions": {
             "type": "array",
             "items": { "$ref": "#/definitions/question" }

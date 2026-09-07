@@ -15,6 +15,9 @@ export async function POST() {
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("Guest session failed:", err);
-    return NextResponse.json({ error: "Couldn't start a guest session" }, { status: 500 });
+    return NextResponse.json(
+      { error: "The sign-in service is temporarily unavailable. Please try again shortly." },
+      { status: 503 }
+    );
   }
 }

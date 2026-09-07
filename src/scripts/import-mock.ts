@@ -100,7 +100,7 @@ interface MockFile {
     totalQuestions?: number;
     durationMinutes?: number;
   };
-  modules: { section: Section; module: 1 | 2; questions: MockFileQuestion[] }[];
+  modules: { section: Section; module: 1 | 2; questionCount?: number; questions: MockFileQuestion[] }[];
 }
 
 const SECTIONS: Section[] = ["Reading and Writing", "Math"];
@@ -153,8 +153,19 @@ function validate(data: MockFile, figuresDir: string): string[] {
     }
     if (seen.has(key)) problems.push(`Module ${key} appears twice`);
     seen.add(key);
-    if (mod.questions.length !== EXPECTED_PER_MODULE[mod.section]) {
-      problems.push(`${key}: has ${mod.questions.length} questions, a real ${mod.section} module has ${EXPECTED_PER_MODULE[mod.section]}`);
+    // Most papers are the standard 27/22, and silently importing 26 of them
+    // would be a transcription bug — so the count is checked. Some real
+    // administrations aren't that shape though (the 2023 sets are Reading &
+    // Writing only, with modules of 31/21 and 23/15), so a module may state
+    // its own size in `questionCount`. Declaring it opts out of the standard
+    // check but still pins the module to an exact number.
+    const expected = mod.questionCount ?? EXPECTED_PER_MODULE[mod.section];
+    if (mod.questions.length !== expected) {
+      problems.push(
+        mod.questionCount === undefined
+          ? `${key}: has ${mod.questions.length} questions, a real ${mod.section} module has ${expected} — set "questionCount" on the module if this paper really is a different size`
+          : `${key}: has ${mod.questions.length} questions but declares questionCount ${expected}`
+      );
     }
     mod.questions.forEach((q, i) => {
       const tag = `${key} Q${q.number ?? i + 1}`;

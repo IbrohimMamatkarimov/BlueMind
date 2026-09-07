@@ -1,0 +1,1107 @@
+{
+  "$schema": "../mock.schema.json",
+  "mock": {
+    "title": "May 2023",
+    "subtitle": "Reading & Writing only",
+    "groupLabel": "2023",
+    "month": "May",
+    "year": 2023,
+    "source": "May 2023 digital SAT (Reading & Writing)",
+    "notes": "Transcribed from the May 2023 administration (\"2023.05 Computer Test — Reading and writing only\"). This paper covers Reading & Writing only — there is no Math section in the source — and its modules are non-standard sizes: the Routing module (27 minutes) has 23 questions and the second, easier-path module (18 minutes) has 15, of which question 5 is missing from the source; the 14 that survive were renumbered 1-14. The easier module is banked as the visible Module 2 so the set can be practised end to end. Figures are cropped from the source PDF; rationales and explanations were written for BlueMind.",
+    "totalQuestions": 37,
+    "durationMinutes": 45
+  },
+  "modules": [
+    {
+      "section": "Reading and Writing",
+      "module": 1,
+      "questionCount": 23,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "The following text is from John Matheus's 1925 novel *Fog*. The story happens in a city where heavy fog has set in.\n\nThe little conductor stood on tiptoe in an effort to keep one hand on the signal rope, craning his neck in a vain and dissatisfied endeavor to pierce the miasma of the fog. The motorman chafed in his box, thinking of the drudging lot of the laboring man. He __registered__ discontent.",
+          "questionText": "As used in the text, what does the word \"registered\" most nearly mean?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "enrolled"
+            },
+            {
+              "id": "B",
+              "text": "valued"
+            },
+            {
+              "id": "C",
+              "text": "disregarded"
+            },
+            {
+              "id": "D",
+              "text": "displayed"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The motorman \"chafed\" as he brooded, so his discontent showed outwardly — he displayed it.",
+          "explanation": "The preceding sentence describes the motorman chafing and dwelling on the hard lot of laborers, so the closing sentence reports that his discontent was visible. \"Displayed\" captures that outward showing. \"Enrolled\" is the sign-up sense of \"register,\" which cannot take \"discontent\" as an object here. \"Valued\" would mean he prized his discontent, and \"disregarded\" reverses the meaning entirely, since he is dwelling on it rather than ignoring it."
+        },
+        {
+          "number": 2,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "The Istiqlal Mosque in Jakarta, Indonesia, is a massive mosque that can accommodate approximately 200,000 people at once, making it an ______ sight to behold.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "idealized"
+            },
+            {
+              "id": "B",
+              "text": "intricate"
+            },
+            {
+              "id": "C",
+              "text": "imposing"
+            },
+            {
+              "id": "D",
+              "text": "illusory"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "A \"massive\" mosque that holds 200,000 people is impressive in scale — an imposing sight.",
+          "explanation": "The one detail the sentence gives is the mosque's enormous capacity, so the blank must describe the effect of sheer size. \"Imposing\" means impressively large. \"Intricate\" praises fine detail rather than scale. \"Idealized\" would mean the mosque is depicted as more perfect than it is, and \"illusory\" would mean it is not really there — neither follows from a capacity figure."
+        },
+        {
+          "number": 3,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Although fewer companies trade their stocks on the Tehran Stock Exchange in Tehran, Iran, than on the stock exchanges in London, Mumbai, or Tokyo, the Tehran Stock Exchange has the advantage of focusing on local companies and thus reflecting economic circumstances that are ______ Iran. This sensitivity to unique, rapidly evolving local conditions benefits the companies and investors alike.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "irrelevant to"
+            },
+            {
+              "id": "B",
+              "text": "prohibitive in"
+            },
+            {
+              "id": "C",
+              "text": "distinctive to"
+            },
+            {
+              "id": "D",
+              "text": "unchanging in"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The next sentence calls these \"unique, rapidly evolving local conditions,\" so the circumstances are particular to Iran.",
+          "explanation": "The following sentence supplies the definition of the blank: the conditions are \"unique\" and \"local.\" \"Distinctive to\" means particular to, matching exactly. \"Unchanging in\" contradicts \"rapidly evolving.\" \"Irrelevant to\" would destroy the advantage being described, since the exchange's strength is that it *reflects* Iran's conditions. \"Prohibitive in\" would describe conditions that block activity, which the passage never suggests."
+        },
+        {
+          "number": 4,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Hard",
+          "passageText": "In a study by Mika R. Moran, Daniel A. Rodriguez, and colleagues, residents of Caracas, Venezuela, and of Fortaleza, Brazil, were surveyed about parks in their cities. Of the 1,043 respondents from Caracas, 44.7% indicated that they use the city's parks, and of the 938 respondents from Fortaleza, 35.7% indicated using city parks. __It may be tempting to assume the difference is due to different levels of access to parks;__ however, given that the percentage of Caracas respondents who reported living within a 10-minute walk of a park was much lower than that reported by Fortaleza respondents, greater proximity alone can't explain the difference in park use.",
+          "questionText": "Which choice best describes the function of the underlined portion in the text as a whole?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It introduces a counterexample to the scenario described earlier in the text."
+            },
+            {
+              "id": "B",
+              "text": "It provides context to help understand the scope of the researchers' survey."
+            },
+            {
+              "id": "C",
+              "text": "It marks a shift from a discussion of the researchers' conclusion to a discussion of their methods."
+            },
+            {
+              "id": "D",
+              "text": "It presents a potential explanation for the team's findings that the text goes on to refute."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The underlined sentence raises access as a tempting explanation, and the \"however\" clause immediately rules it out.",
+          "explanation": "The underlined portion offers a hypothesis — that differing access explains the gap in park use — and flags it as merely \"tempting.\" The very next clause begins \"however\" and shows the hypothesis fails, since Caracas residents lived farther from parks yet used them more. So the sentence sets up an explanation the text then refutes, which is D. A calls it a counterexample, but it is a proposed cause, not a case that runs against the data. B describes the survey figures in the previous sentence. C reverses the order and misnames the parts: no methods discussion follows."
+        },
+        {
+          "number": 5,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "The following text is adapted from Anton Chekhov's 1899 play *Uncle Vanya*. Professor Serebrakoff retires and moves to his country estate, which Vanya manages with the help of Sonia, the professor's daughter from a previous marriage.\n\nChekhov portrays the professor as being someone adjusting to living at the country estate, as is evident when ______",
+          "questionText": "Which quotation from *Uncle Vanya* most effectively illustrates the claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Professor Serebrakoff says, \"I am a book-worm and a scholar, and am unfamiliar with practical affairs. I cannot, I find, dispense with the help of well-informed people.\""
+            },
+            {
+              "id": "B",
+              "text": "Professor Serebrakoff says to Helena, \"My darling, don't leave me alone with [Vanya]. He will begin to lecture me.\""
+            },
+            {
+              "id": "C",
+              "text": "Professor Serebrakoff says to Helena, \"I am used to my library and the lecture hall and to the esteem and admiration of my colleagues. Now I suddenly find myself plunged into this wilderness (the cottage), condemned to see the same stupid people from morning till night and listen to their futile conversations.\""
+            },
+            {
+              "id": "D",
+              "text": "Vanya says to Professor Serebrakoff, \"You write on art without knowing anything about it. Those books of yours which I used to admire are not worth one copper kopeck. You are a hoax!\""
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Only C contrasts the professor's old life (library, lecture hall, admiring colleagues) with his new one at the estate, showing a difficult adjustment.",
+          "explanation": "The claim is that the professor is adjusting to country life. C states the contrast directly: what he is \"used to\" versus the \"wilderness\" he now finds himself in, complete with resentment at his new surroundings. A describes his scholarly temperament generally, without reference to the move. B shows friction with Vanya rather than with the setting. D is Vanya's attack on the professor's scholarship, spoken by the wrong character and about the wrong subject."
+        },
+        {
+          "number": 6,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Hard",
+          "passageText": "The following text is from Jerome K. Jerome's 1889 novel *Three Men in a Boat*.\n\nWe are creatures of the sun, we men and women. We love light and life. That is why we crowd into the towns and cities, and the country grows more and more deserted every year. In the sunlight — in the daytime, when Nature is alive and busy all around us, we like the open hillsides and the deep woods well enough: but in the night, when our Mother Earth has gone to sleep, and left us waking, oh! the world seems so lonesome, and we get frightened, like children in a silent house. Then we sit and sob, and long for the gas-lit streets, and the sound of human voices, and the answering throb of human life.",
+          "questionText": "Which choice best states the main purpose of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "To indicate that crowded areas can cause people to feel as though they are children again"
+            },
+            {
+              "id": "B",
+              "text": "To caution people not to be so quick to dismiss the natural beauty that can be found in rural areas"
+            },
+            {
+              "id": "C",
+              "text": "To address common traits that motivate many people to choose to live in urban environments"
+            },
+            {
+              "id": "D",
+              "text": "To illustrate the idea that most people tend to prefer hillsides in the country to certain aspects of towns and cities"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The passage explains why \"we crowd into the towns and cities\": a shared love of light, company, and human life, and a shared fear of the dark countryside.",
+          "explanation": "The narrator generalises about human nature — \"we are creatures of the sun,\" we love light and life — and offers that as the reason people move to cities and leave the country empty. The rest of the passage develops the fear of rural night and the longing for gas-lit streets and human voices. That is an account of the traits driving people to urban life, so C. A inverts the childlike image, which is triggered by the lonely countryside at night rather than by crowds. B urges an attitude the text never recommends. D reverses the preference the passage describes."
+        },
+        {
+          "number": 7,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "Falcons and horses can see in three dimensions (3D), which helps them perceive distance and depth. Octopuses and squid are thought to lack 3D vision. Many researchers once thought the same about cuttlefish, but Trevor Wardill and his team wanted to test whether this assumption was true. The team studied how cuttlefish wearing 3D glasses reacted to 3D images of shrimp (a favorite prey) projected on a tank wall. Cuttlefish changed their striking position to match the 3D images, suggesting that their vision is more like that of falcons and horses than that of octopuses or squid.",
+          "questionText": "Which choice best describes the main idea of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Cuttlefish eyes are much more complex than those of falcons or horses."
+            },
+            {
+              "id": "B",
+              "text": "Wardill's team designed 3D glasses for cuttlefish."
+            },
+            {
+              "id": "C",
+              "text": "Before completing their study, Wardill's team thought that cuttlefish have 3D vision, but horses may not."
+            },
+            {
+              "id": "D",
+              "text": "The findings of Wardill's team's study suggest that, like falcons and horses, cuttlefish may also have 3D vision."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The cuttlefish adjusted their strikes to 3D images, which points to 3D vision like that of falcons and horses.",
+          "explanation": "The passage sets up an assumption (cuttlefish lack 3D vision, like octopuses and squid), reports a test, and delivers a result that overturns it. D states that conclusion. A claims cuttlefish eyes are *more complex* than falcons' or horses', a comparison the text never makes. B mentions a detail of the method as though it were the point of the study. C reverses the team's starting assumption and adds a doubt about horses that the first sentence contradicts."
+        },
+        {
+          "number": 8,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "President Richard Nixon is most famous for his participation in the 1970s Watergate political scandal, a convoluted tale of criminality and eroded ethics involving a constellation of associates such as White House Counsel Chuck Colson and White House Counsel John Dean. But Nixon's legacy is complex: he has been praised for his role in creating the Environmental Protection Agency, and he once made an attempt at reforming United States health care policy that is arguably a precursor to the Affordable Care Act, which became law during the Barack Obama administration.",
+          "questionText": "Which choice best states the main idea of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Chuck Colson and John Dean were significant figures in the presidency of Richard Nixon."
+            },
+            {
+              "id": "B",
+              "text": "Richard Nixon is commonly linked with an infamous historical event, but this overshadows some of his notable achievements."
+            },
+            {
+              "id": "C",
+              "text": "Some of Richard Nixon's policies influenced the policies of later presidential administrations."
+            },
+            {
+              "id": "D",
+              "text": "Richard Nixon's reputation is primarily due to the actions of his associates."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Nixon is \"most famous for\" Watergate, but the text insists his legacy is \"complex\" and lists achievements that fame obscures.",
+          "explanation": "The passage has two halves joined by \"But\": the scandal Nixon is best known for, and the accomplishments that complicate the picture. B captures both. A picks out two names that appear only as background detail. C names one of the achievements — the health care precursor — but leaves out the contrast that organises the whole text. D makes his associates the source of his reputation, whereas the passage attributes it to Watergate itself and then argues there is more to his legacy."
+        },
+        {
+          "number": 9,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "*Cane* is a 1923 novel by Jean Toomer. In one portion of the novel, Toomer uses figurative language to connect the narrator's urban environment of Washington, DC, and the rural South of the narrator's past, writing ______",
+          "questionText": "Which quotation from *Cane* most effectively illustrates the claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "\"The [train] engines of this valley have a whistle, the echoes of which sound like iterated gasps and sobs. I always think of them as crude music.\""
+            },
+            {
+              "id": "B",
+              "text": "\"And when the wind is from the South, soil of my homeland falls like a fertile shower upon the lean streets of [Washington, DC].\""
+            },
+            {
+              "id": "C",
+              "text": "\"I sang, with a strange quiver in my voice, a promise-song.\""
+            },
+            {
+              "id": "D",
+              "text": "\"The young trees had not outgrown their boxes then. V Street [in Washington, DC] was lined with them.\""
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "B uses a simile — southern soil falling \"like a fertile shower\" — to link the rural South directly to the streets of Washington, DC.",
+          "explanation": "The claim needs figurative language *and* a connection between the two places. B has both: the simile \"like a fertile shower\" carries the soil of the narrator's southern homeland onto DC's \"lean streets.\" A contains figurative language but stays in the valley, never reaching the city. C is figurative but names no place at all. D mentions a DC street literally, with no southern connection and no figure of speech."
+        },
+        {
+          "number": 10,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "Many believe that lullabies, characterized by their less steady beat, contain some acoustic features that are universally calming to infants. In a study, Constance M. Bainbridge and colleagues played both a lullaby sung in the Western Nahuatl language and a non-lullaby sung in the Serbian language to a group of infants. The researchers also measured the infants' heart rates, as a reduced heart rate is considered a measure of relaxation. They claim that the lullaby did indeed relax the infants.",
+          "questionText": "Which finding, if true, would most directly support Bainbridge and colleagues' claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The heart rates of infants in the study were more irregular during the lullabies than during non-lullabies."
+            },
+            {
+              "id": "B",
+              "text": "Parents of infants in the study chose the lullaby over the non-lullaby when asked which song they would use to calm their child."
+            },
+            {
+              "id": "C",
+              "text": "Infants' heart rates were substantially lower during the lullaby than during the non-lullaby."
+            },
+            {
+              "id": "D",
+              "text": "Both the song in Western Nahuatl and the song in Serbian were sung by a female singer."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The passage defines a reduced heart rate as the measure of relaxation, so lower heart rates during the lullaby support the claim.",
+          "explanation": "The text supplies the standard of evidence itself: \"a reduced heart rate is considered a measure of relaxation.\" C reports exactly that reduction during the lullaby, so it supports the claim directly. A reports irregularity rather than reduction, which the passage never links to relaxation. B gives parents' opinions instead of the infants' measured response. D describes a control in the study design, which rules out one confound but shows nothing about relaxation."
+        },
+        {
+          "number": 11,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "image": "may_r_q11_oklahoma_industries.png",
+          "passageText": "The Cherokee Nation, the Seminole Nation, and the more than thirty other tribes in Oklahoma operate numerous businesses and collectively generate billions of dollars in revenue. In fact, when the tribes' activity is regarded as a single industry, its contribution to the Oklahoma economy in 2017 ______",
+          "questionText": "Which choice uses data from the table to most effectively complete the comparison?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "surpassed the contribution made by administration / waste but fell short of that made by real estate."
+            },
+            {
+              "id": "B",
+              "text": "exceeded the contribution made by both administration / waste and real estate."
+            },
+            {
+              "id": "C",
+              "text": "was greater than the contribution made by real estate but equal to that made by administration / waste."
+            },
+            {
+              "id": "D",
+              "text": "was lower than the contribution made by either administration / waste or real estate."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Tribal economic activity contributed about $7.31 billion — more than administration/waste ($5.83 billion) but less than real estate ($18.31 billion).",
+          "explanation": "Read the three figures from the table: real estate $18,314,700,000, tribal economic activity $7,312,400,000, and administration/waste $5,830,600,000. Tribal activity sits between the other two, which is what A says. B would require tribal activity to top real estate, but $7.31 billion is far below $18.31 billion. C reverses the real estate comparison and wrongly calls the administration/waste figure equal. D would require tribal activity to be the smallest of the three, but it exceeds administration/waste."
+        },
+        {
+          "number": 12,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "passageText": "Water flowing around an obstruction creates vortices (patterns of swirls) of varying size; by detecting the vortices, fish can determine the size and position of the obstruction. Testing by Yuzo R. Yanagisuru, Otar Akanyeti, and James C. Liao using models of three head shapes — narrow (low ratio of width to length), intermediate, and wide (high ratio of width to length) — showed that for large vortices, fish with intermediate heads would be better able than narrow-headed fish to distinguish between vortices and general turbulence in the water. A second research team has therefore hypothesized that in low-visibility conditions, intermediate-headed fish will be more likely than narrow-headed fish to detect obstructions that create large vortices.",
+          "questionText": "Which finding, if true, would most directly support the second research team's hypothesis?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "A study using obstructions that created large vortices in low-visibility conditions found that the narrow-headed lake sturgeon (Acipenser fulvescens) bumped into obstructions more often than the intermediate-headed dusky smooth-hound (Mustelus canis) did."
+            },
+            {
+              "id": "B",
+              "text": "A study using obstructions that created large vortices in low-visibility conditions found that the lake sturgeon (Acipenser fulvescens), which has a relatively narrow head, bumped into more than half of the obstructions."
+            },
+            {
+              "id": "C",
+              "text": "A study using obstructions that created large vortices in low-visibility conditions found that some specimens of the intermediate-headed dusky smooth-hound (Mustelus canis) bumped into the obstructions more often than other specimens of the same fish did."
+            },
+            {
+              "id": "D",
+              "text": "A study using obstructions that created large vortices in low-visibility conditions found that the intermediate-headed dusky smooth-hound (Mustelus canis) avoided more than half of the obstructions."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The hypothesis is comparative, so support requires narrow-headed fish detecting obstructions *worse* than intermediate-headed fish — which is what more collisions means.",
+          "explanation": "The hypothesis predicts that intermediate-headed fish will detect large-vortex obstructions better than narrow-headed fish, so the evidence must compare the two head shapes. A does exactly that: the narrow-headed sturgeon collided more often than the intermediate-headed smooth-hound, implying poorer detection. B and D each report one species alone, with no comparison, so neither establishes a difference between head shapes. C compares individuals within a single species, which speaks to variation rather than to head shape."
+        },
+        {
+          "number": 13,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "image": "may_r_q13_traffic_delay.png",
+          "passageText": "In a college course on urban affairs, a student asserts that increased traffic congestion in the 1990s in the United States was present both in very large cities such as New York City, New York, and smaller areas such as Albuquerque, New Mexico, Jacksonville, Florida, and Boise, Idaho; though those smaller areas may have been less affected by traffic congestion than very large cities, this congestion also worsened in them over time.",
+          "questionText": "Which choice best describes data from the graph that support the student's claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In at least one of the four urban areas shown, the amount of traffic delay was less than 20 hours per commuter per year at one point between 1990 and 2000."
+            },
+            {
+              "id": "B",
+              "text": "While the annual number of hours of traffic delay per commuter was always lower in the Boise, Idaho, area than in the New York City, New York, area for each year between 1990 and 2000, the amount of traffic delay rose in both areas during this period."
+            },
+            {
+              "id": "C",
+              "text": "Even though the amount of traffic delay per commuter per year was greater in the Albuquerque, New Mexico, area than in the New York City, New York, area throughout the period from 1990 to 2000, the amounts were nearly identical in 1996."
+            },
+            {
+              "id": "D",
+              "text": "In 1992, the amount of traffic delay in the New York City, New York, area was less than 30 hours per commuter per year."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The claim needs both halves: the smaller area stays below New York City, and delay rises in both — exactly what the Boise and New York City lines show.",
+          "explanation": "The student's claim has two parts — smaller areas were less affected, and congestion worsened in them too. B states both, and the graph confirms both: Boise sits below New York City in every year, and both lines climb from 1990 to 2000 (Boise from about 15 to 28 hours, New York City from about 42 to 62). A reports a single low reading, which supports neither part. C is false, since Albuquerque is well below New York City throughout. D is also false — New York City is above 40 hours in 1992 — and in any case says nothing about the smaller areas."
+        },
+        {
+          "number": 14,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "image": "may_r_q14_urban_agriculture.png",
+          "passageText": "Esther Sanye-Mengual, Kathrin Specht, and their team surveyed three groups of people in Bologna, Italy — leaders of urban agriculture projects, stakeholders in urban agriculture (e.g., food researchers and urban farming associations), and the general public — to compare their views about the extent to which urban agriculture contributes to 25 social or ecological services that the team identified. The researchers used these ratings to rank the services for each group, with a conclusion that both stakeholders and the general public regard the improvement of attitudes and outlooks as an important benefit of urban agriculture.",
+          "questionText": "Which choice best describes data in the table that support the researchers' conclusion?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The improvement of physical health was ranked lower for the general public than it was for project leaders."
+            },
+            {
+              "id": "B",
+              "text": "The provision of raw materials was ranked higher for the general public than was the improvement of attitudes and outlooks."
+            },
+            {
+              "id": "C",
+              "text": "The improvement of attitudes and outlooks was ranked higher for stakeholders than it was for the general public."
+            },
+            {
+              "id": "D",
+              "text": "The improvement of attitudes and outlooks was ranked higher for the general public than were the other four services."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "For the general public, attitudes and outlooks ranks 4 — ahead of all four other services listed — which shows they regard it as an important benefit.",
+          "explanation": "On this scale 1 is the highest rank. For the general public, improvement of attitudes and outlooks ranks 4, ahead of physical health (7), food (8), pollination (12), and raw materials (15). That is D, and combined with the stakeholders' rank of 1 it supports the conclusion about both groups. B reverses the comparison: raw materials ranks 15 for the general public, far below 4. C states a true comparison but works against the conclusion by making the general public's view look secondary rather than supporting it. A concerns physical health, not the service the conclusion is about."
+        },
+        {
+          "number": 15,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Hard",
+          "passageText": "Like many other fruit-eating birds on the Hawaiian island of Oahu, the red-whiskered bulbul helps forest plants spread by dropping seeds from the plants' fruits in different spots (a process called seed dispersal). Ecologists have found that fruit-eating birds disperse some seeds from native plants at risk of extinction in the wild, such as the lapalapa tree. However, the birds disperse a higher number of seeds from night-blooming jessamine shrubs and other non-native plants with large populations, likely because there are so many more of those plants for them to choose from. Therefore, it isn't surprising that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "on Oahu, the rate of population increase is higher for non-native plants than it is for vulnerable native forest plants, like lapalapa trees."
+            },
+            {
+              "id": "B",
+              "text": "night-blooming jessamine shrubs and other non-native forest plants only recently began to outnumber native forest plants in the wild."
+            },
+            {
+              "id": "C",
+              "text": "on Oahu, native plants, such as the lapalapa tree, are already growing in most of the spots where red-whiskered bulbuls would be likely to drop plant seeds on Oahu."
+            },
+            {
+              "id": "D",
+              "text": "the lapalapa tree and the night-blooming jessamine shrub are the plant species most in danger of going extinct in the wild."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "More dispersed seeds means more new plants, so non-native populations should grow faster than the native ones whose seeds are dispersed less.",
+          "explanation": "Seed dispersal is how these plants spread, and the birds move far more non-native seeds than native ones. The expected consequence is that non-native populations grow faster than vulnerable native ones — A. B claims the non-natives only recently became more numerous, but the passage says their populations are already large and offers no timeline. C would mean native plants are everywhere on Oahu, which contradicts their being at risk of extinction. D lumps the abundant jessamine in with the endangered lapalapa, contradicting the passage's description of jessamine as a plant with large populations."
+        },
+        {
+          "number": 16,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Sarah Marquis, who walked 16,000 kilometers across Asia, Siberia, and Australia, undoubtedly accomplished much, but to ______ a lasting historical legacy for oneself, almost nothing is more effective than being the first to do something. For example, people will always remember that Anesia Pinheiro Machado was the first female pilot in Brazil to carry passengers and the first to make stunt flights.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "recognize"
+            },
+            {
+              "id": "B",
+              "text": "undermine"
+            },
+            {
+              "id": "C",
+              "text": "constrain"
+            },
+            {
+              "id": "D",
+              "text": "establish"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Being first is presented as the most effective way to *create* a lasting legacy, which is what \"establish\" means.",
+          "explanation": "The sentence is about how a person can bring a lasting legacy into being for themselves, and the example of Machado's firsts illustrates the method. \"Establish\" means to found or set up, which fits. \"Recognize\" would mean noticing a legacy that already exists rather than creating one. \"Undermine\" and \"constrain\" are both negative — weakening or limiting a legacy — which contradicts \"almost nothing is more effective.\""
+        },
+        {
+          "number": 17,
+          "domain": "Information and Ideas",
+          "skill": "Cross-Text Connections",
+          "difficulty": "Hard",
+          "passageText": "Text 1\n\nThe poet Audre Lorde once claimed that poetry is the most inexpensive of art forms to practice. While people who pursue other art forms — sculpture, architecture, long form prose — require large blocks of uninterrupted time as well as money to complete their work, poets can write, as Lorde said, \"between shifts, in the hospital pantry, on the subway, and on scraps of surplus paper.\" So poets can make worthwhile art even if they must earn their living in another way.\n\nText 2\n\nAny assessment of the state of contemporary poetry must reckon with the professionalization of the field. While it is possible in theory for anyone to publish in *Virginia Quarterly Review*, *Kenyon Review*, or a similar major poetry outlet, many people who do so have professional training in poetry and extensive practice writing it, which requires time not often available to those who must also work full-time jobs. Thus, financial security indirectly affects which people become poets.",
+          "questionText": "Based on the texts, how would Lorde (Text 1) most likely respond to the argument presented in Text 2?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "By indicating that those poets who publish in major poetry journals are most likely to be able to earn a living by writing poetry"
+            },
+            {
+              "id": "B",
+              "text": "By pointing out that people can produce valuable poetry in other circumstances than those described by the author of Text 2"
+            },
+            {
+              "id": "C",
+              "text": "By suggesting that those artists who specialize in more financially rewarding artistic forms are unlikely to also be successful as poets"
+            },
+            {
+              "id": "D",
+              "text": "By asserting that people often work full-time jobs in order to afford the professional training described in Text 2"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Lorde's whole point is that worthwhile poetry gets written in snatched moments by people with other jobs — outside the professionalized path Text 2 describes.",
+          "explanation": "Text 2 ties becoming a poet to professional training and the free time that financial security buys. Lorde's position is that poetry needs neither: it can be written \"between shifts, in the hospital pantry, on the subway,\" and such poets \"can make worthwhile art even if they must earn their living in another way.\" That is precisely the response in B. A concerns earning a living *from* poetry, which Lorde never claims. C compares success across art forms, a comparison Text 1 does not make. D accepts Text 2's premise that training is necessary and merely explains how it gets paid for, which is not a rebuttal."
+        },
+        {
+          "number": 18,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "*The Yellow Admiral*, first published in 1996, is a novel in Patrick O'Brian's Aubrey/Maturin series, which includes twenty books plus an unfinished fragment of a twenty-first. Like the rest of the books in the series, *The Yellow Admiral* has a rather abrupt ending, but the following book, *The Hundred Days*, picks up neatly where *The Yellow Admiral* leaves off. Thus, the sudden ending is only an issue if one considers the books as independent texts — the Aubrey/Maturin series is best thought of as a single incredibly long work, similar to other multivolume stories, such as Marcel Proust's *In Search of Lost Time*.",
+          "questionText": "Which choice best states the main idea of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Over time, the Aubrey/Maturin series has acquired the same eminence among critics as works like In Search of Lost Time that have similar structures."
+            },
+            {
+              "id": "B",
+              "text": "A certain understanding of the structures of the novels in the Aubrey/Maturin series is helpful if one wishes to appreciate the series."
+            },
+            {
+              "id": "C",
+              "text": "Many readers find the Aubrey/Maturin novels to be remarkably entertaining despite flaws in the novels' structures."
+            },
+            {
+              "id": "D",
+              "text": "The Yellow Admiral and The Hundred Days are two of the most complex of O'Brian's novels due in part to their unconventional structures."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The abrupt endings only seem like a problem if the books are read separately; reading the series as one long work makes them make sense.",
+          "explanation": "The text argues that the sudden ending \"is only an issue if one considers the books as independent texts,\" and that the series is \"best thought of as a single incredibly long work.\" So how you understand the structure determines whether you appreciate the series — B. A claims a critical reputation on a par with Proust, but *In Search of Lost Time* is cited only as a structural parallel. C concedes the structures are flawed, which is exactly what the passage denies. D singles out two books as unusually complex, whereas the text says all the books in the series share the same ending style."
+        },
+        {
+          "number": 19,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Hard",
+          "passageText": "The following text is from Mary Shelley's 1818 novel *Frankenstein*. Victor Frankenstein, who narrates this portion of text, describes the state of scientific knowledge as he began his own study of the natural world.\n\nThe untaught peasant beheld the elements around him and was acquainted with their practical uses. The most learned philosopher knew little more. He had partially unveiled the face of Nature, but her immortal lineaments were still a wonder and a mystery. He might dissect, anatomize, and give names; but, not to speak of a final cause, causes in their secondary and tertiary grades were utterly unknown to him. I had gazed upon the fortifications and impediments that seemed to keep human beings from entering the citadel of nature, and rashly and ignorantly I had repined.",
+          "questionText": "Which choice best describes the main idea of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Victor became disappointed in science when he realized that the practical knowledge laypeople have of nature is often deeper than the scientific understanding."
+            },
+            {
+              "id": "B",
+              "text": "Victor was impressed by the layperson's practical understanding of nature but thought science provided a clearer understanding."
+            },
+            {
+              "id": "C",
+              "text": "Victor was immediately impressed by the advantages of the scientific approach to understanding natural phenomena."
+            },
+            {
+              "id": "D",
+              "text": "Victor thinks that conventional scientific approaches to understanding natural phenomena will not yield the answers he seeks."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Science can dissect and name, but nature's deeper causes remain \"utterly unknown\" — so the established approach cannot answer Victor's questions.",
+          "explanation": "Victor says the learned philosopher \"knew little more\" than the untaught peasant and could only \"dissect, anatomize, and give names\" while nature's real causes stayed hidden. He then describes gazing at the barriers keeping people out of \"the citadel of nature.\" The point is that conventional science falls short of what he wants to know — D. A goes further than the text, which says the philosopher knew little more, not less. B credits science with a clearer understanding, contradicting that comparison. C misreads his reaction: he is dissatisfied, not impressed."
+        },
+        {
+          "number": 20,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "image": "may_r_q20_coral_depths.png",
+          "passageText": "Some scientists have suggested that as ocean temperatures rise, many fish and corals found in the shallow zone (less than 30 meters below the surface) could take refuge in the cooler, darker mesophotic zone (30 to 150 meters below the surface). However, it isn't clear that all such species will be able to tolerate mesophotic conditions. In 2018, Luiz Rocha and colleagues studied stony corals in the two zones in Caribbean and Indo-Pacific waters. Based on the depths at which those corals are now found, the species that seems least suited to a full migration to the mesophotic zone is ______",
+          "questionText": "Which choice most effectively uses data from the table to complete the statement?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Agaricia undata, because its minimum depth of 20 meters is in the shallow zone."
+            },
+            {
+              "id": "B",
+              "text": "Plerogyra discus, because its maximum depth of 15 meters is furthest from the mesophotic zone."
+            },
+            {
+              "id": "C",
+              "text": "Acropora echinata, because its maximum depth of 25 meters is close to but doesn't reach the mesophotic zone."
+            },
+            {
+              "id": "D",
+              "text": "Psammocora albopicta, because its minimum depth of 1 meter is the shallowest of those listed."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "*Plerogyra discus* never goes deeper than 15 meters — the shallowest maximum in the table, and the furthest from the 30-meter mesophotic boundary.",
+          "explanation": "The species least suited to moving into the mesophotic zone is the one whose deepest recorded range falls shortest of 30 meters, since maximum depth shows how deep it can already survive. *Plerogyra discus* tops out at 15 meters, well short of *Acropora echinata* (25) and *Psammocora albopicta* (28), so B. C names the second-closest species rather than the furthest. A and D both cite minimum depths, but a shallow minimum says nothing about how deep a coral can go — *Agaricia undata* reaches 80 meters, and *Psammocora albopicta* reaches 28."
+        },
+        {
+          "number": 21,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "The Harlem Renaissance, which gave us great literary works like May Miller's play *The Bog Guide* and nonliterary works like James Van Der Zee's photograph *Couple, Harlem*, is often said to have ended in the 1930s shortly after the Great Depression began. But some scholars argue that the Harlem Renaissance never really ended because it continues to shape culture in the United States today. These scholars therefore suggest that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "if a cultural movement has both literary and nonliterary innovations, then it is likely to be influential."
+            },
+            {
+              "id": "B",
+              "text": "if a cultural movement is very innovative, then it is unlikely to be able to sustain itself for long."
+            },
+            {
+              "id": "C",
+              "text": "if the literary works of a cultural movement are influential, then it doesn't matter whether the nonliterary works are."
+            },
+            {
+              "id": "D",
+              "text": "if the influence of a cultural movement continues, then in some sense the movement itself continues."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The scholars conclude the movement never ended *because* its influence persists — that reasoning assumes continuing influence means continuing existence.",
+          "explanation": "The scholars' argument runs: the Harlem Renaissance still shapes American culture, therefore it never really ended. Stated as a general principle, that is D — continued influence amounts to continued existence. A concerns what makes a movement influential, not whether it has ended. B claims innovation shortens a movement's life, the opposite of the scholars' position. C ranks literary against nonliterary works, a distinction the passage draws only to illustrate the movement's range."
+        },
+        {
+          "number": 22,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "Architects looking for inspiration may examine photographs of iconic buildings such as the Forbidden City in Beijing. A two-dimensional photograph, however, cannot capture how a building interacts with its surroundings, whether by complementing, blending in with, or perhaps even clashing with sights and activities nearby. An image of the Forbidden City thus ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "serves to exaggerate the building's historical importance."
+            },
+            {
+              "id": "B",
+              "text": "fails to convey the full impact of the building's design and structure."
+            },
+            {
+              "id": "C",
+              "text": "misrepresents how the building is perceived by people who have never visited Beijing."
+            },
+            {
+              "id": "D",
+              "text": "conceals the subtle deterioration of the building's materials."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "A flat photograph cannot show how a building relates to its surroundings, so it leaves out part of the building's effect.",
+          "explanation": "The middle sentence states the limitation: a two-dimensional image cannot capture how a building interacts with what is around it. The conclusion drawn about a photograph of the Forbidden City must therefore be that it shows something incomplete — B. A claims the photo overstates historical importance, but the passage is about spatial context, not history. C makes a claim about a particular audience's perceptions that the text never raises. D introduces physical deterioration, which is nowhere in the passage."
+        },
+        {
+          "number": 23,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "Some studies can be done well with relatively little money. For example, a marketing study simply trying to identify the average amount customers spend per transaction at an online retailer has a straightforward central question that doesn't require many years of data collection. But it is much more expensive to conduct a longitudinal study like the Household, Income and Labour Dynamics in Australia Survey (HILDA), which looks at data for 25,000 people in Australia to find trends in economic well-being that can take a long time to develop. This requires lots of funding because ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "marketing studies are not likely to require data on very many individuals."
+            },
+            {
+              "id": "B",
+              "text": "data from 25,000 people may not be enough to reveal significant trends in economic well-being."
+            },
+            {
+              "id": "C",
+              "text": "long-term trends in economic well-being are hard to find without collecting data over many years."
+            },
+            {
+              "id": "D",
+              "text": "long-term trends in marketing can be found without examining many years of data."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The trends HILDA studies \"take a long time to develop,\" so the study must keep collecting data for years — and that is what costs money.",
+          "explanation": "The contrast the passage draws is between a cheap study needing no years of data and an expensive one tracking trends that \"can take a long time to develop.\" The reason for the expense must therefore be the long collection period, which is C. A is about marketing studies' sample sizes and explains nothing about HILDA's cost. B questions whether 25,000 people suffice, which would undercut the study rather than explain its budget. D concerns marketing trends and is contradicted by the passage's own framing of what is cheap and why."
+        }
+      ]
+    },
+    {
+      "section": "Reading and Writing",
+      "module": 2,
+      "questionCount": 14,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Cut, bent, and welded from discarded metal materials, the sculptures of London-based Nigerian artist Sokari Douglas Camp are meant to challenge viewers to consider their own relationships to material ______ her thought-provoking works in the 1993 exhibition *Steel Clothes and Ornamentation* at the Redfern Gallery in London were no different.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "wastes;"
+            },
+            {
+              "id": "B",
+              "text": "wastes and to"
+            },
+            {
+              "id": "C",
+              "text": "wastes,"
+            },
+            {
+              "id": "D",
+              "text": "wastes"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Two independent clauses with no coordinating conjunction between them require a semicolon.",
+          "explanation": "\"The sculptures… are meant to challenge viewers to consider their own relationships to material wastes\" and \"her thought-provoking works… were no different\" are both complete sentences. With no conjunction joining them, a semicolon is the correct mark. Choice C leaves only a comma, producing a comma splice. Choice D omits punctuation entirely, fusing the sentences. Choice B adds \"and to,\" which turns the second clause into a fragment attached to the infinitive \"to consider.\""
+        },
+        {
+          "number": 2,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Hard",
+          "passageText": "A recipient of the Othmer Gold Medal and the Davy Medal from the Royal Society, ______ known as femtochemistry when he devised an optical spectroscopy technique that allowed researchers to study ultrafast chemical reactions occurring within molecules.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "the result of chemist Ahmed Zewail's expansion of the limits of measurability was the introduction of a new scientific discipline"
+            },
+            {
+              "id": "B",
+              "text": "the introduction of a new scientific discipline by chemist Ahmed Zewail led to the expansion of the limits of measurability"
+            },
+            {
+              "id": "C",
+              "text": "the limits of measurability were expanded by chemist Ahmed Zewail, who introduced a new scientific discipline"
+            },
+            {
+              "id": "D",
+              "text": "chemist Ahmed Zewail expanded the limits of measurability and introduced a new scientific discipline"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The opening modifier describes a *recipient* of medals, so the subject right after the comma must be the person, Ahmed Zewail.",
+          "explanation": "\"A recipient of the Othmer Gold Medal and the Davy Medal\" can only describe a person, so the noun immediately following the comma must be Zewail himself — otherwise the modifier dangles. Only D begins with \"chemist Ahmed Zewail,\" and it also places \"a new scientific discipline\" right before \"known as femtochemistry,\" so that phrase modifies the right noun. A and B open with \"the result\" and \"the introduction,\" abstractions that cannot receive medals. C opens with \"the limits of measurability,\" which likewise cannot be a recipient."
+        },
+        {
+          "number": 3,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes:\n\n- Jean-Michel Basquiat was an American artist who produced more than two thousand drawings and paintings.\n- His work *Thin in the Old* was completed in 1986 and sold at auction in 2020.\n- *Thin in the Old* is composed of acrylic, oil, and paper collage on wood and measures 3,028 square inches in area.\n- His work *Victor* was completed in 1987 and sold at auction in 2017.\n- *Victor* is composed of acrylic, oil stick, and crayon on canvas and measures 9,432 square inches in area.",
+          "questionText": "Which choice most effectively uses information from the given sentences to emphasize how the two works are similar?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Composed by artist Jean-Michel Basquiat in 1986 and 1987, respectively, both Thin in the Old and Victor use acrylic paint as a medium."
+            },
+            {
+              "id": "B",
+              "text": "Artist Jean-Michel Basquiat completed Thin in the Old in 1986, and Victor followed in 1987."
+            },
+            {
+              "id": "C",
+              "text": "Artist Jean-Michel Basquiat's work Thin in the Old is composed of acrylic, oil, and paper collage, while Victor is composed of acrylic, oil stick, and crayon."
+            },
+            {
+              "id": "D",
+              "text": "Between artist Jean-Michel Basquiat's works Victor and Thin in the Old, the former is the larger of the two."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Only A names something the two works share — both use acrylic — and says so with \"both.\"",
+          "explanation": "The goal is to emphasise similarity, so the sentence must point to a shared feature. A does: acrylic appears in the materials list for each work, and the word \"both\" makes the shared quality explicit. C lists the materials of each but frames them with \"while,\" stressing the differences. D compares their sizes, which is a contrast. B reports the two completion dates one after the other without claiming anything in common."
+        },
+        {
+          "number": 4,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes:\n\n- The Mohs scale of mineral hardness is a ten-point scale that orders minerals by hardness based on their ability to scratch other minerals.\n- Minerals with larger numbers are harder than minerals with smaller numbers and can leave visible scratches on them.\n- Minerals with smaller numbers are softer than minerals with larger numbers and cannot leave visible scratches on them.\n- The mineral talc has a Mohs scale number of 1.\n- The mineral fluorite has a Mohs scale number of 4.\n- The mineral topaz has a Mohs scale number of 8.",
+          "questionText": "The student wants to compare the hardness of talc and topaz. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Topaz can leave visible scratches on fluorite, which is why topaz has a higher number than fluorite on the Mohs scale of mineral hardness."
+            },
+            {
+              "id": "B",
+              "text": "The Mohs scale of mineral hardness can be used to order fluorite, talc, and topaz by their ability to scratch other minerals."
+            },
+            {
+              "id": "C",
+              "text": "A mineral with a Mohs number of 4, like fluorite, is harder than one with a Mohs number of 1, like talc."
+            },
+            {
+              "id": "D",
+              "text": "Topaz can leave visible scratches on talc, which means that topaz is harder than talc."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Only D compares the two named minerals directly, stating that topaz (8) is harder than talc (1).",
+          "explanation": "The goal names exactly two minerals — talc and topaz — so the sentence must put those two side by side. D does, and it grounds the claim in the scratching test the notes describe. A compares topaz with fluorite, and C compares fluorite with talc; each leaves out one of the two required minerals. B mentions all three but only says the scale *can* be used to order them, never stating how talc and topaz compare."
+        },
+        {
+          "number": 5,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "What is the origin of the word \"pessimism\"? Interestingly, ______. It first appears in a letter by English author Samuel Taylor Coleridge.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "it was invented by an author."
+            },
+            {
+              "id": "B",
+              "text": "it was invented by an author?"
+            },
+            {
+              "id": "C",
+              "text": "wasn't it invented by an author."
+            },
+            {
+              "id": "D",
+              "text": "was it invented by an author."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The blank answers the opening question, so it needs statement word order and a period.",
+          "explanation": "The passage asks a question and then answers it, and the following sentence about Coleridge's letter confirms the answer. A statement requires subject-before-verb order and a period, which only A provides. B has the right word order but ends with a question mark, so the sentence asks rather than tells. C and D use the inverted word order of questions while ending in periods, mismatching form and punctuation."
+        },
+        {
+          "number": 6,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "After much debate, ______ finally made a decision: the judges for the 1974 Nobel Prize in Literature would award Eyvind Johnson of Sweden with that year's prize \"for a narrative art, far-seeing in lands and ages, in the service of freedom.\"",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "you"
+            },
+            {
+              "id": "B",
+              "text": "it"
+            },
+            {
+              "id": "C",
+              "text": "anyone"
+            },
+            {
+              "id": "D",
+              "text": "they"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The pronoun stands for \"the judges,\" named after the colon, so it must be plural: \"they.\"",
+          "explanation": "The material after the colon identifies who made the decision — \"the judges for the 1974 Nobel Prize in Literature\" — a plural noun. The pronoun in the blank refers to them and so must be plural, which only \"they\" is. \"It\" is singular. \"You\" addresses the reader, who did not make the decision, and \"anyone\" is an indefinite pronoun that leaves the decider unspecified even though the sentence goes on to specify it."
+        },
+        {
+          "number": 7,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Easy",
+          "passageText": "Today, the Michelin Guide is widely known as the arbiter of fine dining, with its coveted 3-star rating being awarded to top restaurants like Xin Rong Ji in Beijing. However, few know the guide started as a marketing gimmick in 1900, when brothers Andre and Edouard Michelin sought to increase profits for their tire company by encouraging their customers to ______ their cars across France, visiting the guide's recommended hotels and restaurants along the way.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "drive."
+            },
+            {
+              "id": "B",
+              "text": "drive"
+            },
+            {
+              "id": "C",
+              "text": "drive:"
+            },
+            {
+              "id": "D",
+              "text": "drive;"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"Drive\" takes \"their cars\" as its direct object, and punctuation must never separate a verb from its object.",
+          "explanation": "The sentence continues past the blank — the customers drive *their cars* across France — so the verb and its object belong together with nothing between them. B leaves them joined. A ends the sentence mid-clause, stranding \"their cars across France\" as a fragment. C and D insert a colon and a semicolon in the same impossible position, and both marks additionally require a complete independent clause on at least one side."
+        },
+        {
+          "number": 8,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "Pinon Chapter is one of the 110 chapters of the Navajo Nation (Naabeehó Bináhásdzo). The chapter, known as Be'ek'id Baa Ahoodzání in the Navajo language (Diné Bizaad), was the subject of a profile ______ in the *Navajo Times* on December 12, 2013.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "appearing"
+            },
+            {
+              "id": "B",
+              "text": "appears"
+            },
+            {
+              "id": "C",
+              "text": "has appeared"
+            },
+            {
+              "id": "D",
+              "text": "appeared"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The sentence already has its main verb, \"was,\" so the blank must be a participle modifying \"profile.\"",
+          "explanation": "\"The chapter… was the subject of a profile\" is a complete clause, so what follows has to modify \"profile\" rather than serve as a second main verb. The present participle \"appearing\" does that job. \"Appears,\" \"has appeared,\" and \"appeared\" are all finite verbs, and inserting any of them creates a second predicate with no conjunction, leaving the sentence ungrammatical."
+        },
+        {
+          "number": 9,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Writer Silvia Moreno-Garcia's love of short fiction began when she read a collection of Edgar Allan Poe stories as a child, and she later would become a prolific short story writer herself, publishing pieces like \"In the Details\" (2015) and \"To See Pedro Infante\" (2014). Yet she's best ______ especially since her 2020 novel *Mexican Gothic* reached the *New York Times* Best Sellers list — as a novelist.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "known"
+            },
+            {
+              "id": "B",
+              "text": "known:"
+            },
+            {
+              "id": "C",
+              "text": "known—"
+            },
+            {
+              "id": "D",
+              "text": "known;"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "A dash already closes the interrupting phrase before \"as a novelist,\" so a matching dash must open it.",
+          "explanation": "The phrase \"especially since her 2020 novel *Mexican Gothic* reached the *New York Times* Best Sellers list\" interrupts \"she's best known… as a novelist,\" and the sentence supplies a closing dash before \"as a novelist.\" Punctuation around an interrupter must match at both ends, so an opening dash is required — C. A leaves the interrupter unmarked at its start. B and D use a colon and a semicolon, neither of which can pair with a dash, and both would also need the material that follows to stand differently than it does."
+        },
+        {
+          "number": 10,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "In 1931, scientists first isolated a sample of the steroid hormone androsterone, which they knew existed in animals — and, they assumed, only in animals. ______ researchers would find androsterone in Swiss cheese plants (*Monstera deliciosa*), but this discovery wouldn't come until decades later.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "For example,"
+            },
+            {
+              "id": "B",
+              "text": "Eventually,"
+            },
+            {
+              "id": "C",
+              "text": "In other words,"
+            },
+            {
+              "id": "D",
+              "text": "Earlier,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The plant discovery came \"decades later\" than 1931, so a transition marking later time is needed.",
+          "explanation": "The passage moves from a 1931 assumption to a finding that the sentence itself dates to \"decades later.\" \"Eventually\" marks that passage of time. \"Earlier\" reverses the chronology the sentence states outright. \"For example\" would make the plant finding an instance of the 1931 assumption, which it contradicts. \"In other words\" would restate the first sentence rather than report a later discovery that overturns it."
+        },
+        {
+          "number": 11,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "The first documented use of the English word \"muzzle\" is attributed to poet Geoffrey Chaucer's 1385 work \"The Knight's Tale.\" However, Chaucer didn't write in Modern English; ______ he wrote in what we now call Middle English, which was commonly used during the period.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "as a result,"
+            },
+            {
+              "id": "B",
+              "text": "similarly,"
+            },
+            {
+              "id": "C",
+              "text": "rather,"
+            },
+            {
+              "id": "D",
+              "text": "finally,"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The clause replaces what was just denied — not Modern English but Middle English — which is what \"rather\" signals.",
+          "explanation": "The first clause says what Chaucer did *not* write in; the second supplies what he did. \"Rather\" is the transition that substitutes the correct alternative for a rejected one. \"As a result\" would make writing Middle English a consequence of not writing Modern English, which is circular. \"Similarly\" signals likeness where the sentence draws a distinction. \"Finally\" marks the last item in a sequence, and no sequence is under way."
+        },
+        {
+          "number": 12,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "The moon Leda orbits Jupiter in the same direction that the planet rotates. ______ Leda's orbit is described as prograde. Ananke, another of Jupiter's moons, orbits in the opposite direction, so its orbit is described with the opposite term: retrograde.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In reality,"
+            },
+            {
+              "id": "B",
+              "text": "Nevertheless,"
+            },
+            {
+              "id": "C",
+              "text": "Hence,"
+            },
+            {
+              "id": "D",
+              "text": "Next,"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Orbiting in the same direction as the planet's rotation is *why* the orbit is called prograde — a cause-and-effect link.",
+          "explanation": "The first sentence gives the fact about Leda's direction of orbit; the second draws the label that follows from it. \"Hence\" marks that consequence, and the Ananke sentence confirms the pattern with \"so.\" \"Nevertheless\" and \"In reality\" both signal contrast or correction, but the second sentence agrees with the first. \"Next\" would mark a step in a sequence rather than a conclusion drawn from the preceding fact."
+        },
+        {
+          "number": 13,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "As part of a study, participants were asked to list animals they thought of as \"charismatic,\" which was defined as \"attractive, fascinating, or appealing.\" Researchers compiled the responses into a single list and found that the cheetah and the blue whale both landed in the top twenty. ______ no animal outranked the tiger.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In other words,"
+            },
+            {
+              "id": "B",
+              "text": "As a result,"
+            },
+            {
+              "id": "C",
+              "text": "Still,"
+            },
+            {
+              "id": "D",
+              "text": "For example,"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The cheetah and blue whale did well, but the tiger still beat them all — a concession.",
+          "explanation": "The second sentence concedes that despite the strong showing of the cheetah and blue whale, the tiger came out on top. \"Still\" expresses that concession. \"In other words\" would restate the first sentence, but the tiger is new information. \"As a result\" would make the tiger's rank a consequence of the other two placing in the top twenty. \"For example\" would present the tiger's rank as an instance of the previous claim, which it is not."
+        },
+        {
+          "number": 14,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "Shonte Tucker has worked at NASA's famed Jet Propulsion Laboratory (JPL), one of the world's leading facilities for robotic space exploration. ______ Tucker worked as a systems engineer on the JPL's Mars 2020 Perseverance rover team, which improved upon the 2011 Curiosity rover design by adding a coring drill to the robot that could collect rock samples for later analysis.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Conversely,"
+            },
+            {
+              "id": "B",
+              "text": "Specifically,"
+            },
+            {
+              "id": "C",
+              "text": "Finally,"
+            },
+            {
+              "id": "D",
+              "text": "Nevertheless,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The second sentence narrows the general fact of Tucker's JPL work to one particular role on one particular team.",
+          "explanation": "The first sentence says broadly that Tucker has worked at JPL; the second names the exact job — systems engineer on the Perseverance rover team. \"Specifically\" marks that move from general to particular. \"Conversely\" and \"Nevertheless\" both signal contrast, but the second sentence elaborates rather than opposes. \"Finally\" would mark the last item in a sequence, and no sequence of jobs has been laid out."
+        }
+      ]
+    }
+  ]
+}

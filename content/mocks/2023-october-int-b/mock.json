@@ -1,0 +1,508 @@
+{
+ "$schema": "../mock.schema.json",
+ "mock": {
+  "title": "October 2023",
+  "subtitle": "International Form B (R&W Module 1)",
+  "groupLabel": "2023",
+  "month": "October",
+  "year": 2023,
+  "source": "October 2023 International (Form B)",
+  "notes": "Transcribed from the \"2023 Oct Int-B\" Bluebook screenshots. The source PDF contains only Section 1, Module 1 (Reading and Writing) plus its answer key, so this set is a single 27-question module rather than a full test. Question 8 choice D was cut off at the bottom of the source screenshot; its final words (\"the Great Lakes region\") were reconstructed from context. Figures are cropped from the source PDF; rationales and explanations were written for BlueMind."
+ },
+ "modules": [
+  {
+   "section": "Reading and Writing",
+   "module": 1,
+   "questions": [
+    {
+     "number": 1,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Easy",
+     "passageText": "Portable video game consoles and wireless speakers tend to contain batteries that can't be easily ______. Environmental policy researcher Jessika Richter warns that because new batteries can't be put in once the old ones no longer work, the gadgets stop functioning and are usually disposed of as trash.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      { "id": "A", "text": "rated" },
+      { "id": "B", "text": "invented" },
+      { "id": "C", "text": "prevented" },
+      { "id": "D", "text": "replaced" }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The next sentence explains the blank: \"new batteries can't be put in once the old ones no longer work\" — that is, the batteries can't be replaced.",
+     "explanation": "The second sentence is a restatement of the first, so the blank must mean what \"new batteries can't be put in\" means: the old batteries cannot be swapped out, or replaced. \"Rated\" (assigned a score) and \"invented\" (created for the first time) describe things that happen to a product before a consumer owns it, not something a user does to a worn-out battery. \"Prevented\" would mean the batteries themselves are stopped from happening, which makes no sense — it is the replacement, not the battery, that is blocked.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 2,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Easy",
+     "passageText": "Whether Carmen Lomas Garza is creating small paintings and illustrations or large public artworks—such as *Baile*, a copper cutout of traditional Mexican dance in the San Francisco International Airport—she is ______ direct experience, drawing from memories of her childhood in Texas or details of her current surroundings in California.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      { "id": "A", "text": "complimented by" },
+      { "id": "B", "text": "uncertain about" },
+      { "id": "C", "text": "unbothered by" },
+      { "id": "D", "text": "inspired by" }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The phrase after the blank — \"drawing from memories … or details of her current surroundings\" — explains that Garza's own experience is the source of her art, so she is inspired by it.",
+     "explanation": "The participial phrase \"drawing from memories … or details\" restates the idea in the blank, and drawing on something as a source is being inspired by it. \"Complimented by\" would mean her experience praises her, which is nonsensical. \"Uncertain about\" and \"unbothered by\" both suggest distance from her experience, contradicting the statement that she draws directly from it.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 3,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "Domesticated thousands of years ago by Indigenous people in South America, the avocado deviates structurally from the wild plant it is descended from. Summer squash, another crop domesticated by Indigenous Americans, shows so little resemblance to any wild plant that genetic research was necessary to ______ the wild Johnny gourd as its ancestor.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      { "id": "A", "text": "confirm" },
+      { "id": "B", "text": "attract" },
+      { "id": "C", "text": "develop" },
+      { "id": "D", "text": "acquire" }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Because summer squash looks nothing like any wild plant, researchers needed genetic evidence to establish — that is, confirm — which wild plant is its ancestor.",
+     "explanation": "The sentence describes a problem (no visible resemblance) and the solution (genetic research), so the blank must name what that research accomplished: it established the Johnny gourd as the ancestor. \"Confirm\" fits exactly. \"Attract\" and \"acquire\" describe drawing in or obtaining a physical thing, not identifying an evolutionary relationship. \"Develop\" would mean the research created the Johnny gourd, reversing the relationship the sentence describes.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 4,
+     "domain": "Craft and Structure",
+     "skill": "Words in Context",
+     "difficulty": "Medium",
+     "passageText": "When considering which plays and musicals to produce, theaters in New York often favor keeping audiences happy over taking risks. So while they might be eager to produce an established classic like Annie, for example, most would be ______ to stage a work from a relatively unknown playwright.",
+     "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+     "choices": [
+      { "id": "A", "text": "fortunate" },
+      { "id": "B", "text": "hesitant" },
+      { "id": "C", "text": "determined" },
+      { "id": "D", "text": "surprised" }
+     ],
+     "correctAnswer": "B",
+     "rationale": "\"While they might be eager\" to stage a classic sets up a contrast, so the blank must describe the opposite of eagerness toward an unknown playwright's work — reluctance.",
+     "explanation": "The sentence pairs \"eager\" with a contrasting attitude introduced by \"while,\" and the first sentence explains why: theaters avoid risk. An unknown playwright is the risky option, so theaters would be unwilling, or hesitant. \"Determined\" and \"fortunate\" both suggest a positive disposition toward the risky choice, which breaks the contrast. \"Surprised\" describes a reaction to an event, not a willingness to take an action.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 5,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Medium",
+     "passageText": "When classical pianist Martha Argerich performs, it appears as if the music is coming to her spontaneously. She's highly skilled technically, but because of how freely she plays and her willingness to take risks, she seems relaxed and natural. Her apparent ease, however, is due to a tremendous amount of preparation. Despite Argerich's experience and virtuosity, she never takes for granted that she knows a piece of music. Instead, she approaches the music as if encountering it for the first time and tries to understand it anew.",
+     "questionText": "Which choice best states the main purpose of the text?",
+     "choices": [
+      { "id": "A", "text": "To provide details about how Argerich identifies which pieces of music she will perform" },
+      { "id": "B", "text": "To assert that Argerich's performances look effortless because of how she prepares for them" },
+      { "id": "C", "text": "To discuss the kinds of music Argerich feels most comfortable encountering for the first time" },
+      { "id": "D", "text": "To describe the unique way that Argerich approaches music she hasn't performed before" }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The text sets up an apparent effortlessness and then explains it: \"Her apparent ease, however, is due to a tremendous amount of preparation.\"",
+     "explanation": "The first half of the text establishes that Argerich looks spontaneous and relaxed; the pivot at \"however\" reveals the cause — extensive preparation — and the rest describes that preparation. Choice B captures both halves. Choice A is wrong because the text never discusses how she chooses repertoire. Choice C misreads the text: she approaches familiar pieces *as if* new; the text says nothing about which music she is comfortable with. Choice D reverses the point — the text stresses her approach to music she already knows, not to music she hasn't performed.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 6,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Medium",
+     "passageText": "*Dubautia linearis* is a species in a family of plants __underline__known collectively as the silversword alliance__underline__, all of which grow only on the Hawaiian Islands. Members of this alliance exhibit an extraordinary range of phenotypes, with some species maturing into vines and others into shrubs and trees. All species in the alliance descended from a single ancestral tarweed plant that arrived on the islands around 5 million years ago. The tarweed's descendants diversified into distinct species as they adapted to live in the wide variety of habitats found on the Hawaiian Islands.",
+     "questionText": "Which choice best describes the function of the underlined phrase in the text as a whole?",
+     "choices": [
+      { "id": "A", "text": "It lists species from a family of plants found only on the Hawaiian Islands." },
+      { "id": "B", "text": "It provides the common name for the *Dubautia linearis* plant." },
+      { "id": "C", "text": "It supplies the name used to refer to a group of related plant species." },
+      { "id": "D", "text": "It explains why *Dubautia linearis* is unique among members of the silversword alliance." }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The underlined phrase gives the collective label — \"the silversword alliance\" — for the whole plant family, a name the rest of the text then uses.",
+     "explanation": "The phrase attaches to \"a family of plants\" and supplies the term the text uses for that family in every later sentence, so its function is to name the group. Choice A is wrong because the phrase names one group rather than listing individual species. Choice B is wrong because the name belongs to the whole alliance, not to *Dubautia linearis* alone. Choice D is wrong because the text presents *Dubautia linearis* as one ordinary member of the alliance and never claims it is unique.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 7,
+     "domain": "Craft and Structure",
+     "skill": "Text Structure and Purpose",
+     "difficulty": "Medium",
+     "passageText": "The following text is adapted from Jerome K. Jerome's 1889 novel *Three Men in a Boat (To Say Nothing of the Dog)*.\n\nWe [people] are creatures of the sun. We love light and life. That is why we crowd into the towns and cities, and the country grows more and more deserted every year. In the sunlight—in the daytime, when Nature is alive and busy all around us, we like the open hill-sides and the deep woods well enough: but in the night, when our Mother Earth has gone to sleep, and left us waking, oh! the world seems so lonesome, and we get frightened, like children in a silent house. Then we sit and sob, and long for the gas-lit streets, and the sound of human voices, and the answering throb of human life.",
+     "questionText": "Which choice best states the main purpose of the text?",
+     "choices": [
+      { "id": "A", "text": "To address common traits that motivate many people to choose to live in urban environments" },
+      { "id": "B", "text": "To demonstrate that most people tend to prefer being alone in the country to being alone in towns or cities" },
+      { "id": "C", "text": "To explain that people sometimes become fearful as a result of being in crowded areas" },
+      { "id": "D", "text": "To caution people not to be so quick to dismiss the natural beauty that can be found in rural areas" }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The narrator claims people are \"creatures of the sun\" who \"love light and life\" and says \"that is why we crowd into the towns and cities\" — shared traits that explain urban living.",
+     "explanation": "The text opens by naming universal human traits and immediately links them to a choice: crowding into towns and cities. The rest elaborates by contrasting daytime comfort in nature with nighttime loneliness that sends people longing for \"gas-lit streets\" and \"human voices.\" Choice B reverses the preference the text describes. Choice C misidentifies the source of fear — it is the empty night, not crowds. Choice D is wrong because the narrator grants that people like hillsides and woods in daylight; the text is not a warning about undervaluing nature.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 8,
+     "domain": "Craft and Structure",
+     "skill": "Cross-Text Connections",
+     "difficulty": "Hard",
+     "passageText": "Text 1\nAccording to a study by a conservation group representing 11 tribal nations in the Great Lakes region, the snowshoe hare (*waabooz* in the Ojibwe language) will have significantly worse outcomes over the next 50 years if temperatures increase as much as some models suggest. By contrast, the American crow (*aandeg* in Ojibwe) should be able to withstand the highest predicted warming without much harm and so likely won't require the conservation efforts that the snowshoe hare will.\n\nText 2\nUS government agencies involved in conservation are unfortunately not able to address every possible threat to natural resources. They must use the best information available to decide which species are most threatened and therefore most in need of conservation efforts.",
+     "questionText": "Based on the texts, both authors would most likely agree with which statement?",
+     "choices": [
+      { "id": "A", "text": "State, federal, and tribal groups involved in natural-resource management in the Great Lakes region should immediately begin conservation programs for both the snowshoe hare and American crow." },
+      { "id": "B", "text": "A collaborative approach is necessary to keep temperatures in the Great Lakes region from increasing to the highest predicted levels." },
+      { "id": "C", "text": "Agencies involved in natural-resource management in the Great Lakes region should focus their conservation efforts more on the snowshoe hare than on the American Crow." },
+      { "id": "D", "text": "Conservation efforts focused on the snowshoe hare are more likely to be successful if they incorporate state and federal agency resources with the knowledge of tribal groups in the Great Lakes region." }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Text 1 shows that tribal-nation research identifies which species is at risk, and Text 2 argues that agencies must act on \"the best information available\" — so both would endorse combining agency resources with tribal knowledge.",
+     "explanation": "Text 2's author's central claim is that limited agency resources must be directed using the best available information. Text 1 supplies exactly that kind of information, produced by a group representing 11 tribal nations. Putting the two together yields choice D: agency effort guided by tribal knowledge. Choice A contradicts Text 1, which says the crow \"likely won't require\" conservation efforts. Choice B concerns preventing warming, a goal neither text raises. Choice C states a conclusion only Text 1 supports; Text 2's author never comments on these two species and so could not be said to agree about them specifically.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 9,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Easy",
+     "passageText": "The ancient writing system used in the Maya kingdoms of southern Mexico and Central America had a symbol for the number zero. The earliest known example of the symbol dates to more than 2,000 years ago. At that time, almost none of the writing systems elsewhere in the world possessed a zero symbol. And the use of zero in Mexico and Central America may be even more ancient. Some historians suggest that Maya mathematicians inherited it from the Olmec civilization, which flourished in the region 2,400-3,600 years ago.",
+     "questionText": "According to the text, what do some historians suggest about Maya civilization?",
+     "choices": [
+      { "id": "A", "text": "Maya civilization acquired the use of zero from the Olmec civilization." },
+      { "id": "B", "text": "Maya civilization respected its historians more than it respected its mathematicians." },
+      { "id": "C", "text": "Maya civilization was highly secretive about its intellectual achievements." },
+      { "id": "D", "text": "Maya civilization tried to introduce its writing system to other civilizations." }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The last sentence states directly that \"some historians suggest that Maya mathematicians inherited it [zero] from the Olmec civilization.\"",
+     "explanation": "The question asks what the text attributes to \"some historians,\" and only one sentence makes such an attribution — the final one, which says the Maya inherited zero from the Olmec. \"Acquired … from\" restates \"inherited … from.\" Choices B, C, and D describe attitudes and actions the text never mentions: it compares no professions, says nothing about secrecy, and never claims the Maya exported their writing system.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 10,
+     "domain": "Information and Ideas",
+     "skill": "Central Ideas and Details",
+     "difficulty": "Hard",
+     "passageText": "In El Salvador, use of solid fuel (e.g., coal, wood) as a share of total household fuel use fell by more than half between 2005 and 2015; such shifts are typically explained by appeal to the energy ladder, a model holding that fuel choice is mediated mainly by household income (specifically, high-technology fuels displace solid fuels as incomes rise). Richard Hosier and Jeffrey Dowd's study of fuel use in Zimbabwe shows how __underline__reductive__underline__ this model is, however: household fuel use was heterogeneous, flexible, and influenced by several factors, including the local prices of different fuel sources.",
+     "questionText": "Based on the text, which choice best explains why the author characterizes the energy ladder as \"reductive\"?",
+     "choices": [
+      { "id": "A", "text": "The energy ladder asserts that households only consider one aspect of fuel when making fuel choices, but Hosier and Dowd's study showed that households ignore that characteristic of fuel and evaluate several other factors instead." },
+      { "id": "B", "text": "The energy ladder assumes that the same factor influences household fuel choice in all locations, but Hosier and Dowd's study showed that fuel choice in Zimbabwe is influenced by different factors than is fuel choice in El Salvador." },
+      { "id": "C", "text": "The energy ladder holds that the adoption of one type of fuel means that another type of fuel must be displaced, but Hosier and Dowd's study showed that several different fuel types are typically used in equal proportion." },
+      { "id": "D", "text": "The energy ladder attributes household fuel choice primarily to a single characteristic of households, but Hosier and Dowd's study showed that multiple circumstances can affect household fuel choice." }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The model explains fuel choice \"mainly by household income\" — one household characteristic — while the study found use that was \"heterogeneous, flexible, and influenced by several factors.\"",
+     "explanation": "\"Reductive\" means oversimplifying, and the text pins the oversimplification on a one-variable explanation: income. The study's finding of several influences, including local fuel prices, is what exposes that simplification, which is exactly choice D. Choice A misstates the study: it found additional factors, not that households ignore income. Choice B invents a comparison between Zimbabwe and El Salvador that the study never makes. Choice C misdescribes both the model (displacement is a consequence of rising income, not the model's core claim) and the finding (nothing says fuels are used \"in equal proportion\").",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 11,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Medium",
+     "passageText": "\"The Bet\" is an 1889 short story by Anton Chekhov. In the story, a banker is described as being very upset about something:",
+     "questionText": "Which quotation from \"The Bet\" most effectively illustrates the claim?",
+     "choices": [
+      { "id": "A", "text": "\"Then the banker cautiously broke the seals off the door and put the key in the keyhole.\"" },
+      { "id": "B", "text": "\"It struck three o'clock, the banker listened; everyone was asleep in the house and nothing could be heard outside but the rustling of the chilled trees.\"" },
+      { "id": "C", "text": "\"The banker, spoilt and frivolous, with millions beyond his reckoning, was delighted at the bet.\"" },
+      { "id": "D", "text": "\"When [the banker] got home he lay on his bed, but his tears and emotion kept him for hours from sleeping.\"" }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Only choice D shows the banker distressed: his \"tears and emotion\" keep him awake for hours.",
+     "explanation": "The claim is specifically that the banker is very upset, so the correct quotation must show emotional distress. Tears and sleeplessness do exactly that. Choice A describes a careful physical action with no emotional content. Choice B describes the quiet setting and the banker listening, not his feelings. Choice C shows him \"delighted,\" the opposite of upset.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 12,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Hard",
+     "passageText": "Some scientists have suggested that as ocean temperatures rise, many fish and corals found in the shallow zone (less than 30 meters below the surface) could take refuge in the cooler, darker mesophotic zone (30 to 150 meters below the surface). However, it isn't clear that all such species will be able to tolerate mesophotic conditions. In 2018, Luiz Rocha and colleagues studied stony corals in the two zones in Caribbean and Indo-Pacific waters. Based on the depths at which those corals are now found, the species that seems least suited to a full migration to the mesophotic zone is ______",
+     "questionText": "Which choice most effectively uses data from the table to complete the statement?",
+     "image": "q12_coral_depths.png",
+     "choices": [
+      { "id": "A", "text": "*Acropora anthocercis*, because its maximum depth of 10 meters is furthest from the mesophotic zone." },
+      { "id": "B", "text": "*Cycloseris tenuis*, because its minimum depth of 1 meter is the shallowest of those listed." },
+      { "id": "C", "text": "*Agaricia fragilis*, because its minimum depth of 10 meters is in the shallow zone." },
+      { "id": "D", "text": "*Acropora caroliniana*, because its maximum depth of 25 meters is close to but doesn't reach the mesophotic zone." }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The mesophotic zone starts at 30 meters, and *Acropora anthocercis* has the shallowest maximum depth in the table (10 meters), so it is the species whose observed range falls furthest short of that zone.",
+     "explanation": "A species \"least suited to a full migration\" to a zone beginning at 30 meters is the one currently found nowhere near that depth, which the table measures by maximum depth. *Acropora anthocercis* tops out at 10 meters — 20 meters shy of the mesophotic zone and the smallest maximum in the table. Choice B uses minimum depth, which says nothing about how deep a species can go; *Cycloseris tenuis* in fact reaches 27 meters. Choice C is doubly wrong: *Agaricia fragilis* reaches 102 meters, well inside the mesophotic zone, so it is among the best suited. Choice D reports the data accurately but names a species with a deeper maximum (25 m) than *Acropora anthocercis*, so it is not the least suited.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 13,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Hard",
+     "passageText": "Water flowing around an obstruction creates vortices (patterns of swirls) of varying size; by detecting the vortices, fish can determine the size and position of the obstruction. Testing by Yuzo R. Yanagisuru, Otar Akanyeti, and James C. Liao using models of three head shapes—narrow (low ratio of width to length), intermediate, and wide (high ratio of width to length)—showed that for large vortices, fish with intermediate heads would be better able than narrow-headed fish to distinguish between vortices and general turbulence in the water. A second research team has therefore hypothesized that in low-visibility conditions, intermediate-headed fish will be more likely than narrow-headed fish to detect obstructions that create large vortices.",
+     "questionText": "Which finding, if true, would most directly support the second research team's hypothesis?",
+     "choices": [
+      { "id": "A", "text": "A study using obstructions that created large vortices in low-visibility conditions found that the intermediate-headed *Lobocheilos rhabdoura* bumped into the obstructions just as often as the narrow-headed lookdown (*Selene vomer*) did." },
+      { "id": "B", "text": "A study using obstructions that created large vortices in low-visibility conditions found that the lookdown (*Selene vomer*), which has a relatively narrow head, bumped into more than half of the obstructions." },
+      { "id": "C", "text": "A study using obstructions that created large vortices in low-visibility conditions found that the narrow-headed lookdown (*Selene vomer*) bumped into obstructions more often than the intermediate-headed *Lobocheilos rhabdoura* did." },
+      { "id": "D", "text": "A study using obstructions that created large vortices in low-visibility conditions found that some specimens of the intermediate-headed *Lobocheilos rhabdoura* bumped into the obstructions more often than other specimens of the same fish did." }
+     ],
+     "correctAnswer": "C",
+     "rationale": "The hypothesis is comparative, so the supporting finding must show intermediate-headed fish detecting obstructions better than narrow-headed fish — fewer collisions for the intermediate-headed species.",
+     "explanation": "Bumping into an obstruction is evidence of failing to detect it, so the hypothesis predicts more collisions for narrow-headed fish than for intermediate-headed fish under exactly these conditions. Choice C reports that result. Choice A reports no difference between the two head shapes, which undercuts the hypothesis rather than supporting it. Choice B gives data for only the narrow-headed species, leaving nothing to compare against. Choice D compares individuals within one species, which says nothing about head shape.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 14,
+     "domain": "Information and Ideas",
+     "skill": "Command of Evidence",
+     "difficulty": "Medium",
+     "passageText": "In a college course on urban affairs, a student asserts that traffic congestion in the United States increased between 1990 and 2000 mostly in and around very large cities such as Philadelphia, Pennsylvania. The student claims that not only were smaller areas such as Albuquerque, New Mexico, and Anchorage, Alaska, less affected, but the amount of congestion in those areas remained constant throughout the same period. A second student claims that this is an unsupported assertion based on incorrect assumptions about traffic patterns in urban areas of different sizes.",
+     "questionText": "Which choice best describes data from the graph that support the second student's claim?",
+     "image": "q14_traffic_delay.png",
+     "choices": [
+      { "id": "A", "text": "In all three urban areas shown, the amount of traffic delay per commuter per year was greater in 2000 than in 1990." },
+      { "id": "B", "text": "Throughout the period between 1990 and 2000, the amount of traffic delay per commuter per year was greater in the Albuquerque, New Mexico, area than in the Philadelphia, Pennsylvania, area." },
+      { "id": "C", "text": "In at least one of the three urban areas shown, the amount of traffic delay was less than 20 hours per commuter per year at one point between 1990 and 2000." },
+      { "id": "D", "text": "In 1992, the amount of traffic delay in the Philadelphia, Pennsylvania, area was less than 30 hours per commuter per year." }
+     ],
+     "correctAnswer": "A",
+     "rationale": "The first student claims congestion stayed constant in the smaller areas; the graph shows delay rising in Albuquerque (21 to 39 hours) and Anchorage (19 to 32 hours) as well as Philadelphia, which refutes that claim.",
+     "explanation": "The second student disputes the assumption that smaller urban areas saw no change, so the supporting data must show that those areas did change. Every city's 2000 bar is taller than its 1990 bar, so congestion grew everywhere — exactly choice A. Choice B is false in the graph: Albuquerque's bars are always shorter than Philadelphia's. Choice C is accurate (Anchorage was 19 hours in 1990) but describes a single low value, which says nothing about whether congestion stayed constant. Choice D is false — Philadelphia was 32 hours in 1992 — and would not bear on the disputed claim anyway.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 15,
+     "domain": "Information and Ideas",
+     "skill": "Inferences",
+     "difficulty": "Hard",
+     "passageText": "Mariana Lopes Barata and Pedro Simoes Coelho collected data from 324 music-streaming service users to identify factors that influence users to opt for paid (premium) versions of music streaming services, like Spotify. They hypothesized that effort expectancy (the perceived ease with which a service can be used by a consumer) would be positively correlated with users' intentions to adopt premium versions. The researchers asked participants to rate statements such as \"I find paid music streaming services easy to use.\" They found that, indeed, effort expectancy positively influences the intention to adopt premium streaming service versions, which suggests that ______",
+     "questionText": "Which choice most logically completes the text?",
+     "choices": [
+      { "id": "A", "text": "it may be advantageous for music streaming companies to try to influence the extent to which potential users perceive the use of the premium version as effortless." },
+      { "id": "B", "text": "participants who strongly agreed with the statement \"I find paid music streaming services easy to use\" were more likely to express loyalty to Spotify than to other streaming services." },
+      { "id": "C", "text": "users' intentions to pay for premium streaming services are probably unaffected by factors other than effort expectancy." },
+      { "id": "D", "text": "the statement \"I find paid music streaming services easy to use\" is not a reliable measure of effort expectancy." }
+     ],
+     "correctAnswer": "A",
+     "rationale": "If perceiving a premium service as easy to use raises the intention to adopt it, then companies have a reason to shape that perception.",
+     "explanation": "The finding is a positive relationship between perceived ease and intention to subscribe, so the logical conclusion is practical: raising perceived ease should raise subscriptions, making it worthwhile for companies to try. Choice B introduces brand loyalty and a comparison among services that the study never measured. Choice C overreaches — the researchers set out to identify factors, plural, and showing that one factor matters does not show that others don't. Choice D contradicts the study, which relied on that very statement to measure effort expectancy and obtained the predicted result.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 16,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "Technologies such as microphones and inkjet printers are made using piezoelectric materials, which generate an internal electric field when pressure is applied to them. The toxic nature of some of these materials recently led a team from the University of Sheffield to investigate how ______",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      { "id": "A", "text": "could their use be better regulated?" },
+      { "id": "B", "text": "their use could be better regulated." },
+      { "id": "C", "text": "their use could be better regulated?" },
+      { "id": "D", "text": "could their use be better regulated." }
+     ],
+     "correctAnswer": "B",
+     "rationale": "\"How their use could be better regulated\" is an indirect question embedded in a statement, so it keeps statement word order and ends with a period.",
+     "explanation": "The sentence reports what the team investigated rather than asking a question, so the clause after \"how\" must use subject-verb order (\"their use could be\") and the whole sentence must end in a period. Only choice B does both. Choices A and D invert the subject and verb as if asking a direct question. Choices A and C end the sentence with a question mark, but the main clause (\"The toxic nature … led a team … to investigate\") is a statement.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 17,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "Kayenta Chapter is one of the 110 chapters of the Navajo Nation (*Naabeehó Bináhásdzo*). The chapter, whose boundaries encompass 504,811 acres, ______ known as *Tó Dínéeshzhee'* in the Navajo language (*Diné bizaad*).",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      { "id": "A", "text": "have been" },
+      { "id": "B", "text": "is" },
+      { "id": "C", "text": "are" },
+      { "id": "D", "text": "were" }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The subject is the singular noun \"The chapter,\" so the verb must be the singular present-tense \"is.\"",
+     "explanation": "The intervening clause \"whose boundaries encompass 504,811 acres\" does not change the subject: the verb still belongs to \"The chapter,\" which is singular. The surrounding sentences use the present tense, so \"is\" is correct. Choices A and D use plural forms (\"have been,\" \"were\"), and choice C uses the plural \"are\" — all three agree mistakenly with the nearby plural \"boundaries\" or \"acres\" rather than with the subject.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 18,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Medium",
+     "passageText": "While the greater adjutant can be found in places like the Inner Gulf of Thailand and the Chhep Wildlife Sanctuary in Cambodia, more than 80 percent of this endangered stork species is found in Assam, India. There, wildlife biologist Dr. Purnima Devi Barman is on the front lines of conservation efforts that—through community involvement and scientific ______ aim to bring adjutants back from near extinction.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      { "id": "A", "text": "study—" },
+      { "id": "B", "text": "study:" },
+      { "id": "C", "text": "study" },
+      { "id": "D", "text": "study," }
+     ],
+     "correctAnswer": "A",
+     "rationale": "A dash already opens the interrupting phrase \"through community involvement and scientific study,\" so a matching dash must close it.",
+     "explanation": "Punctuation that sets off a nonessential element must be used in pairs of the same kind. The sentence opens the interruption with a dash after \"that,\" so the interruption must end with a dash before \"aim.\" Choice B substitutes a colon, which cannot close a dash pair and would wrongly signal an explanation. Choice C leaves the interruption unclosed, running \"study aim\" together. Choice D closes with a comma, mismatching the opening dash.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 19,
+     "domain": "Standard English Conventions",
+     "skill": "Form, Structure, and Sense",
+     "difficulty": "Medium",
+     "passageText": "National Heritage Areas like the Oil Region National Heritage Area in Pennsylvania ______ officially designated by the United States Congress as being \"unique [and] nationally significant\" for their natural, cultural, and historical attributes.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      { "id": "A", "text": "has been" },
+      { "id": "B", "text": "is" },
+      { "id": "C", "text": "was" },
+      { "id": "D", "text": "are" }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The subject is the plural \"National Heritage Areas,\" so the plural verb \"are\" is required.",
+     "explanation": "The prepositional phrase \"like the Oil Region National Heritage Area in Pennsylvania\" gives an example and is not the subject; the subject remains the plural \"National Heritage Areas,\" confirmed by the plural pronoun \"their\" later in the sentence. Choices A, B, and C are all singular forms that agree with the nearby singular example rather than with the actual subject.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 20,
+     "domain": "Standard English Conventions",
+     "skill": "Boundaries",
+     "difficulty": "Hard",
+     "passageText": "On March 23, 2021, a gust of wind wreaked havoc on global trade. *Ever Given*, an international shipping container vessel, became lodged in Egypt's Suez Canal, a major shipping route between Europe and Asia. The vessel took six days to ______ it's as heavy as two thousand blue whales when fully loaded.",
+     "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+     "choices": [
+      { "id": "A", "text": "dislodge in part due to its sheer size," },
+      { "id": "B", "text": "dislodge, in part due to its sheer size:" },
+      { "id": "C", "text": "dislodge, in part due to its sheer size," },
+      { "id": "D", "text": "dislodge, in part, due to its sheer size" }
+     ],
+     "correctAnswer": "B",
+     "rationale": "A colon is needed after \"size\" because what follows is an independent clause that explains the ship's \"sheer size.\"",
+     "explanation": "\"It's as heavy as two thousand blue whales when fully loaded\" is a complete sentence that elaborates on the preceding statement, so it must be joined with a colon rather than a comma. Choices A, C, and D all end the first part with a comma or nothing, producing a comma splice or a run-on. Choice B also correctly sets off the nonessential phrase \"in part due to its sheer size\" with the comma after \"dislodge.\"",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 21,
+     "domain": "Expression of Ideas",
+     "skill": "Transitions",
+     "difficulty": "Easy",
+     "passageText": "Just as the state of Massachusetts has a designated state flower, tree, and bird, it also has a state soil: Paxton soil. Paxton is a fitting choice for state soil, in large part because it can be found in abundance across the state. ______ it plays an important role in Massachusetts's agricultural industry and is used to grow a variety of crops, like corn and apples.",
+     "questionText": "Which choice completes the text with the most logical transition?",
+     "choices": [
+      { "id": "A", "text": "At that time," },
+      { "id": "B", "text": "Additionally," },
+      { "id": "C", "text": "Alternatively," },
+      { "id": "D", "text": "By contrast," }
+     ],
+     "correctAnswer": "B",
+     "rationale": "The sentence adds a second reason Paxton is a fitting state soil, so an additive transition is needed.",
+     "explanation": "The previous sentence gives one reason for the choice of Paxton (its abundance), and this sentence supplies another (its agricultural importance). \"Additionally\" signals that addition. \"At that time\" marks a moment in a sequence of events, but the text describes no timeline. \"Alternatively\" would present a competing option, and \"By contrast\" would set the two reasons against each other; both misrepresent a relationship in which the reasons reinforce one another.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 22,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• In the 1930s, the Imperial Sugar Cane Institute in India sought to limit the country's dependence on imported sugarcane.\n• The institute enlisted botanist Janaki Ammal to breed a local variety of sugarcane.\n• She crossbred the imported sugarcane species *Saccharum officinarum* with grasses native to India.\n• She succeeded in creating sugarcane hybrids well suited to India's climate.",
+     "questionText": "The student wants to emphasize Janaki Ammal's achievement. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      { "id": "A", "text": "By crossbreeding the imported sugarcane species *Saccharum officinarum* with grasses native to India, Ammal succeeded in creating sugarcane hybrids well suited to India's climate." },
+      { "id": "B", "text": "In the 1930s, the Imperial Sugar Cane Institute, which enlisted Ammal, sought to limit dependence on imported sugarcane." },
+      { "id": "C", "text": "Ammal was enlisted by the Imperial Sugar Cane Institute at a time when a local variety of sugarcane needed to be produced." },
+      { "id": "D", "text": "As part of efforts to breed a local variety of sugarcane, an imported sugarcane species called *Saccharum officinarum* was crossbred with grasses native to India." }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Only choice A makes Ammal the subject of a sentence about what she accomplished — she \"succeeded in creating sugarcane hybrids well suited to India's climate.\"",
+     "explanation": "To emphasize an achievement, the sentence must name the person and state what she achieved. Choice A does both, and its opening phrase supplies the method. Choice B emphasizes the institute's goal, mentioning Ammal only in a subordinate clause. Choice C describes her being hired, which is a starting point rather than an achievement. Choice D uses the passive voice and omits Ammal entirely, so no one gets credit.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 23,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Easy",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• Richard Serra is an American artist.\n• He is known for his large metal sculptures.\n• His sculpture *Rotate* is roughly 6 feet wide and 12 feet tall.\n• It is made from weathering steel.",
+     "questionText": "Which choice most effectively uses information from the given sentences to emphasize the size of the sculpture?",
+     "choices": [
+      { "id": "A", "text": "Richard Serra is an American artist known for his large metal sculptures." },
+      { "id": "B", "text": "Richard Serra's *Rotate* is made of weathering steel." },
+      { "id": "C", "text": "American artist Richard Serra creates large sculptures from metals such as weathering steel." },
+      { "id": "D", "text": "*Rotate*—a large metal sculpture by artist Richard Serra—stretches roughly 6 feet wide and 12 feet tall." }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Only choice D gives the sculpture's actual dimensions — \"roughly 6 feet wide and 12 feet tall\" — which is the most concrete way to emphasize its size.",
+     "explanation": "The goal singles out the size of one sculpture, *Rotate*, so the best sentence names that work and reports its measurements. Choice D does this and even uses the verb \"stretches\" to stress scale. Choice A describes Serra's sculptures generally without mentioning *Rotate* or any dimension. Choice B mentions *Rotate* but reports only its material. Choice C again generalizes about Serra's work and its materials, giving no dimensions.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 24,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• Dinosaur fossil specimens can be found at science museums all over the world.\n• A dinosaur fossil specimen nicknamed Jane is housed at the Burpee Museum of Natural History in Rockford, Illinois.\n• Jane, a *Tyrannosaurus*, lived in the Late Cretaceous period.\n• A dinosaur fossil specimen nicknamed Raymond is housed at the National Museum of Nature and Science in Tokyo, Japan.\n• Raymond, a *Triceratops*, lived in the Late Cretaceous period.",
+     "questionText": "The student wants to emphasize a similarity between the two dinosaur fossil specimens. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      { "id": "A", "text": "While the *Tyrannosaurus* fossil specimen Jane is in Rockford, Illinois, the *Triceratops* fossil specimen Raymond is in Tokyo, Japan." },
+      { "id": "B", "text": "Dinosaur fossil specimens can be found at science museums all over the world, including in Rockford, Illinois, and Tokyo, Japan." },
+      { "id": "C", "text": "The Burpee Museum of Natural History is home to Jane, a *Tyrannosaurus* fossil specimen from the Late Cretaceous period." },
+      { "id": "D", "text": "Both the *Tyrannosaurus* fossil specimen Jane and the *Triceratops* fossil specimen Raymond lived in the Late Cretaceous period." }
+     ],
+     "correctAnswer": "D",
+     "rationale": "The one trait Jane and Raymond share in the notes is their period, and only choice D states it of both specimens, signaling the similarity with \"Both.\"",
+     "explanation": "A sentence emphasizing a similarity must name both specimens and the feature they have in common. Choice D does exactly that. Choice A uses \"While\" to stress a difference — their locations. Choice B talks about museums worldwide rather than about the two specimens' shared trait. Choice C describes only Jane, so no comparison is possible.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 25,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• *The Future of Nostalgia* is a scholarly book by literary theorist Svetlana Boym.\n• The book explores the concept of nostalgia from various angles.\n• Chapter 6 explores nostalgia after the fall of the Soviet Union.\n• Chapter 12 explores conceptions of nostalgia among émigrés.\n• In chapter 12, Boym writes, \"The main feature of exile is a double conscience, a double exposure of different times and spaces, a constant bifurcation.\"",
+     "questionText": "The student wants to explain what Svetlana Boym writes about in chapter 6. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      { "id": "A", "text": "Literary theorist Svetlana Boym explores nostalgia after the fall of the Soviet Union in chapter 6 of her book." },
+      { "id": "B", "text": "Svetlana Boym's *The Future of Nostalgia* explores the concept of nostalgia from various angles." },
+      { "id": "C", "text": "After exploring nostalgia after the fall of the Soviet Union, Svetlana Boym goes on to explore conceptions of nostalgia among émigrés." },
+      { "id": "D", "text": "As Svetlana Boym writes in the twelfth chapter of her book, \"The main feature of exile is a double conscience, a double exposure of different times and spaces, a constant bifurcation.\"" }
+     ],
+     "correctAnswer": "A",
+     "rationale": "Only choice A names chapter 6 and states its subject: nostalgia after the fall of the Soviet Union.",
+     "explanation": "The goal is narrow — say what chapter 6 covers — so the sentence must identify that chapter and its topic. Choice A does both. Choice B describes the book as a whole and never mentions chapter 6. Choice C alludes to the chapter 6 topic but frames the sentence around the move to chapter 12, so its emphasis falls on the later chapter. Choice D quotes chapter 12 and says nothing about chapter 6.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 26,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Medium",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• The poem \"15 haiku (for Toni Morrison)\" is by African American writer Sonia Sanchez.\n• It was published in her 2010 poetry book entitled *Morning Haiku*.\n• The poem is written as a sequence of fifteen haiku.\n• According to the book's publisher, Penguin Random House (PRH), the book \"celebrates the gifts of life and mourns the deaths of revered African American figures.\"\n• According to Sanchez, she chose to write in the form of haiku because it helps \"maintain memory and dignity.\"",
+     "questionText": "The student wants to provide an example of a poem from *Morning Haiku*. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      { "id": "A", "text": "The 2010 poetry book *Morning Haiku* \"celebrates the gifts of life and mourns the deaths of revered African American figures.\"" },
+      { "id": "B", "text": "The poem by Sanchez is written as a sequence of fifteen haiku." },
+      { "id": "C", "text": "Sanchez chose to write in the form of the haiku because it helps \"maintain memory and dignity.\"" },
+      { "id": "D", "text": "Included in Sanchez's poetry book *Morning Haiku* (2010), \"15 haiku (for Toni Morrison)\" is a poem written as a sequence of fifteen haiku." }
+     ],
+     "correctAnswer": "D",
+     "rationale": "Only choice D names a specific poem, states that it appears in *Morning Haiku*, and describes it — which is what presenting an example requires.",
+     "explanation": "To give an example of a poem from a book, the sentence must identify the poem by title and connect it to the book. Choice D does both and adds a detail about the poem's form. Choice A characterizes the book but names no poem. Choice B describes a poem without titling it or linking it to *Morning Haiku*. Choice C explains Sanchez's reason for choosing the haiku form, which is not an example of a poem.",
+     "questionType": "multiple_choice"
+    },
+    {
+     "number": 27,
+     "domain": "Expression of Ideas",
+     "skill": "Rhetorical Synthesis",
+     "difficulty": "Hard",
+     "passageText": "While researching a topic, a student has taken the following notes:\n\n• A river's stream length is the length of a line that follows along the river path.\n• A river's valley length is the length of a straight line drawn from the beginning of the river to the end.\n• The river's curviness, or sinuosity, is the ratio of the river's stream length to its valley length.\n• This ratio is less than or equal to 1.5:1 in low-sinuosity rivers and greater than 1.5:1 in high-sinuosity rivers.\n• The Red River in Canada has high sinuosity.\n• The Neales River in Australia has low sinuosity.",
+     "questionText": "The student wants to compare the sinuosity of the Red and Neales rivers. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+     "choices": [
+      { "id": "A", "text": "While the high-sinuosity Red River is located in Canada, the Neales River is in Australia." },
+      { "id": "B", "text": "By comparing the stream lengths of the Red and Neales rivers to their valley lengths, one can calculate their sinuosity." },
+      { "id": "C", "text": "The ratio of the Red River's stream length to its valley length is greater than 1.5:1, exceeding that of the Neales River." },
+      { "id": "D", "text": "In both the Red and the Neales rivers, sinuosity is determined by comparing stream length to valley length." }
+     ],
+     "correctAnswer": "C",
+     "rationale": "Only choice C states each river's sinuosity relative to the other, using the 1.5:1 threshold to show that the Red River's ratio is the greater one.",
+     "explanation": "A comparison of sinuosity must place the two rivers on the same scale. Choice C does so: the Red River exceeds 1.5:1 (high sinuosity), and because the Neales is low-sinuosity its ratio is at or below that threshold, so the Red River's exceeds it. Choice A compares locations, not sinuosity. Choices B and D both explain how sinuosity is calculated, a definition that applies to any river and reports no values for these two.",
+     "questionType": "multiple_choice"
+    }
+   ]
+  }
+ ]
+}
