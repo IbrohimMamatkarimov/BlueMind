@@ -18,6 +18,13 @@ export interface MistakeRow {
   selectedAnswer: string | null;
   correctAnswer: string;
   source: string;
+  journal: MistakeJournalEntry | null;
+}
+
+export interface MistakeJournalEntry {
+  reason: string;
+  warning: string;
+  updatedAt: string;
 }
 
 export interface MistakeSkill {
@@ -72,13 +79,17 @@ export async function getMistakes(userId: string, section: BankSection) {
            q.difficulty, q.question_text, q.question_type,
            missed.mistake_count, missed.attempt_count, missed.last_missed_at,
            latest.is_correct AS latest_correct, latest.created_at AS last_attempt_at,
-           latest.selected_answer, latest.correct_answer, latest.source
+           latest.selected_answer, latest.correct_answer, latest.source,
+           journal.reason AS journal_reason, journal.warning AS journal_warning,
+           journal.updated_at AS journal_updated_at
     FROM missed
     JOIN latest ON latest.question_id = missed.question_id
     JOIN questions q ON q.id = missed.question_id
+    LEFT JOIN mistake_journal_entries journal
+      ON journal.question_id = q.id AND journal.user_id = ?
     WHERE q.section = ?
     ORDER BY latest.is_correct ASC, missed.mistake_count DESC, latest.created_at DESC
-  `).all(userId, userId, userId, section)) as Record<string, unknown>[];
+  `).all(userId, userId, userId, userId, section)) as Record<string, unknown>[];
 
   const mistakes: MistakeRow[] = rows.map((row) => ({
     questionId: String(row.question_id), externalId: row.external_id ? String(row.external_id) : null,
@@ -89,6 +100,10 @@ export async function getMistakes(userId: string, section: BankSection) {
     latestCorrect: Number(row.latest_correct) === 1, lastAttemptAt: String(row.last_attempt_at),
     lastMissedAt: String(row.last_missed_at), selectedAnswer: row.selected_answer == null ? null : String(row.selected_answer),
     correctAnswer: String(row.correct_answer), source: String(row.source),
+    journal: row.journal_updated_at == null ? null : {
+      reason: String(row.journal_reason ?? ""), warning: String(row.journal_warning ?? ""),
+      updatedAt: String(row.journal_updated_at),
+    },
   }));
 
   const skillRows = (await db.prepare(`
@@ -112,6 +127,41 @@ export async function getMistakes(userId: string, section: BankSection) {
     needsReview: mistakes.filter((item) => !item.latestCorrect).length,
     improved: mistakes.filter((item) => item.latestCorrect).length,
     repeated: mistakes.filter((item) => item.mistakeCount > 1).length } };
+}
+
+export async function saveMistakeJournalEntry(
+  userId: string,
+  section: BankSection,
+  questionId: string,
+  reason: string,
+  warning: string,
+) {
+  const notebook = await getMistakes(userId, section);
+  if (!notebook.mistakes.some((item) => item.questionId === questionId)) {
+    return { ok: false as const, error: "That question is not in your mistakes notebook." };
+  }
+
+  const cleanReason = reason.trim();
+  const cleanWarning = warning.trim();
+  if (!cleanReason && !cleanWarning) {
+    await db.prepare("DELETE FROM mistake_journal_entries WHERE user_id = ? AND question_id = ?")
+      .run(userId, questionId);
+    return { ok: true as const, entry: null };
+  }
+
+  const row = await db.prepare(`
+    INSERT INTO mistake_journal_entries (user_id, question_id, reason, warning)
+    VALUES (?, ?, ?, ?)
+    ON CONFLICT (user_id, question_id) DO UPDATE SET
+      reason = EXCLUDED.reason,
+      warning = EXCLUDED.warning,
+      updated_at = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')
+    RETURNING reason, warning, updated_at
+  `).get(userId, questionId, cleanReason, cleanWarning) as Record<string, unknown>;
+
+  return { ok: true as const, entry: {
+    reason: String(row.reason), warning: String(row.warning), updatedAt: String(row.updated_at),
+  } };
 }
 
 export async function createMistakePracticeSet(userId: string, section: BankSection, requestedIds: string[]) {

@@ -659,6 +659,15 @@ function LocationPinIcon({ size = 16 }: { size?: number }) {
   );
 }
 
+function NewWordIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 4.5h8.5A2.5 2.5 0 0 1 16 7v12H7.5A2.5 2.5 0 0 1 5 16.5v-12Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      <path d="M8 9h5M8 12h4M19 5v6M16 8h6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function ToolButton({
   label,
   icon,
@@ -1077,6 +1086,10 @@ export default function PracticeExam({
     const params = new URLSearchParams(window.location.search);
     setIsPracticeMode(params.get("mode") === "practice");
     setReviewMode(params.get("review") === "1");
+    if (params.get("question")) {
+      setTestMode("untimed");
+      setStarted(true);
+    }
   }, []);
 
   const [testMode, setTestMode] = useState<TestMode>(fullExam?.mode ?? (isBank ? "untimed" : "timed"));
@@ -1266,6 +1279,16 @@ export default function PracticeExam({
   const [reportDetails, setReportDetails] = useState("");
   const [reportSending, setReportSending] = useState(false);
   const [reportSent, setReportSent] = useState(false);
+
+  // Personal vocabulary capture is intentionally unavailable in real exam
+  // environment mode. In study/timed practice, the learner can save just a
+  // word now and add its definition later from the Vocabulary section.
+  const [wordModalOpen, setWordModalOpen] = useState(false);
+  const [newWord, setNewWord] = useState("");
+  const [newWordDefinition, setNewWordDefinition] = useState("");
+  const [wordSaving, setWordSaving] = useState(false);
+  const [wordSaveError, setWordSaveError] = useState("");
+  const [wordSaved, setWordSaved] = useState(false);
 
   // "Leave this test?" confirmation — shown from the kebab menu instead of
   // navigating straight away. Progress is saved to localStorage (works for
@@ -1815,6 +1838,15 @@ export default function PracticeExam({
         }
         if (!restored) setSecondsLeft(data.minutes * 60);
 
+        // Vocabulary entries link back with a stable question id. Selecting
+        // it after local progress restoration makes the source link win over
+        // the last saved index and opens the exact question the word came from.
+        const targetQuestionId = new URLSearchParams(window.location.search).get("question");
+        if (targetQuestionId) {
+          const targetIndex = data.questions.findIndex((question: Question) => question.id === targetQuestionId);
+          if (targetIndex >= 0) setIndex(targetIndex);
+        }
+
         setLoading(false);
       })
       .catch((err: Error & { status?: number }) => {
@@ -1870,6 +1902,47 @@ export default function PracticeExam({
   }, [results, isMath]);
 
   const current = questions[index];
+
+  function openWordCapture() {
+    const selection = window.getSelection()?.toString().trim().replace(/\s+/g, " ") ?? "";
+    setNewWord(selection.length <= 120 ? selection : "");
+    setNewWordDefinition("");
+    setWordSaveError("");
+    setWordSaved(false);
+    setWordModalOpen(true);
+  }
+
+  async function saveNewWord() {
+    if (!current || !newWord.trim()) return;
+    if (!signedIn) {
+      setWordSaveError("Sign in to save words to your personal vocabulary.");
+      return;
+    }
+    setWordSaving(true);
+    setWordSaveError("");
+    try {
+      const response = await fetch("/api/vocabulary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          word: newWord,
+          definition: newWordDefinition,
+          questionId: current.id,
+          sourcePath: examPath,
+          questionNumber: index + 1,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error ?? "Could not save this word.");
+      setNewWord(data.word.word);
+      setNewWordDefinition(data.word.definition);
+      setWordSaved(true);
+    } catch (cause) {
+      setWordSaveError(cause instanceof Error ? cause.message : "Could not save this word.");
+    } finally {
+      setWordSaving(false);
+    }
+  }
 
   // Per-question stopwatch — purely client-side pacing aid, counts up from 0
   // and resets every time the student moves to a different question. Kept
@@ -2553,6 +2626,15 @@ export default function PracticeExam({
         </div>
 
         <div className="flex items-start justify-end gap-0.5 shrink-0 justify-self-end">
+          {testMode !== "exam" && (
+            <ToolButton
+              label="New word"
+              onClick={openWordCapture}
+              icon={<NewWordIcon size={22} />}
+              title="Save a word from this question to your vocabulary"
+              className="hidden lg:flex"
+            />
+          )}
           {isMath ? (
             <>
               <ToolButton
@@ -2621,6 +2703,17 @@ export default function PracticeExam({
                       className="flex w-full items-center gap-2.5 text-left px-3 py-2 rounded-md hover:bg-[#f0f0f0] sm:hidden"
                     >
                       <AnnotateIcon size={17} /> {highlightMode ? "Turn off Annotate" : "Annotate"}
+                    </button>
+                  )}
+                  {testMode !== "exam" && (
+                    <button
+                      onClick={() => {
+                        setMoreOpen(false);
+                        openWordCapture();
+                      }}
+                      className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left hover:bg-[#f0f0f0] lg:hidden"
+                    >
+                      <NewWordIcon size={17} /> New word
                     </button>
                   )}
                   <button
@@ -2926,6 +3019,46 @@ export default function PracticeExam({
           </div>
         </main>
       </div>
+
+      {/* ---------------- Personal vocabulary capture ---------------- */}
+      {wordModalOpen && testMode !== "exam" && (
+        <div role="dialog" aria-modal="true" aria-labelledby="new-word-title" className="fixed inset-0 z-50 flex items-center justify-center bg-brand-navy/30 px-4">
+          <div className="card w-full max-w-md p-6">
+            <div className="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <h2 id="new-word-title" className="text-lg font-bold text-brand-navy">Save a new word</h2>
+                <p className="mt-1 text-xs leading-5 text-brand-slate">From question {index + 1}. Its source and context will be saved automatically.</p>
+              </div>
+              <button onClick={() => setWordModalOpen(false)} aria-label="Close new word window" className="rounded p-1 text-brand-slate hover:bg-slate-100"><CloseIcon /></button>
+            </div>
+
+            {wordSaved ? <div>
+              <div role="status" className="rounded-lg border border-brand-green bg-brand-green-light p-4 text-sm text-brand-green"><strong>{newWord}</strong> was saved to My Vocabulary.</div>
+              <p className="mt-3 text-xs leading-5 text-brand-slate">You can continue the question now and add or improve the definition later.</p>
+              <div className="mt-5 flex flex-wrap justify-end gap-2">
+                <button onClick={() => setWordModalOpen(false)} className="btn-secondary text-xs">Continue test</button>
+                <button onClick={() => { saveProgressToStorage(); window.location.href = "/vocabulary"; }} className="btn-primary text-xs">Open My Vocabulary</button>
+              </div>
+            </div> : <>
+              <label className="block">
+                <span className="mb-1.5 block text-xs font-semibold text-brand-navy">Word or phrase</span>
+                <input autoFocus value={newWord} onChange={(event) => setNewWord(event.target.value)} maxLength={120} placeholder="Paste or type the unfamiliar word" className="w-full rounded-lg border border-brand-border bg-white px-3 py-2.5 text-sm text-brand-navy" />
+                <span className="mt-1 block text-right text-[10px] text-brand-slate">{newWord.length}/120</span>
+              </label>
+              <label className="mt-3 block">
+                <span className="mb-1.5 block text-xs font-semibold text-brand-navy">Definition <span className="font-normal text-brand-slate">(optional)</span></span>
+                <textarea value={newWordDefinition} onChange={(event) => setNewWordDefinition(event.target.value)} maxLength={2000} rows={4} placeholder="Add the meaning now, or leave this blank and return later." className="w-full resize-y rounded-lg border border-brand-border bg-white px-3 py-2.5 text-sm leading-6 text-brand-navy" />
+                <span className="mt-1 block text-right text-[10px] text-brand-slate">{newWordDefinition.length}/2000</span>
+              </label>
+              {wordSaveError && <p role="alert" className="mt-3 text-xs text-brand-red">{wordSaveError}</p>}
+              <div className="mt-5 flex flex-wrap justify-end gap-2">
+                <button onClick={() => setWordModalOpen(false)} disabled={wordSaving} className="btn-secondary text-xs">Cancel</button>
+                <button onClick={saveNewWord} disabled={wordSaving || !newWord.trim()} className="btn-primary text-xs">{wordSaving ? "Saving…" : newWordDefinition.trim() ? "Save word" : "Save for later"}</button>
+              </div>
+            </>}
+          </div>
+        </div>
+      )}
 
       {/* ---------------- Report a problem modal ---------------- */}
       {reportOpen && (

@@ -217,6 +217,38 @@ CREATE TABLE IF NOT EXISTS practice_attempts (
 
 CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_skill ON practice_attempts(user_id, skill);
 CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_question ON practice_attempts(user_id, question_id);
+
+-- A student's private reflection on a missed question. This is deliberately
+-- separate from attempt history so the lesson survives future retries and a
+-- question remains useful as a wrong-answer journal entry after it improves.
+CREATE TABLE IF NOT EXISTS mistake_journal_entries (
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  question_id TEXT NOT NULL REFERENCES questions(id) ON DELETE CASCADE,
+  reason TEXT NOT NULL DEFAULT '',
+  warning TEXT NOT NULL DEFAULT '',
+  created_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')),
+  updated_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')),
+  PRIMARY KEY (user_id, question_id)
+);
+CREATE INDEX IF NOT EXISTS idx_mistake_journal_user_updated ON mistake_journal_entries(user_id, updated_at DESC);
+
+-- Personal vocabulary captured while practicing. The source path and question
+-- number take the learner back to the exact practice context, while the
+-- question foreign key supplies current question metadata and text.
+CREATE TABLE IF NOT EXISTS vocabulary_words (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  word TEXT NOT NULL,
+  definition TEXT NOT NULL DEFAULT '',
+  question_id TEXT REFERENCES questions(id) ON DELETE SET NULL,
+  source_path TEXT NOT NULL,
+  question_number INTEGER NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')),
+  updated_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'))
+);
+CREATE INDEX IF NOT EXISTS idx_vocabulary_words_user_updated ON vocabulary_words(user_id, updated_at DESC);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_vocabulary_words_source_word
+  ON vocabulary_words(user_id, question_id, LOWER(word)) WHERE question_id IS NOT NULL;
 -- idx_practice_attempts_session_question is created by runMigrations() in
 -- db.ts, NOT here. session_id was added to this table after some databases
 -- already existed, so on those the CREATE TABLE above is a no-op and the
