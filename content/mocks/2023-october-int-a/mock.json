@@ -7,7 +7,9 @@
   "month": "October",
   "year": 2023,
   "source": "October 2023 International (Form A)",
-  "notes": "Transcribed from the \"2023 Oct Int-A\" reproduction of the October 7, 2023 international digital SAT. The source paper is incomplete: Section 2 Module 2 (the second Math module) is absent entirely, and four individual items are printed as MISSING with no answer in the paper's key — Reading & Writing Module 1 question 2, Reading & Writing Module 2 questions 14 and 15, and Math Module 1 question 21 (whose stem references a constant that never appears in the given function). Those items are omitted and the remaining questions renumbered, so the modules hold 26, 25 and 21 questions instead of 27, 27 and 22. One deliberate deviation from the paper's key: in Math Module 1 the ratio question (question 20 here and in the source) is keyed C, but for the stem as printed — x : y = 7 : 9 with x = 10t — the answer is y = (90/7)t, choice D, which is what this set uses. Figures are cropped from the source PDF; rationales and explanations were written for BlueMind."
+  "notes": "Transcribed from the \"2023 Oct Int-A\" reproduction of the October 7, 2023 international digital SAT. The source paper is incomplete: Section 2 Module 2 (the second Math module) is absent entirely, and four individual items are printed as MISSING with no answer in the paper's key — Reading & Writing Module 1 question 2, Reading & Writing Module 2 questions 14 and 15, and Math Module 1 question 21 (whose stem references a constant that never appears in the given function). Those items are omitted and the remaining questions renumbered, so the modules hold 26, 25 and 21 questions instead of 27, 27 and 22. One deliberate deviation from the paper's key: in Math Module 1 the ratio question (question 20 here and in the source) is keyed C, but for the stem as printed — x : y = 7 : 9 with x = 10t — the answer is y = (90/7)t, choice D, which is what this set uses. Figures are cropped from the source PDF; rationales and explanations were written for BlueMind.",
+  "durationMinutes": 99,
+  "totalQuestions": 72
  },
  "modules": [
   {
