@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookMarked, BookOpen, ChartNoAxesCombined, FileText, LogOut, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, ShieldCheck, Sun, UserRound } from "lucide-react";
+import { BookMarked, BookOpen, CalendarCheck2, ChartNoAxesCombined, FileText, LogOut, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, ShieldCheck, Sun, UserRound } from "lucide-react";
 import { useTheme } from "./AppShell";
 export const NAV_ITEMS = [
+  { href: "/today", label: "Today", icon: CalendarCheck2 },
   { href: "/mocks", label: "Mock Tests", icon: FileText },
   { href: "/practice", label: "Question Bank", icon: BookOpen },
   { href: "/mistakes", label: "Mistakes Notebook", icon: NotebookPen },
@@ -17,9 +18,9 @@ function Avatar({ avatarData, userName }: Profile) {
 export function Sidebar({ collapsed, onToggleCollapsed, ...profile }: Profile & { collapsed: boolean; onToggleCollapsed: () => void }) {
   const pathname = usePathname(); const router = useRouter(); const { dark, toggleDark } = useTheme();
   const items = profile.isAdmin ? [...NAV_ITEMS, { href: "/admin", label: "Admin", icon: ShieldCheck }] : NAV_ITEMS;
-  async function logout() { const response = await fetch("/api/auth/logout", { method: "POST" }); if (response.ok) { router.push("/login"); router.refresh(); } }
+  async function logout() { const response = await fetch("/api/auth/logout", { method: "POST" }); if (response.ok) { window.localStorage.removeItem("bluemind-vocabulary-cache-v1"); router.push("/login"); router.refresh(); } }
   return <aside className={`app-sidebar hidden md:flex flex-col shrink-0 h-screen sticky top-0 ${collapsed ? "w-[76px]" : "w-[240px]"}`}>
-    <Link href={profile.guest ? "/" : "/mocks"} aria-label="BlueMind home" className={`h-20 flex items-center gap-2.5 ${collapsed ? "justify-center" : "px-6"}`}>
+    <Link href={profile.guest ? "/" : "/today"} aria-label="BlueMind home" className={`h-20 flex items-center gap-2.5 ${collapsed ? "justify-center" : "px-6"}`}>
       <img src="/logo.png" alt="" width={30} height={30} className="shrink-0" />{!collapsed && <span className="text-lg font-extrabold text-brand-navy tracking-tight">BlueMind<span className="text-brand-blue">.</span></span>}
     </Link>
     <nav aria-label="Main navigation" className="flex-1 px-3 py-4 space-y-1.5">
@@ -43,7 +44,7 @@ export function MobileTopBar(profile: Profile) {
   const pathname = usePathname(); const { dark, toggleDark } = useTheme();
   return <header className="mobile-header md:hidden sticky top-0 z-40 border-b border-brand-border">
     <div className="h-16 px-4 flex items-center justify-between">
-      <Link href={profile.guest ? "/" : "/mocks"} className="flex items-center gap-2 font-extrabold text-brand-navy"><img src="/logo.png" alt="" width={25} height={25} />BlueMind<span className="text-brand-blue -ml-2">.</span></Link>
+      <Link href={profile.guest ? "/" : "/today"} className="flex items-center gap-2 font-extrabold text-brand-navy"><img src="/logo.png" alt="" width={25} height={25} />BlueMind<span className="text-brand-blue -ml-2">.</span></Link>
       <div className="flex items-center gap-2"><button onClick={toggleDark} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} className="sidebar-utility">{dark ? <Sun size={19} /> : <Moon size={19} />}</button><Link href={profile.guest ? "/login" : "/account"} aria-label={profile.guest ? "Sign in" : "Your account"}><Avatar {...profile} /></Link></div>
     </div>
     <nav aria-label="Main navigation" className="flex gap-1 px-3 pb-3 overflow-x-auto">

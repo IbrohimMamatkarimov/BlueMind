@@ -144,6 +144,22 @@ export default function FullExam({ mockId }: { mockId: string }) {
     const results = Object.values(session.results);
     const correct = results.reduce((sum, result) => sum + result.correctCount, 0);
     const total = results.reduce((sum, result) => sum + result.total, 0);
+    const sections = ["Reading and Writing", "Math"].map((sectionName) => {
+      const moduleResults = FULL_EXAM_STEPS.map((step, index) => ({ step, result: session.results[index] })).filter(({ step, result }) => step.section === sectionName && result);
+      const sectionCorrect = moduleResults.reduce((sum, item) => sum + item.result.correctCount, 0);
+      const sectionTotal = moduleResults.reduce((sum, item) => sum + item.result.total, 0);
+      return { section: sectionName, correct: sectionCorrect, total: sectionTotal, accuracy: sectionTotal ? Math.round(sectionCorrect / sectionTotal * 100) : 0 };
+    });
+    const incorrect = FULL_EXAM_STEPS.flatMap((step, moduleIndex) => (session.results[moduleIndex]?.results ?? []).map((question, questionIndex) => ({ question, questionIndex, moduleIndex, section: step.section }))).filter((item) => !item.question.isCorrect);
+    const skillMisses = new Map<string, { section: string; skill: string; count: number }>();
+    for (const item of incorrect) {
+      const key = `${item.section}|${item.question.skill}`;
+      const current = skillMisses.get(key) ?? { section: item.section, skill: item.question.skill, count: 0 };
+      current.count++;
+      skillMisses.set(key, current);
+    }
+    const weakestSkill = [...skillMisses.values()].sort((a, b) => b.count - a.count)[0] ?? null;
+    const firstMiss = incorrect[0] ?? null;
     return <main className={["min-h-screen bg-brand-bg text-brand-navy px-4 py-10", dark ? "app-dark" : ""].join(" ")}>
       <div className="max-w-3xl mx-auto space-y-6">
         <div className="rounded-2xl bg-white border border-slate-200 p-8">
@@ -152,12 +168,18 @@ export default function FullExam({ mockId }: { mockId: string }) {
           <p className="text-4xl font-bold mt-6">{correct}<span className="text-lg text-slate-500"> / {total} correct</span></p>
           <p className="text-sm text-slate-600 mt-2">Review each module below. This is your question accuracy, not an official SAT scaled score.</p>
         </div>
+        <section className="rounded-2xl border border-slate-200 bg-white p-6">
+          <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">Exam review dashboard</p><h2 className="mt-1 text-xl font-bold">{incorrect.length ? `${incorrect.length} answers to learn from` : "A perfect answer review"}</h2>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3"><div className="rounded-xl bg-slate-50 p-4"><p className="text-2xl font-bold">{Math.round(correct / total * 100)}%</p><p className="text-xs text-slate-500">overall accuracy</p></div>{sections.map((item) => <div key={item.section} className="rounded-xl bg-slate-50 p-4"><p className="text-2xl font-bold">{item.accuracy}%</p><p className="text-xs text-slate-500">{item.section === "Reading and Writing" ? "Reading & Writing" : item.section}</p></div>)}</div>
+          {weakestSkill ? <p className="mt-5 text-sm leading-6 text-slate-600"><strong className="text-slate-900">Suggested focus: {weakestSkill.skill}.</strong> It accounted for {weakestSkill.count} missed answer{weakestSkill.count === 1 ? "" : "s"}. Review the explanations below, write down why each mistake happened, then practice the skill again.</p> : <p className="mt-5 text-sm text-slate-600">There are no missed answers to revisit. Use this exam as a baseline and keep your practice consistent.</p>}
+          <div className="mt-5 flex flex-wrap gap-2">{firstMiss && <a href={`#full-result-q-${firstMiss.moduleIndex}-${firstMiss.questionIndex}`} className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white">Review first mistake</a>}<a href="/mistakes" className="rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold">Open Mistakes Notebook</a>{weakestSkill && <a href={`/practice/browse?section=${encodeURIComponent(weakestSkill.section)}&skill=${encodeURIComponent(weakestSkill.skill)}`} className="rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold">Practice {weakestSkill.skill}</a>}</div>
+        </section>
         {FULL_EXAM_STEPS.map((step, index) => {
           const result = session.results[index];
           if (!result) return null;
-          return <details key={index} className="bg-white rounded-xl border border-slate-200 p-5">
+          return <details key={index} open={firstMiss?.moduleIndex === index} className="bg-white rounded-xl border border-slate-200 p-5">
             <summary className="cursor-pointer font-semibold">{step.section} · Module {step.module}<span className="float-right">{result.correctCount}/{result.total}</span></summary>
-            <div className="mt-5 space-y-5">{result.results.map((question, number) => <div key={question.questionId} className="border-t border-brand-border p-4 space-y-2 text-sm relative overflow-hidden">
+            <div className="mt-5 space-y-5">{result.results.map((question, number) => <div key={question.questionId} id={`full-result-q-${index}-${number}`} className="scroll-mt-6 border-t border-brand-border p-4 space-y-2 text-sm relative overflow-hidden">
               <TextWatermarkOverlay dark={dark} mode="absolute" />
               <p className={question.isCorrect ? "text-emerald-700 font-semibold" : "text-red-700 font-semibold"}>Question {number + 1} · {question.isCorrect ? "Correct" : "Incorrect"}</p>
               <MathText text={question.questionText} />

@@ -668,6 +668,14 @@ function NewWordIcon({ size = 20 }: { size?: number }) {
   );
 }
 
+function NoteIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 3.5h14v17H5zM8 8h8M8 12h8M8 16h5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function ToolButton({
   label,
   icon,
@@ -1289,6 +1297,12 @@ export default function PracticeExam({
   const [wordSaving, setWordSaving] = useState(false);
   const [wordSaveError, setWordSaveError] = useState("");
   const [wordSaved, setWordSaved] = useState(false);
+  const [noteModalOpen, setNoteModalOpen] = useState(false);
+  const [questionNote, setQuestionNote] = useState("");
+  const [savedQuestionNote, setSavedQuestionNote] = useState("");
+  const [noteLoading, setNoteLoading] = useState(false);
+  const [noteSaving, setNoteSaving] = useState(false);
+  const [noteError, setNoteError] = useState("");
 
   // "Leave this test?" confirmation — shown from the kebab menu instead of
   // navigating straight away. Progress is saved to localStorage (works for
@@ -1944,6 +1958,54 @@ export default function PracticeExam({
     }
   }
 
+  async function openQuestionNotes() {
+    if (!current) return;
+    setNoteModalOpen(true);
+    setNoteError("");
+    if (!signedIn) {
+      setQuestionNote("");
+      setSavedQuestionNote("");
+      setNoteError("Sign in to keep personal notes for questions.");
+      return;
+    }
+    setNoteLoading(true);
+    try {
+      const response = await fetch(`/api/question-notes?questionId=${encodeURIComponent(current.id)}`);
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error ?? "Could not load your note.");
+      const note = data.note?.note ?? "";
+      setQuestionNote(note);
+      setSavedQuestionNote(note);
+    } catch (cause) {
+      setNoteError(cause instanceof Error ? cause.message : "Could not load your note.");
+    } finally {
+      setNoteLoading(false);
+    }
+  }
+
+  async function saveQuestionNote() {
+    if (!current) return;
+    setNoteSaving(true);
+    setNoteError("");
+    try {
+      const response = await fetch("/api/question-notes", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId: current.id, note: questionNote }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error ?? "Could not save your note.");
+      const note = data.note?.note ?? "";
+      setQuestionNote(note);
+      setSavedQuestionNote(note);
+      setNoteModalOpen(false);
+    } catch (cause) {
+      setNoteError(cause instanceof Error ? cause.message : "Could not save your note.");
+    } finally {
+      setNoteSaving(false);
+    }
+  }
+
   // Per-question stopwatch — purely client-side pacing aid, counts up from 0
   // and resets every time the student moves to a different question. Kept
   // separate from the module countdown above (which never resets and is
@@ -2232,6 +2294,10 @@ export default function PracticeExam({
   if (results) {
     const congratsThreshold = isMath ? 20 : 25;
     const qualifiesForCongrats = results.correctCount > congratsThreshold;
+    const incorrectResults = results.results.map((result, index) => ({ result, number: index + 1 })).filter(({ result }) => !result.isCorrect);
+    const missesBySkill = new Map<string, number>();
+    for (const { result } of incorrectResults) missesBySkill.set(result.skill, (missesBySkill.get(result.skill) ?? 0) + 1);
+    const weakestSkill = [...missesBySkill.entries()].sort((a, b) => b[1] - a[1])[0] ?? null;
 
     return (
       <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "exam-dark bg-[#0b1220]" : "bg-brand-bg"}`}>
@@ -2294,6 +2360,14 @@ export default function PracticeExam({
               <p className="text-sm font-semibold text-brand-blue mt-2">🎉 Great work — congrats!</p>
             )}
           </div>
+
+          <section className="card p-6" aria-labelledby="review-plan-title">
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+              <div><p className="text-xs font-semibold uppercase tracking-wide text-brand-blue">Your review plan</p><h2 id="review-plan-title" className="mt-1 text-xl font-bold text-brand-navy">{incorrectResults.length ? `Turn ${incorrectResults.length} missed question${incorrectResults.length === 1 ? "" : "s"} into progress` : "Nothing to correct in this module"}</h2><p className="mt-2 max-w-xl text-sm leading-6 text-brand-slate">{weakestSkill ? `${weakestSkill[0]} appeared in ${weakestSkill[1]} of your missed answers. Review the explanation, record what caused the mistake, then practice the skill again.` : "You answered every question correctly. Keep the result as a benchmark and continue to the next challenge."}</p></div>
+              <div className={`shrink-0 rounded-2xl px-5 py-3 text-center ${incorrectResults.length ? "bg-brand-red-light text-brand-red" : "bg-brand-green-light text-brand-green"}`}><p className="text-2xl font-bold">{incorrectResults.length}</p><p className="text-[10px] font-semibold uppercase tracking-wide">to review</p></div>
+            </div>
+            {incorrectResults.length > 0 && <div className="mt-5 flex flex-wrap gap-2"><a href={`#result-q-${incorrectResults[0].number}`} className="btn-primary text-xs">Review first mistake</a><Link href="/mistakes" className="btn-secondary text-xs">Open Mistakes Notebook</Link>{weakestSkill && <Link href={`/practice/browse?section=${encodeURIComponent(section)}&skill=${encodeURIComponent(weakestSkill[0])}`} className="btn-secondary text-xs">Practice {weakestSkill[0]}</Link>}</div>}
+          </section>
 
           {/* Full answer summary — every question in this module (27 for
               Reading & Writing, 22 for Math, the real per-module counts,
@@ -2627,13 +2701,10 @@ export default function PracticeExam({
 
         <div className="flex items-start justify-end gap-0.5 shrink-0 justify-self-end">
           {testMode !== "exam" && (
-            <ToolButton
-              label="New word"
-              onClick={openWordCapture}
-              icon={<NewWordIcon size={22} />}
-              title="Save a word from this question to your vocabulary"
-              className="hidden lg:flex"
-            />
+            <>
+              <ToolButton label="New word" onClick={openWordCapture} icon={<NewWordIcon size={22} />} title="Save a word from this question to your vocabulary" className="hidden lg:flex" />
+              <ToolButton label="Notes" onClick={openQuestionNotes} icon={<NoteIcon size={22} />} title="Keep a personal note for this question" className="hidden lg:flex" />
+            </>
           )}
           {isMath ? (
             <>
@@ -2706,15 +2777,10 @@ export default function PracticeExam({
                     </button>
                   )}
                   {testMode !== "exam" && (
-                    <button
-                      onClick={() => {
-                        setMoreOpen(false);
-                        openWordCapture();
-                      }}
-                      className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left hover:bg-[#f0f0f0] lg:hidden"
-                    >
-                      <NewWordIcon size={17} /> New word
-                    </button>
+                    <>
+                      <button onClick={() => { setMoreOpen(false); openWordCapture(); }} className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left hover:bg-[#f0f0f0] lg:hidden"><NewWordIcon size={17} /> New word</button>
+                      <button onClick={() => { setMoreOpen(false); openQuestionNotes(); }} className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left hover:bg-[#f0f0f0] lg:hidden"><NoteIcon size={17} /> Question notes</button>
+                    </>
                   )}
                   <button
                     onClick={() => {
@@ -3056,6 +3122,18 @@ export default function PracticeExam({
                 <button onClick={saveNewWord} disabled={wordSaving || !newWord.trim()} className="btn-primary text-xs">{wordSaving ? "Saving…" : newWordDefinition.trim() ? "Save word" : "Save for later"}</button>
               </div>
             </>}
+          </div>
+        </div>
+      )}
+
+      {/* ---------------- Personal question notes ---------------- */}
+      {noteModalOpen && testMode !== "exam" && (
+        <div role="dialog" aria-modal="true" aria-labelledby="question-note-title" className="fixed inset-0 z-50 flex items-center justify-center bg-brand-navy/30 px-4">
+          <div className="card w-full max-w-md p-6">
+            <div className="mb-4 flex items-start justify-between gap-3"><div><h2 id="question-note-title" className="text-lg font-bold text-brand-navy">Question {index + 1} notes</h2><p className="mt-1 text-xs text-brand-slate">Save a formula, strategy, or observation for later.</p></div><button onClick={() => setNoteModalOpen(false)} aria-label="Close question notes" className="rounded p-1 text-brand-slate hover:bg-slate-100"><CloseIcon /></button></div>
+            {noteLoading ? <div className="h-32 animate-pulse rounded-lg bg-slate-100"/> : <textarea autoFocus value={questionNote} onChange={(event) => setQuestionNote(event.target.value)} maxLength={4000} rows={7} placeholder="Write a personal note about this question…" className="w-full resize-y rounded-lg border border-brand-border bg-white px-3 py-2.5 text-sm leading-6 text-brand-navy"/>}
+            <div className="mt-1 flex items-start justify-between gap-3"><p role="alert" className="text-xs text-brand-red">{noteError}</p><span className="shrink-0 text-[10px] text-brand-slate">{questionNote.length}/4000</span></div>
+            <div className="mt-4 flex justify-end gap-2"><button onClick={() => setNoteModalOpen(false)} disabled={noteSaving} className="btn-secondary text-xs">Cancel</button><button onClick={saveQuestionNote} disabled={noteLoading || noteSaving || questionNote.trim() === savedQuestionNote} className="btn-primary text-xs">{noteSaving ? "Saving…" : questionNote.trim() ? "Save note" : "Clear note"}</button></div>
           </div>
         </div>
       )}

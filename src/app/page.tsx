@@ -9,6 +9,6 @@ export default async function RootPage() {
   // design on open, new design after clicking something": the root URL was
   // still rendering the never-updated PublicLanding component even for
   // logged-in users, and only navigating to /mocks reached the new AppShell.
-  if (user) redirect("/mocks");
+  if (user) redirect("/today");
   return <PublicLanding signedIn={false} userName={null} />;
 }

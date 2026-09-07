@@ -44,7 +44,7 @@ export function GoogleSignInButton() {
           setError(data.error ?? "Google sign-in failed. Please try again.");
           return;
         }
-        router.push("/mocks");
+        router.push("/today");
         router.refresh();
       } catch {
         setError("Network error — please try again.");

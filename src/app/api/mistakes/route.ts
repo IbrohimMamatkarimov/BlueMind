@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
 import { createMistakePracticeSet, getMistakes, saveMistakeJournalEntry } from "@/lib/mistakes";
+import type { MistakeCategory } from "@/lib/mistakes";
 import type { BankSection } from "@/lib/qbank";
 
 function sectionOf(value: string | null): BankSection { return value === "Math" ? "Math" : "Reading and Writing"; }
@@ -28,6 +29,7 @@ const JournalSchema = z.object({
   questionId: z.string().min(1).max(200),
   reason: z.string().max(1000),
   warning: z.string().max(1000),
+  category: z.enum(["unclassified", "concept_gap", "careless_error", "misread_question", "timing_issue", "strategy_issue"]).default("unclassified"),
 });
 
 export async function PATCH(req: NextRequest) {
@@ -45,6 +47,7 @@ export async function PATCH(req: NextRequest) {
     parsed.data.questionId,
     parsed.data.reason,
     parsed.data.warning,
+    parsed.data.category as MistakeCategory,
   );
   if (!result.ok) return NextResponse.json({ error: result.error }, { status: 404 });
   return NextResponse.json({ journal: result.entry });

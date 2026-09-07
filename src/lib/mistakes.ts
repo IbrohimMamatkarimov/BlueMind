@@ -24,8 +24,11 @@ export interface MistakeRow {
 export interface MistakeJournalEntry {
   reason: string;
   warning: string;
+  category: MistakeCategory;
   updatedAt: string;
 }
+
+export type MistakeCategory = "unclassified" | "concept_gap" | "careless_error" | "misread_question" | "timing_issue" | "strategy_issue";
 
 export interface MistakeSkill {
   skill: string;
@@ -81,6 +84,7 @@ export async function getMistakes(userId: string, section: BankSection) {
            latest.is_correct AS latest_correct, latest.created_at AS last_attempt_at,
            latest.selected_answer, latest.correct_answer, latest.source,
            journal.reason AS journal_reason, journal.warning AS journal_warning,
+           journal.category AS journal_category,
            journal.updated_at AS journal_updated_at
     FROM missed
     JOIN latest ON latest.question_id = missed.question_id
@@ -102,6 +106,7 @@ export async function getMistakes(userId: string, section: BankSection) {
     correctAnswer: String(row.correct_answer), source: String(row.source),
     journal: row.journal_updated_at == null ? null : {
       reason: String(row.journal_reason ?? ""), warning: String(row.journal_warning ?? ""),
+      category: String(row.journal_category ?? "unclassified") as MistakeCategory,
       updatedAt: String(row.journal_updated_at),
     },
   }));
@@ -135,6 +140,7 @@ export async function saveMistakeJournalEntry(
   questionId: string,
   reason: string,
   warning: string,
+  category: MistakeCategory,
 ) {
   const notebook = await getMistakes(userId, section);
   if (!notebook.mistakes.some((item) => item.questionId === questionId)) {
@@ -143,24 +149,26 @@ export async function saveMistakeJournalEntry(
 
   const cleanReason = reason.trim();
   const cleanWarning = warning.trim();
-  if (!cleanReason && !cleanWarning) {
+  if (!cleanReason && !cleanWarning && category === "unclassified") {
     await db.prepare("DELETE FROM mistake_journal_entries WHERE user_id = ? AND question_id = ?")
       .run(userId, questionId);
     return { ok: true as const, entry: null };
   }
 
   const row = await db.prepare(`
-    INSERT INTO mistake_journal_entries (user_id, question_id, reason, warning)
-    VALUES (?, ?, ?, ?)
+    INSERT INTO mistake_journal_entries (user_id, question_id, reason, warning, category)
+    VALUES (?, ?, ?, ?, ?)
     ON CONFLICT (user_id, question_id) DO UPDATE SET
       reason = EXCLUDED.reason,
       warning = EXCLUDED.warning,
+      category = EXCLUDED.category,
       updated_at = to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')
-    RETURNING reason, warning, updated_at
-  `).get(userId, questionId, cleanReason, cleanWarning) as Record<string, unknown>;
+    RETURNING reason, warning, category, updated_at
+  `).get(userId, questionId, cleanReason, cleanWarning, category) as Record<string, unknown>;
 
   return { ok: true as const, entry: {
-    reason: String(row.reason), warning: String(row.warning), updatedAt: String(row.updated_at),
+    reason: String(row.reason), warning: String(row.warning), category: String(row.category) as MistakeCategory,
+    updatedAt: String(row.updated_at),
   } };
 }
 

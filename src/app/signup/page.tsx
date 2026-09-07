@@ -32,7 +32,7 @@ export default function SignupPage() {
         setError(data.error ?? "Something went wrong. Please try again.");
         return;
       }
-      router.push("/mocks");
+      router.push("/today");
       router.refresh();
     } catch {
       setError("Network error — please check your connection and try again.");

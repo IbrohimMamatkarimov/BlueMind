@@ -211,6 +211,17 @@ async function runMigrations(client: PoolClient) {
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS selected_answer TEXT",
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS correct_answer TEXT",
     "CREATE UNIQUE INDEX IF NOT EXISTS idx_practice_attempts_session_question ON practice_attempts(user_id, session_id, question_id) WHERE session_id IS NOT NULL",
+    // Learning-system fields added after the original Mistakes Notebook and
+    // Vocabulary tables shipped. These are safe no-ops on fresh databases.
+    "ALTER TABLE mistake_journal_entries ADD COLUMN IF NOT EXISTS category TEXT NOT NULL DEFAULT 'unclassified'",
+    "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS pronunciation TEXT NOT NULL DEFAULT ''",
+    "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS synonyms TEXT NOT NULL DEFAULT ''",
+    "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS word_forms TEXT NOT NULL DEFAULT ''",
+    "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS example_sentence TEXT NOT NULL DEFAULT ''",
+    "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS review_level INTEGER NOT NULL DEFAULT 0",
+    "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS review_count INTEGER NOT NULL DEFAULT 0",
+    "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS next_review_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"'))",
+    "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS last_reviewed_at TEXT",
   ];
   for (const sql of migrations) {
     await client.query(sql);

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { BrandLockup } from "./BrainLogo";
 
 const NAV_ITEMS = [
+  { href: "/today", label: "Today" },
   { href: "/mocks", label: "Mock Tests" },
   { href: "/practice", label: "Practice" },
   { href: "/mistakes", label: "Mistakes Notebook" },
@@ -29,6 +30,7 @@ export function Navbar({
 
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
+    window.localStorage.removeItem("bluemind-vocabulary-cache-v1");
     router.push("/login");
     router.refresh();
   }
@@ -36,7 +38,7 @@ export function Navbar({
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <Link href="/mocks" className="shrink-0">
+        <Link href="/today" className="shrink-0">
           <BrandLockup size={26} />
         </Link>
 

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, TrendingUp } from "lucide-react";
+import { ArrowRight, CalendarDays, TrendingUp } from "lucide-react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { EmptyState, PageHeader, StatCard } from "./ui";
 import { summarizeProgress, StudyEntry } from "@/lib/progress-summary";
@@ -31,6 +31,15 @@ export function ProgressDashboard() {
   }, [reload]);
   const filtered = useMemo(() => (entries ?? []).filter((entry) => (section === "All subjects" || entry.section === section) && (!days || Date.parse(entry.completedAt) >= Date.now() - days * 86400000)), [entries, days, section]);
   const summary = useMemo(() => summarizeProgress(filtered), [filtered]);
+  const weekly = useMemo(() => {
+    const now = Date.now();
+    const current = summarizeProgress((entries ?? []).filter((entry) => Date.parse(entry.completedAt) >= now - 7 * 86400000));
+    const previous = summarizeProgress((entries ?? []).filter((entry) => {
+      const time = Date.parse(entry.completedAt);
+      return time >= now - 14 * 86400000 && time < now - 7 * 86400000;
+    }));
+    return { current, previous };
+  }, [entries]);
   const trend = useMemo(() => {
     const dates = new Map<string, { correct: number; total: number }>();
     for (const entry of [...filtered].reverse()) {
@@ -51,6 +60,10 @@ export function ProgressDashboard() {
     {!entries && !error && <div role="status" aria-label="Loading progress" className="grid sm:grid-cols-3 gap-4">{[1, 2, 3].map((key) => <div key={key} className="h-36 rounded-2xl bg-slate-200 animate-pulse" />)}</div>}
     {entries && filtered.length === 0 && <EmptyState title={entries.length ? "No sessions in this view" : "Your next chapter starts with one session"} description={entries.length ? "Choose another subject or date range to see your practice." : "Complete a mock module or a Question Bank set. Your accuracy, history, and skill insights will appear here."}>{entries.length ? <button className="btn-secondary" onClick={() => { setSection("All subjects"); setDays(0); }}>Show all practice</button> : <Link href="/mocks" className="btn-primary">Explore mock tests <ArrowRight size={16} /></Link>}</EmptyState>}
     {filtered.length > 0 && <>
+      <section className="card p-5 sm:p-6">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start"><div className="flex gap-3"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-blue-light text-brand-blue"><CalendarDays size={19}/></span><div><p className="eyebrow">Weekly report</p><h2 className="text-lg font-bold text-brand-navy">The last 7 days</h2><p className="mt-1 text-xs text-brand-slate">Compared with the 7 days before that.</p></div></div>{weekly.current.nextPractice && <Link href={`/practice/browse?section=${encodeURIComponent(weekly.current.nextPractice.section)}&skill=${encodeURIComponent(weekly.current.nextPractice.skill)}`} className="btn-secondary text-xs">Practice {weekly.current.nextPractice.skill}<ArrowRight size={14}/></Link>}</div>
+        <div className="mt-6 grid grid-cols-2 gap-5 lg:grid-cols-4"><div><p className="text-2xl font-bold text-brand-navy">{weekly.current.questions}</p><p className="text-xs text-brand-slate">questions <span className={weekly.current.questions >= weekly.previous.questions ? "text-brand-green" : "text-brand-red"}>({weekly.current.questions - weekly.previous.questions >= 0 ? "+" : ""}{weekly.current.questions - weekly.previous.questions})</span></p></div><div><p className="text-2xl font-bold text-brand-navy">{weekly.current.sessions}</p><p className="text-xs text-brand-slate">sessions <span className={weekly.current.sessions >= weekly.previous.sessions ? "text-brand-green" : "text-brand-red"}>({weekly.current.sessions - weekly.previous.sessions >= 0 ? "+" : ""}{weekly.current.sessions - weekly.previous.sessions})</span></p></div><div><p className="text-2xl font-bold text-brand-navy">{weekly.current.accuracy == null ? "—" : `${weekly.current.accuracy}%`}</p><p className="text-xs text-brand-slate">accuracy {weekly.current.accuracy != null && weekly.previous.accuracy != null && <span className={weekly.current.accuracy >= weekly.previous.accuracy ? "text-brand-green" : "text-brand-red"}>({weekly.current.accuracy - weekly.previous.accuracy >= 0 ? "+" : ""}{weekly.current.accuracy - weekly.previous.accuracy} pts)</span>}</p></div><div><p className="truncate text-lg font-bold text-brand-navy">{weekly.current.nextPractice?.skill ?? "Keep exploring"}</p><p className="text-xs text-brand-slate">suggested focus</p></div></div>
+      </section>
       <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <StatCard label="Question accuracy" value={`${summary.accuracy}%`} detail={`${summary.questions.toLocaleString()} questions across ${summary.sessions} sessions`} />
         {summary.sections.map((item) => <StatCard key={item.section} label={item.section === "Math" ? "Math accuracy" : "Reading & Writing accuracy"} value={item.accuracy === null ? "—" : `${item.accuracy}%`} detail={item.total ? `${item.total} questions practiced` : "Complete a session to get started"} />)}

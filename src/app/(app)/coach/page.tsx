@@ -1,2 +1,2 @@
 import { redirect } from "next/navigation";
-export default function RetiredPage() { redirect("/mocks"); }
+export default function RetiredPage() { redirect("/today"); }
