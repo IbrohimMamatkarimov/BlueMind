@@ -422,6 +422,7 @@ export interface BankSetPublic {
     questionText: string;
     choices: { id: string; text: string; imageData?: string | null }[];
     questionType: string;
+    solved: boolean;
   }[];
 }
 
@@ -431,6 +432,15 @@ export async function getBankSet(userId: string, setId: string, isAdmin = false)
   if (!set) return null;
   const ids = JSON.parse(set.question_ids) as string[];
   const questions = await loadQuestionsInOrder(ids);
+  const solvedRows = ids.length > 0
+    ? (await db
+        .prepare(
+          `SELECT DISTINCT question_id FROM practice_attempts
+           WHERE user_id = ? AND question_id IN (${ids.map(() => "?").join(",")})`
+        )
+        .all(userId, ...ids)) as { question_id: string }[]
+    : [];
+  const solvedIds = new Set(solvedRows.map((row) => row.question_id));
   const section: BankSection = set.section === "Math" ? "Math" : set.section === "Reading and Writing" ? "Reading and Writing" : questions[0]?.section === "Math" ? "Math" : "Reading and Writing";
   let results: unknown[] | null = null;
   if (set.results_json) {
@@ -460,6 +470,7 @@ export async function getBankSet(userId: string, setId: string, isAdmin = false)
       questionText: q.question_text,
       choices: JSON.parse(q.choices),
       questionType: q.question_type,
+      solved: solvedIds.has(q.id),
     })),
   };
 }

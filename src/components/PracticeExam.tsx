@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { PauseScreen, TestSetup, useExamGuard } from "@/components/TestSessionControls";
 import { isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
+import { findNextUnsolvedIndex } from "@/lib/qbank-selection";
 
 export interface ExamResult { total: number; correctCount: number; accuracyPct: number; results: GradedQuestion[] }
 export interface FullExamModule {
@@ -45,6 +46,7 @@ interface Question {
   questionText: string;
   choices: Choice[];
   questionType: "multiple_choice" | "spr";
+  solved?: boolean;
 }
 interface GradedQuestion {
   questionId: string;
@@ -724,6 +726,7 @@ function PaneExpandButton({ expanded, onClick, title }: { expanded: boolean; onC
 function QuestionTile({
   number,
   answered,
+  solved = false,
   marked,
   current,
   onClick,
@@ -731,13 +734,19 @@ function QuestionTile({
 }: {
   number: number;
   answered: boolean;
+  solved?: boolean;
   marked: boolean;
   current: boolean;
   onClick: () => void;
   size?: number;
 }) {
   return (
-    <button onClick={onClick} className="relative flex items-center justify-center mx-auto" style={{ width: size, height: size }}>
+    <button
+      onClick={onClick}
+      className="relative flex items-center justify-center mx-auto"
+      style={{ width: size, height: size }}
+      aria-label={`Question ${number}${solved ? ", solved" : answered ? ", answered" : ", unanswered"}${marked ? ", marked for review" : ""}`}
+    >
       {current && (
         <span className="absolute -top-[19px] left-1/2 -translate-x-1/2 text-[#1e1e1e]">
           <LocationPinIcon size={17} />
@@ -745,11 +754,20 @@ function QuestionTile({
       )}
       <span
         className={`w-full h-full flex items-center justify-center text-[16px] font-bold ${
-          answered ? "bg-[#324dc7] text-white" : "bg-white text-[#324dc7] border border-dashed border-[#1e1e1e]"
+          solved
+            ? "bg-[#15803d] text-white"
+            : answered
+              ? "bg-[#324dc7] text-white"
+              : "bg-white text-[#324dc7] border border-dashed border-[#1e1e1e]"
         }`}
       >
         {number}
       </span>
+      {solved && (
+        <span className="absolute -bottom-[6px] -right-[6px] w-[17px] h-[17px] rounded-full bg-white border-2 border-[#15803d] text-[#15803d] text-[11px] font-bold leading-[13px]" aria-hidden="true">
+          ✓
+        </span>
+      )}
       {marked && (
         <span className="absolute -top-[8px] -right-[7px] text-[#c13515]">
           <BookmarkIcon filled size={15} />
@@ -759,7 +777,7 @@ function QuestionTile({
   );
 }
 
-function NavigatorLegend() {
+function NavigatorLegend({ showSolved = false }: { showSolved?: boolean }) {
   return (
     <div className="flex items-center justify-center gap-6 text-[14px] text-[#1e1e1e] flex-wrap">
       <span className="flex items-center gap-1.5">
@@ -768,6 +786,11 @@ function NavigatorLegend() {
       <span className="flex items-center gap-1.5">
         <span className="w-[18px] h-[18px] border border-dashed border-[#1e1e1e] bg-white" /> Unanswered
       </span>
+      {showSolved && (
+        <span className="flex items-center gap-1.5">
+          <span className="w-[18px] h-[18px] bg-[#15803d] text-white text-[12px] font-bold flex items-center justify-center">✓</span> Solved
+        </span>
+      )}
       <span className="flex items-center gap-1.5">
         <BookmarkIcon filled size={16} className="text-[#c13515]" /> For Review
       </span>
@@ -1916,6 +1939,13 @@ export default function PracticeExam({
   }, [results, isMath]);
 
   const current = questions[index];
+  const solvedQuestionIds = useMemo(
+    () => new Set(questions.filter((question) => question.solved || checkedAnswers[question.id]).map((question) => question.id)),
+    [questions, checkedAnswers]
+  );
+  const nextUnsolvedIndex = current
+    ? findNextUnsolvedIndex(questions.map((question) => question.id), index, solvedQuestionIds)
+    : null;
 
   function openWordCapture() {
     const selection = window.getSelection()?.toString().trim().replace(/\s+/g, " ") ?? "";
@@ -2076,6 +2106,19 @@ export default function PracticeExam({
       setCheckingAnswer(false);
     }
   }
+
+  function handleSkipQuestion() {
+    handleNextUnsolved();
+  }
+
+  function handleNextUnsolved() {
+    setCheckError(null);
+    if (nextUnsolvedIndex !== null) {
+      setIndex(nextUnsolvedIndex);
+    } else {
+      setModuleReviewOpen(true);
+    }
+  }
   function toggleMark(qId: string) {
     setMarked((prev) => ({ ...prev, [qId]: !prev[qId] }));
   }
@@ -2106,12 +2149,6 @@ export default function PracticeExam({
 
   async function handleSubmit() {
     if (submittingRef.current || finishedRef.current || results || pausedRef.current) return;
-    if (isBank && Object.keys(checkedAnswers).length < questions.length) {
-      const firstUnchecked = questions.findIndex((question) => !checkedAnswers[question.id]);
-      if (firstUnchecked >= 0) setIndex(firstUnchecked);
-      setCheckError("Check every answer before finishing this practice session.");
-      return;
-    }
     if (!submissionId.current) submissionId.current = crypto.randomUUID();
     submittingRef.current = true;
     if (deadlineRef.current !== null) setSecondsLeft(remainingSeconds(deadlineRef.current));
@@ -2689,6 +2726,11 @@ export default function PracticeExam({
               >
                 {current.difficulty}
               </span>}
+              {isBank && (current.solved || checkedAnswers[current.id]) && (
+                <span className="h-6 flex items-center gap-1 text-[10px] font-semibold px-2 rounded-full whitespace-nowrap bg-green-100 text-green-800" title="You have solved this question">
+                  ✓ Solved
+                </span>
+              )}
               <span
                 title="Time on this question"
                 className="h-6 flex items-center text-[10px] font-semibold text-brand-slate tabular-nums px-2 rounded-full bg-slate-100 whitespace-nowrap"
@@ -3610,7 +3652,7 @@ export default function PracticeExam({
               </button>
             </div>
             <div className="my-4 border-t border-[#1e1e1e]" />
-            <NavigatorLegend />
+            <NavigatorLegend showSolved={isBank} />
             <div className="my-4 border-t border-[#1e1e1e]" />
             <div className="grid grid-cols-6 sm:grid-cols-10 gap-x-3 gap-y-7 px-1 pt-3">
               {questions.map((q, i) => (
@@ -3618,14 +3660,10 @@ export default function PracticeExam({
                   key={q.id}
                   number={i + 1}
                   answered={!!answers[q.id]}
+                  solved={isBank && solvedQuestionIds.has(q.id)}
                   marked={!!marked[q.id]}
                   current={i === index}
                   onClick={() => {
-                    if (isBank && !checkedAnswers[current.id]) {
-                      setNavigatorOpen(false);
-                      setCheckError("Check this answer before moving to another question.");
-                      return;
-                    }
                     setIndex(i);
                     setCheckError(null);
                     setNavigatorOpen(false);
@@ -3633,7 +3671,7 @@ export default function PracticeExam({
                 />
               ))}
             </div>
-            {!isBank && <div className="mt-8 flex justify-center">
+            <div className="mt-8 flex justify-center">
               <button
                 onClick={() => {
                   setNavigatorOpen(false);
@@ -3643,7 +3681,7 @@ export default function PracticeExam({
               >
                 Go to Review Page
               </button>
-            </div>}
+            </div>
             <span className="absolute left-1/2 -translate-x-1/2 -bottom-[9px] w-4 h-4 bg-white border-r border-b border-[#d9d9d9] rotate-45" />
           </div>
         </div>
@@ -3686,7 +3724,7 @@ export default function PracticeExam({
               <div className="border border-[#1e1e1e] rounded-lg bg-white px-5 sm:px-10 pt-6 pb-8 mb-8">
                 <h3 className="text-[18px] font-bold text-[#1e1e1e] mb-4">{examTitle} Questions</h3>
                 <div className="border-y border-[#1e1e1e] py-3 mb-8">
-                  <NavigatorLegend />
+                  <NavigatorLegend showSolved={isBank} />
                 </div>
                 <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-x-4 gap-y-9 pt-3">
                   {questions.map((q, i) => (
@@ -3694,6 +3732,7 @@ export default function PracticeExam({
                       key={q.id}
                       number={i + 1}
                       answered={!!answers[q.id]}
+                      solved={isBank && solvedQuestionIds.has(q.id)}
                       marked={!!marked[q.id]}
                       current={i === index}
                       size={44}
@@ -3840,29 +3879,27 @@ export default function PracticeExam({
             )}
             {isBank ? (
               checkedAnswers[current.id] ? (
-                index < questions.length - 1 ? (
-                  <button onClick={() => { setIndex((i) => i + 1); setCheckError(null); }} className="bb-btn-primary">
-                    Next Question
-                  </button>
-                ) : Object.keys(checkedAnswers).length < questions.length ? (
+                nextUnsolvedIndex !== null ? (
                   <button
-                    onClick={() => {
-                      const next = questions.findIndex((question) => !checkedAnswers[question.id]);
-                      if (next >= 0) setIndex(next);
-                    }}
+                    onClick={handleNextUnsolved}
                     className="bb-btn-primary"
                   >
-                    Next Unchecked
+                    Next Unsolved
                   </button>
                 ) : (
-                  <button onClick={handleSubmit} disabled={submitting} className="bb-btn-primary">
-                    {submitting ? "Finishing…" : "Finish Session"}
+                  <button onClick={() => setModuleReviewOpen(true)} className="bb-btn-primary">
+                    Review &amp; Finish
                   </button>
                 )
               ) : (
-                <button onClick={handleCheckAnswer} disabled={checkingAnswer || !answers[current.id]?.trim()} className="bb-btn-primary disabled:opacity-50">
-                  {checkingAnswer ? "Checking…" : "Check Answer"}
-                </button>
+                <>
+                  <button onClick={handleSkipQuestion} className="bb-btn-outline">
+                    Skip for now
+                  </button>
+                  <button onClick={handleCheckAnswer} disabled={checkingAnswer || !answers[current.id]?.trim()} className="bb-btn-primary disabled:opacity-50">
+                    {checkingAnswer ? "Checking…" : "Check Answer"}
+                  </button>
+                </>
               )
             ) : index < questions.length - 1 ? (
               <button onClick={() => setIndex((i) => i + 1)} className="bb-btn-primary">

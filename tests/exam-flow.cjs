@@ -16,7 +16,7 @@ const questions = (section, module) => Array.from({length: section === 'Math' ? 
 const bankQuestions = Array.from({length:3}, (_, i) => ({
   id:`bank-${i}`,domain:'Algebra',skill:'Linear equations',difficulty:i === 0 ? 'Medium' : 'Hard',
   questionText:`Study question ${i + 1}`,passageText:null,
-  choices:[{id:'A',text:'Answer A'},{id:'B',text:'Answer B'}],questionType:'multiple_choice',
+  choices:[{id:'A',text:'Answer A'},{id:'B',text:'Answer B'}],questionType:'multiple_choice',solved:i === 1,
 }));
 const complete = {id:fixtureId,title:'March 2026',subtitle:'Validation paper',month:'March',year:2026,
   math:[{module:1,questionCount:22},{module:2,questionCount:22}], readingWriting:[{module:1,questionCount:27},{module:2,questionCount:27}]};
@@ -206,14 +206,22 @@ const complete = {id:fixtureId,title:'March 2026',subtitle:'Validation paper',mo
     assert.equal(await page.getByRole('radio',{name:/Untimed practice/}).isChecked(),true);
     await page.getByRole('button',{name:'Start practice',exact:true}).click();
     await visible('Medium');
+    await page.getByRole('button',{name:/Question \d+ of \d+/}).click();
+    assert.equal(await page.getByRole('button',{name:'Question 2, solved',exact:true}).count(),1);
+    await page.getByRole('button',{name:'Question 1, unanswered',exact:true}).click();
+    await page.getByRole('button',{name:'Skip for now',exact:true}).click();
+    await visible('Study question 3');
+    await page.getByRole('button',{name:/Question \d+ of \d+/}).click();
+    await page.getByRole('button',{name:'Question 1, unanswered',exact:true}).click();
     await page.getByText('Answer B',{exact:true}).click();
     assert.equal(await page.getByRole('button',{name:'Next Question',exact:true}).count(),0);
+    assert.equal(await page.getByRole('button',{name:'Skip for now',exact:true}).count(),1);
     await page.getByRole('button',{name:'Check Answer',exact:true}).click();
     await visible('Not quite');
     await visible('Answer A follows from the equation. Answer B does not satisfy it.');
-    await page.getByRole('button',{name:'Next Question',exact:true}).click();
-    await visible('Study question 2');
-    console.log('PASS Question Bank study mode checks before moving on and excludes exam mode');
+    await page.getByRole('button',{name:'Next Unsolved',exact:true}).click();
+    await visible('Study question 3');
+    console.log('PASS Question Bank marks solved work, allows skipping, and jumps to the next unsolved question');
 
     await page.setViewportSize({width:390,height:844});
     await page.goto(base);

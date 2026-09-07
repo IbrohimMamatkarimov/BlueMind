@@ -24,3 +24,19 @@ export function countMatchingQuestions(
       0
     );
 }
+
+/** Find the next unsolved question after the current one, wrapping once.
+ * The current question is deliberately excluded so a learner can skip it
+ * for now and return after working through the rest of the set. */
+export function findNextUnsolvedIndex(
+  questionIds: string[],
+  currentIndex: number,
+  solvedQuestionIds: ReadonlySet<string>
+): number | null {
+  if (questionIds.length < 2) return null;
+  for (let offset = 1; offset < questionIds.length; offset++) {
+    const candidate = (currentIndex + offset) % questionIds.length;
+    if (!solvedQuestionIds.has(questionIds[candidate])) return candidate;
+  }
+  return null;
+}
