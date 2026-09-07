@@ -38,6 +38,17 @@ interface Payload {
 }
 
 const VOCABULARY_CACHE_KEY = "bluemind-vocabulary-cache-v1";
+const VOCABULARY_REVIEW_QUEUE_KEY = "bluemind-vocabulary-review-queue-v1";
+type VocabularyRating = "again" | "hard" | "got_it";
+
+function locallyReviewedWord(word: VocabularyWord, rating: VocabularyRating) {
+  const oldLevel = word.reviewLevel;
+  const nextLevel = rating === "again" ? 0 : rating === "hard" ? Math.max(1, oldLevel) : Math.min(6, oldLevel + 1);
+  const intervals = [0, 1, 3, 7, 14, 30, 60];
+  const minutes = rating === "again" ? 10 : rating === "hard" ? Math.max(1, intervals[nextLevel]) * 0.5 * 1440 : intervals[nextLevel] * 1440;
+  const now = new Date();
+  return { ...word, reviewLevel: nextLevel, reviewCount: word.reviewCount + 1, lastReviewedAt: now.toISOString(), nextReviewAt: new Date(now.getTime() + minutes * 60_000).toISOString(), updatedAt: now.toISOString() };
+}
 
 function summarizeWords(words: VocabularyWord[]): Payload["summary"] {
   const now = Date.now();
@@ -137,18 +148,35 @@ function FlashcardStudy({ entries, initialId, onClose, onReviewed }: { entries: 
     setReviewMessage("");
   }
 
-  async function rate(rating: "again" | "hard" | "got_it") {
+  async function rate(rating: VocabularyRating) {
     setReviewing(true);
     try {
       const response = await fetch("/api/vocabulary", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: current.id, rating }) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error ?? "Could not schedule this card.");
       onReviewed(data.word);
+      setDeck((currentDeck) => currentDeck.map((entry) => entry.id === data.word.id ? data.word : entry));
       setReviewMessage(rating === "again" ? "Back in 10 minutes" : rating === "hard" ? "Scheduled sooner" : "Scheduled for later");
       setIndex((value) => (value + 1) % deck.length);
       setRevealed(false);
     } catch (cause) {
-      setReviewMessage(cause instanceof Error ? cause.message : "Could not schedule this card.");
+      if (!navigator.onLine || cause instanceof TypeError) {
+        const word = locallyReviewedWord(current, rating);
+        try {
+          const queue = JSON.parse(window.localStorage.getItem(VOCABULARY_REVIEW_QUEUE_KEY) ?? "[]") as { id: string; rating: VocabularyRating }[];
+          queue.push({ id: current.id, rating });
+          window.localStorage.setItem(VOCABULARY_REVIEW_QUEUE_KEY, JSON.stringify(queue));
+          onReviewed(word);
+          setDeck((currentDeck) => currentDeck.map((entry) => entry.id === word.id ? word : entry));
+          setReviewMessage("Saved offline · will sync when you reconnect");
+          setIndex((value) => (value + 1) % deck.length);
+          setRevealed(false);
+        } catch {
+          setReviewMessage("Offline review could not be saved on this device.");
+        }
+      } else {
+        setReviewMessage(cause instanceof Error ? cause.message : "Could not schedule this card.");
+      }
     } finally {
       setReviewing(false);
     }
@@ -280,6 +308,28 @@ export default function VocabularyPage() {
   useEffect(() => {
     const controller = new AbortController();
     let hadCache = false;
+    async function syncPendingReviews() {
+      if (!navigator.onLine) return;
+      let queue: { id: string; rating: VocabularyRating }[] = [];
+      try { queue = JSON.parse(window.localStorage.getItem(VOCABULARY_REVIEW_QUEUE_KEY) ?? "[]"); } catch { window.localStorage.removeItem(VOCABULARY_REVIEW_QUEUE_KEY); }
+      if (!queue.length) return;
+      const remaining: typeof queue = [];
+      for (const review of queue) {
+        try {
+          const response = await fetch("/api/vocabulary", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(review) });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error ?? "Could not sync review.");
+          setPayload((current) => {
+            if (!current) return current;
+            const words = current.words.map((entry) => entry.id === data.word.id ? data.word : entry);
+            const next = { words, summary: summarizeWords(words) };
+            window.localStorage.setItem(VOCABULARY_CACHE_KEY, JSON.stringify(next));
+            return next;
+          });
+        } catch { remaining.push(review); }
+      }
+      window.localStorage.setItem(VOCABULARY_REVIEW_QUEUE_KEY, JSON.stringify(remaining));
+    }
     try {
       const cached = window.localStorage.getItem(VOCABULARY_CACHE_KEY);
       if (cached) {
@@ -294,9 +344,11 @@ export default function VocabularyPage() {
     }
     fetch("/api/vocabulary", { signal: controller.signal })
       .then(async (response) => { const data = await response.json(); if (!response.ok) throw new Error(data.error ?? "Could not load your vocabulary."); return data; })
-      .then((data: Payload) => { setPayload(data); window.localStorage.setItem(VOCABULARY_CACHE_KEY, JSON.stringify(data)); })
+      .then((data: Payload) => { setPayload(data); window.localStorage.setItem(VOCABULARY_CACHE_KEY, JSON.stringify(data)); void syncPendingReviews(); })
       .catch((cause) => { if (!controller.signal.aborted && !hadCache) setError(cause instanceof Error ? cause.message : "Could not load your vocabulary."); });
-    return () => controller.abort();
+    const onOnline = () => { void syncPendingReviews(); };
+    window.addEventListener("online", onOnline);
+    return () => { controller.abort(); window.removeEventListener("online", onOnline); };
   }, []);
 
   const visible = useMemo(() => (payload?.words ?? []).filter((entry) => {

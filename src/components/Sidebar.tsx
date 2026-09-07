@@ -18,7 +18,7 @@ function Avatar({ avatarData, userName }: Profile) {
 export function Sidebar({ collapsed, onToggleCollapsed, ...profile }: Profile & { collapsed: boolean; onToggleCollapsed: () => void }) {
   const pathname = usePathname(); const router = useRouter(); const { dark, toggleDark } = useTheme();
   const items = profile.isAdmin ? [...NAV_ITEMS, { href: "/admin", label: "Admin", icon: ShieldCheck }] : NAV_ITEMS;
-  async function logout() { const response = await fetch("/api/auth/logout", { method: "POST" }); if (response.ok) { window.localStorage.removeItem("bluemind-vocabulary-cache-v1"); router.push("/login"); router.refresh(); } }
+  async function logout() { const response = await fetch("/api/auth/logout", { method: "POST" }); if (response.ok) { try { window.localStorage.removeItem("bluemind-vocabulary-cache-v1"); window.localStorage.removeItem("bluemind-vocabulary-review-queue-v1"); } catch {} router.push("/login"); router.refresh(); } }
   return <aside className={`app-sidebar hidden md:flex flex-col shrink-0 h-screen sticky top-0 ${collapsed ? "w-[76px]" : "w-[240px]"}`}>
     <Link href={profile.guest ? "/" : "/today"} aria-label="BlueMind home" className={`h-20 flex items-center gap-2.5 ${collapsed ? "justify-center" : "px-6"}`}>
       <img src="/logo.png" alt="" width={30} height={30} className="shrink-0" />{!collapsed && <span className="text-lg font-extrabold text-brand-navy tracking-tight">BlueMind<span className="text-brand-blue">.</span></span>}

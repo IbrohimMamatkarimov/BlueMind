@@ -30,7 +30,7 @@ export function Navbar({
 
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
-    window.localStorage.removeItem("bluemind-vocabulary-cache-v1");
+    try { window.localStorage.removeItem("bluemind-vocabulary-cache-v1"); window.localStorage.removeItem("bluemind-vocabulary-review-queue-v1"); } catch {}
     router.push("/login");
     router.refresh();
   }
