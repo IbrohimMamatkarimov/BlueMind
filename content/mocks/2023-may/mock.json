@@ -334,8 +334,8 @@
             }
           ],
           "correctAnswer": "A",
-          "rationale": "Tribal economic activity contributed about $7.31 billion — more than administration/waste ($5.83 billion) but less than real estate ($18.31 billion).",
-          "explanation": "Read the three figures from the table: real estate $18,314,700,000, tribal economic activity $7,312,400,000, and administration/waste $5,830,600,000. Tribal activity sits between the other two, which is what A says. B would require tribal activity to top real estate, but $7.31 billion is far below $18.31 billion. C reverses the real estate comparison and wrongly calls the administration/waste figure equal. D would require tribal activity to be the smallest of the three, but it exceeds administration/waste."
+          "rationale": "Tribal economic activity contributed about 7.31 billion dollars — more than administration/waste (5.83 billion dollars) but less than real estate (18.31 billion dollars).",
+          "explanation": "Read the three figures from the table: real estate 18,314,700,000 dollars, tribal economic activity 7,312,400,000 dollars, and administration/waste 5,830,600,000 dollars. Tribal activity sits between the other two, which is what A says. B would require tribal activity to top real estate, but 7.31 billion dollars is far below 18.31 billion dollars. C reverses the real estate comparison and wrongly calls the administration/waste figure equal. D would require tribal activity to be the smallest of the three, but it exceeds administration/waste."
         },
         {
           "number": 12,

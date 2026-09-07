@@ -956,7 +956,7 @@
      "domain": "Information and Ideas",
      "skill": "Central Ideas and Details",
      "difficulty": "Medium",
-     "passageText": "In her book *Limitarianism*, researcher Ingrid Robeyns criticizes economic policies that allow businesses to profit from their successes while displacing the burden of failure onto taxpayers. As an example she cites the US financial crisis of 2008 in which dozens of institutions including JPMorgan Chase and SunTrust received a collective $700 billion of government support. Had the US government previously exercised stricter regulation of risky financial instruments, Robeyns argues, this enormous expenditure of taxpayer dollars would not have been necessary.",
+     "passageText": "In her book *Limitarianism*, researcher Ingrid Robeyns criticizes economic policies that allow businesses to profit from their successes while displacing the burden of failure onto taxpayers. As an example she cites the US financial crisis of 2008 in which dozens of institutions including JPMorgan Chase and SunTrust received a collective 700 billion dollars of government support. Had the US government previously exercised stricter regulation of risky financial instruments, Robeyns argues, this enormous expenditure of taxpayer dollars would not have been necessary.",
      "questionText": "Which choice best states the main topic of the text?",
      "choices": [
       {
@@ -1713,23 +1713,23 @@
      "domain": "Problem-Solving and Data Analysis",
      "skill": "Percentages",
      "difficulty": "Easy",
-     "questionText": "A local gym is offering a 25% discount on an annual membership. The regular cost of an annual membership is $288. How much less is the discounted cost of the membership than the regular cost of the membership?",
+     "questionText": "A local gym is offering a 25% discount on an annual membership. The regular cost of an annual membership is 288 dollars. How much less, in dollars, is the discounted cost of the membership than the regular cost of the membership?",
      "choices": [
       {
        "id": "A",
-       "text": "$25"
+       "text": "25"
       },
       {
        "id": "B",
-       "text": "$72"
+       "text": "72"
       },
       {
        "id": "C",
-       "text": "$216"
+       "text": "216"
       },
       {
        "id": "D",
-       "text": "$288"
+       "text": "288"
       }
      ],
      "correctAnswer": "B",

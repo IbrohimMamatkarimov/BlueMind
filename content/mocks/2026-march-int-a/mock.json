@@ -1696,7 +1696,7 @@
      "domain": "Algebra",
      "skill": "Linear Functions",
      "difficulty": "Easy",
-     "questionText": "$y = 30x + 100$\n\nThe equation gives the total cost $y$, in dollars, for a small business to produce $x$ shirts. How many shirts can the business produce for a total cost of $550?",
+     "questionText": "$y = 30x + 100$\n\nThe equation gives the total cost $y$, in dollars, for a small business to produce $x$ shirts. How many shirts can the business produce for a total cost of 550 dollars?",
      "choices": [
       {
        "id": "A",

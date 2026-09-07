@@ -109,7 +109,7 @@
      "domain": "Information and Ideas",
      "skill": "Central Ideas and Details",
      "difficulty": "Easy",
-     "passageText": "In her book *Limitarianism*, researcher Ingrid Robeyns criticizes economic policies that allow businesses to profit from their successes while displacing the burden of failure onto taxpayers. As an example she cites the US financial crisis of 2008 in which dozens of institutions including JPMorgan Chase and SunTrust received a collective $700 billion of government support. Had the US government previously exercised stricter regulation of risky financial instruments, Robeyns argues, this enormous expenditure of taxpayer dollars would not have been necessary.",
+     "passageText": "In her book *Limitarianism*, researcher Ingrid Robeyns criticizes economic policies that allow businesses to profit from their successes while displacing the burden of failure onto taxpayers. As an example she cites the US financial crisis of 2008 in which dozens of institutions including JPMorgan Chase and SunTrust received a collective 700 billion dollars of government support. Had the US government previously exercised stricter regulation of risky financial instruments, Robeyns argues, this enormous expenditure of taxpayer dollars would not have been necessary.",
      "questionText": "Which choice best states the main topic of the text?",
      "choices": [
       {
@@ -281,8 +281,8 @@
       }
      ],
      "correctAnswer": "A",
-     "rationale": "In the 2019 column, body, mind, and spirit paperbacks averaged $18.92, far below the other three genres.",
-     "explanation": "The question asks about 2019, so only the last column matters. The 2019 averages are $41.93 for foreign language study, $42.85 for nature, $49.61 for social science, and $18.92 for body, mind, and spirit. The lowest is body, mind, and spirit. Choices B, C, and D name genres whose 2019 paperbacks all averaged more than $40.",
+     "rationale": "In the 2019 column, body, mind, and spirit paperbacks averaged 18.92 dollars, far below the other three genres.",
+     "explanation": "The question asks about 2019, so only the last column matters. The 2019 averages are 41.93 dollars for foreign language study, 42.85 dollars for nature, 49.61 dollars for social science, and 18.92 dollars for body, mind, and spirit. The lowest is body, mind, and spirit. Choices B, C, and D name genres whose 2019 paperbacks all averaged more than 40 dollars.",
      "questionType": "multiple_choice"
     },
     {
