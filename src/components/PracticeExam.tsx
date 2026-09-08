@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { PauseScreen, TestSetup, useExamGuard } from "@/components/TestSessionControls";
-import { isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
+import { formatTime, isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
 import { findNextUnsolvedIndex } from "@/lib/qbank-selection";
 
 export interface ExamResult { total: number; correctCount: number; accuracyPct: number; results: GradedQuestion[] }
@@ -1180,6 +1180,10 @@ export default function PracticeExam({
   // Chrome
   const [timerHidden, setTimerHidden] = useState(false);
   const [timerPaused, setTimerPaused] = useState(false);
+  const [studyToolPause, setStudyToolPause] = useState<"vocabulary" | "notes" | null>(null);
+  const [studyPauseMs, setStudyPauseMs] = useState(0);
+  const studyPauseStartedAtRef = useRef<number | null>(null);
+  const countdownPaused = timerPaused || studyToolPause !== null;
   const [showDifficulty, setShowDifficulty] = useState(true);
   useEffect(() => {
     try {
@@ -1319,13 +1323,18 @@ export default function PracticeExam({
   const [newWordDefinition, setNewWordDefinition] = useState("");
   const [wordSaving, setWordSaving] = useState(false);
   const [wordSaveError, setWordSaveError] = useState("");
-  const [wordSaved, setWordSaved] = useState(false);
+  const [wordSavedMessage, setWordSavedMessage] = useState("");
   const [noteModalOpen, setNoteModalOpen] = useState(false);
   const [questionNote, setQuestionNote] = useState("");
   const [savedQuestionNote, setSavedQuestionNote] = useState("");
   const [noteLoading, setNoteLoading] = useState(false);
   const [noteSaving, setNoteSaving] = useState(false);
   const [noteError, setNoteError] = useState("");
+  useEffect(() => {
+    if (!wordSavedMessage) return;
+    const timeout = window.setTimeout(() => setWordSavedMessage(""), 4000);
+    return () => window.clearTimeout(timeout);
+  }, [wordSavedMessage]);
 
   // "Leave this test?" confirmation — shown from the kebab menu instead of
   // navigating straight away. Progress is saved to localStorage (works for
@@ -1345,10 +1354,10 @@ export default function PracticeExam({
   const firedFiveMinWarningRef = useRef(false);
   useEffect(() => {
     if (firedFiveMinWarningRef.current) return;
-    if (!started || testMode === "untimed" || loading || results || secondsLeft <= 0 || secondsLeft > 300 || totalSeconds <= 300) return;
+    if (!started || testMode === "untimed" || loading || results || countdownPaused || secondsLeft <= 0 || secondsLeft > 300 || totalSeconds <= 300) return;
     firedFiveMinWarningRef.current = true;
     setShowFiveMinWarning(true);
-  }, [secondsLeft, loading, results, totalSeconds, started, testMode]);
+  }, [secondsLeft, loading, results, totalSeconds, started, testMode, countdownPaused]);
 
   function saveProgressToStorage() {
     if (finishedRef.current) return true;
@@ -1358,6 +1367,7 @@ export default function PracticeExam({
         submissionId: submissionId.current,
         answers, checkedAnswers, marked, crossedOut,
         secondsLeft: deadlineRef.current === null ? secondsLeft : remainingSeconds(deadlineRef.current),
+        studyPauseMs: studyPauseMs + (studyPauseStartedAtRef.current === null ? 0 : Date.now() - studyPauseStartedAtRef.current),
         index, mode: testMode, savedAt: Date.now(),
       }));
       setStorageError(null);
@@ -1373,7 +1383,7 @@ export default function PracticeExam({
   useEffect(() => {
     if (!started || loading || results || !questions.length || finishedRef.current) return;
     saveRef.current();
-  }, [started, loading, results, questions.length, answers, checkedAnswers, marked, crossedOut, index, secondsLeft, testMode]);
+  }, [started, loading, results, questions.length, answers, checkedAnswers, marked, crossedOut, index, secondsLeft, studyPauseMs, testMode]);
 
   useEffect(() => {
     if (!started || loading || results || !questions.length) return;
@@ -1866,6 +1876,7 @@ export default function PracticeExam({
               setIndex(Math.max(0, Math.min(saved.index ?? 0, data.questions.length - 1)));
                if (!fullExam && isTestMode(saved.mode)) setTestMode(isBank && saved.mode === "exam" ? "untimed" : saved.mode);
               setSecondsLeft(typeof saved.secondsLeft === "number" && Number.isFinite(saved.secondsLeft) ? Math.max(0, Math.min(saved.secondsLeft, data.minutes * 60)) : data.minutes * 60);
+              setStudyPauseMs(typeof saved.studyPauseMs === "number" && Number.isFinite(saved.studyPauseMs) ? Math.max(0, saved.studyPauseMs) : 0);
               restored = true;
               setRestoredProgress(true);
             }
@@ -1908,7 +1919,7 @@ export default function PracticeExam({
   }, [reviewMode, mockId, section, module]);
 
   useEffect(() => {
-    if (!started || testMode === "untimed" || loading || results || timerPaused || submitting || submitError) {
+    if (!started || testMode === "untimed" || loading || results || countdownPaused || submitting || submitError) {
       deadlineRef.current = null;
       return;
     }
@@ -1920,12 +1931,12 @@ export default function PracticeExam({
     return () => { clearInterval(timer); deadlineRef.current = null; };
     // secondsLeft is a snapshot at the start of each running period.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [started, testMode, loading, results, timerPaused, submitting, submitError]);
+  }, [started, testMode, loading, results, countdownPaused, submitting, submitError]);
 
   useEffect(() => {
-    if (!isBank && started && testMode !== "untimed" && !loading && !results && !timerPaused && !submitting && !submitError && secondsLeft === 0 && questions.length > 0) handleSubmit();
+    if (!isBank && started && testMode !== "untimed" && !loading && !results && !countdownPaused && !submitting && !submitError && secondsLeft === 0 && questions.length > 0) handleSubmit();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [secondsLeft, started, testMode, loading, results, timerPaused, submitting, submitError]);
+  }, [secondsLeft, started, testMode, loading, results, countdownPaused, submitting, submitError]);
 
   // Auto-fire the congrats burst the moment a qualifying score comes in —
   // more than 20 correct in Math, more than 25 in Reading & Writing.
@@ -1949,11 +1960,38 @@ export default function PracticeExam({
 
   function openWordCapture() {
     const selection = window.getSelection()?.toString().trim().replace(/\s+/g, " ") ?? "";
+    beginStudyToolPause("vocabulary");
     setNewWord(selection.length <= 120 ? selection : "");
     setNewWordDefinition("");
     setWordSaveError("");
-    setWordSaved(false);
     setWordModalOpen(true);
+  }
+
+  function beginStudyToolPause(tool: "vocabulary" | "notes") {
+    if (testMode !== "timed" || timerPaused || studyToolPause) return;
+    if (deadlineRef.current !== null) setSecondsLeft(remainingSeconds(deadlineRef.current));
+    deadlineRef.current = null;
+    studyPauseStartedAtRef.current = Date.now();
+    setStudyToolPause(tool);
+  }
+
+  function finishStudyToolPause() {
+    if (studyPauseStartedAtRef.current !== null) {
+      const elapsed = Date.now() - studyPauseStartedAtRef.current;
+      setStudyPauseMs((current) => current + elapsed);
+      studyPauseStartedAtRef.current = null;
+    }
+    setStudyToolPause(null);
+  }
+
+  function closeWordCapture() {
+    setWordModalOpen(false);
+    finishStudyToolPause();
+  }
+
+  function closeQuestionNotes() {
+    setNoteModalOpen(false);
+    finishStudyToolPause();
   }
 
   async function saveNewWord() {
@@ -1980,7 +2018,8 @@ export default function PracticeExam({
       if (!response.ok) throw new Error(data.error ?? "Could not save this word.");
       setNewWord(data.word.word);
       setNewWordDefinition(data.word.definition);
-      setWordSaved(true);
+      setWordSavedMessage(`${data.word.word} was saved to My Vocabulary.`);
+      closeWordCapture();
     } catch (cause) {
       setWordSaveError(cause instanceof Error ? cause.message : "Could not save this word.");
     } finally {
@@ -1990,6 +2029,7 @@ export default function PracticeExam({
 
   async function openQuestionNotes() {
     if (!current) return;
+    beginStudyToolPause("notes");
     setNoteModalOpen(true);
     setNoteError("");
     if (!signedIn) {
@@ -2028,7 +2068,7 @@ export default function PracticeExam({
       const note = data.note?.note ?? "";
       setQuestionNote(note);
       setSavedQuestionNote(note);
-      setNoteModalOpen(false);
+      closeQuestionNotes();
     } catch (cause) {
       setNoteError(cause instanceof Error ? cause.message : "Could not save your note.");
     } finally {
@@ -2046,10 +2086,10 @@ export default function PracticeExam({
     setQuestionSeconds(0);
   }, [index]);
   useEffect(() => {
-    if (!started || loading || results || timerPaused) return;
+    if (!started || loading || results || countdownPaused) return;
     const t = setInterval(() => setQuestionSeconds((s) => s + 1), 1000);
     return () => clearInterval(t);
-  }, [loading, results, timerPaused, index, started]);
+  }, [loading, results, countdownPaused, index, started]);
   const questionTimeStr = useMemo(() => {
     const m = Math.floor(questionSeconds / 60);
     const s = questionSeconds % 60;
@@ -2148,7 +2188,7 @@ export default function PracticeExam({
   }
 
   async function handleSubmit() {
-    if (submittingRef.current || finishedRef.current || results || pausedRef.current) return;
+    if (submittingRef.current || finishedRef.current || results || pausedRef.current || studyToolPause) return;
     if (!submissionId.current) submissionId.current = crypto.randomUUID();
     submittingRef.current = true;
     if (deadlineRef.current !== null) setSecondsLeft(remainingSeconds(deadlineRef.current));
@@ -2395,6 +2435,12 @@ export default function PracticeExam({
             </div>
             {qualifiesForCongrats && (
               <p className="text-sm font-semibold text-brand-blue mt-2">🎉 Great work — congrats!</p>
+            )}
+            {testMode === "timed" && (
+              <p className="mt-3 text-xs text-brand-slate">
+                Active testing time: {formatTime(Math.max(0, totalSeconds - secondsLeft))}
+                {studyPauseMs > 0 && <> · Study tools paused: {formatTime(Math.round(studyPauseMs / 1000))}</>}
+              </p>
             )}
           </div>
 
@@ -2694,24 +2740,30 @@ export default function PracticeExam({
               {testMode === "untimed" ? "Untimed" : timeStr}
             </span>
           )}
-          <div className="flex items-center gap-1.5 mt-1">
-            <button
-              onClick={() => setTimerHidden((v) => !v)}
-              className="text-[13px] font-medium text-[#1e1e1e] border border-[#1e1e1e] rounded-full px-3 h-[24px] leading-none hover:bg-[#f0f0f0] whitespace-nowrap"
-            >
-              {timerHidden ? "Show" : "Hide"}
-            </button>
-            <button
-              onClick={() => pauseTest()}
-              aria-label="Pause test"
-              title="Pause test and save progress"
-              className={`w-[24px] h-[24px] rounded-full border flex items-center justify-center ${
-                timerPaused ? "border-[#324dc7] text-[#324dc7] bg-[#eef1fb]" : "border-[#1e1e1e] text-[#1e1e1e] hover:bg-[#f0f0f0]"
-              }`}
-            >
-              {timerPaused ? <PlayIcon /> : <PauseIcon />}
-            </button>
-          </div>
+          {studyToolPause ? (
+            <div role="status" className="mt-1 flex h-[24px] items-center gap-1.5 rounded-full bg-[#eef1fb] px-3 text-[12px] font-semibold text-[#324dc7] whitespace-nowrap">
+              <PauseIcon /> Paused for {studyToolPause === "vocabulary" ? "vocabulary" : "notes"}
+            </div>
+          ) : (
+            <div className="flex items-center gap-1.5 mt-1">
+              <button
+                onClick={() => setTimerHidden((v) => !v)}
+                className="text-[13px] font-medium text-[#1e1e1e] border border-[#1e1e1e] rounded-full px-3 h-[24px] leading-none hover:bg-[#f0f0f0] whitespace-nowrap"
+              >
+                {timerHidden ? "Show" : "Hide"}
+              </button>
+              <button
+                onClick={() => pauseTest()}
+                aria-label="Pause test"
+                title="Pause test and save progress"
+                className={`w-[24px] h-[24px] rounded-full border flex items-center justify-center ${
+                  timerPaused ? "border-[#324dc7] text-[#324dc7] bg-[#eef1fb]" : "border-[#1e1e1e] text-[#1e1e1e] hover:bg-[#f0f0f0]"
+                }`}
+              >
+                {timerPaused ? <PlayIcon /> : <PauseIcon />}
+              </button>
+            </div>
+          )}
           {(isPracticeMode || isBank) && (
             <div className="flex items-center gap-2 mt-1.5">
               {showDifficulty && <span
@@ -3128,54 +3180,61 @@ export default function PracticeExam({
         </main>
       </div>
 
+      {wordSavedMessage && (
+        <div role="status" className="fixed left-1/2 top-24 z-[60] w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 rounded-lg border border-brand-green bg-brand-green-light px-4 py-3 text-sm font-semibold text-brand-green shadow-lg">
+          {wordSavedMessage}
+        </div>
+      )}
+
       {/* ---------------- Personal vocabulary capture ---------------- */}
       {wordModalOpen && testMode !== "exam" && (
-        <div role="dialog" aria-modal="true" aria-labelledby="new-word-title" className="fixed inset-0 z-50 flex items-center justify-center bg-brand-navy/30 px-4">
-          <div className="card w-full max-w-md p-6">
+        <div role="dialog" aria-modal="true" aria-labelledby="new-word-title" className="fixed inset-0 z-50 flex items-end bg-brand-navy/20 lg:items-stretch lg:justify-end">
+          <div className="w-full max-h-[82vh] overflow-y-auto rounded-t-2xl bg-white p-6 shadow-[-8px_0_30px_rgba(15,23,42,0.18)] lg:h-full lg:max-h-none lg:max-w-md lg:rounded-none">
+            {studyToolPause === "vocabulary" && (
+              <div className="mb-4 flex items-center gap-2 rounded-lg bg-[#eef1fb] px-3 py-2 text-xs font-semibold text-[#324dc7]">
+                <PauseIcon /> Your test timer is paused. Saving or closing will resume it.
+              </div>
+            )}
             <div className="mb-4 flex items-start justify-between gap-3">
               <div>
                 <h2 id="new-word-title" className="text-lg font-bold text-brand-navy">Save a new word</h2>
                 <p className="mt-1 text-xs leading-5 text-brand-slate">From question {index + 1}. Its source and context will be saved automatically.</p>
               </div>
-              <button onClick={() => setWordModalOpen(false)} aria-label="Close new word window" className="rounded p-1 text-brand-slate hover:bg-slate-100"><CloseIcon /></button>
+              <button onClick={closeWordCapture} aria-label="Close new word window and resume test" className="rounded p-1 text-brand-slate hover:bg-slate-100"><CloseIcon /></button>
             </div>
 
-            {wordSaved ? <div>
-              <div role="status" className="rounded-lg border border-brand-green bg-brand-green-light p-4 text-sm text-brand-green"><strong>{newWord}</strong> was saved to My Vocabulary.</div>
-              <p className="mt-3 text-xs leading-5 text-brand-slate">You can continue the question now and add or improve the definition later.</p>
-              <div className="mt-5 flex flex-wrap justify-end gap-2">
-                <button onClick={() => setWordModalOpen(false)} className="btn-secondary text-xs">Continue test</button>
-                <button onClick={() => { saveProgressToStorage(); window.location.href = "/vocabulary"; }} className="btn-primary text-xs">Open My Vocabulary</button>
-              </div>
-            </div> : <>
-              <label className="block">
-                <span className="mb-1.5 block text-xs font-semibold text-brand-navy">Word or phrase</span>
-                <input autoFocus value={newWord} onChange={(event) => setNewWord(event.target.value)} maxLength={120} placeholder="Paste or type the unfamiliar word" className="w-full rounded-lg border border-brand-border bg-white px-3 py-2.5 text-sm text-brand-navy" />
-                <span className="mt-1 block text-right text-[10px] text-brand-slate">{newWord.length}/120</span>
-              </label>
-              <label className="mt-3 block">
-                <span className="mb-1.5 block text-xs font-semibold text-brand-navy">Definition <span className="font-normal text-brand-slate">(optional)</span></span>
-                <textarea value={newWordDefinition} onChange={(event) => setNewWordDefinition(event.target.value)} maxLength={2000} rows={4} placeholder="Add the meaning now, or leave this blank and return later." className="w-full resize-y rounded-lg border border-brand-border bg-white px-3 py-2.5 text-sm leading-6 text-brand-navy" />
-                <span className="mt-1 block text-right text-[10px] text-brand-slate">{newWordDefinition.length}/2000</span>
-              </label>
-              {wordSaveError && <p role="alert" className="mt-3 text-xs text-brand-red">{wordSaveError}</p>}
-              <div className="mt-5 flex flex-wrap justify-end gap-2">
-                <button onClick={() => setWordModalOpen(false)} disabled={wordSaving} className="btn-secondary text-xs">Cancel</button>
-                <button onClick={saveNewWord} disabled={wordSaving || !newWord.trim()} className="btn-primary text-xs">{wordSaving ? "Saving…" : newWordDefinition.trim() ? "Save word" : "Save for later"}</button>
-              </div>
-            </>}
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-semibold text-brand-navy">Word or phrase</span>
+              <input autoFocus value={newWord} onChange={(event) => setNewWord(event.target.value)} maxLength={120} placeholder="Paste or type the unfamiliar word" className="w-full rounded-lg border border-brand-border bg-white px-3 py-2.5 text-sm text-brand-navy" />
+              <span className="mt-1 block text-right text-[10px] text-brand-slate">{newWord.length}/120</span>
+            </label>
+            <label className="mt-3 block">
+              <span className="mb-1.5 block text-xs font-semibold text-brand-navy">Definition <span className="font-normal text-brand-slate">(optional)</span></span>
+              <textarea value={newWordDefinition} onChange={(event) => setNewWordDefinition(event.target.value)} maxLength={2000} rows={4} placeholder="Add the meaning now, or leave this blank and return later." className="w-full resize-y rounded-lg border border-brand-border bg-white px-3 py-2.5 text-sm leading-6 text-brand-navy" />
+              <span className="mt-1 block text-right text-[10px] text-brand-slate">{newWordDefinition.length}/2000</span>
+            </label>
+            {wordSaveError && <p role="alert" className="mt-3 text-xs text-brand-red">{wordSaveError}</p>}
+            <div className="mt-5 flex flex-wrap justify-end gap-2">
+              <button onClick={closeWordCapture} disabled={wordSaving} className="btn-secondary text-xs">Cancel</button>
+              <button onClick={saveNewWord} disabled={wordSaving || !newWord.trim()} className="btn-primary text-xs">{wordSaving ? "Saving…" : newWordDefinition.trim() ? (studyToolPause ? "Save & resume" : "Save word") : (studyToolPause ? "Save for later & resume" : "Save for later")}</button>
+            </div>
           </div>
         </div>
       )}
 
       {/* ---------------- Personal question notes ---------------- */}
       {noteModalOpen && testMode !== "exam" && (
-        <div role="dialog" aria-modal="true" aria-labelledby="question-note-title" className="fixed inset-0 z-50 flex items-center justify-center bg-brand-navy/30 px-4">
-          <div className="card w-full max-w-md p-6">
-            <div className="mb-4 flex items-start justify-between gap-3"><div><h2 id="question-note-title" className="text-lg font-bold text-brand-navy">Question {index + 1} notes</h2><p className="mt-1 text-xs text-brand-slate">Save a formula, strategy, or observation for later.</p></div><button onClick={() => setNoteModalOpen(false)} aria-label="Close question notes" className="rounded p-1 text-brand-slate hover:bg-slate-100"><CloseIcon /></button></div>
+        <div role="dialog" aria-modal="true" aria-labelledby="question-note-title" className="fixed inset-0 z-50 flex items-end bg-brand-navy/20 lg:items-stretch lg:justify-end">
+          <div className="w-full max-h-[82vh] overflow-y-auto rounded-t-2xl bg-white p-6 shadow-[-8px_0_30px_rgba(15,23,42,0.18)] lg:h-full lg:max-h-none lg:max-w-md lg:rounded-none">
+            {studyToolPause === "notes" && (
+              <div className="mb-4 flex items-center gap-2 rounded-lg bg-[#eef1fb] px-3 py-2 text-xs font-semibold text-[#324dc7]">
+                <PauseIcon /> Your test timer is paused. Saving or closing will resume it.
+              </div>
+            )}
+            <div className="mb-4 flex items-start justify-between gap-3"><div><h2 id="question-note-title" className="text-lg font-bold text-brand-navy">Question {index + 1} notes</h2><p className="mt-1 text-xs text-brand-slate">Save a formula, strategy, or observation for later.</p></div><button onClick={closeQuestionNotes} aria-label="Close question notes and resume test" className="rounded p-1 text-brand-slate hover:bg-slate-100"><CloseIcon /></button></div>
             {noteLoading ? <div className="h-32 animate-pulse rounded-lg bg-slate-100"/> : <textarea autoFocus value={questionNote} onChange={(event) => setQuestionNote(event.target.value)} maxLength={4000} rows={7} placeholder="Write a personal note about this question…" className="w-full resize-y rounded-lg border border-brand-border bg-white px-3 py-2.5 text-sm leading-6 text-brand-navy"/>}
             <div className="mt-1 flex items-start justify-between gap-3"><p role="alert" className="text-xs text-brand-red">{noteError}</p><span className="shrink-0 text-[10px] text-brand-slate">{questionNote.length}/4000</span></div>
-            <div className="mt-4 flex justify-end gap-2"><button onClick={() => setNoteModalOpen(false)} disabled={noteSaving} className="btn-secondary text-xs">Cancel</button><button onClick={saveQuestionNote} disabled={noteLoading || noteSaving || questionNote.trim() === savedQuestionNote} className="btn-primary text-xs">{noteSaving ? "Saving…" : questionNote.trim() ? "Save note" : "Clear note"}</button></div>
+            <div className="mt-4 flex justify-end gap-2"><button onClick={closeQuestionNotes} disabled={noteSaving} className="btn-secondary text-xs">Cancel</button><button onClick={saveQuestionNote} disabled={noteLoading || noteSaving || questionNote.trim() === savedQuestionNote} className="btn-primary text-xs">{noteSaving ? "Saving…" : questionNote.trim() ? (studyToolPause ? "Save & resume" : "Save note") : (studyToolPause ? "Clear & resume" : "Clear note")}</button></div>
           </div>
         </div>
       )}
