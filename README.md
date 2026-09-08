@@ -41,6 +41,28 @@ npm run dev
 
 Open http://localhost:3000. Use `npm run build` and `npm start` for a production build. Database schema additions run through the app’s normal database initialization. The seed and reset scripts are for disposable development databases; they clear existing data.
 
+## Deployment
+
+bluemind.uz runs from `/var/www/bluemind/BlueMind` on the VPS, on `main`, under the
+`bluemind` systemd service. Work is committed straight to `main` and pushed; the
+server is a read-only mirror of it and never carries its own commits.
+
+To ship whatever is on `main`:
+
+```sh
+ssh bluemind-vps "bash /var/www/bluemind/BlueMind/deploy.sh"
+```
+
+`deploy.sh` fast-forwards `main`, runs `npm ci` only when `package-lock.json`
+moved, builds into `.next-staging` so the live site keeps serving the previous
+build while compiling, swaps the new build in, restarts the service, and checks
+the site answers. A failed build never touches the live site; a build that
+compiles but fails to serve is rolled back to the previous one automatically.
+
+Because Next.js compiles ahead of time, a plain `git pull` is not enough for code
+changes — use `deploy.sh`. Mock content is the exception: `/api/public/mocks` is
+dynamic, so importing a mock on the server shows up without a rebuild.
+
 ## Architecture
 
 - `src/components/AppShell.tsx` and `Sidebar.tsx`: shared layout and navigation.
