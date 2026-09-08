@@ -211,6 +211,7 @@ CREATE TABLE IF NOT EXISTS practice_attempts (
   selected_answer TEXT,
   correct_answer TEXT,
   is_correct INTEGER NOT NULL,
+  time_spent_seconds INTEGER,
   attempt_number INTEGER NOT NULL DEFAULT 1, -- 1st, 2nd... time this user has answered this exact question
   created_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'))
 );

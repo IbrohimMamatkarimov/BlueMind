@@ -1,0 +1,1596 @@
+{
+  "$schema": "../mock.schema.json",
+  "mock": {
+    "title": "December 2023",
+    "subtitle": "International Form E (R&W)",
+    "groupLabel": "2023",
+    "month": "December",
+    "year": 2023,
+    "source": "December 2023 international digital SAT, Form E (Reading and Writing)",
+    "notes": "Transcribed from the \"2023 Dec Int-E\" source, which contains the Reading & Writing section only (Module 1 and Module 2, 27 questions each); there is no Math section in that file. The source labels its module headers \"2312B M1\" and \"2312B M2\" while its own answer-key sheet is headed \"2023.12E\" and marks the Module 1 column 同B (\"same as B\") — i.e. this paper's Module 1 is the same as Form B's. Every answer here was derived from the questions independently and then checked against that key sheet; all 54 agree. Four questions depend on a figure, all extracted from the source PDF: M1 Q10 (Oklahoma industries table), M1 Q11 (cougar population density table), M1 Q13 (lake ice table) and M2 Q10 (national park visits graph). Money in M1 Q10 is written in words because \"$\" is a math delimiter in this markup."
+  },
+  "modules": [
+    {
+      "section": "Reading and Writing",
+      "module": 1,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "The National Heritage Fellowship was created to honor exceptional folk and traditional artists in the United States for their ______. The Navajo (Diné) basket weaver Mary Holiday Black was chosen for the fellowship because she has contributed so much to the arts.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "achievements"
+            },
+            {
+              "id": "B",
+              "text": "predictions"
+            },
+            {
+              "id": "C",
+              "text": "suspicions"
+            },
+            {
+              "id": "D",
+              "text": "assumptions"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Black was honored \"because she has contributed so much,\" so the fellowship honors accomplishments.",
+          "explanation": "The second sentence explains what earns the fellowship — a large contribution to the arts — so the blank must name what artists are honored for, namely their accomplishments. \"Achievements\" is that word. \"Predictions\" would honor forecasts, which no artist here makes. \"Suspicions\" and \"assumptions\" name unverified beliefs, and honoring artists for holding beliefs makes no sense alongside the reason the second sentence gives."
+        },
+        {
+          "number": 2,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Some pieces of music might have many meanings—the compositions of Delia Derbyshire can ______ as many different interpretations as there are people to listen to them—and so as long as a listener's interpretation isn't willfully absurd or the result of inattention, it is difficult to justify the claim that the listener has misunderstood the piece.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "partition"
+            },
+            {
+              "id": "B",
+              "text": "refute"
+            },
+            {
+              "id": "C",
+              "text": "counteract"
+            },
+            {
+              "id": "D",
+              "text": "yield"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The dashes restate \"might have many meanings,\" so the compositions produce interpretations.",
+          "explanation": "The material between the dashes is an illustration of music having many meanings, so the verb must mean *produce* or *give rise to*: Derbyshire's compositions generate as many readings as there are listeners. \"Yield\" carries that sense. \"Partition\" would mean dividing the interpretations up. \"Refute\" and \"counteract\" would have the compositions disproving or working against interpretations, the opposite of the openness the sentence goes on to defend."
+        },
+        {
+          "number": 3,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "The following text is from Virginia Woolf's 1919 novel *Night and Day*. The text describes a gathering of aspiring young artists and intellectuals.\n\nOne person after another rose, and, as with an ill balanced axe, attempted to __underline__hew out__underline__ his conception of art a little more clearly, and sat down with the feeling that, for some reason which he could not grasp, his strokes had gone awry. As they sat down they turned almost invariably to the person sitting next them, and rectified and continued what they had just said in public.",
+          "questionText": "As used in the text, what does the figurative phrase \"hew out\" most nearly mean?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Vacate"
+            },
+            {
+              "id": "B",
+              "text": "Mimic"
+            },
+            {
+              "id": "C",
+              "text": "Visualize"
+            },
+            {
+              "id": "D",
+              "text": "Define"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The speakers are trying to shape their conception of art \"a little more clearly\" — that is, to define it.",
+          "explanation": "The axe metaphor casts each speaker as chopping at a rough block to bring a shape out of it, and the phrase \"a little more clearly\" says what the shaping is for: making the conception distinct. \"Define\" captures that. \"Vacate\" would mean leaving the conception, not forming it. \"Mimic\" would mean copying someone else's view, but each speaker is working out his own. \"Visualize\" is a private mental act, while these speakers are working aloud in public and failing to make themselves clear."
+        },
+        {
+          "number": 4,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Medium",
+          "passageText": "The following text is from Betty Smith's 1943 novel *A Tree Grows in Brooklyn*. Francie, a young girl, visits the library often.\n\nFrancie thought that all the books in the world were in that library and she had a plan about reading all the books in the world. She was reading a book a day in alphabetical order and not skipping the dry ones. She remembered that the first author had been Abbott. She had been reading a book a day for a long time now and she was still in the B's. Already she had read about bees and buffaloes, Bermuda vacations and Byzantine architecture. For all her enthusiasm, she had to admit that some of the B's had been hard going. But Francie was a reader.",
+          "questionText": "Which choice best states the main purpose of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "To illustrate Francie's enjoyment of an unusual topic"
+            },
+            {
+              "id": "B",
+              "text": "To explain why Francie prefers reading over other activities"
+            },
+            {
+              "id": "C",
+              "text": "To portray Francie's determination to meet a goal"
+            },
+            {
+              "id": "D",
+              "text": "To describe a book that Francie greatly admires"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "She has a plan, refuses to skip the dry books, admits some were hard going, and keeps at it anyway.",
+          "explanation": "Every detail serves the same end: the plan to read every book, the alphabetical discipline, the refusal to skip \"the dry ones,\" the admission that some were \"hard going,\" and the closing insistence that \"Francie was a reader.\" Together they portray persistence toward a goal. Choice A is wrong because no single unusual topic is at issue — bees, buffaloes, and Byzantine architecture are a list of what she has got through. Choice B is wrong because reading is never weighed against other activities. Choice D is wrong because no particular book is described."
+        },
+        {
+          "number": 5,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Easy",
+          "passageText": "The following text is adapted from Adib Khorram's 2018 novel *Darius the Great Is Not Okay*. Darius, a teenager from the United States, is visiting his grandparents, Mamou and Babou, and other family members in Iran.\n\nI was too tired to fall all the way asleep, and even though Mamou was soft and warm, leaning up against her wasn't a terribly comfortable position to sleep in. So I dozed and floated on the clouds of Farsi that blew my way from the front seat of Dayi [Uncle] Jamsheed's SUV.\n\nIt reminded me of when I was little, and Mom chanted to me in Farsi every night before bedtime. It's hard to describe Farsi chanting: the way Mom drew her voice out like the notes of a cello as she recited poems by Rumi or Hafez. I didn't know what they meant, but that didn't matter. It was quiet and soothing.",
+          "questionText": "Which choice best describes the main purpose of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "To name some of the narrator's favorite poets who wrote in Farsi"
+            },
+            {
+              "id": "B",
+              "text": "To describe a situation the narrator thinks is annoying"
+            },
+            {
+              "id": "C",
+              "text": "To connect a current experience to a memory from the narrator's past"
+            },
+            {
+              "id": "D",
+              "text": "To indicate that the narrator's mother wants to be a poet"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "\"It reminded me of when I was little\" turns the Farsi in the car into a memory of his mother's chanting.",
+          "explanation": "The first paragraph places Darius in the car, half asleep amid Farsi conversation; the second paragraph is launched by \"It reminded me of when I was little\" and stays in the remembered scene of his mother chanting. The passage exists to link the two, as choice C says. Choice A treats Rumi and Hafez as the point, but they are one detail inside the memory. Choice B misreads the tone: the narrator calls the chanting \"quiet and soothing.\" Choice D is wrong because his mother recites other poets' work rather than aspiring to write."
+        },
+        {
+          "number": 6,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Easy",
+          "passageText": "The Stowe House in Hartford, Connecticut, is the house where Harriet Beecher Stowe lived for over twenty years and wrote her novel *Poganuc People*. __underline__Now the house is a museum dedicated to Stowe's life and writings.__underline__ Visitors travel to this museum to feel more connected to an author they admire. To encourage that sense of connection, the museum's curators have set up exhibits with furniture from the period and Stowe's possessions. Such exhibits help visitors understand day-to-day life in the house where Stowe felt inspired.",
+          "questionText": "Which choice best states the function of the underlined sentence in the text as a whole?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It recounts the history of a place mentioned in the previous sentence."
+            },
+            {
+              "id": "B",
+              "text": "It states the current purpose of a building mentioned in the previous sentence."
+            },
+            {
+              "id": "C",
+              "text": "It recommends the works of an author mentioned in the previous sentence."
+            },
+            {
+              "id": "D",
+              "text": "It summarizes the career of an author mentioned in the previous sentence."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The word \"Now\" shifts from what the house once was to what it is used for today: a museum.",
+          "explanation": "The previous sentence describes the house as Stowe's former home; the underlined sentence begins with \"Now\" and gives the building's present function, which the rest of the paragraph then develops. That is exactly choice B. Choice A reverses the direction — the history is in the previous sentence, not the underlined one. Choice C is wrong because no work is recommended. Choice D is wrong because Stowe's career is not summarized; only one novel is named, and that too is in the previous sentence."
+        },
+        {
+          "number": 7,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Hard",
+          "passageText": "On painter William H. Johnson's return to the United States in 1938 after a decade in Europe, his style underwent an abrupt transformation. __underline__Turning away from landscapes painted in an expressionist style—a style that often involves using fluid, distorted shapes and thick, textured brushstrokes to express the artist's subjective experience of reality—Johnson began painting portraits of Black Americans in a bold new way.__underline__ Evocative of African sculpture and American and Scandinavian folk art, these portraits feature flat, deliberately oversimplified figures in a vibrant but limited color palette.",
+          "questionText": "Which choice best describes the function of the underlined sentence in the text as a whole?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It elaborates on the previous sentence's statement about a transitional moment in Johnson's artistic career."
+            },
+            {
+              "id": "B",
+              "text": "It provides information about Johnson's travels in support of a claim about his artistic influences, which is advanced in the following sentence."
+            },
+            {
+              "id": "C",
+              "text": "It recounts a moment in Johnson's personal life that enabled the success of his subsequent career, which is summarized in the following sentence."
+            },
+            {
+              "id": "D",
+              "text": "It presents evidence that calls into question the previous sentence's characterization of Johnson's artistic development."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The first sentence announces an abrupt transformation; the underlined sentence says what he turned away from and what he turned to.",
+          "explanation": "The opening sentence asserts that Johnson's style changed abruptly but does not say how. The underlined sentence fills that in — away from expressionist landscapes, toward bold portraits of Black Americans — which is elaboration, as choice A says. Choice B is wrong because the travels appear in the previous sentence, and the influences appear in the following one. Choice C is wrong because no personal-life moment or claim about career success is offered. Choice D is wrong because the sentence confirms the transformation rather than casting doubt on it."
+        },
+        {
+          "number": 8,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "In a study by Mika R. Moran, Daniel A. Rodríguez, and colleagues, residents of Quito, Ecuador, and Bogotá, Colombia, were surveyed about parks in their cities. Of the 618 respondents from Quito, 82.9 percent indicated that they use the city's parks, and of the 1,121 respondents from Bogotá, 71.9 percent indicated using city parks. Given that the percentage of Quito respondents who reported living within a 10-minute walk of a park was much lower than that reported by Bogotá respondents, greater proximity alone can't explain the difference in park use.",
+          "questionText": "The text makes which point about the difference between the proportions of Quito residents and Bogotá residents using parks?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It was much larger than the researchers conducting the study expected."
+            },
+            {
+              "id": "B",
+              "text": "It could be due to inaccuracies in the survey results."
+            },
+            {
+              "id": "C",
+              "text": "It was calculated using sources that predate the survey."
+            },
+            {
+              "id": "D",
+              "text": "It is caused by something other than the parks' proximity to city residents."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Quito had higher park use despite worse proximity, so \"greater proximity alone can't explain the difference.\"",
+          "explanation": "The last sentence states the point outright: because fewer Quito respondents lived within a 10-minute walk of a park yet more of them used parks, proximity cannot be the explanation, so some other factor must be. Choice A introduces the researchers' expectations, which the text never reports. Choice B blames survey inaccuracy, which the text does not suggest. Choice C makes a claim about the age of the data sources that does not appear."
+        },
+        {
+          "number": 9,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "External shopping cues are a type of marketing that uses obvious messaging—a display featuring a new product, for example, or a \"buy one, get one free\" offer—to entice consumers to make spontaneous purchases. In a study, data scientist Sam K. Hui and colleagues found that this effect can also be achieved with a less obvious cue: rearranging a store's layout. The researchers explain that trying to find items in new locations causes shoppers to move through more of the store, exposing them to more products and increasing the likelihood that they'll buy an item they hadn't planned on purchasing.",
+          "questionText": "Which response from a survey given to shoppers who made a purchase at a retail store best supports the researchers' explanation?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "\"I needed to buy some cleaning supplies, but they weren't in their regular place. While I was looking for them, I saw this interesting notebook and decided to buy it, too.\""
+            },
+            {
+              "id": "B",
+              "text": "\"I didn't buy everything on my shopping list today. I couldn't find a couple of the items in the store, even though I looked all over for them.\""
+            },
+            {
+              "id": "C",
+              "text": "\"The store sent me a coupon for a new brand of soup, so I came here to find out what kinds of soup that brand offers. I decided to buy a few cans because I had the coupon.\""
+            },
+            {
+              "id": "D",
+              "text": "\"This store is larger than one that's closer to where I live, and it carries more products. I came here to buy some things that the other store doesn't always have.\""
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The shopper searched because items had moved and bought something unplanned along the way — the exact chain the researchers describe.",
+          "explanation": "The explanation has three links: items are in new locations, the shopper roams more of the store, and an unplanned purchase results. Choice A contains all three — the cleaning supplies \"weren't in their regular place,\" the shopper looked around, and the notebook was bought \"too.\" Choice B has the search but ends in no purchase at all. Choice C describes an obvious external cue, a coupon, rather than a rearranged layout, and the soup was the reason for the trip. Choice D concerns store size and selection, with no relocation of items and no spontaneous purchase."
+        },
+        {
+          "number": 10,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "The Chickasaw Nation, the Seminole Nation, and the more than thirty other tribes in Oklahoma operate numerous businesses and generate billions of dollars in revenue. An economics student is researching the tribes' collective activity as a single industry. The student wants to compare the average amount that industry contributed per employee to Oklahoma's economy with the average amount contributed per employee by three other industries. Looking at the table, the student finds that tribal economic activity contributed over 141,000 dollars per employee, on average, ranking it ______",
+          "questionText": "Which choice most effectively uses data from the table to complete the comparison?",
+          "image": "m1q10_oklahoma_industries.png",
+          "choices": [
+            {
+              "id": "A",
+              "text": "above either retail or manufacturing and nearly equal to transportation/warehousing."
+            },
+            {
+              "id": "B",
+              "text": "above all three of the other industries listed in the table."
+            },
+            {
+              "id": "C",
+              "text": "below transportation/warehousing but above both manufacturing and retail."
+            },
+            {
+              "id": "D",
+              "text": "below all three of the other industries listed in the table."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Per employee: transportation/warehousing 234,720, tribal 141,510, manufacturing 130,403, retail 59,924.",
+          "explanation": "Ranking the per-employee column places tribal economic activity second: below transportation/warehousing at about 234,720 dollars, but above manufacturing at about 130,403 dollars and retail at about 59,924 dollars. Choice C states that ranking. Choice A is wrong on the second half, since 141,510 is nowhere near 234,720. Choice B would require tribal activity to top the column, which it does not. Choice D puts it at the bottom, though it outranks two of the three."
+        },
+        {
+          "number": 11,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "passageText": "Studies of the population density of cougars (*Puma concolor*) have yielded a range of results, which may in part reflect natural variations in the resources that cougars need to survive. For example, the difference between the maximum population density reported by Randy D. Johnson and that reported by David M. Choate et al. may indicate that ______",
+          "questionText": "Which choice most effectively uses data from the table to complete the example?",
+          "image": "m1q11_cougar_density.png",
+          "choices": [
+            {
+              "id": "A",
+              "text": "cougar habitat makes up a greater proportion of the overall land area in Utah than is the case in North Dakota."
+            },
+            {
+              "id": "B",
+              "text": "the cougar habitat in North Dakota cannot support as many individuals as can the cougar habitat in Utah."
+            },
+            {
+              "id": "C",
+              "text": "the cougar habitat in Montana can support more than 3.20 individuals per 100 square kilometers."
+            },
+            {
+              "id": "D",
+              "text": "there are more cougars overall in both Bolivia and Montana than there are in North Dakota."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Johnson's North Dakota maximum is 2.78 per 100 square kilometers; Choate's Utah maximum is 10.24.",
+          "explanation": "The question names two studies, so only their rows matter: Johnson reports a maximum of 2.78 cougars per 100 square kilometers in North Dakota, Choate et al. 10.24 in Utah. Since density measures how many individuals a given area supports, the gap points to North Dakota habitat supporting fewer, as choice B says. Choice A is about the proportion of each state that is habitat, which density figures cannot show. Choice C draws on Proffitt's Montana row, not the two studies named. Choice D concerns total cougar numbers, which depend on total area and are not in the table."
+        },
+        {
+          "number": 12,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "Biologist Rosanna Alegado believes that we might learn how multicellular organisms developed from single-celled ones if we understand why the single-celled organism *Salpingoeca rosetta*, the oldest living relative of animals, sometimes forms colonies of cells.\n\nAlegado and colleagues reviewed data from many studies about how *S. rosetta* responds when exposed to another type of single-celled organism, bacteria, including Ingrid Brettar's work with *Aquiflexum balticum* bacteria and Jang-Cheon Cho's work with *Croceibacter atlanticus* bacteria. Alegado and colleagues concluded that neither *A. balticum* nor *C. atlanticus* are likely to have played a significant role in the development of multicellular organisms.",
+          "questionText": "Which finding, if true, would most directly support Alegado and colleagues' conclusion?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "*S. rosetta* tended to form colonies when exposed to *A. balticum*, but not when exposed to *C. atlanticus*."
+            },
+            {
+              "id": "B",
+              "text": "*S. rosetta* tended to form colonies when exposed to *A. balticum* and when exposed to *C. atlanticus*."
+            },
+            {
+              "id": "C",
+              "text": "*S. rosetta* tended to form colonies when exposed to *C. atlanticus*, but not when exposed to *A. balticum*."
+            },
+            {
+              "id": "D",
+              "text": "*S. rosetta* did not tend to form colonies when exposed to either *A. balticum* or *C. atlanticus*."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Colony formation is the step toward multicellularity, so neither bacterium mattering means neither triggered colonies.",
+          "explanation": "The passage sets up colony formation in *S. rosetta* as the clue to how multicellularity arose, so a bacterium that induces colonies would be a candidate contributor. The conclusion rules both bacteria out, which requires that neither one induced colonies — choice D. Choice B is the direct opposite, implicating both. Choices A and C each implicate one of the two, so each contradicts half of a conclusion that covers both."
+        },
+        {
+          "number": 13,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "It is common for freshwater lakes near or above a latitude of 45 degrees north of the equator, like Bosten Lake in China, to accumulate surface ice in winter. The amount and duration of ice depends on many factors, including local weather conditions as well as the lake's depth, volume, and surface area, but a climate researcher claims that some lakes in these latitudes have seen a decline in the duration of ice between the early 1980s and the mid-2000s.",
+          "questionText": "Which choice best describes data in the table that support the researcher's claim?",
+          "image": "m1q13_lake_ice.png",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Lake Baikal had more days of ice in the winter of 2005–06 than it did in the winter of 1980–81."
+            },
+            {
+              "id": "B",
+              "text": "Näckten had fewer days of ice in the winter of 2005–06 than it did in the winter of 1980–81."
+            },
+            {
+              "id": "C",
+              "text": "Näckten is at a higher latitude than Lake Kegonsa and typically had more days of ice per winter than Lake Kegonsa did."
+            },
+            {
+              "id": "D",
+              "text": "Näckten is at a higher latitude than Lake Kegonsa and typically had fewer days of ice per winter than Lake Kegonsa did."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The claim is a decline over time, so the evidence must show one lake with fewer ice days in the later winter than the earlier one.",
+          "explanation": "The researcher's claim compares two points in time — the early 1980s against the mid-2000s — and asserts a decrease, so the supporting data must be a within-lake comparison across those winters showing fewer days. Choice B is exactly that. Choice A is the same kind of comparison but reports an increase, which would undercut the claim. Choices C and D compare two different lakes by latitude, which speaks to how lakes differ from one another rather than to change over time."
+        },
+        {
+          "number": 14,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "Architects looking for inspiration may examine photographs of iconic buildings such as Centre Pompidou in Paris. A two-dimensional photograph, however, cannot capture how a building interacts with its surroundings, whether by complementing, blending in with, or perhaps even clashing with sights and activities nearby. An image of Centre Pompidou thus ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "serves to exaggerate the building's historical importance."
+            },
+            {
+              "id": "B",
+              "text": "conceals the subtle deterioration of the building's materials."
+            },
+            {
+              "id": "C",
+              "text": "misrepresents how the building is perceived by people who have never visited Paris."
+            },
+            {
+              "id": "D",
+              "text": "fails to convey the full impact of the building's design and structure."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "If a photograph cannot capture how a building interacts with its surroundings, it cannot show the building's full effect.",
+          "explanation": "The middle sentence states the limitation — a flat image misses the building's relationship to what is around it — and the word \"thus\" asks for the consequence. Falling short of the building's full impact, as choice D says, follows directly. Choice A claims exaggeration of historical importance, which the stated limitation does not produce. Choice B concerns deterioration of materials, a topic the text never raises. Choice C shifts to the perceptions of people who have not visited Paris, whereas the passage is about architects studying photographs."
+        },
+        {
+          "number": 15,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Hard",
+          "passageText": "The Study on Global Ageing and Adult Health (SAGE) seeks to discover long-term trends related to aging by compiling and analyzing evidence from approximately 66,000 participants in multiple countries. As with most longitudinal studies, extensive funding support is needed for SAGE to collect the relevant data over timescales and at intervals that will support robust conclusions. But the quality of a more constrained investigation, such as a sociology study seeking only to yield the average age at which people in a given city first become parents, is much less dependent on high levels of funding because ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "the sociology study is unlikely to be able to recruit 66,000 participants."
+            },
+            {
+              "id": "B",
+              "text": "such studies are likely to be a lower priority for funding than SAGE."
+            },
+            {
+              "id": "C",
+              "text": "expanding the scope of such studies is unlikely to be feasible."
+            },
+            {
+              "id": "D",
+              "text": "such studies are not trying to identify trends over time."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The expense named is collecting data over long timescales, and a single average age needs no such time series.",
+          "explanation": "The text identifies exactly what makes SAGE expensive: collecting data \"over timescales and at intervals\" needed for long-term trends. A study that asks only for one city's average age at first parenthood does not track change over time, so it escapes that cost — choice D. Choice A concerns recruitment numbers, which the passage does not name as the driver of cost. Choice B is about funding priorities rather than how much funding the work requires. Choice C asserts that such studies cannot be expanded, which neither follows from the text nor explains the lower cost."
+        },
+        {
+          "number": 16,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Easy",
+          "passageText": "Anthropologist Lívia Barbosa, of the Universidade Federal Fluminense in Brazil, ______ food and sociability in contemporary Brazil—specifically, how foods such as *pão de queijo* (a cheese-flavored bun) and *paçoca* (a peanut and sugar candy) function as central mechanisms in building social relationships, values, and identities.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "are studying"
+            },
+            {
+              "id": "B",
+              "text": "studies"
+            },
+            {
+              "id": "C",
+              "text": "study"
+            },
+            {
+              "id": "D",
+              "text": "have studied"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The subject is one person, Lívia Barbosa, so the verb must be singular.",
+          "explanation": "\"Anthropologist Lívia Barbosa\" is a singular subject; the phrase \"of the Universidade Federal Fluminense in Brazil\" between the commas is a modifier and does not change that. \"Studies\" is the singular present-tense form. Choices A, C, and D are all plural forms that would require a plural subject."
+        },
+        {
+          "number": 17,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "At 3,033 years old, CMC 3, a giant sequoia (*Sequoiadendron giganteum*) located in the United States, was one of the oldest known trees in the world. With over three millennia of climate data in its tree rings, a single tree like this, claims ______ Valerie Trouet, can tell the history of the world.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "dendrochronologist"
+            },
+            {
+              "id": "B",
+              "text": "dendrochronologist,"
+            },
+            {
+              "id": "C",
+              "text": "dendrochronologist:"
+            },
+            {
+              "id": "D",
+              "text": "dendrochronologist—"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "\"Dendrochronologist Valerie Trouet\" is a title and name, so nothing separates them.",
+          "explanation": "The name specifies which dendrochronologist is meant, making the pairing restrictive, and a title joined directly to a name takes no punctuation between the two. Choice A leaves them joined. Choice B's comma would falsely mark the name as nonessential and would also strand the comma inside the interrupting phrase \"claims … Trouet.\" Choices C and D substitute a colon and a dash, both of which signal a break that does not belong between a title and the name it modifies."
+        },
+        {
+          "number": 18,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Julia Alvarez's 1994 novel *In the Time of the Butterflies*, a fictionalized account of the lives of the Mirabal ______ can serve as a starting point for those wanting to explore how the rule of dictator Rafael Trujillo has been represented in Dominican American literature.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "sisters, and"
+            },
+            {
+              "id": "B",
+              "text": "sisters and"
+            },
+            {
+              "id": "C",
+              "text": "sisters,"
+            },
+            {
+              "id": "D",
+              "text": "sisters"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The appositive opened with a comma after the title, so it has to close with one before the verb.",
+          "explanation": "\"A fictionalized account of the lives of the Mirabal sisters\" is a nonrestrictive appositive inserted between the subject and its verb \"can serve,\" and such an appositive must be enclosed by commas at both ends. Choice C supplies the closing comma. Choice D omits it, leaving the subject and verb improperly joined. Choices A and B add \"and,\" which would make the appositive into a second element of a compound and leave the sentence without a coherent subject for \"can serve.\""
+        },
+        {
+          "number": 19,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Hard",
+          "passageText": "Scholars have praised Gwendolyn Brooks's 1960 poem \"The Egg Boiler\" for its nuanced portrayal of life in Brooks's South Side Chicago neighborhood. The poem shouldn't be regarded as being simply a product of Brooks's ______ the breadth of the poet's influences, which range from medieval English ballads to the poetry of Emily Dickinson and Paul Laurence Dunbar.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "surroundings; though, considering"
+            },
+            {
+              "id": "B",
+              "text": "surroundings, though; considering"
+            },
+            {
+              "id": "C",
+              "text": "surroundings, though, considering"
+            },
+            {
+              "id": "D",
+              "text": "surroundings, though. Considering"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "\"Though\" is a parenthetical needing commas on both sides, and \"considering …\" is a modifying phrase, not a sentence.",
+          "explanation": "The sentence reads \"The poem shouldn't be regarded as being simply a product of Brooks's surroundings, though, considering the breadth of the poet's influences,\" in which \"though\" is an interrupter set off by a pair of commas and the \"considering\" phrase modifies the main clause. Choice C punctuates both correctly. Choices A and B insert a semicolon where there is no second independent clause. Choice D ends the sentence at \"though\" and leaves \"Considering the breadth of the poet's influences, which range from …\" as a fragment with no main clause."
+        },
+        {
+          "number": 20,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Sociologist Alton Okinaka sits on the review board tasked with adding new sites to the Hawaii Register of Historic Places, which includes Grove Farm, established in 1864, and the Kauai Belt Road, a section of Route 560 along the north coast. Okinaka doesn't make such decisions single-handedly, ______ historical designations must be approved by a group of nine other experts.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "however and all"
+            },
+            {
+              "id": "B",
+              "text": "however. All"
+            },
+            {
+              "id": "C",
+              "text": "however all"
+            },
+            {
+              "id": "D",
+              "text": "however, all"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"However\" ends the first sentence, and the second independent clause needs a period before it.",
+          "explanation": "\"Okinaka doesn't make such decisions single-handedly, however\" is complete, and \"All historical designations must be approved by a group of nine other experts\" is complete as well, so a period must divide them. Choice B does that. Choices C and D join two independent clauses with no punctuation and with a comma respectively, producing a run-on and a comma splice. Choice A inserts \"and\" after \"however\" without the comma such a join would need, and the result reads ungrammatically."
+        },
+        {
+          "number": 21,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Easy",
+          "passageText": "After appropriate permissions are granted, a typical archaeological dig begins with a surveyor making a detailed grid of the excavation site. Then, the site is carefully dug, and any artifacts found are recorded and mapped onto the site grid. ______ the artifacts are removed, cataloged, and analyzed in a laboratory.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "For instance,"
+            },
+            {
+              "id": "B",
+              "text": "On the contrary,"
+            },
+            {
+              "id": "C",
+              "text": "Earlier,"
+            },
+            {
+              "id": "D",
+              "text": "Finally,"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "\"Begins with … Then … ______\" is a sequence, and this is the last stage.",
+          "explanation": "The paragraph walks through a dig in order — permissions, gridding, excavation and recording, then laboratory work — so the blank marks the closing step and needs \"Finally.\" Choice A would make the lab work an example of the mapping, which it is not. Choice B would set the steps in opposition. Choice C would place this stage before the others, contradicting the order the paragraph has established."
+        },
+        {
+          "number": 22,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Easy",
+          "passageText": "To guarantee the validity of experimental results, scientists rely on precise, unchanging standards of measurement. ______ metrologists (scientists who study measurement) developed the SI, or International System of Units. The SI's units of measurement are based on unchanging values in nature, such as the mass of an electron or the speed of light.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In contrast,"
+            },
+            {
+              "id": "B",
+              "text": "Regardless,"
+            },
+            {
+              "id": "C",
+              "text": "In addition,"
+            },
+            {
+              "id": "D",
+              "text": "For this reason,"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The need for unchanging standards is why the SI was developed.",
+          "explanation": "The first sentence states a need, and the second reports the response to it — the SI, built on unchanging natural values. That is a cause-and-effect link, which \"For this reason\" marks. Choice A would signal a contrast between the need and the response, though they agree. Choice B would mean the SI was developed in spite of the need. Choice C would present the SI as an unrelated additional fact rather than the answer to the stated need."
+        },
+        {
+          "number": 23,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "Soil polluted with cadmium (a heavy metal) is harmful to many plants and animals, but the plant species *Elodea canadensis*, or Canadian waterweed, not only thrives in such conditions but also helps remediate them. As a metal hyperaccumulator, *Elodea canadensis* absorbs a large amount of cadmium and stores it safely in its roots and shoots; ______ cadmium concentrations in the soil decrease.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "specifically,"
+            },
+            {
+              "id": "B",
+              "text": "in turn,"
+            },
+            {
+              "id": "C",
+              "text": "nevertheless,"
+            },
+            {
+              "id": "D",
+              "text": "in addition,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The plant's absorption of cadmium is what causes soil concentrations to fall.",
+          "explanation": "The clause after the semicolon reports the consequence of the clause before it: cadmium taken up and stored by the plant is cadmium no longer in the soil. \"In turn\" marks that resulting effect. Choice A would present the drop as a more precise restatement of the absorption, but it is a separate outcome. Choice C would set the two in opposition, though the second follows from the first. Choice D would list the drop as an unconnected additional fact rather than the result."
+        },
+        {
+          "number": 24,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Easy",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Iranian scholar Abu Rayhan al-Biruni studied Earth's physical features.\n• He theorized that a large landmass existed west of Europe and east of Asia.\n• Al-Biruni published his landmass theory in 1037 CE.",
+          "questionText": "The student wants to specify when al-Biruni published his landmass theory. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In 1037 CE, al-Biruni published his theory that a large landmass existed west of Europe and east of Asia."
+            },
+            {
+              "id": "B",
+              "text": "Al-Biruni, who studied Earth's physical features, published a theory about a large landmass."
+            },
+            {
+              "id": "C",
+              "text": "Al-Biruni was an Iranian scholar who studied Earth's physical features."
+            },
+            {
+              "id": "D",
+              "text": "An Iranian scholar who studied Earth's physical features, al-Biruni theorized that a large landmass existed west of Europe and east of Asia."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Only choice A gives the publication date, 1037 CE.",
+          "explanation": "The goal names one piece of information — when the theory was published — so the answer must contain the year. Choice A opens with it. Choice B mentions publication but supplies no date. Choice C describes al-Biruni's field of study only. Choice D states the theory and his background without saying when it appeared."
+        },
+        {
+          "number": 25,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Jean-Michel Basquiat was an American artist who produced more than two thousand drawings and paintings.\n• His work *Masonic Lodge* was completed in 1983 and sold at auction in 2008.\n• *Masonic Lodge* is composed of acrylic and oil stick on canvas and measures 6,728 square inches in area.\n• His work *MP* was completed in 1984 and sold at auction in 2020.\n• *MP* is composed of acrylic and paper collage on canvas and measures 5,848 square inches in area.",
+          "questionText": "Which choice most effectively uses information from the given sentences to emphasize how the two works are similar?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Artist Jean-Michel Basquiat's work *Masonic Lodge* is composed of acrylic and oil stick, while *MP* is composed of acrylic and paper collage."
+            },
+            {
+              "id": "B",
+              "text": "Between artist Jean-Michel Basquiat's works *Masonic Lodge* and *MP*, the former is the larger of the two."
+            },
+            {
+              "id": "C",
+              "text": "Composed by artist Jean-Michel Basquiat in 1983 and 1984, respectively, both *Masonic Lodge* and *MP* use acrylic paint as a medium."
+            },
+            {
+              "id": "D",
+              "text": "Artist Jean-Michel Basquiat completed *Masonic Lodge* in 1983, and *MP* followed in 1984."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Acrylic appears in both works' materials, and choice C says so with the word \"both.\"",
+          "explanation": "The notes list one clear commonality — acrylic in each work — and choice C states it explicitly as something both share. Choice A uses the same materials but frames them as a contrast with \"while.\" Choice B emphasizes a difference in size. Choice D reports the two completion dates side by side, which distinguishes the works in time rather than showing what they have in common."
+        },
+        {
+          "number": 26,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• *Birds of Northern South America* is an identification guidebook by ornithologists Robin Restall, Clemencia Rodner, and Miguel Lentino.\n• It lists the thirty-five hummingbird species found in Suriname.\n• The sooty-capped hermit is a large hummingbird found in Suriname.\n• It is identifiable by its distinctive facial markings and its long, black, curved bill.\n• The amethyst woodstar is a small hummingbird found in Suriname. It is identifiable by its green back and its short, black, straight bill.",
+          "questionText": "Which choice most effectively uses information from the given sentences to emphasize a difference between the two birds?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Identifiable by its long, black, curved bill and its distinctive facial markings, the sooty-capped hermit is a large hummingbird found in Suriname."
+            },
+            {
+              "id": "B",
+              "text": "The sooty-capped hermit and the amethyst woodstar are two of the thirty-five hummingbird species found in Suriname."
+            },
+            {
+              "id": "C",
+              "text": "The amethyst woodstar is a small hummingbird identifiable by its green back and its short, black, straight bill."
+            },
+            {
+              "id": "D",
+              "text": "Though they share several traits in common, the sooty-capped hermit is larger than the amethyst woodstar."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Only choice D names both birds and states how they differ — size.",
+          "explanation": "A difference requires both birds in one sentence and a point of contrast between them; choice D supplies the contrast in size and even concedes the shared traits first. Choices A and C each describe a single bird, so no comparison is made. Choice B puts both birds in one sentence but emphasizes what they share — membership among Suriname's thirty-five hummingbird species."
+        },
+        {
+          "number": 27,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Universidad Autónoma de Barcelona in Barcelona, Spain, is home to a Foucault pendulum.\n• The pendulum consists of a weighted ball that swings at the end of a roughly 7-meter-long cable.\n• Like all Foucault pendulums, it dangles from a fixed point that ensures the swing path of the pendulum doesn't change.\n• To an observer, the swing path of a Foucault pendulum appears to change over time because Earth rotates beneath it.\n• Foucault pendulums are used as a simple way to provide evidence of Earth's rotation.",
+          "questionText": "The student wants to explain how a Foucault pendulum provides evidence of Earth's rotation. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "A Foucault pendulum, which consists of a weighted ball at the end of a long cable, provides evidence of Earth's rotation."
+            },
+            {
+              "id": "B",
+              "text": "In Barcelona, Spain, a Foucault pendulum at Universidad Autónoma de Barcelona provides evidence of Earth's rotation."
+            },
+            {
+              "id": "C",
+              "text": "The Foucault pendulum at Universidad Autónoma de Barcelona in Barcelona, Spain, swings on an unchanging path, but Earth rotates beneath it."
+            },
+            {
+              "id": "D",
+              "text": "Though it swings on an unchanging path, a Foucault pendulum appears to change its swing path over time because Earth rotates beneath it."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The explanation needs all three links: the path is fixed, it nonetheless appears to change, and Earth's rotation is why.",
+          "explanation": "\"How\" the pendulum provides evidence turns on the mismatch between a genuinely unchanging swing path and an apparent change, which can only be explained by the ground turning underneath. Choice D states all three parts. Choice A describes the apparatus and asserts the conclusion without the mechanism. Choice B adds only the location. Choice C gives the fixed path and Earth's rotation but omits the apparent change, which is the observation that makes the pendulum evidence in the first place."
+        }
+      ]
+    },
+    {
+      "section": "Reading and Writing",
+      "module": 2,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "The following text is adapted from Elizabeth von Arnim's 1922 novel *The Enchanted April*. Mrs. Wilkins and her friend Rose are traveling in Italy.\n\n\"I'm going to have one of these gorgeous oranges,\" said Mrs. Wilkins, staying where she was and __underline__reaching across to__underline__ a black bowl piled with them. \"Rose, how can you resist them. Look—have this one. Do have this beauty—\" And she held out a big one.",
+          "questionText": "As used in the text, what does the phrase \"reaching across to\" most nearly mean?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Joining with"
+            },
+            {
+              "id": "B",
+              "text": "Gaining on"
+            },
+            {
+              "id": "C",
+              "text": "Stretching toward"
+            },
+            {
+              "id": "D",
+              "text": "Arriving at"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "She stays seated and extends her arm to the bowl, then holds out an orange.",
+          "explanation": "\"Staying where she was\" rules out any movement of her whole body, so the phrase must describe extending her arm toward the bowl — which she then does, holding out an orange. \"Stretching toward\" says that. \"Joining with\" would mean uniting with the bowl. \"Gaining on\" describes closing a distance while pursuing something. \"Arriving at\" would mean travelling to the bowl, which the same clause rules out."
+        },
+        {
+          "number": 2,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "Urban planning expert Francisco Lara-Valencia and colleagues have argued that managing environmental matters along the US–Mexico border ______ coordination between the two countries' governments. Since ecosystems extend across the border, actions taken on one side can have environmental effects on the other side, making international cooperation essential.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "requires"
+            },
+            {
+              "id": "B",
+              "text": "praises"
+            },
+            {
+              "id": "C",
+              "text": "reports"
+            },
+            {
+              "id": "D",
+              "text": "advises"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The second sentence ends by calling international cooperation \"essential.\"",
+          "explanation": "The reason given — effects crossing the border in both directions — is offered to show that cooperation is not optional but \"essential,\" so the verb must express necessity. \"Requires\" does. \"Praises\" would have the management of environmental matters commending coordination, which is not something an activity can do. \"Reports\" would mean it describes coordination. \"Advises\" softens necessity into a recommendation, which the word \"essential\" rules out."
+        },
+        {
+          "number": 3,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Some robots such as Salvius (developed in 2008) and REEM-C (developed in 2013) are designed to resemble humans so that people will find it easier to interact with them. To this end, certain features such as bipedal locomotion can help to create the comforting semblance of humanity, but a robot that appears too similar to humans can make people feel more unsettled than ______.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "revolted"
+            },
+            {
+              "id": "B",
+              "text": "indifferent"
+            },
+            {
+              "id": "C",
+              "text": "soothed"
+            },
+            {
+              "id": "D",
+              "text": "vindicated"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The contrast is with the \"comforting semblance of humanity,\" so the blank must name the comforted feeling.",
+          "explanation": "The sentence sets a hoped-for reaction against an actual one: human-like features are meant to comfort, but too much resemblance unsettles instead. The blank names the reaction that fails to occur, so it must mean *comforted*, and \"soothed\" is that word. \"Revolted\" is another negative reaction, which would not contrast with \"unsettled.\" \"Indifferent\" describes no reaction at all, which the word \"comforting\" has already ruled out as the goal. \"Vindicated\" means proved right, which is unrelated to how a robot's appearance makes people feel."
+        },
+        {
+          "number": 4,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Though most hoaxes perpetrated as jokes by mischievous users of Wikipedia, an online encyclopedia that almost anyone can freely edit, have quickly been detected and removed, a few fictitious entries, such as those for the country singer-songwriter Joseph G. Williams and the Jamaican bird allegedly known as the Salvadorian Magpie, persisted on the site for many years before they were finally recognized as ______ and deleted.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "enhancements"
+            },
+            {
+              "id": "B",
+              "text": "fabrications"
+            },
+            {
+              "id": "C",
+              "text": "analyses"
+            },
+            {
+              "id": "D",
+              "text": "revelations"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The entries are described as hoaxes and \"fictitious,\" and they were deleted once recognized as such.",
+          "explanation": "The sentence already calls these entries hoaxes and \"fictitious,\" and deletion follows the recognition, so the blank must name them as inventions. \"Fabrications\" does. \"Enhancements\" would make them improvements, which nobody deletes. \"Analyses\" would make them studies, contradicting \"fictitious.\" \"Revelations\" would make them disclosures of truth, the opposite of a hoax."
+        },
+        {
+          "number": 5,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Medium",
+          "passageText": "In 2013 Fredrik Jutfelt and Maria Hedgärde published a study concluding that ocean acidification has a strong effect on the behavior of *Gadus morhua*, a species of fish. However, Jutfelt and Hedgärde's study relied on a mean sample size of only about 16 fish. In a 2022 review of various scientists' conclusions about the impacts of ocean acidification on fish behavior, Josefin Sundin and colleagues caution that relying on such a relatively small sample size can increase the potential for biased analysis. Such analysis, in turn, can contribute to reports of exaggerated effects.",
+          "questionText": "Which choice best states the main purpose of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "To explain how the behavior of a fish species has changed over time"
+            },
+            {
+              "id": "B",
+              "text": "To note a potential concern about the findings of a scientific study"
+            },
+            {
+              "id": "C",
+              "text": "To discuss an aspect of ocean acidification that is frequently overlooked"
+            },
+            {
+              "id": "D",
+              "text": "To present a debate between two research teams about a cause of ocean acidification"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "After reporting the 2013 finding, the text raises the small sample size and the risk of exaggerated effects.",
+          "explanation": "The passage states a study's conclusion, pivots on \"However\" to its small sample, and closes with the warning that such samples can produce biased analysis and exaggerated effects. That arc exists to flag a worry about the finding, as choice B says. Choice A is wrong because no change in fish behavior over time is described. Choice C is wrong because the subject is a methodological limitation, not an overlooked aspect of acidification. Choice D is wrong because Sundin and colleagues question the earlier study's method rather than debating what causes acidification."
+        },
+        {
+          "number": 6,
+          "domain": "Craft and Structure",
+          "skill": "Cross-Text Connections",
+          "difficulty": "Medium",
+          "passageText": "Text 1\n\nDeath Cab for Cutie's 2003 song \"Lightness\" includes a specific musical pattern. That pattern consists of two alternating notes sung over and over with \"wa\" and \"oh\" sounds, resulting in a sequence of \"Wa-oh-wa-oh.\" This pattern showed up in so many pop songs in the 2000s and 2010s that eventually it earned a nickname, \"the millennial whoop.\" Unfortunately, the whoop showed up so frequently that it could be more irritating than enjoyable.\n\nText 2\n\nThe millennial whoop could be annoying. Not every pop song needs \"Wa-oh-wa-ohs!\" and it seemed as though nearly every pop song released between 2000 and 2017 had them. But the whoop could also be genuinely fun or even moving. Too many songwriters used it in too many pop songs for a time, but that doesn't mean the whoop was never used well.",
+          "questionText": "Which choice best describes the relationship between the perspectives provided in Text 1 and Text 2?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Text 1 provides an explanation of events that inspired a song, while Text 2 offers a different explanation of those events."
+            },
+            {
+              "id": "B",
+              "text": "Text 1 discusses the advantages of a technique for recording music, while Text 2 discusses the problems with that technique."
+            },
+            {
+              "id": "C",
+              "text": "Text 1 introduces a negative view of a musical pattern, while Text 2 presents a more positive view of that pattern."
+            },
+            {
+              "id": "D",
+              "text": "Text 1 focuses on critics who praised a particular style of music, while Text 2 focuses on critics who disapproved of that style."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Text 1 ends by calling the whoop irritating; Text 2 grants that but insists it could be \"genuinely fun or even moving.\"",
+          "explanation": "Text 1 introduces the millennial whoop and closes on the judgment that it was \"more irritating than enjoyable.\" Text 2 concedes the annoyance but argues the whoop \"could also be genuinely fun or even moving\" and \"was never used well\" is not something one can conclude. That is a negative view answered by a more positive one, as choice C says. Choice A misdescribes both texts, which discuss a pattern rather than events inspiring a song. Choice B reverses the two positions and calls the whoop a recording technique. Choice D likewise reverses them and shifts the subject to named critics."
+        },
+        {
+          "number": 7,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Easy",
+          "passageText": "When people think of dinosaurs with feathers, they typically think of winged dinosaurs, such as the four-winged *Microraptor*. However, many dinosaurs that didn't have wings also had feathers on their bodies. For instance, research indicates that the wingless, long-tailed *Sinosauropteryx* likely had feathers.",
+          "questionText": "According to the text, what did *Microraptor* and *Sinosauropteryx* have in common?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "They were both wingless dinosaurs."
+            },
+            {
+              "id": "B",
+              "text": "They both had feathers."
+            },
+            {
+              "id": "C",
+              "text": "They both could fly."
+            },
+            {
+              "id": "D",
+              "text": "They both were hunted by the same predator."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "*Microraptor* is a feathered winged dinosaur and *Sinosauropteryx* likely had feathers too.",
+          "explanation": "The passage names *Microraptor* as an example of a feathered winged dinosaur and *Sinosauropteryx* as an example of a feathered wingless one, so feathers are what they share. Choice A is wrong because *Microraptor* is four-winged. Choice C is wrong because the text never says either species could fly. Choice D introduces predators, which the passage does not mention at all."
+        },
+        {
+          "number": 8,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Easy",
+          "passageText": "Women like Juanita Moody made important early contributions to the history of US cryptology, a field concerned with secure data communication and storage. Moody worked as a cryptanalyst for the National Security Agency and was the first recipient of the National Intelligence Medal of Achievement. In this way, Moody and others like her helped make it possible for more women—such as Maureen Baginski, who currently works in intelligence and supports the FBI—to enter the field of cryptology.",
+          "questionText": "According to the text, what is one similarity between Moody and Baginski?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "They both have argued that more US schools should teach the history of cryptology."
+            },
+            {
+              "id": "B",
+              "text": "They both founded organizations that encourage women to pursue careers in cryptology."
+            },
+            {
+              "id": "C",
+              "text": "They both have contributed to the field of cryptology."
+            },
+            {
+              "id": "D",
+              "text": "They both have worked in the field of history."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Moody was an NSA cryptanalyst; Baginski works in intelligence and is described as having entered cryptology.",
+          "explanation": "The text credits Moody with \"important early contributions\" to cryptology as an NSA cryptanalyst, and presents Baginski as one of the women who entered the same field, currently working in intelligence. Working in cryptology is therefore the shared trait. Choice A attributes an argument about school curricula to both, which the text never mentions. Choice B credits both with founding organizations, which does not appear. Choice D confuses \"the history of US cryptology\" — the subject the passage is discussing — with a field either woman worked in."
+        },
+        {
+          "number": 9,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Hard",
+          "passageText": "The Federalist Papers are a collection of essays written by Alexander Hamilton, John Jay, and James Madison and published pseudonymously in the *New York Packet* and other New York newspapers in 1787–88. Though the authorship of most of the essays is certain, that of some is obscure: for instance, while No. 15, \"The Insufficiency of the Present Confederation to Preserve the Union,\" was surely penned by Hamilton, No. 62, \"The Senate,\" may have been written by either Hamilton or Madison. The difficulty of determining No. 62's author arises not from a lack of evidence but from too much contradictory evidence.",
+          "questionText": "Based on the text, which choice best explains why it is challenging to confidently assign authorship of the essay \"The Senate\"?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Support can be found for a strong case that either Hamilton or Madison was the sole author of \"The Senate.\""
+            },
+            {
+              "id": "B",
+              "text": "The evidence that would indisputably prove that either Hamilton or Madison was the sole author of \"The Senate\" has been lost."
+            },
+            {
+              "id": "C",
+              "text": "Evidence shows that two versions of \"The Senate,\" one authored by Hamilton and another authored by Madison, appeared in different New York newspapers."
+            },
+            {
+              "id": "D",
+              "text": "It is most likely that \"The Senate\" was the product of a collaborative effort between Hamilton and Madison."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The problem is \"too much contradictory evidence\" — evidence pointing both ways at once.",
+          "explanation": "The final sentence rules out scarcity and blames abundance: the evidence contradicts itself. That means a case can be built for Hamilton and a case for Madison, which is choice A. Choice B says the decisive evidence is missing, exactly the explanation the text rejects. Choice C invents two published versions of the essay, which the passage does not describe. Choice D proposes co-authorship, but the passage frames the question as *either* Hamilton *or* Madison."
+        },
+        {
+          "number": 10,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Easy",
+          "passageText": "In 2021, four of the United States national parks that were among the most visited were Grand Canyon National Park, Rocky Mountain National Park, Yellowstone National Park, and Zion National Park. The graph shows the number of visits for recreation to each of these parks during the three-month period with the highest number of visitors. A student notes that among the parks shown in the graph, the park with the highest monthly recreation visits in all three months was ______",
+          "questionText": "Which choice most effectively uses data from the graph to complete the text?",
+          "image": "m2q10_national_parks.png",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Zion National Park."
+            },
+            {
+              "id": "B",
+              "text": "Rocky Mountain National Park."
+            },
+            {
+              "id": "C",
+              "text": "Yellowstone National Park."
+            },
+            {
+              "id": "D",
+              "text": "Grand Canyon National Park."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Yellowstone's line is the highest of the four in June, July and August alike.",
+          "explanation": "The claim requires one park to top the graph in every one of the three months. Yellowstone does: roughly 940 thousand visits in June, 1,080 thousand in July and 920 thousand in August, above all other lines each time. Rocky Mountain comes closest in July at about 900 thousand but is below Yellowstone there and in June. Zion and Grand Canyon stay in the 400–700 thousand range throughout, so neither leads in any month."
+        },
+        {
+          "number": 11,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "Male túngara frogs make complex calls to attract mates, but their calls also attract frog-biting midges, insects that feed on the frogs' blood. Researchers Ximena Bernal and Priyanka de Silva wondered if the calls alone are sufficient for midges to locate the frogs or if midges use carbon dioxide emitted by frogs as an additional cue to their prey's whereabouts, like mosquitoes do. In an experiment, the researchers placed two midge traps in a túngara frog breeding area. One trap played recordings of túngara frog calls and the other released carbon dioxide along with playing the calls. Bernal and de Silva concluded that carbon dioxide does not serve as an additional cue to frog-biting midges.",
+          "questionText": "Which finding from the experiment, if true, would most directly support Bernal and de Silva's conclusion?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Only a small number of midges were found in the traps, though the majority were found in the trap that played calls and released carbon dioxide."
+            },
+            {
+              "id": "B",
+              "text": "Midges entered the trap that released carbon dioxide and played calls only during or immediately after periods of carbon dioxide release."
+            },
+            {
+              "id": "C",
+              "text": "More midges were found in the trap that only played calls than in the trap that played calls and released carbon dioxide."
+            },
+            {
+              "id": "D",
+              "text": "The trap that released carbon dioxide and played calls attracted few midges when carbon dioxide concentrations were low but attracted many midges when carbon dioxide concentrations were high."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "If carbon dioxide were an added draw, the trap emitting it would catch more midges — not fewer.",
+          "explanation": "The two traps differ only in carbon dioxide, so the conclusion that it adds nothing requires that adding it did not raise the catch. Choice C reports the calls-only trap catching more, which is the strongest form of that result. Choice A has the carbon dioxide trap catching the majority, undercutting the conclusion. Choice B ties midge entry to periods of carbon dioxide release, which suggests the gas does act as a cue. Choice D links higher concentrations to more midges, again pointing the opposite way."
+        },
+        {
+          "number": 12,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "The Younger Dryas was a period of extreme cooling from 11,700 to 12,900 years ago in the Northern Hemisphere. Some scientists argue that a comet fragment hitting Earth brought about the cooling. Others disagree, partly because there is no known crater from such an impact that dates to the beginning of the period. In 2015, a team led by Kurt Kjær detected a 19-mile-wide crater beneath a glacier in Greenland. The scientists who believe an impact caused the Younger Dryas claim that this discovery supports their view. However, Kjær's team hasn't yet been able to determine the age of the crater. Therefore, the team suggests that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "it can't be concluded that the impact that made the crater was connected to the beginning of the Younger Dryas."
+            },
+            {
+              "id": "B",
+              "text": "it can't be determined whether a comet fragment could make a crater as large as 19 miles wide."
+            },
+            {
+              "id": "C",
+              "text": "scientists have ignored the possibility that something other than a comet fragment could have made the crater."
+            },
+            {
+              "id": "D",
+              "text": "the scientists who believe an impact caused the Younger Dryas have made incorrect assumptions about when the period began."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The whole dispute turns on dating, and the crater's age is unknown.",
+          "explanation": "The objection to the impact hypothesis was the absence of a crater dated to the start of the Younger Dryas, so the new crater helps only if its age fits. Since Kjær's team cannot date it, no link to the period's beginning can be drawn — choice A. Choice B raises the size a comet fragment could produce, which is not at issue. Choice C accuses other scientists of ignoring alternative causes, a charge the passage does not make. Choice D disputes when the Younger Dryas began, though the text gives those dates without controversy."
+        },
+        {
+          "number": 13,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "The small white heron and the small dark heron are long-legged birds that live in wetlands, like the Everglades in Florida. Laura D'Acunto and colleagues wanted to know how these birds choose an area in which to live. They looked at features of the birds' habitats, such as the geographic location of the area and how deep the water is during the birds' breeding season. They found that small white herons prefer areas with deep water during breeding season, but that was not true for small dark herons. The researchers concluded that water management strategies that increase the depth of water in potential wetland bird habitats during breeding season are therefore more likely to ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "decrease the area's appeal to both small white herons and small dark herons than they are to increase the appeal to either."
+            },
+            {
+              "id": "B",
+              "text": "extend the average lifespan of small white herons already in the area than they are to attract a greater number of those birds to the area."
+            },
+            {
+              "id": "C",
+              "text": "attract small white herons to the area than they are to attract small dark herons to the area."
+            },
+            {
+              "id": "D",
+              "text": "attract birds that don't typically live in wetlands to the area than they are to attract small white herons or small dark herons to the area."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Only small white herons prefer deep water, so deepening the water should draw them rather than small dark herons.",
+          "explanation": "The finding distinguishes the two species on exactly one point: small white herons prefer deep breeding-season water and small dark herons do not. Deepening the water therefore appeals to the first and not the second, which is choice C. Choice A predicts a loss of appeal for both, contradicting the white herons' preference. Choice B introduces lifespan, which the study did not measure. Choice D brings in birds that do not live in wetlands, a group outside the study entirely."
+        },
+        {
+          "number": 14,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Easy",
+          "passageText": "On Guadalupe Peak, which ______ an elevation of 8,751 feet, one can find the highest point in Texas.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "reaches"
+            },
+            {
+              "id": "B",
+              "text": "reach"
+            },
+            {
+              "id": "C",
+              "text": "reaching"
+            },
+            {
+              "id": "D",
+              "text": "to reach"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The relative clause needs a finite verb agreeing with the singular \"which,\" standing for Guadalupe Peak.",
+          "explanation": "\"Which\" refers to Guadalupe Peak, a singular noun, and a relative clause requires a conjugated verb, so \"reaches\" is correct. Choice B is the plural form and does not agree. Choices C and D are a participle and an infinitive, neither of which can serve as the verb of the relative clause, leaving it without a predicate."
+        },
+        {
+          "number": 15,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Easy",
+          "passageText": "The Ubangi River, which is 1,405 miles long, ______ into the Congo River.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "flow"
+            },
+            {
+              "id": "B",
+              "text": "are flowing"
+            },
+            {
+              "id": "C",
+              "text": "have flowed"
+            },
+            {
+              "id": "D",
+              "text": "flows"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The subject \"The Ubangi River\" is singular, so the verb must be singular.",
+          "explanation": "Setting aside the nonrestrictive clause \"which is 1,405 miles long,\" the sentence is \"The Ubangi River ______ into the Congo River,\" and a singular subject calls for \"flows.\" Choices A, B, and C are all plural forms; \"miles\" inside the modifier is not the subject and cannot govern the verb."
+        },
+        {
+          "number": 16,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Easy",
+          "passageText": "At the Actors Pulse in Sydney, Australia, students can sign up ______ the world-famous Meisner acting technique. Created by acting teacher Sanford Meisner, this technique trains actors to react naturally to the other performers in a scene.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "learned"
+            },
+            {
+              "id": "B",
+              "text": "to learn"
+            },
+            {
+              "id": "C",
+              "text": "learn"
+            },
+            {
+              "id": "D",
+              "text": "are learning"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The sentence already has its verb, \"can sign up,\" so the blank needs an infinitive of purpose.",
+          "explanation": "\"Students can sign up\" is complete, and what follows must express why they sign up, which English does with an infinitive: \"to learn the … technique.\" Choice B supplies it. Choices A, C, and D are finite or participial forms that would create a second verb with no conjunction, leaving the sentence ungrammatical."
+        },
+        {
+          "number": 17,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "Lê Lương Minh became the thirteenth secretary-general of the Association of Southeast Asian Nations (ASEAN) in January 2013, making ______ the first time the organization would appoint a Vietnamese leader.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "these"
+            },
+            {
+              "id": "B",
+              "text": "those"
+            },
+            {
+              "id": "C",
+              "text": "this"
+            },
+            {
+              "id": "D",
+              "text": "some"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The pronoun stands for a single event — Minh's appointment — and pairs with the singular \"the first time.\"",
+          "explanation": "What is being called \"the first time\" is one occurrence, Minh's becoming secretary-general, so the pronoun must be singular, and it must agree with the singular noun phrase that follows. \"This\" satisfies both. Choices A and B are plural demonstratives with no plural antecedent. Choice D is a quantifier that cannot serve as the object of \"making\" in this construction."
+        },
+        {
+          "number": 18,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "On February 1, 2018, Florida-based researchers Martha A. Scholl, Maoya Bassiouni, and Angel J. Torres-Sánchez ______ climate data from several sites in Puerto Rico's Luquillo Mountains. At 8:30 a.m., the air temperature was 16 degrees Celsius at site CC1, the site with the highest elevation, and it had shifted to 16.8 degrees Celsius by 11:00 p.m.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "compiled,"
+            },
+            {
+              "id": "B",
+              "text": "compiled"
+            },
+            {
+              "id": "C",
+              "text": "compiled;"
+            },
+            {
+              "id": "D",
+              "text": "compiled:"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "A verb should not be cut off from its object by punctuation.",
+          "explanation": "\"Compiled\" takes \"climate data from several sites\" as its direct object, and nothing may separate a verb from its object. Choice B leaves them joined. Choice A inserts a comma between verb and object, choice C a semicolon that would require an independent clause on each side, and choice D a colon that would announce a list or explanation where a simple object belongs."
+        },
+        {
+          "number": 19,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Easy",
+          "passageText": "After ten days and twenty-two hours, space shuttle flight STS-66 landed ______ Edwards Air Force Base.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "at—"
+            },
+            {
+              "id": "B",
+              "text": "at:"
+            },
+            {
+              "id": "C",
+              "text": "at,"
+            },
+            {
+              "id": "D",
+              "text": "at"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "A preposition takes its object directly, with no punctuation between.",
+          "explanation": "\"At\" governs \"Edwards Air Force Base,\" and no punctuation belongs between a preposition and its object. Choice D leaves the phrase intact. Choice A's dash, choice B's colon, and choice C's comma each interrupt a phrase that must stay whole."
+        },
+        {
+          "number": 20,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "At 1,723 years old, KET 3996, a limber pine (*Pinus flexilis*) located in the United States, is one of the oldest known trees in the world. With almost two millennia of climate data in its tree rings, a single tree like ______ claims dendrochronologist Valerie Trouet, can tell the history of the world.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "this"
+            },
+            {
+              "id": "B",
+              "text": "this;"
+            },
+            {
+              "id": "C",
+              "text": "this,"
+            },
+            {
+              "id": "D",
+              "text": "this:"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The attribution \"claims dendrochronologist Valerie Trouet\" is an interrupter, so it needs a comma on each side.",
+          "explanation": "\"Claims dendrochronologist Valerie Trouet\" breaks into the sentence between the subject \"a single tree like this\" and its verb \"can tell,\" and the closing comma after \"Trouet\" is already in place, so a matching comma must precede it. Choice C provides that. Choice A leaves the interrupter unmarked at its opening. Choice B's semicolon would demand an independent clause on either side, and choice D's colon would announce an explanation, neither of which fits an aside of attribution."
+        },
+        {
+          "number": 21,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "In this chapter, we will focus on Sonia Sanchez's poem \"This Is Not a Small Voice,\" paying special attention to its first lines: \"This is not a small voice / you hear this is a large / voice coming out of these cities.\" We ______ our attention next to the works of Jay Wright and bell hooks, two other poets associated with the Black Arts movement.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "will turn"
+            },
+            {
+              "id": "B",
+              "text": "turned"
+            },
+            {
+              "id": "C",
+              "text": "will have turned"
+            },
+            {
+              "id": "D",
+              "text": "had turned"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "\"Next\" points forward, matching the future \"will focus\" of the previous sentence.",
+          "explanation": "The chapter's plan is stated in the future — \"we will focus\" — and the word \"next\" places this action later still, so the simple future \"will turn\" is right. Choices B and D are past forms that contradict a plan not yet carried out. Choice C is the future perfect, which would describe the turning as already completed by some later point, an unnecessary and misleading complication here."
+        },
+        {
+          "number": 22,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Easy",
+          "passageText": "Textile artist Amber Joy Greenidge-Sabral wanted to avoid using harsh synthetic dyes that could be damaging to the environment. ______ she began experimenting with more environmentally friendly natural dye methods, using organic materials like sassafras and indigofera for their natural orange and blue colors.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In actuality,"
+            },
+            {
+              "id": "B",
+              "text": "To sum up,"
+            },
+            {
+              "id": "C",
+              "text": "Nevertheless,"
+            },
+            {
+              "id": "D",
+              "text": "With this in mind,"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Her goal of avoiding synthetic dyes is the reason she took up natural ones.",
+          "explanation": "The first sentence gives a motive and the second gives the action it produced, so the transition must point from intention to consequence. \"With this in mind\" does. Choice A would correct a misconception, but nothing has been misstated. Choice B would announce a summary, and the second sentence adds new information. Choice C would set the experimentation against her goal, though it follows from it."
+        },
+        {
+          "number": 23,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "The architects of Spain's Modernista movement took inspiration from the natural world when adding finishing touches to their buildings. ______ they favored plant- and animal-inspired design flourishes, like the ornate floral tilework of Hospital de Sant Pau, a hospital by architect Lluís Domènech i Montaner.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Even so,"
+            },
+            {
+              "id": "B",
+              "text": "On the contrary,"
+            },
+            {
+              "id": "C",
+              "text": "Meanwhile,"
+            },
+            {
+              "id": "D",
+              "text": "In particular,"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The second sentence narrows the general claim about natural inspiration to specific plant and animal motifs.",
+          "explanation": "The first sentence makes a broad claim — inspiration from the natural world — and the second specifies what that meant in practice, down to a named example. \"In particular\" signals that narrowing. Choices A and B both mark opposition, but the second sentence agrees with and refines the first. Choice C signals simultaneity or a shift to a different subject, and no second subject is introduced."
+        },
+        {
+          "number": 24,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Easy",
+          "passageText": "Ursula K. Le Guin's *Planet of Exile*, a novel about a colony of humans stranded on a harsh planet, is classified as science fiction. ______ the novel *A Wizard of Earthsea*, which is about a hero's attempt to atone for his past actions, is classified as fantasy.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "On the other hand,"
+            },
+            {
+              "id": "B",
+              "text": "Afterward,"
+            },
+            {
+              "id": "C",
+              "text": "For example,"
+            },
+            {
+              "id": "D",
+              "text": "In other words,"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "One Le Guin novel is science fiction, the other fantasy — a contrast.",
+          "explanation": "The two sentences assign the same author's novels to different genres, so the transition must mark the difference. \"On the other hand\" does. Choice B would put the second novel later in time, but the passage is comparing classifications, not chronology. Choice C would make the fantasy novel an example of science fiction, contradicting the sentence. Choice D would present the second sentence as a restatement of the first, though it says something different."
+        },
+        {
+          "number": 25,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Easy",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Meteorites found on Earth are divided into two categories.\n• A meteorite that was observed falling to Earth before being recovered is known as a meteorite fall.\n• All other meteorites found on Earth are known as meteorite finds.\n• There have been about 1,200 recorded meteorite falls.\n• There have been over 60,000 recorded meteorite finds.",
+          "questionText": "The student wants to contrast the number of meteorite falls with the number of meteorite finds. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "A meteorite that was observed falling to Earth before being recovered is known as a meteorite fall; all others are known as meteorite finds."
+            },
+            {
+              "id": "B",
+              "text": "Meteorites found on Earth are divided into two categories: meteorite falls and meteorite finds."
+            },
+            {
+              "id": "C",
+              "text": "There have been about 1,200 recorded meteorite falls, or meteorites observed falling to Earth."
+            },
+            {
+              "id": "D",
+              "text": "While there have been only about 1,200 recorded meteorite falls, there have been over 60,000 meteorite finds."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Only choice D puts both counts in one sentence and sets them against each other.",
+          "explanation": "The goal is a contrast of two numbers, so the answer must contain both and mark the gap between them. Choice D gives 1,200 against 60,000, joined by \"While\" and sharpened by \"only.\" Choice A contrasts the definitions rather than the counts. Choice B names the two categories with no figures at all. Choice C reports one count and omits the other, so nothing is contrasted."
+        },
+        {
+          "number": 26,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Easy",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Chromosomes are cellular structures that contain genes.\n• Genes carry critical instructions for determining an organism's physical traits.\n• Members of the same species typically have the same number of chromosomes.\n• As a species, the Tibetan antelope (*Pantholops hodgsoni*) has sixty chromosomes.\n• As a species, the *Sterkiella histriomuscorum*, a simple, single-celled protozoan, has over 15,000 chromosomes.",
+          "questionText": "The student wants to emphasize a difference between *Pantholops hodgsoni* and *Sterkiella histriomuscorum*. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "*Sterkiella histriomuscorum*, a simple, single-celled protozoan, has over 15,000 cellular structures called chromosomes."
+            },
+            {
+              "id": "B",
+              "text": "*Sterkiella histriomuscorum* has over 15,000 chromosomes, which is far more than the sixty chromosomes *Pantholops hodgsoni* has."
+            },
+            {
+              "id": "C",
+              "text": "Individual members of the Tibetan antelope species typically have the same number of chromosomes: sixty."
+            },
+            {
+              "id": "D",
+              "text": "*Sterkiella histriomuscorum* and *Pantholops hodgsoni* both have chromosomes, which are cellular structures that contain genes."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Choice B names both species and sets 15,000 chromosomes against sixty.",
+          "explanation": "Emphasizing a difference requires both organisms and the measure on which they diverge. Choice B supplies both counts and the phrase \"far more than\" to mark the gap. Choices A and C each describe a single species, leaving nothing to compare. Choice D mentions both but emphasizes what they share — having chromosomes at all."
+        },
+        {
+          "number": 27,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• The Clovis First hypothesis proposes that ancient humans known as Clovis were the first to populate North America.\n• The Clovis arrived around 13,000 years ago.\n• Stone tools found at the Chiquihuite Cave site in Mexico date to approximately 26,000 years ago.\n• These items support the idea that humans were present in North America before the Clovis population arrived.\n• More than a dozen North American sites containing pre-Clovis items have been identified.",
+          "questionText": "The student wants to make and support a claim about humans' arrival in North America. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It has been claimed that the Clovis, arriving around 13,000 years ago, were the first human inhabitants of North America."
+            },
+            {
+              "id": "B",
+              "text": "The stone tools found at the Chiquihuite Cave site should not be overlooked: they have important implications for the Clovis First hypothesis."
+            },
+            {
+              "id": "C",
+              "text": "While the Clovis First hypothesis proposes that humans first arrived in North America around 13,000 years ago, humans had likely arrived before that time."
+            },
+            {
+              "id": "D",
+              "text": "Arriving about 13,000 years ago, the Clovis were likely not the first humans in North America; items from more than a dozen sites suggest that humans had arrived before that time."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Choice D makes the claim and then backs it with the evidence from more than a dozen sites.",
+          "explanation": "The goal has two parts — a claim and support for it — so the answer must contain both. Choice D asserts that the Clovis were likely not first and then cites the pre-Clovis items from more than a dozen sites as the reason. Choice C makes the same claim but offers no evidence for it. Choice A restates the Clovis First hypothesis without challenging or supporting anything. Choice B gestures at the tools' importance without saying what claim they support."
+        }
+      ]
+    }
+  ]
+}

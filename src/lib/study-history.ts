@@ -5,7 +5,7 @@ export interface SavedGrade {
   total: number;
   correctCount: number;
   accuracyPct: number;
-  results: { questionId: string; skill: string; isCorrect: boolean }[];
+  results: { questionId: string; domain?: string; skill: string; difficulty?: string; questionType?: string; isCorrect: boolean; timeSpentSeconds?: number }[];
 }
 export interface StudyRecord {
   id: string; userId: string; source: "mock" | "qbank"; sourceId: string;

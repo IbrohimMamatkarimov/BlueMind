@@ -53,8 +53,11 @@ interface GradedQuestion {
   questionText: string;
   imageData?: string | null;
   choices: Choice[];
+  domain?: string;
   skill: string;
   difficulty: string;
+  questionType?: string;
+  timeSpentSeconds?: number;
   selectedAnswer: string | null;
   correctAnswer: string;
   isCorrect: boolean;
@@ -1153,6 +1156,11 @@ export default function PracticeExam({
   const [checkingAnswer, setCheckingAnswer] = useState(false);
   const [checkError, setCheckError] = useState<string | null>(null);
   const [marked, setMarked] = useState<Record<string, boolean>>({});
+  // Active time is tracked per question (including untimed practice), while
+  // pauses, study tools, review screens, and background tabs are excluded.
+  // Milliseconds are kept locally so quick visits are not rounded away.
+  const questionTimeMsRef = useRef<Record<string, number>>({});
+  const activeQuestionRef = useRef<{ questionId: string; startedAt: number } | null>(null);
   const [secondsLeft, setSecondsLeft] = useState(0);
   // Full length of this module/set — the "5 minutes left" warning only makes
   // sense when the sitting is longer than that (a 1-question bank set is 2 min).
@@ -1363,6 +1371,27 @@ export default function PracticeExam({
   const [restoredProgress, setRestoredProgress] = useState(false);
   const progressKey = fullExam?.storageKey ?? `bluemind_progress_${mockId}_${section}_${isBank ? setId : module}`;
 
+  function stopQuestionClock() {
+    const active = activeQuestionRef.current;
+    if (!active) return;
+    questionTimeMsRef.current[active.questionId] = (questionTimeMsRef.current[active.questionId] ?? 0) + Math.max(0, Date.now() - active.startedAt);
+    activeQuestionRef.current = null;
+  }
+
+  function questionTimeSnapshot() {
+    const snapshot = { ...questionTimeMsRef.current };
+    const active = activeQuestionRef.current;
+    if (active) snapshot[active.questionId] = (snapshot[active.questionId] ?? 0) + Math.max(0, Date.now() - active.startedAt);
+    return snapshot;
+  }
+
+  function questionTimesInSeconds() {
+    return Object.fromEntries(Object.entries(questionTimeSnapshot()).map(([questionId, milliseconds]) => [
+      questionId,
+      milliseconds > 0 ? Math.max(1, Math.round(milliseconds / 1000)) : 0,
+    ]));
+  }
+
   // One-time "5 minutes left" warning — fires once when the countdown
   // crosses the 5-minute mark, not on every render/re-check, and never
   // fires again once dismissed or once it's already fired this session.
@@ -1382,6 +1411,7 @@ export default function PracticeExam({
       window.localStorage.setItem(progressKey, JSON.stringify({
         submissionId: submissionId.current,
         answers, checkedAnswers, marked, crossedOut,
+        questionTimeMs: questionTimeSnapshot(),
         secondsLeft: deadlineRef.current === null ? secondsLeft : remainingSeconds(deadlineRef.current),
         studyPauseMs: studyPauseMs + (studyPauseStartedAtRef.current === null ? 0 : Date.now() - studyPauseStartedAtRef.current),
         index, mode: testMode, savedAt: Date.now(),
@@ -1887,6 +1917,9 @@ export default function PracticeExam({
               if (typeof saved.submissionId === "string") submissionId.current = saved.submissionId;
                setAnswers(saved.answers ?? {});
                setCheckedAnswers(saved.checkedAnswers ?? {});
+              if (saved.questionTimeMs && typeof saved.questionTimeMs === "object") {
+                questionTimeMsRef.current = Object.fromEntries(Object.entries(saved.questionTimeMs).filter((entry): entry is [string, number] => typeof entry[1] === "number" && Number.isFinite(entry[1]) && entry[1] >= 0));
+              }
               setMarked(saved.marked ?? {});
               setCrossedOut(saved.crossedOut ?? {});
               setIndex(Math.max(0, Math.min(saved.index ?? 0, data.questions.length - 1)));
@@ -1966,6 +1999,28 @@ export default function PracticeExam({
   }, [results, isMath]);
 
   const current = questions[index];
+  const shouldTrackQuestion = Boolean(current && started && !loading && !results && !timerPaused && !studyToolPause && !moduleReviewOpen && !submitting && !submitError);
+  useEffect(() => {
+    stopQuestionClock();
+    if (shouldTrackQuestion && current && document.visibilityState === "visible") {
+      activeQuestionRef.current = { questionId: current.id, startedAt: Date.now() };
+    }
+    return stopQuestionClock;
+    // current.id deliberately changes the clock when the learner navigates.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current?.id, shouldTrackQuestion]);
+
+  useEffect(() => {
+    function onVisibilityChange() {
+      stopQuestionClock();
+      if (document.visibilityState === "visible" && shouldTrackQuestion && current) {
+        activeQuestionRef.current = { questionId: current.id, startedAt: Date.now() };
+      }
+    }
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current?.id, shouldTrackQuestion]);
   const solvedQuestionIds = useMemo(
     () => new Set(questions.filter((question) => question.solved || checkedAnswers[question.id]).map((question) => question.id)),
     [questions, checkedAnswers]
@@ -1984,10 +2039,12 @@ export default function PracticeExam({
   }
 
   function beginStudyToolPause(tool: "vocabulary" | "notes") {
-    if (testMode !== "timed" || timerPaused || studyToolPause) return;
-    if (deadlineRef.current !== null) setSecondsLeft(remainingSeconds(deadlineRef.current));
-    deadlineRef.current = null;
-    studyPauseStartedAtRef.current = Date.now();
+    if (timerPaused || studyToolPause) return;
+    if (testMode === "timed") {
+      if (deadlineRef.current !== null) setSecondsLeft(remainingSeconds(deadlineRef.current));
+      deadlineRef.current = null;
+      studyPauseStartedAtRef.current = Date.now();
+    }
     setStudyToolPause(tool);
   }
 
@@ -2238,7 +2295,7 @@ export default function PracticeExam({
       const res = await fetch(gradeUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...(isBank ? {} : { mockId, section, module }), answers, submissionId: submissionId.current, mode: testMode, fullExamId: fullExam?.sessionId }),
+        body: JSON.stringify({ ...(isBank ? {} : { mockId, section, module }), answers, questionTimes: questionTimesInSeconds(), submissionId: submissionId.current, mode: testMode, fullExamId: fullExam?.sessionId }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Could not submit this module. Please try again.");
@@ -2534,7 +2591,7 @@ export default function PracticeExam({
                 <TextWatermarkOverlay dark={darkMode} mode="absolute" />
                 <div className="flex items-start justify-between mb-2 gap-3">
                   <span className="text-xs font-semibold text-brand-slate">
-                    Question {i + 1} · {r.skill}
+                    Question {i + 1} · {r.skill} · {r.difficulty}{r.timeSpentSeconds == null ? "" : ` · ${formatTime(r.timeSpentSeconds)} spent`}
                   </span>
                   <div className="flex items-center gap-2 shrink-0">
                     <span

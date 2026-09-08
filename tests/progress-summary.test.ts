@@ -32,3 +32,16 @@ test("a full exam requires four distinct modules within the same sitting", () =>
   assert.equal(summarizeProgress([...modules, entry({ fullExamId: "sitting-b", section: "Reading and Writing", module: 2 })]).fullExams, 0);
   assert.equal(summarizeProgress([...modules, entry({ fullExamId: "sitting-a", section: "Reading and Writing", module: 2 })]).fullExams, 1);
 });
+test("difficulty and pacing statistics keep missing data distinct from zero", () => {
+  const result = summarizeProgress([entry({ section: "Reading and Writing", total: 3, correctCount: 2, questions: [
+    { skill: "Words in Context", difficulty: "Easy", isCorrect: true, timeSpentSeconds: 30 },
+    { skill: "Words in Context", difficulty: "Easy", isCorrect: true, timeSpentSeconds: 50 },
+    { skill: "Inferences", difficulty: "Hard", isCorrect: false, timeSpentSeconds: 100 },
+  ] })]);
+  assert.deepEqual(result.difficultyStats.map((item) => [item.difficulty, item.accuracy, item.averageTimeSeconds]), [
+    ["Easy", 100, 40], ["Medium", null, null], ["Hard", 0, 100],
+  ]);
+  assert.equal(result.sections.find((item) => item.section === "Reading and Writing")?.averageTimeSeconds, 60);
+  assert.equal(result.sections.find((item) => item.section === "Math")?.averageTimeSeconds, null);
+  assert.equal(result.averageTimeSeconds, 60);
+});

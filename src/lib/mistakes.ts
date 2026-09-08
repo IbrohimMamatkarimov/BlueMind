@@ -18,6 +18,7 @@ export interface MistakeRow {
   selectedAnswer: string | null;
   correctAnswer: string;
   source: string;
+  lastTimeSpentSeconds: number | null;
   journal: MistakeJournalEntry | null;
 }
 
@@ -39,10 +40,26 @@ export interface MistakeSkill {
   accuracyPct: number;
 }
 
+export interface MistakeDifficultyStat {
+  difficulty: "Easy" | "Medium" | "Hard";
+  attempted: number;
+  correct: number;
+  accuracyPct: number | null;
+  averageTimeSeconds: number | null;
+  timedAttempts: number;
+}
+
+export interface MistakePacingStat {
+  skill: string;
+  averageTimeSeconds: number;
+  timedAttempts: number;
+}
+
 const EVENTS_SQL = `
   SELECT pa.question_id, pa.selected_answer,
          COALESCE(pa.correct_answer, q.correct_answer) AS correct_answer,
-         pa.is_correct, pa.created_at, 'Question Bank' AS source
+         pa.is_correct, pa.created_at, 'Question Bank' AS source,
+         NULLIF(pa.time_spent_seconds, 0) AS time_spent_seconds
   FROM practice_attempts pa
   JOIN questions q ON q.id = pa.question_id
   WHERE pa.user_id = ?
@@ -51,13 +68,15 @@ const EVENTS_SQL = `
          NULLIF(result->>'selectedAnswer', 'null') AS selected_answer,
          result->>'correctAnswer' AS correct_answer,
          CASE WHEN result->>'isCorrect' = 'true' THEN 1 ELSE 0 END AS is_correct,
-         sr.completed_at AS created_at, 'Mock Test' AS source
+         sr.completed_at AS created_at, 'Mock Test' AS source,
+         CASE WHEN jsonb_typeof(result->'timeSpentSeconds') = 'number' AND (result->>'timeSpentSeconds')::numeric > 0
+              THEN ROUND((result->>'timeSpentSeconds')::numeric)::integer ELSE NULL END AS time_spent_seconds
   FROM study_results sr
   CROSS JOIN LATERAL jsonb_array_elements((sr.grade_json::jsonb)->'results') AS result
   WHERE sr.user_id = ? AND sr.source = 'mock'
   UNION ALL
   SELECT a.question_id, a.selected_answer, a.correct_answer,
-         a.is_correct, a.created_at, 'Mock Test' AS source
+         a.is_correct, a.created_at, 'Mock Test' AS source, NULLIF(a.time_spent_seconds, 0) AS time_spent_seconds
   FROM answers a
   JOIN attempts att ON att.id = a.attempt_id
   WHERE att.user_id = ? AND att.status = 'completed'
@@ -75,14 +94,14 @@ export async function getMistakes(userId: string, section: BankSection) {
     ),
     latest AS (
       SELECT DISTINCT ON (question_id) question_id, selected_answer, correct_answer,
-             is_correct, created_at, source
+             is_correct, created_at, source, time_spent_seconds
       FROM events ORDER BY question_id, created_at DESC
     )
     SELECT q.id AS question_id, q.external_id, q.section, q.domain, q.skill,
            q.difficulty, q.question_text, q.question_type,
            missed.mistake_count, missed.attempt_count, missed.last_missed_at,
            latest.is_correct AS latest_correct, latest.created_at AS last_attempt_at,
-           latest.selected_answer, latest.correct_answer, latest.source,
+           latest.selected_answer, latest.correct_answer, latest.source, latest.time_spent_seconds,
            journal.reason AS journal_reason, journal.warning AS journal_warning,
            journal.category AS journal_category,
            journal.updated_at AS journal_updated_at
@@ -104,6 +123,7 @@ export async function getMistakes(userId: string, section: BankSection) {
     latestCorrect: Number(row.latest_correct) === 1, lastAttemptAt: String(row.last_attempt_at),
     lastMissedAt: String(row.last_missed_at), selectedAnswer: row.selected_answer == null ? null : String(row.selected_answer),
     correctAnswer: String(row.correct_answer), source: String(row.source),
+    lastTimeSpentSeconds: row.time_spent_seconds == null ? null : Number(row.time_spent_seconds),
     journal: row.journal_updated_at == null ? null : {
       reason: String(row.journal_reason ?? ""), warning: String(row.journal_warning ?? ""),
       category: String(row.journal_category ?? "unclassified") as MistakeCategory,
@@ -128,10 +148,46 @@ export async function getMistakes(userId: string, section: BankSection) {
       mistakes: Number(row.mistakes), accuracyPct: attempted ? Math.round((correct / attempted) * 100) : 0 };
   });
 
+  const difficultyRows = (await db.prepare(`
+    WITH events AS (${EVENTS_SQL})
+    SELECT q.difficulty, COUNT(*) AS attempted,
+           SUM(CASE WHEN e.is_correct = 1 THEN 1 ELSE 0 END) AS correct,
+           COUNT(e.time_spent_seconds) AS timed_attempts,
+           ROUND(AVG(e.time_spent_seconds)) AS average_time_seconds
+    FROM events e JOIN questions q ON q.id = e.question_id
+    WHERE q.section = ?
+    GROUP BY q.difficulty
+  `).all(userId, userId, userId, section)) as Record<string, unknown>[];
+  const difficultyMap = new Map(difficultyRows.map((row) => [String(row.difficulty), row]));
+  const difficultyStats: MistakeDifficultyStat[] = (["Easy", "Medium", "Hard"] as const).map((difficulty) => {
+    const row = difficultyMap.get(difficulty);
+    const attempted = Number(row?.attempted ?? 0);
+    const correct = Number(row?.correct ?? 0);
+    const timedAttempts = Number(row?.timed_attempts ?? 0);
+    return { difficulty, attempted, correct, accuracyPct: attempted ? Math.round(correct / attempted * 100) : null,
+      averageTimeSeconds: timedAttempts ? Number(row?.average_time_seconds) : null, timedAttempts };
+  });
+
+  const pacingRows = (await db.prepare(`
+    WITH events AS (${EVENTS_SQL})
+    SELECT q.skill, COUNT(e.time_spent_seconds) AS timed_attempts,
+           ROUND(AVG(e.time_spent_seconds)) AS average_time_seconds
+    FROM events e JOIN questions q ON q.id = e.question_id
+    WHERE q.section = ? AND e.time_spent_seconds IS NOT NULL
+    GROUP BY q.skill
+    ORDER BY AVG(e.time_spent_seconds) DESC, COUNT(*) DESC
+  `).all(userId, userId, userId, section)) as Record<string, unknown>[];
+  const pacingBySkill: MistakePacingStat[] = pacingRows.map((row) => ({ skill: String(row.skill),
+    averageTimeSeconds: Number(row.average_time_seconds), timedAttempts: Number(row.timed_attempts) }));
+  const timedAttempts = difficultyStats.reduce((sum, item) => sum + item.timedAttempts, 0);
+  const totalTimedSeconds = difficultyStats.reduce((sum, item) => sum + (item.averageTimeSeconds ?? 0) * item.timedAttempts, 0);
+
   return { mistakes, skills, summary: { total: mistakes.length,
     needsReview: mistakes.filter((item) => !item.latestCorrect).length,
     improved: mistakes.filter((item) => item.latestCorrect).length,
-    repeated: mistakes.filter((item) => item.mistakeCount > 1).length } };
+    repeated: mistakes.filter((item) => item.mistakeCount > 1).length,
+    averageTimeSeconds: timedAttempts ? Math.round(totalTimedSeconds / timedAttempts) : null,
+    timedAttempts }, difficultyStats, pacingBySkill };
 }
 
 export async function saveMistakeJournalEntry(

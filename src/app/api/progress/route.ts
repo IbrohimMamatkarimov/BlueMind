@@ -26,7 +26,10 @@ export async function GET() {
         AND NOT EXISTS (SELECT 1 FROM study_results h WHERE h.user_id = p.user_id AND h.source = 'qbank' AND h.source_id = p.id)
     ) SELECT id, source, source_id AS "sourceId", title, section, module, mode,
       full_exam_id AS "fullExamId", correct_count AS "correctCount", total, completed_at AS "completedAt",
-      COALESCE((SELECT jsonb_agg(jsonb_build_object('skill', q->>'skill', 'isCorrect', q->'isCorrect'))
+      COALESCE((SELECT jsonb_agg(jsonb_build_object(
+        'domain', q->>'domain', 'skill', q->>'skill', 'difficulty', q->>'difficulty',
+        'questionType', q->>'questionType', 'isCorrect', q->'isCorrect',
+        'timeSpentSeconds', q->'timeSpentSeconds'))
         FROM jsonb_array_elements(questions) q), '[]'::jsonb) AS questions
       FROM history WHERE total > 0 ORDER BY completed_at DESC`)
       .all(user.id, user.id, user.id) as StudyEntry[];

@@ -10,8 +10,10 @@ export async function POST(req: NextRequest, { params }: { params: { setId: stri
   }
   const id = typeof body.submissionId === "string" && /^[a-zA-Z0-9_-]{8,100}$/.test(body.submissionId) ? body.submissionId : null;
   const mode = ["timed", "untimed", "exam"].includes(body.mode) ? body.mode : "timed";
+  const questionTimes = body.questionTimes && typeof body.questionTimes === "object" && !Array.isArray(body.questionTimes)
+    ? body.questionTimes as Record<string, unknown> : {};
   try {
-    const result = await gradeBankSet(user.id, params.setId, body.answers, body.preview === true, user.isAdmin, id ? { id, mode } : undefined);
+    const result = await gradeBankSet(user.id, params.setId, body.answers, body.preview === true, user.isAdmin, id ? { id, mode } : undefined, questionTimes);
     if (!result) return NextResponse.json({ error: "Practice set not found" }, { status: 404 });
     return NextResponse.json(result);
   } catch {

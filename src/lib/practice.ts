@@ -182,7 +182,8 @@ export async function gradePracticeAnswer(
   questionId: string,
   selectedAnswer: string | null,
   database = db,
-  sessionId?: string
+  sessionId?: string,
+  timeSpentSeconds?: number
 ): Promise<GradePracticeResult | null> {
   const q = (await database
     .prepare(
@@ -217,6 +218,11 @@ export async function gradePracticeAnswer(
       )
       .get(userId, sessionId, questionId)) as { is_correct: number } | undefined;
     if (saved) {
+      if (Number.isFinite(timeSpentSeconds)) {
+        await database.prepare(`UPDATE practice_attempts SET time_spent_seconds = ?
+          WHERE user_id = ? AND session_id = ? AND question_id = ?`)
+          .run(Math.max(0, Math.min(3600, Math.round(timeSpentSeconds!))), userId, sessionId, questionId);
+      }
       return {
         questionId: q.id,
         isCorrect: !!saved.is_correct,
@@ -258,8 +264,8 @@ export async function gradePracticeAnswer(
   await database
     .prepare(
       `INSERT INTO practice_attempts
-         (id, user_id, question_id, session_id, section, skill, selected_answer, correct_answer, is_correct, attempt_number)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+         (id, user_id, question_id, session_id, section, skill, selected_answer, correct_answer, is_correct, time_spent_seconds, attempt_number)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
     .run(
       newId("pa"),
@@ -271,6 +277,7 @@ export async function gradePracticeAnswer(
       selectedAnswer,
       q.correct_answer,
       isCorrect ? 1 : 0,
+      Number.isFinite(timeSpentSeconds) ? Math.max(0, Math.min(3600, Math.round(timeSpentSeconds!))) : null,
       Number(priorAttempts) + 1
     );
 

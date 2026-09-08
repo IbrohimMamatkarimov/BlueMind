@@ -210,6 +210,7 @@ async function runMigrations(client: PoolClient) {
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS session_id TEXT",
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS selected_answer TEXT",
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS correct_answer TEXT",
+    "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS time_spent_seconds INTEGER",
     "CREATE UNIQUE INDEX IF NOT EXISTS idx_practice_attempts_session_question ON practice_attempts(user_id, session_id, question_id) WHERE session_id IS NOT NULL",
     // Learning-system fields added after the original Mistakes Notebook and
     // Vocabulary tables shipped. These are safe no-ops on fresh databases.

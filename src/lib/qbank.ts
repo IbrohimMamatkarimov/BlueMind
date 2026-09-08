@@ -481,8 +481,11 @@ export interface GradedBankQuestion {
   questionText: string;
   imageData: string | null;
   choices: { id: string; text: string; imageData?: string | null }[];
+  domain: string;
   skill: string;
   difficulty: string;
+  questionType: string;
+  timeSpentSeconds?: number;
   selectedAnswer: string | null;
   correctAnswer: string;
   isCorrect: boolean;
@@ -509,7 +512,8 @@ export async function gradeBankSet(
   answers: Record<string, string | null>,
   preview: boolean,
   isAdmin = false,
-  submission?: { id: string; mode: string }
+  submission?: { id: string; mode: string },
+  questionTimes: Record<string, unknown> = {}
 ): Promise<BankGradeResult | null> {
   const set = await loadSet(userId, setId, isAdmin);
   if (!set) return null;
@@ -529,8 +533,12 @@ export async function gradeBankSet(
       questionText: q.question_text,
       imageData: q.image_data ?? null,
       choices: JSON.parse(q.choices),
+      domain: q.domain,
       skill: q.skill,
       difficulty: q.difficulty,
+      questionType: q.question_type,
+      timeSpentSeconds: typeof questionTimes[q.id] === "number" && Number.isFinite(questionTimes[q.id])
+        ? Math.max(0, Math.min(3600, Math.round(questionTimes[q.id] as number))) : undefined,
       selectedAnswer: selected,
       correctAnswer: q.correct_answer,
       isCorrect,
@@ -551,7 +559,7 @@ export async function gradeBankSet(
     // timed set shouldn't brand it "incorrect" in the bank listing.
     for (const r of results) {
       if (r.selectedAnswer === null) continue;
-      await gradePracticeAnswer(userId, r.questionId, r.selectedAnswer, tx, setId);
+      await gradePracticeAnswer(userId, r.questionId, r.selectedAnswer, tx, setId, r.timeSpentSeconds);
     }
     await tx
       .prepare(

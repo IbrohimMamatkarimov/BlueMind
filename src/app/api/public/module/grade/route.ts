@@ -21,6 +21,8 @@ export async function POST(req: NextRequest) {
   if (rows.length === 0) return NextResponse.json({ error: "Module not found" }, { status: 404 });
 
   let correctCount = 0;
+  const questionTimes = body.questionTimes && typeof body.questionTimes === "object" && !Array.isArray(body.questionTimes)
+    ? body.questionTimes as Record<string, unknown> : {};
   const results = rows.map((q) => {
     const selected: string | null = typeof answers[q.id] === "string" ? answers[q.id] : null;
     // Student-produced-response questions ("grid-ins") accept any
@@ -33,8 +35,12 @@ export async function POST(req: NextRequest) {
       questionText: q.question_text,
       imageData: q.image_data ?? null,
       choices: JSON.parse(q.choices),
+      domain: q.domain,
       skill: q.skill,
       difficulty: q.difficulty,
+      questionType: q.question_type,
+      timeSpentSeconds: typeof questionTimes[q.id] === "number" && Number.isFinite(questionTimes[q.id])
+        ? Math.max(0, Math.min(3600, Math.round(questionTimes[q.id] as number))) : undefined,
       selectedAnswer: selected,
       correctAnswer: q.correct_answer,
       isCorrect,
