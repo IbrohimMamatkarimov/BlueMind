@@ -28,6 +28,25 @@ underscores) for a fill-in-the-blank. For Reading & Writing, `passageText` is
 the left pane and `questionText` is the question stem; paired passages use
 `Text 1` / `Text 2` headings and student notes are bullet lines.
 
+## Checking the markup
+
+The importer validates structure, not markup. Check the markup with:
+
+```bash
+npm run mocks:check
+```
+
+That renders every math span through the real `MathText` pipeline and fails on
+three things the importer lets through but a student would see: an unbalanced
+`$`, a span KaTeX rejects (the app quietly prints such a span as raw LaTeX
+source in gray), and English prose caught inside a span. Pass a folder to check
+just one set: `npm run mocks:check -- content/mocks/2026-march-us-b`.
+
+**Write money in words.** `$` is *always* a math delimiter here — `splitMath`
+has no escape handling, so `\$8.00` is exactly as broken as `$8.00`. A currency
+sign either vanishes into a math span or pairs up with a later one and swallows
+the sentence between them. Write `8 dollars`, as every existing set does.
+
 ## Available sets
 
 | Folder | Test | Questions |
