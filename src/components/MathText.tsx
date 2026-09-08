@@ -185,7 +185,11 @@ function splitFormatting(input: string): FormatSegment[] {
   return segments;
 }
 
-function renderKatex(src: string, block: boolean): string {
+/** Turns the raw contents of a math span into the exact string KaTeX is
+ * asked to render. Exported so src/scripts/check-mocks.ts can validate
+ * authored content against the real pipeline rather than a copy of it —
+ * a copy is what let the \text{ m/s} bug reach the mocks unnoticed. */
+export function preprocessMathForKatex(src: string): string {
   // <= / >= aren't valid LaTeX on their own (KaTeX would render them as
   // separate < and = glyphs, not ≤) — convert to the real comparison
   // macros first so typing plain ASCII inside $...$ still gets the correct
@@ -194,9 +198,12 @@ function renderKatex(src: string, block: boolean): string {
   // Convert any bare "/" division left inside the LaTeX into a real
   // stacked \frac{}{} — see convertSlashesToFrac's own doc for why this is
   // safe to do unconditionally here (unlike in plain prose).
-  const withFractions = convertSlashesToFrac(normalized);
+  return convertSlashesToFrac(normalized);
+}
+
+function renderKatex(src: string, block: boolean): string {
   try {
-    return katex.renderToString(withFractions, {
+    return katex.renderToString(preprocessMathForKatex(src), {
       // strict + throwOnError:false still lets KaTeX dump its own red
       // "parse error" HTML inline for malformed input (e.g. leftover
       // corrupted data from before the toolbar fix) — catch that case
@@ -221,20 +228,35 @@ function renderKatex(src: string, block: boolean): string {
  *
  * Unlike normalizePlainMathNotation's safety net below (which deliberately
  * leaves bare "a/b" alone in plain prose — too risky: dates, ratios,
- * "and/or" all use "/" in ordinary English), there's no ambiguity here:
- * nothing inside a confirmed math segment is ever ordinary prose with a
- * coincidental slash. Every "/" found at this stage IS division and should
- * render as a fraction — this is exactly what was missing for extracted
- * choices like "$-1/6 - \sqrt{109}/6$": already real, already-$-wrapped
- * LaTeX (proven by \sqrt{109} rendering as a correct radical), but with a
- * literal "/" instead of \frac, so it displayed as a division slash
- * instead of a stacked fraction bar.
+ * "and/or" all use "/" in ordinary English), a "/" in math mode really is
+ * division and should render as a fraction — this is exactly what was
+ * missing for extracted choices like "$-1/6 - \sqrt{109}/6$": already
+ * real, already-$-wrapped LaTeX (proven by \sqrt{109} rendering as a
+ * correct radical), but with a literal "/" instead of \frac, so it
+ * displayed as a division slash instead of a stacked fraction bar.
+ *
+ * The one place inside a math segment where a "/" is NOT division is a
+ * text-mode group: "\text{ m/s}" is a unit label, and its slash is a
+ * literal character. Descending into those was an outright bug, not just
+ * a cosmetic one — \frac isn't legal in text mode at all, so KaTeX threw
+ * "Can't use function '\frac' in text mode" and renderKatex fell back to
+ * printing the whole equation as raw LaTeX source. TEXT_MODE_GROUP spans
+ * are therefore copied through untouched (a slash BETWEEN two such groups
+ * is still division: "\text{m}/\text{s}" becomes a real fraction).
  */
-function convertSlashesToFrac(latex: string): string {
+export function convertSlashesToFrac(latex: string): string {
   if (!latex.includes("/")) return latex;
   let result = "";
   let i = 0;
   while (i < latex.length) {
+    if (latex[i] === "\\") {
+      const group = matchTextModeGroup(latex, i);
+      if (group) {
+        result += latex.slice(i, group.nextIndex);
+        i = group.nextIndex;
+        continue;
+      }
+    }
     if (latex[i] === "/") {
       const left = captureFracOperandBackward(result);
       if (left) {
@@ -251,6 +273,25 @@ function convertSlashesToFrac(latex: string): string {
     i++;
   }
   return result;
+}
+
+/** Commands whose {...} argument KaTeX typesets as text, not math — so a
+ * "/" in there is a literal character (a unit like "m/s", a date, "and/or")
+ * and \frac is either illegal (\text and friends) or plain wrong (\mathrm,
+ * \operatorname, where it would stack a unit label into a fraction). */
+const TEXT_MODE_GROUP = /^\\(?:text|textbf|textit|mathrm|operatorname)\s*\{/;
+
+/** If a text-mode command starts at `start`, returns the index just past
+ * its closing brace so the caller can copy the whole group verbatim, or
+ * null if no such command is there. An unterminated group (malformed
+ * input, which KaTeX will reject either way) extends to the end of the
+ * span: everything after the unclosed brace is still text mode, so its
+ * slashes stay literal too. */
+function matchTextModeGroup(input: string, start: number): { nextIndex: number } | null {
+  const match = input.slice(start).match(TEXT_MODE_GROUP);
+  if (!match) return null;
+  const close = findMatchingBrace(input, start + match[0].length - 1);
+  return { nextIndex: close === -1 ? input.length : close + 1 };
 }
 
 /** Mirrors captureBaseBackward, but for a fraction's left-hand operand:
@@ -304,9 +345,9 @@ function captureFracOperandForward(input: string, start: number): { text: string
   return { text: m[0], nextIndex: start + m[0].length };
 }
 
-type Segment = { type: "text" | "inline" | "block"; value: string };
+export type Segment = { type: "text" | "inline" | "block"; value: string };
 
-function splitMath(input: string): Segment[] {
+export function splitMath(input: string): Segment[] {
   const segments: Segment[] = [];
   let i = 0;
   let buffer = "";
@@ -367,7 +408,7 @@ function splitMath(input: string): Segment[] {
  * ordinary non-math text (dates, ratios in a reading passage, code-like
  * snippets), so a regex would cause more harm (mangled prose) than good.
  */
-function normalizePlainMathNotation(input: string): string {
+export function normalizePlainMathNotation(input: string): string {
   const parts = splitMath(input);
   return parts
     .map((part) => {
@@ -555,7 +596,7 @@ function findMatchingParen(str: string, openIdx: number): number {
  * — a real word anywhere in the choice ("For example", "Rooftop hives are
  * illegal") bails out to the normal, conservative rendering path instead.
  */
-function convertMathOnlyChoice(input: string): string {
+export function convertMathOnlyChoice(input: string): string {
   const trimmed = input.trim();
   if (!trimmed || trimmed.includes("$")) return normalizePlainMathNotation(input); // already real LaTeX, or empty — don't touch
   if (!looksLikePureMathExpression(trimmed)) return normalizePlainMathNotation(input);
@@ -605,6 +646,16 @@ function toLatexFragment(input: string): string {
     }
     if (input[i] === "*") {
       i++; // implicit multiplication — "2*sqrt(190)" reads as "2√190", no visible dot
+      continue;
+    }
+    if (input[i] === "%") {
+      // "%" starts a comment in LaTeX, so an unescaped one silently eats
+      // the rest of the span: a "35%" answer choice became "$35%$" and
+      // rendered as a bare "35", with the sign the choice is *about*
+      // missing. looksLikePureMathExpression admits "%", so this is
+      // reachable for every percentage choice.
+      result += "\\%";
+      i++;
       continue;
     }
     result += input[i];

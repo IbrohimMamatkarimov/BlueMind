@@ -31,11 +31,16 @@ they do not implement College Board's adaptive routing or scaled scoring.
 
 ## Progress and design checks
 
-Run the focused session, accuracy, retry, rollback, and user-isolation checks:
+Run the focused session, accuracy, retry, rollback, user-isolation, and math
+rendering checks:
 
 ```sh
-node --import tsx --test --test-isolation=none tests/test-session.test.ts tests/progress-summary.test.ts tests/study-history.test.ts
+node --import tsx --test --test-isolation=none tests/test-session.test.ts tests/progress-summary.test.ts tests/study-history.test.ts tests/math-text.test.ts
 ```
+
+`math-text.test.ts` renders its expectations through real KaTeX, so it catches
+the preprocessing in `MathText.tsx` producing LaTeX that KaTeX rejects — which
+shows up in the app as an equation printed as raw source instead of an error.
 
 With a development preview running, Playwright on `NODE_PATH`, and Chrome available:
 
