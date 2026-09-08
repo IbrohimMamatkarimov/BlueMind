@@ -64,13 +64,6 @@ fast-forward, so resolve these by hand first (git checkout -- <file>
 discards one)."
   fi
 
-  local untracked
-  untracked="$(git ls-files --others --exclude-standard | wc -l)"
-  if [ "$untracked" -gt 0 ]; then
-    echo "$untracked untracked path(s) present (scp'd mocks, scratch files) -- left alone:"
-    git ls-files --others --exclude-standard | sed 's/^/    /' | head -10
-  fi
-
   local branch lock_before lock_after before after
   branch="$(git rev-parse --abbrev-ref HEAD)"
   [ "$branch" = "main" ] || fail "server is on branch '$branch', expected main."
@@ -79,8 +72,39 @@ discards one)."
   before="$(git rev-parse HEAD)"
 
   if [ "$pull" = "1" ]; then
+    git fetch origin main -q
+
+    # Mocks are scp'd here to be imported, and the same files usually get
+    # committed later. Git then refuses to fast-forward over its own
+    # incoming files ("untracked working tree files would be overwritten").
+    # Where the scp'd copy carries the same content git is about to install
+    # -- including when only CRLF/LF differs, which is every scp from
+    # Windows -- dropping it loses nothing, so clear it and carry on. A copy
+    # that genuinely differs is real work nobody has committed: stop.
+    local f a b clash=0 dropped=0
+    while IFS= read -r f; do
+      [ -n "$f" ] || continue
+      git cat-file -e "origin/main:$f" 2>/dev/null || continue   # not incoming
+      a="$(git hash-object "$f")"
+      b="$(git rev-parse "origin/main:$f")"
+      if [ "$a" = "$b" ] \
+        || diff -q <(git show "origin/main:$f") <(tr -d '\r' < "$f") >/dev/null 2>&1; then
+        rm -f "$f"
+        dropped=$((dropped + 1))
+      else
+        echo "    differs from the committed version: $f" >&2
+        clash=1
+      fi
+    done < <(git ls-files --others --exclude-standard)
+
+    if [ "$clash" = "1" ]; then
+      fail "files on the server differ from the versions git is about to
+install. Nothing was changed. Copy them somewhere safe, delete them here,
+then re-run."
+    fi
+    [ "$dropped" -eq 0 ] || say "Dropped $dropped uploaded file(s) already committed to git"
+
     say "Pulling main"
-    git fetch origin main
     # --ff-only on purpose: the server is a read-only mirror of main. If this
     # ever refuses, someone committed on the server and that needs a human.
     git merge --ff-only origin/main || fail "server history has diverged from origin/main."

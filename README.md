@@ -68,6 +68,14 @@ Because Next.js compiles ahead of time, a plain `git pull` is not enough for cod
 changes — use `deploy.sh`. Mock content is the exception: `/api/public/mocks` is
 dynamic, so importing a mock on the server shows up without a rebuild.
 
+New mocks travel through git rather than `scp`: add the folder under
+`content/mocks/`, commit, push, deploy, then run `npm run db:import-mock --
+content/mocks/<folder>` on the server. Uploading a folder that later gets
+committed leaves a second, untracked copy in the way of the next pull; the
+deploy clears those automatically when they match what git is installing (an
+`scp` from Windows only differs by line endings) and stops if one genuinely
+differs.
+
 ## Architecture
 
 - `src/components/AppShell.tsx` and `Sidebar.tsx`: shared layout and navigation.
