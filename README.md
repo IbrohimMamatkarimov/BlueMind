@@ -50,8 +50,13 @@ server is a read-only mirror of it and never carries its own commits.
 To ship whatever is on `main`:
 
 ```sh
-ssh bluemind-vps "bash /var/www/bluemind/BlueMind/deploy.sh"
+ssh bluemind-vps bluemind-deploy
 ```
+
+`bluemind-deploy` is a one-line wrapper in `/usr/local/bin` that runs this repo's
+`deploy.sh`, so the deploy logic is version-controlled and updates with a pull.
+Pass `--no-pull` to rebuild what is already checked out (after editing `.env`,
+for example).
 
 `deploy.sh` fast-forwards `main`, runs `npm ci` only when `package-lock.json`
 moved, builds into `.next-staging` so the live site keeps serving the previous

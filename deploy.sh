@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 #
-# BlueMind deploy. Run on the VPS:
+# BlueMind deploy. From a laptop:
 #
-#   bash /var/www/bluemind/BlueMind/deploy.sh
+#   ssh bluemind-vps bluemind-deploy
 #
-# or from a laptop:
+# or on the VPS itself:
 #
-#   ssh bluemind-vps "bash /var/www/bluemind/BlueMind/deploy.sh"
+#   bluemind-deploy            # deploy whatever is on origin/main
+#   bluemind-deploy --no-pull  # rebuild what is already checked out
+#
+# bluemind-deploy is a thin wrapper in /usr/local/bin that runs this file,
+# so this repo copy is the single source of truth and updates with a pull.
 #
 # Pulls main, reinstalls dependencies only when the lockfile moved, builds
 # into a staging directory so the live site keeps serving the old build the
@@ -21,7 +25,15 @@
 set -Eeuo pipefail
 
 main() {
-  local app_dir staging live backup lock
+  local app_dir staging live backup lock pull=1 arg
+  for arg in "$@"; do
+    case "$arg" in
+      --no-pull) pull=0 ;;
+      -h|--help) sed -n '2,18p' "${BASH_SOURCE[0]}" | sed 's/^# \?//'; exit 0 ;;
+      *) echo "deploy: unknown option '$arg'" >&2; exit 2 ;;
+    esac
+  done
+
   app_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
   staging="$app_dir/.next-staging"
   live="$app_dir/.next"
@@ -55,11 +67,15 @@ resolve these by hand first (git checkout -- <file> to discard them)."
   lock_before="$(md5sum package-lock.json | cut -d' ' -f1)"
   before="$(git rev-parse HEAD)"
 
-  say "Pulling main"
-  git fetch origin main
-  # --ff-only on purpose: the server is a read-only mirror of main. If this
-  # ever refuses, someone committed on the server and that needs a human.
-  git merge --ff-only origin/main || fail "server history has diverged from origin/main."
+  if [ "$pull" = "1" ]; then
+    say "Pulling main"
+    git fetch origin main
+    # --ff-only on purpose: the server is a read-only mirror of main. If this
+    # ever refuses, someone committed on the server and that needs a human.
+    git merge --ff-only origin/main || fail "server history has diverged from origin/main."
+  else
+    say "Skipping pull (--no-pull) -- rebuilding what is checked out"
+  fi
 
   after="$(git rev-parse HEAD)"
   if [ "$before" = "$after" ]; then
