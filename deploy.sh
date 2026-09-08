@@ -54,10 +54,21 @@ main() {
 
   # ---------------------------------------------------------------- pull ---
   say "Checking working tree"
-  if [ -n "$(git status --porcelain)" ]; then
-    git status --short
-    fail "the server has uncommitted changes. Deploys only fast-forward, so
-resolve these by hand first (git checkout -- <file> to discard them)."
+  # Only TRACKED changes matter. A fast-forward pull cannot conflict with
+  # untracked files, and mock folders are scp'd here before being imported,
+  # so refusing on those would block every deploy after a mock upload.
+  if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+    git status --short --untracked-files=no
+    fail "the server has edits to files that git tracks. Deploys only
+fast-forward, so resolve these by hand first (git checkout -- <file>
+discards one)."
+  fi
+
+  local untracked
+  untracked="$(git ls-files --others --exclude-standard | wc -l)"
+  if [ "$untracked" -gt 0 ]; then
+    echo "$untracked untracked path(s) present (scp'd mocks, scratch files) -- left alone:"
+    git ls-files --others --exclude-standard | sed 's/^/    /' | head -10
   fi
 
   local branch lock_before lock_after before after
