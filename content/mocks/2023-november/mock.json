@@ -1,0 +1,1595 @@
+{
+  "$schema": "../mock.schema.json",
+  "mock": {
+    "title": "November 2023",
+    "subtitle": "Reading & Writing only",
+    "groupLabel": "2023",
+    "month": "November",
+    "year": 2023,
+    "source": "November 2023 digital SAT (Reading and Writing)",
+    "notes": "Transcribed from the \"2023.11 Computer Test — Reading and writing only\" reconstruction. The paper covers Reading & Writing only; there is no Math section in the source. Both modules are the standard 27 questions: the Routing module and the second, easier-path module (the source labels them \"Routing\" and \"Easier\"), and the answer key printed at the end of the source supplies every answer. Three questions depend on a figure, all extracted from the source PDF: Routing Q11 (science fair submissions graph), Routing Q13 (Chorotega forest patch size graph) and Module 2 Q13 (simulated aquifer and irrigation table — rebuilt from the two stacked images the source used, which overlapped and repeated a truncated row). Departures from the source: Routing Q11 and Q13 stems were garbled in the source text layer and are restored to the standard College Board wording; Routing Q13's passage ends mid-sentence in the source (\"Due to the Chorotega region's ______\") and is transcribed as-is; Routing Q16 was mislabelled a transitions question in the source although its choices test possessives, so it carries the Standard English Conventions stem; Routing Q9 choice C was truncated in the source and is completed as \"... the energy ladder model.\""
+  },
+  "modules": [
+    {
+      "section": "Reading and Writing",
+      "module": 1,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "*Dragon against Tiger* is an important work of Nihonga, or classical Japanese painting. Unlike Wada Eisaku, who adopted traditional European methods such as painting with oil on canvas, Hashimoto Gahō ______ traditional Japanese approaches. For instance, Hashimoto produced *Dragon against Tiger* by applying color pigments to a silk surface.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "overlooked"
+            },
+            {
+              "id": "B",
+              "text": "distrusted"
+            },
+            {
+              "id": "C",
+              "text": "embraced"
+            },
+            {
+              "id": "D",
+              "text": "released"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "\"Unlike\" sets Hashimoto against a painter who took up European methods, so Hashimoto must have taken up Japanese ones.",
+          "explanation": "The word \"Unlike\" contrasts Hashimoto with Wada Eisaku, who \"adopted\" European methods; the parallel verb for Hashimoto must therefore mean he adopted Japanese ones, and the example that follows — applying pigments to silk — confirms he used them. \"Embraced\" carries exactly that sense. \"Overlooked\" and \"distrusted\" would mean he avoided Japanese approaches, contradicting the example. \"Released\" would mean he let them go, which likewise reverses the relationship the example establishes."
+        },
+        {
+          "number": 2,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "Domesticated thousands of years ago in South America, the tomatillo deviates structurally from the wild plant it is descended from. Summer squash, another domesticated crop from the Americas, doesn't closely resemble any wild plant, and genetic research only recently ______ its ancestor to be the wild Johnny gourd.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "revealed"
+            },
+            {
+              "id": "B",
+              "text": "expanded"
+            },
+            {
+              "id": "C",
+              "text": "encouraged"
+            },
+            {
+              "id": "D",
+              "text": "petitioned"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Research that finally identified a hidden ancestor \"revealed\" it.",
+          "explanation": "Because summer squash \"doesn't closely resemble any wild plant,\" its ancestor was not obvious, and the sentence says genetic research settled the matter \"only recently\" — the verb must therefore mean *disclosed* or *showed*. \"Revealed\" fits both the meaning and the grammar of \"revealed its ancestor to be.\" \"Expanded\" would describe making the ancestor larger, which is not what research does to a lineage. \"Encouraged\" and \"petitioned\" both treat the gourd as something that can be urged or asked, which makes no sense for a plant identified by genetic analysis."
+        },
+        {
+          "number": 3,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "The following text is adapted from Anton Chekhov's 1904 play *The Cherry Orchard* (translated by Julius West in 1916).\n\nTROFIMOV: Believe me, Anya, believe me! I'm not thirty yet, I'm young, I'm still a student, but I have __underline__undergone__underline__ a great deal! I'm as hungry as the winter, I'm ill, I'm shaken... and where haven't I been—fate has tossed me everywhere!",
+          "questionText": "As used in the text, what does the word \"undergone\" most nearly mean?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Uncovered"
+            },
+            {
+              "id": "B",
+              "text": "Ignored"
+            },
+            {
+              "id": "C",
+              "text": "Experienced"
+            },
+            {
+              "id": "D",
+              "text": "Conveyed"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Trofimov lists hardships that have happened to him, so \"undergone\" means *experienced*.",
+          "explanation": "Everything after the blank — being hungry, ill, shaken, and tossed everywhere by fate — is something Trofimov has lived through rather than something he did to anything else, so \"undergone a great deal\" means he has been through a great deal. \"Experienced\" captures that passive endurance. \"Uncovered\" would mean he discovered these things, but he is their subject, not their investigator. \"Ignored\" reverses the point: he insists these hardships marked him. \"Conveyed\" would mean he communicated them, but he is describing what befell him, not what he reported."
+        },
+        {
+          "number": 4,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Text corpora such as the British National Corpus are enormous collections of electronically stored texts that can be used for empirical testing of hypotheses regarding the frequency of typical word usage. If one has a ______ that the word \"own\" has a high incidence in English, for example, an analysis of a corpus can support that hypothesis by showing that \"own\" is the eighth most commonly used adjective.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "synopsis"
+            },
+            {
+              "id": "B",
+              "text": "scheme"
+            },
+            {
+              "id": "C",
+              "text": "recognition"
+            },
+            {
+              "id": "D",
+              "text": "supposition"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The sentence itself calls the thing in the blank a \"hypothesis,\" and a supposition is a hypothesis.",
+          "explanation": "The clause that follows refers back to whatever fills the blank as \"that hypothesis,\" so the word must name an unproven idea awaiting empirical support. \"Supposition\" is precisely that. \"Synopsis\" means a summary, which is not something a corpus analysis would confirm or disconfirm. \"Scheme\" means a plan or scheme of action, not a claim about word frequency. \"Recognition\" would imply the fact is already established, which would leave nothing for the corpus to support."
+        },
+        {
+          "number": 5,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Medium",
+          "passageText": "Researchers have long hypothesized that woolly mammoths were hunted to extinction in North America by humans using spears with grooved tips known as Clovis points. One anthropologist set out to test this hypothesis. Using a mechanical spear-thrower, he launched spears with Clovis points into mounds of clay—substitutes for the animals' large bodies. The projectiles generally penetrated only a few inches into the clay, an amount insufficient to have harmed most woolly mammoths. This led the anthropologist to conclude that hunters using spears with Clovis points likely weren't the principal drivers of the extinction.",
+          "questionText": "Which choice best states the main purpose of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "To argue for the significance of new findings amid an ongoing debate among researchers"
+            },
+            {
+              "id": "B",
+              "text": "To discuss the advantages and disadvantages of the method used in an experiment"
+            },
+            {
+              "id": "C",
+              "text": "To summarize two competing hypotheses and a major finding associated with each one"
+            },
+            {
+              "id": "D",
+              "text": "To describe an experiment whose results cast doubt on an established hypothesis"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The text lays out a long-standing hypothesis, describes a test of it, and reports a result that undercuts it.",
+          "explanation": "The structure is a straight line: researchers \"have long hypothesized\" the Clovis-hunting explanation, an anthropologist tested it with clay mounds, the spears barely penetrated, and he concluded Clovis hunters \"likely weren't the principal drivers.\" That is an experiment casting doubt on an established hypothesis. Choice A is wrong because no ongoing debate among researchers is presented — only one long-held view. Choice B is wrong because the text never weighs the method's strengths against its weaknesses. Choice C is wrong because only one hypothesis appears, not two competing ones."
+        },
+        {
+          "number": 6,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Medium",
+          "passageText": "In what is now Washington state, the Tulalip Tribes operate the Hibulb Cultural Center. Relying on traditional knowledge to guide the design of exhibits, this institution presents Tulalip history and culture to the tribes' citizens. The Turtle Mountain Band of Chippewa, a tribe in North Dakota, employs a similar strategy in its own cultural center. Both centers contrast with museums that aren't Indigenous-led; when displaying Indigenous artifacts, such museums tend to anticipate mainly non-Indigenous audiences and rely on Euro-centric strategies for designing exhibits.",
+          "questionText": "Which choice best describes the overall structure of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It describes how tribal cultural centers designed exhibits of a particular set of artifacts, then analyzes how non-Indigenous institutions designed exhibits of the same artifacts."
+            },
+            {
+              "id": "B",
+              "text": "It examines how tribal citizens respond to exhibits at tribal cultural centers, then speculates how non-Indigenous audiences would respond to the same exhibits."
+            },
+            {
+              "id": "C",
+              "text": "It discusses two cultural centers operated by tribes, then compares them with non-Indigenous institutions that present Indigenous exhibits."
+            },
+            {
+              "id": "D",
+              "text": "It outlines an early strategy for exhibit design used by one tribal cultural center, then explains a newer strategy used by a different tribal cultural center."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Two tribal centers are described, then explicitly contrasted with museums that aren't Indigenous-led.",
+          "explanation": "The first three sentences introduce the Hibulb Cultural Center and the Turtle Mountain Band's center, noting that both rely on traditional knowledge; the last sentence says \"Both centers contrast with museums that aren't Indigenous-led\" and explains how. That is a two-part structure of description followed by comparison. Choice A fails because no single shared set of artifacts is discussed. Choice B fails because visitor responses are never examined. Choice D fails because the two tribal centers are presented as using a similar strategy, not an earlier and a newer one."
+        },
+        {
+          "number": 7,
+          "domain": "Craft and Structure",
+          "skill": "Cross-Text Connections",
+          "difficulty": "Hard",
+          "passageText": "Text 1\n\nThe University of Wisconsin and the online class provider Coursera are two of the many institutions offering training programs in entrepreneurship. But what results do such programs produce? In a study of aspiring entrepreneurs in the United States, researcher James Chrisman and colleagues addressed this question and reported that participants who received entrepreneurial training showed high performance at their jobs.\n\nText 2\n\nWhile studies of entrepreneurial training typically report positive results, a close look reveals widespread methodological shortcomings that could explain those findings. These studies are plagued by insufficient sample sizes, a lack of control groups, and failures to establish pretraining baselines for the measured attributes of participants.",
+          "questionText": "Based on the texts, the author of Text 2 would most likely want to know if Chrisman and colleagues took steps to preclude which potential objection to the finding described in Text 1?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The participants would have shown greater responsiveness to the training if the training sessions had lasted longer."
+            },
+            {
+              "id": "B",
+              "text": "The participants would have been less likely to show high performance at their jobs if the study sample size had been smaller."
+            },
+            {
+              "id": "C",
+              "text": "The participants would have shown high performance at their jobs regardless of whether they received the training."
+            },
+            {
+              "id": "D",
+              "text": "The participants would have responded to the training differently if they had not known that they were participating in a study."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Text 2's complaints — no control groups, no pretraining baselines — are exactly what is needed to rule out that the participants would have performed well anyway.",
+          "explanation": "A control group and a pretraining baseline exist to answer one question: would these participants have done just as well without the training? That is the objection in choice C, and it is the one Text 2's listed shortcomings leave open. Choice A concerns session length, which Text 2 never raises. Choice B inverts the sample-size worry — Text 2 objects that samples are too small, not that a smaller sample would have lowered performance. Choice D concerns participants' awareness of being studied, a different methodological issue that Text 2 does not mention."
+        },
+        {
+          "number": 8,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "\"Cocoa\" is an example of a loanword—that is, a word that originated in one language and was later adopted by another. The word came to English indirectly from *cacao*, the Spanish word for the plant that chocolate is made from. Spanish had borrowed it from Nahuatl, an Indigenous language of Central Mexico, in which the word's original form is *cacahuatl*. \"Puma\" is also Indigenous in origin and entered English through Spanish. But in this case, the original source was Quechua, a language of South America, in which the word for the mountain lion is also *puma*.",
+          "questionText": "The author makes which point about the Spanish language?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It has served as a medium through which Indigenous languages have influenced English."
+            },
+            {
+              "id": "B",
+              "text": "Its contribution to English vocabulary roughly equals the collective contribution by Indigenous languages."
+            },
+            {
+              "id": "C",
+              "text": "It adopted Nahuatl and Quechua words in approximately equal numbers."
+            },
+            {
+              "id": "D",
+              "text": "It has borrowed words from Indigenous languages and contributed words to them."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Both examples travel the same route: an Indigenous language to Spanish to English.",
+          "explanation": "\"Cocoa\" reached English \"indirectly\" via Spanish *cacao*, which Spanish had taken from Nahuatl; \"puma\" likewise \"entered English through Spanish\" from Quechua. In both cases Spanish is the intermediary, which is what choice A states. Choice B compares the overall size of Spanish and Indigenous contributions to English, a comparison the text never makes. Choice C claims equal numbers of Nahuatl and Quechua borrowings, but the text gives one example of each and no counts. Choice D adds a claim about Spanish words entering Indigenous languages, which the text does not discuss."
+        },
+        {
+          "number": 9,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "In Bolivia, use of solid fuel (e.g., coal, wood) as a share of total household fuel use fell by more than half between 2000 and 2015; such shifts are typically explained by appeal to the energy ladder, a model holding that fuel choice is mediated mainly by household income (specifically, high-technology fuels displace solid fuels as incomes rise). Richard Hosier and Jeffrey Dowd's study of fuel use in Zimbabwe shows how reductive this model is, however: although income of course constrained fuel choice, several factors, including the difficulty of acquiring fuel sources, influenced decisions.",
+          "questionText": "Based on the text, the author would most likely agree with which statement about household income?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It can explain some but not all of the differences in fuel choice across households."
+            },
+            {
+              "id": "B",
+              "text": "It is often said to influence household fuel choice but actually does not."
+            },
+            {
+              "id": "C",
+              "text": "It affects household fuel choice but not for the reasons assumed by the energy ladder model."
+            },
+            {
+              "id": "D",
+              "text": "It constrains the amount of fuel households use but not the type of fuel they use."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Income \"of course constrained fuel choice,\" but \"several factors\" also influenced it — so income explains part of the picture, not all of it.",
+          "explanation": "The author calls the energy ladder \"reductive\" precisely because it treats income as the main mediator, and then concedes that income does constrain choice while adding that other factors, such as the difficulty of acquiring fuel, also matter. That is the partial-explanation position in choice A. Choice B goes too far: the author explicitly grants that income constrains choice. Choice C misstates the objection — the author disputes income's sufficiency, not the mechanism by which it operates. Choice D introduces a distinction between amount and type of fuel that the text never draws."
+        },
+        {
+          "number": 10,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Medium",
+          "passageText": "The following text is adapted from Daniel Defoe's 1704 nonfiction book *The Storm*.\n\nThe sermon is a sound of words spoken to the ear, and prepared only for present meditation, and extends no farther than the strength of memory can convey it; a book printed is a record, remaining in every man's possession, always ready to renew its acquaintance with his memory, and always ready to be produced as an authority or voucher to any reports he makes out of it, and conveys its contents for ages to come, to the eternity of mortal time when the author is forgotten in his grave.",
+          "questionText": "Which choice best states the main idea of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Words committed to print have a greater permanence than messages that are merely spoken aloud."
+            },
+            {
+              "id": "B",
+              "text": "People are less likely to forget a message when they hear it spoken aloud than they are when they read it in print."
+            },
+            {
+              "id": "C",
+              "text": "Unless a spoken message is delivered by an expert, it can be safely ignored."
+            },
+            {
+              "id": "D",
+              "text": "Most authors have little hope of being remembered well past their lifetimes."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The sermon lasts only as long as memory holds it; the printed book endures \"for ages to come.\"",
+          "explanation": "Defoe builds a single contrast: spoken words are \"prepared only for present meditation\" and reach no farther than memory, while a printed book is \"a record\" that survives even \"when the author is forgotten in his grave.\" That is a claim about permanence, as choice A says. Choice B reverses the contrast. Choice C introduces expertise, which Defoe never mentions. Choice D takes the closing image about the forgotten author as the point, but that image serves to emphasize how long the *book* lasts, not how briefly the author is remembered."
+        },
+        {
+          "number": 11,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "A student is researching the trends in the topics submitted to a national science fair for high school students. The graph shows the number of submissions by topic that were made each year. Based on the data in the graph, the student claims that there were more medicine and health research topics submitted in 2019 than in any other year.",
+          "questionText": "Which choice most effectively uses data from the graph to support the underlined claim?",
+          "image": "m1q11_science_fair.png",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In 2016, the number of cellular and molecular biology topic submissions was the same as the number of animal science topic submissions."
+            },
+            {
+              "id": "B",
+              "text": "In 2019, there were more physics and space science topic submissions than there were medicine and health topic submissions."
+            },
+            {
+              "id": "C",
+              "text": "The lowest number of animal science topic submissions in a year was approximately 95 in 2016."
+            },
+            {
+              "id": "D",
+              "text": "The highest number of medicine and health topic submissions during the period shown is approximately 285 in 2019."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Only choice D reports the medicine and health peak, and it places that peak in 2019 — exactly the claim.",
+          "explanation": "The claim is about one series, medicine and health, and one year, 2019, so the supporting evidence must show that this series reaches its maximum in 2019. Choice D does that: about 285 submissions in 2019, the highest value on that curve. Choice A compares two other series in a different year and says nothing about medicine and health. Choice B contradicts the graph, where medicine and health is far above physics and space science in 2019, and in any case would undercut rather than support the claim. Choice C reports the animal science minimum, and misreads it as well — animal science sits near 50 in 2016, not 95."
+        },
+        {
+          "number": 12,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "*Claudine at School* is a 1900 novel by Colette, originally written in French. The narrator is a fifteen-year-old girl living in a small, rural town. She presents herself as having a strong emotional attachment to the surrounding forests: ______",
+          "questionText": "Which quotation from a translation of *Claudine at School* most effectively illustrates the claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "\"If I had a Mamma, I know very well that she would not have let me stay [in Montigny] twenty-four hours. But Papa—he doesn't notice anything and doesn't bother about me.\""
+            },
+            {
+              "id": "B",
+              "text": "\"And then there are my favourites, the great woods that are sixteen and twenty years old. It makes my heart bleed to see one of those cut down.\""
+            },
+            {
+              "id": "C",
+              "text": "\"Green meadows make rifts in [the woods] here and there, so do little patches of cultivation. But these do not amount to much, for the magnificent woods devour everything. As a result, this lovely region is atrociously poor and its few scattered farms provide just the requisite number of red roofs to set off the velvety green of the woods.\""
+            },
+            {
+              "id": "D",
+              "text": "\"Under the firs, you light a fire, even in summer, because it's forbidden; you cook any old thing, an apple, a pear, a potato stolen from a field, some wholemeal bread if you've nothing better.\""
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"My favourites\" and \"it makes my heart bleed\" are direct statements of emotional attachment to the woods.",
+          "explanation": "The claim requires a quotation in which the narrator expresses feeling toward the forests, not merely describes them. Choice B supplies both halves — she calls the great woods \"my favourites\" and says seeing one cut down makes her heart bleed. Choice A is about her parents and her staying in Montigny, with no reference to the woods. Choice C describes the landscape and the region's poverty in observational terms rather than emotional ones. Choice D recounts an activity in the forest but conveys mischief rather than attachment."
+        },
+        {
+          "number": 13,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "passageText": "To understand the extent of deforestation in the Chorotega region of Costa Rica, Juan Pablo Arroyo-Mora and colleagues used historical aerial photography and remote sensing data to track changes in the annual mean size of forest patches across different land use capability classes (categories that indicate possible uses of forest land). Due to the Chorotega region's ______",
+          "questionText": "Which choice most effectively uses data from the graph to complete the text?",
+          "image": "m1q13_forest_patches.png",
+          "choices": [
+            {
+              "id": "A",
+              "text": "difference between mean forest patch size in Class VIII and in Class VI in 2000."
+            },
+            {
+              "id": "B",
+              "text": "steady increase in mean forest patch size from 1960 to 1979, followed by a more sudden increase in 1986 for all classes."
+            },
+            {
+              "id": "C",
+              "text": "increase in mean forest patch size after 1986 in all classes."
+            },
+            {
+              "id": "D",
+              "text": "similarity in mean forest patch size in Class VIII and Class VII in 1986."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "In 2000 the graph separates Class VIII (about 62 hectares) from Class VI (about 35 hectares) — a real difference the other options misdescribe.",
+          "explanation": "Reading the 2000 column, Class VIII sits near 62 hectares and Class VI near 35, so choice A describes a difference the graph actually shows. Choice B is wrong twice over: patch size is flat to slightly declining from 1960 to 1979, and 1986 brings a sharp *drop*, not an increase. Choice C describes the post-1986 recovery, which the graph does show, but the graph's own values make choice A the accurate reading the question's blank calls for; C also overstates it as applying to \"all classes\" uniformly. Choice D claims Class VIII and Class VII are similar in 1986, but Class VIII is the highest of the three that year while Class VII is lower."
+        },
+        {
+          "number": 14,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "Veronica L. Bura, Akito Y. Kawahara, and Jayne E. Yack investigated the evolution and function of sound production in silk moth and hawk moth caterpillars. They found that during harmless simulated attacks on isolated caterpillars, 33 percent of the tested species produced sound, which ranged from clicks in *Actias luna* to whistles in *Rhodinia fugax*. Although some insects use sound to communicate with members of the same species, the researchers claim that the caterpillar sounds recorded in their study are directed primarily at predators.",
+          "questionText": "Which finding, if true, would most directly support Bura and colleagues' claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In most cases, the sound that a caterpillar species produced during simulated attacks was not produced by other caterpillar species during simulated attacks."
+            },
+            {
+              "id": "B",
+              "text": "Chickens and yellow warblers, two predators of caterpillars, have been observed to stop their attacks in response to caterpillar sounds."
+            },
+            {
+              "id": "C",
+              "text": "Each caterpillar species tended to produce one sound during simulated attacks, although individuals occasionally made a variety of other sounds during simulated attacks as well."
+            },
+            {
+              "id": "D",
+              "text": "Caterpillar clicks were emitted in a frequency detectable by birds that prey on caterpillars, but caterpillar whistles were not."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Predators breaking off their attacks when they hear the sounds is direct evidence the sounds are aimed at predators.",
+          "explanation": "The claim is that the sounds target predators rather than other caterpillars. Choice B shows two actual predators responding to the sounds by abandoning attacks, which is the most direct support available. Choice A shows the sounds are species-specific, which if anything suggests same-species communication. Choice C describes the variety of sounds per species and says nothing about audience. Choice D would support the claim only for clicks while undercutting it for whistles, making it weaker and partly contradictory."
+        },
+        {
+          "number": 15,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "In dialects of English spoken in Scotland, the \"r\" sound is strongly emphasized when it appears at the end of syllables (as in \"car\") or before other consonant sounds (as in \"bird\"). English dialects of the Upland South, a region stretching from Oklahoma to western Virginia, place similar emphasis on \"r\" at the ends of syllables and before other consonant sounds. Historical records show that the Upland South was colonized largely by people whose ancestors came from Scotland. Thus, linguists have concluded that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "the English dialects spoken in the Upland South acquired their emphasis on the \"r\" sound from dialects spoken in Scotland."
+            },
+            {
+              "id": "B",
+              "text": "emphasis on the \"r\" sound will eventually spread from English dialects spoken in the Upland South to dialects spoken elsewhere."
+            },
+            {
+              "id": "C",
+              "text": "the English dialects spoken in Scotland were influenced by dialects spoken in the Upland South."
+            },
+            {
+              "id": "D",
+              "text": "people from Scotland abandoned their emphasis on the \"r\" sound after relocating to the Upland South."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Settlers of Scottish descent plus a shared \"r\" feature points to the feature travelling from Scotland to the Upland South.",
+          "explanation": "The text supplies two premises — the two dialects share a distinctive treatment of \"r,\" and the Upland South was settled largely by people of Scottish ancestry — and the conclusion that follows is that the settlers brought the feature with them, as choice A says. Choice B predicts future spread, which no evidence in the text bears on. Choice C reverses the direction of influence, but the migration ran from Scotland to the Upland South. Choice D contradicts the second sentence, which states that Upland South dialects still emphasize \"r.\""
+        },
+        {
+          "number": 16,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "What makes the theremin a unique musical instrument? You play it without touching it: when you place your ______ the pitch will shift as your hands move through the air.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "hand's between the two antenna's,"
+            },
+            {
+              "id": "B",
+              "text": "hands between the two antennas,"
+            },
+            {
+              "id": "C",
+              "text": "hands' between the two antennas',"
+            },
+            {
+              "id": "D",
+              "text": "hands' between the two antennas,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Both nouns are simple plurals here, and neither one possesses anything, so neither takes an apostrophe.",
+          "explanation": "\"Hands\" is the plural object of \"place\" and \"antennas\" is the plural object of \"between\"; nothing in the sentence belongs to either noun, so no apostrophe is warranted. Choice B is the only option that leaves both plurals unmarked. Choice A makes \"hand's\" singular possessive and \"antenna's\" possessive as well. Choice C adds a plural possessive apostrophe to both nouns, and choice D adds one to \"hands\" — all three signal ownership that the sentence does not express."
+        },
+        {
+          "number": 17,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "Round Rock Chapter is one of the 110 chapters of the Navajo Nation (Naabeehó Bináhásdzo). The chapter, known as Tsé Nikaní in the Navajo language (Diné bizaad), was the subject of a profile ______ in the *Navajo Times* on February 13, 2014.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "appeared"
+            },
+            {
+              "id": "B",
+              "text": "appearing"
+            },
+            {
+              "id": "C",
+              "text": "appears"
+            },
+            {
+              "id": "D",
+              "text": "has appeared"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The sentence already has its main verb, \"was,\" so the blank needs a modifier, not a second finite verb.",
+          "explanation": "The main clause is \"The chapter … was the subject of a profile,\" which is grammatically complete. What follows must modify \"profile,\" and the participle \"appearing\" does that, giving \"a profile appearing in the *Navajo Times*.\" Choices A, C, and D are all finite verb forms, and inserting any of them creates a second main verb with no conjunction to join it, producing a run-on."
+        },
+        {
+          "number": 18,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "San Juan High School and Grand County High School are two of several Utah ______ enormous geoglyph of the letters SJ overlooks San Juan High, while a geoglyph of the letter G overlooks Grand County High.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "schools that have their own hillside geoglyphs. An"
+            },
+            {
+              "id": "B",
+              "text": "schools, that have their own hillside geoglyphs and an"
+            },
+            {
+              "id": "C",
+              "text": "schools that have their own hillside geoglyphs, an"
+            },
+            {
+              "id": "D",
+              "text": "schools, that have their own hillside geoglyphs, and an"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Two complete sentences meet here, so they need a period between them.",
+          "explanation": "\"San Juan High School and Grand County High School are two of several Utah schools that have their own hillside geoglyphs\" is a full sentence, and \"An enormous geoglyph of the letters SJ overlooks San Juan High, while …\" is another. Only choice A separates them with terminal punctuation. Choice C joins two independent clauses with a comma, a comma splice. Choices B and D also place a comma before the restrictive clause \"that have their own hillside geoglyphs,\" which should not be set off, and neither produces a grammatical join."
+        },
+        {
+          "number": 19,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Easy",
+          "passageText": "Deposits of crushed orange limestone and other organic matter lend the sand at Porto Ferro Beach in Italy an unusual orange tint that dazzles ______ they take a bit of sand home, though, it disturbs the beach's ecosystem by contributing to erosion.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "visitors, when"
+            },
+            {
+              "id": "B",
+              "text": "visitors and when"
+            },
+            {
+              "id": "C",
+              "text": "visitors when"
+            },
+            {
+              "id": "D",
+              "text": "visitors. When"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "A new sentence has to start at \"When,\" because what follows is a complete sentence of its own.",
+          "explanation": "Everything up to \"dazzles visitors\" is a complete sentence, and \"When they take a bit of sand home, though, it disturbs the beach's ecosystem\" is a second complete sentence with its own subject and verb. Choice D puts a period between them. Choices A and C run the two together without adequate punctuation, and choice B adds \"and\" without the comma or the sentence break the structure requires, leaving \"and when they take a bit of sand home, though, it disturbs\" ungrammatical."
+        },
+        {
+          "number": 20,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Consider the mechanics of the pinhole camera: light passes through a small hole, resulting in a focused projected image. A ray diagram reveals how this ______ the hole's small size restricts light to a single ray, all light passing through the hole can only arrive at a single destination, eliminating diffraction and ensuring a clear image.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "works because"
+            },
+            {
+              "id": "B",
+              "text": "works. Because"
+            },
+            {
+              "id": "C",
+              "text": "works, it's because"
+            },
+            {
+              "id": "D",
+              "text": "works: it's because"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"A ray diagram reveals how this works\" must end before the \"Because …, all light …\" sentence begins.",
+          "explanation": "The material after the blank is built as a subordinate clause followed by a main clause: \"Because the hole's small size restricts light to a single ray, all light passing through the hole can only arrive at a single destination.\" That construction needs to start its own sentence, which choice B provides. Choice A would leave \"because\" attached to the previous clause and then strand the second half. Choices C and D insert \"it's because\" before a subordinate clause, producing \"it's because the hole's small size restricts …, all light … can only arrive,\" which has no grammatical join between the two halves."
+        },
+        {
+          "number": 21,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "While the greater adjutant can be found in places like the Central Tanintharyi Coast in Myanmar and the Prek Toal Bird Sanctuary in Cambodia, more than 80 percent of this endangered stork species is found in Assam, India. There, wildlife biologist Dr. Purnima Devi Barman is on the front lines of conservation efforts that, through community involvement and scientific ______ aim to bring adjutants back from near extinction.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "study"
+            },
+            {
+              "id": "B",
+              "text": "study,"
+            },
+            {
+              "id": "C",
+              "text": "study:"
+            },
+            {
+              "id": "D",
+              "text": "study—"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The interrupting phrase opens with a comma after \"that,\" so it must close with a matching comma.",
+          "explanation": "\"Through community involvement and scientific study\" is a parenthetical inserted between the relative pronoun \"that\" and its verb \"aim,\" and the sentence already places a comma before it. Punctuation that brackets an interrupter has to match at both ends, so a comma is required after \"study.\" Choice A omits the closing punctuation entirely. Choices C and D substitute a colon and a dash for the closing comma, breaking the pair and, in the colon's case, wrongly promising a list or explanation."
+        },
+        {
+          "number": 22,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Easy",
+          "passageText": "In 1949, Frank Zamboni developed an ice rink resurfacing machine. As Zamboni's machine moved along the rink's surface, it first scraped off the top layer of ice. ______ it sprayed water into the deep grooves left behind by customers' skates. Lastly, it smoothed over the newly formed ice.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "For example,"
+            },
+            {
+              "id": "B",
+              "text": "Next,"
+            },
+            {
+              "id": "C",
+              "text": "Similarly,"
+            },
+            {
+              "id": "D",
+              "text": "In contrast,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"First … ______ … Lastly\" is a sequence, so the middle step needs a sequential transition.",
+          "explanation": "The paragraph walks through the machine's steps in order, signposted by \"first\" in the preceding sentence and \"Lastly\" in the following one; the blank marks the middle stage, which \"Next\" identifies. Choice A would present the spraying as an illustration of the scraping, but it is a separate step. Choice C would claim the two steps resemble each other, which misses the sequence. Choice D would set them in opposition, though they are consecutive parts of one process."
+        },
+        {
+          "number": 23,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• A lever is a simple machine consisting of a rigid beam and a fulcrum.\n• The fulcrum is the point about which the beam pivots.\n• The input force (effort) is the force applied to the lever.\n• The output force (load) is the force that the lever exerts on another object.\n• In first-class levers, the fulcrum is located between the effort and the load.\n• In second-class levers, the load is located between the effort and the fulcrum.",
+          "questionText": "The student wants to contrast first-class levers and second-class levers. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "In levers, the effort is the force applied to the lever; the load, in contrast, is the force that the lever exerts on another object."
+            },
+            {
+              "id": "B",
+              "text": "In first-class and second-class levers, the fulcrum and the load are in different locations."
+            },
+            {
+              "id": "C",
+              "text": "First-class levers are simple machines consisting of a rigid beam and a fulcrum, but then again, the same is true of second-class levers."
+            },
+            {
+              "id": "D",
+              "text": "In first-class levers, the fulcrum is located between the effort and the load, but in second-class levers, the load is located between the effort and the fulcrum."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Only choice D states each class's arrangement and sets the two against each other.",
+          "explanation": "A contrast of the two lever classes requires naming what differs: in first-class levers the fulcrum sits in the middle, in second-class levers the load does. Choice D supplies both halves joined by \"but.\" Choice A contrasts effort with load, not one lever class with the other. Choice B gestures at a difference in locations without saying what either arrangement is. Choice C names a similarity — both are simple machines — which is the opposite of the goal."
+        },
+        {
+          "number": 24,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Easy",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Richard Serra is an American artist.\n• He is known for his large metal sculptures.\n• His large sculpture *Open Ended* is made of weathering steel.\n• His large sculpture *Strike: To Roberta and Rudy* is made of hot-rolled steel.",
+          "questionText": "Which choice most effectively uses information from the given sentences to emphasize a difference between the two sculptures?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "*Open Ended* and *Strike: To Roberta and Rudy* are both large metal sculptures by artist Richard Serra."
+            },
+            {
+              "id": "B",
+              "text": "*Strike: To Roberta and Rudy* is one of artist Richard Serra's large metal sculptures."
+            },
+            {
+              "id": "C",
+              "text": "Artist Richard Serra is the creator of the weathering steel sculpture *Open Ended*."
+            },
+            {
+              "id": "D",
+              "text": "*Open Ended* is made from a different kind of steel than *Strike: To Roberta and Rudy*."
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "The notes differ on one point — weathering steel versus hot-rolled steel — and choice D is the option that names that difference.",
+          "explanation": "The goal is to emphasize how the two sculptures differ, and the only contrast the notes offer is the material. Choice D states it directly. Choice A emphasizes what the works share. Choice B mentions only one sculpture, so no comparison is made. Choice C likewise describes only *Open Ended*, leaving the second work out of the sentence entirely."
+        },
+        {
+          "number": 25,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Maya Lin is an American artist known for her memorials and large-scale installation artworks.\n• She became famous in 1982 when she completed the Vietnam Veterans Memorial, which consists of two 246-foot granite walls.\n• She completed *Water Line* in 2006.\n• It is an installation composed of aluminum tubing that fills an entire gallery room.\n• She completed *Seven Earth Mountain* in 2015.\n• It is an installation composed of soil that fills an entire gallery room.",
+          "questionText": "Which choice most effectively uses information from the given sentences to emphasize a difference between *Water Line* and *Seven Earth Mountain*?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "After completing the Vietnam Veterans Memorial, Maya Lin completed *Water Line*, another large-scale work."
+            },
+            {
+              "id": "B",
+              "text": "The sprawling size of Maya Lin's Vietnam Veterans Memorial is echoed in *Water Line*, a work made of aluminum tubing that fills an entire gallery room."
+            },
+            {
+              "id": "C",
+              "text": "Maya Lin's *Water Line* is composed of aluminum tubing; *Seven Earth Mountain*, by contrast, is composed of soil."
+            },
+            {
+              "id": "D",
+              "text": "Maya Lin is known for her memorials and installation art, such as *Water Line* and *Seven Earth Mountain*."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Both installations fill a gallery room; the material is what separates them, and choice C sets the two materials against each other.",
+          "explanation": "The notes describe the two installations identically except for what they are made of — aluminum tubing versus soil — so an effective contrast has to name both materials, as choice C does with \"by contrast.\" Choices A and B bring in the Vietnam Veterans Memorial and omit *Seven Earth Mountain* altogether, so no comparison between the two installations is drawn. Choice D groups the works together as examples of Lin's practice, emphasizing similarity rather than difference."
+        },
+        {
+          "number": 26,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Easy",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• A supercontinent is a single landmass made up of most or all of Earth's continents.\n• Over time, continents merge together to form supercontinents, which then break apart.\n• This process is believed to take hundreds of millions of years and is known as the supercontinent cycle.\n• Euramerica and Kenorland were supercontinents.\n• Euramerica formed about 300 million years ago.\n• Kenorland formed about 2.6 billion years ago.",
+          "questionText": "The student wants to specify when Euramerica formed. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The supercontinent Euramerica formed about 300 million years ago."
+            },
+            {
+              "id": "B",
+              "text": "Over hundreds of millions of years, the supercontinent cycle results in supercontinents forming and breaking apart."
+            },
+            {
+              "id": "C",
+              "text": "Euramerica was a supercontinent, a single landmass made up of most or all of Earth's continents."
+            },
+            {
+              "id": "D",
+              "text": "Long ago, the Earth was home to supercontinents like Euramerica and Kenorland."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Only choice A gives a date for Euramerica: about 300 million years ago.",
+          "explanation": "The stated goal is to specify when Euramerica formed, so the answer must contain that time. Choice A supplies it exactly. Choice B describes the duration of the supercontinent cycle in general and dates nothing. Choice C defines what a supercontinent is without saying when Euramerica appeared. Choice D says only \"long ago,\" which is not a specification, and folds Kenorland in as well."
+        },
+        {
+          "number": 27,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• The Haystack Mountain School of Crafts (1961) is a building complex designed by American architect Edward Larrabee Barnes.\n• It is located in Deer Isle, Maine.\n• It features a cluster of cedar-shingled buildings.\n• It is considered an impressive example of critical regionalist architecture.",
+          "questionText": "Which choice most effectively uses information from the given sentences to emphasize the location of the Haystack Mountain School of Crafts?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Those wishing to see the Haystack Mountain School of Crafts in person will have to travel to Deer Isle, Maine."
+            },
+            {
+              "id": "B",
+              "text": "A stunning example of critical regionalist architecture, Edward Larrabee Barnes's Haystack Mountain School of Crafts features a cluster of cedar-shingled buildings."
+            },
+            {
+              "id": "C",
+              "text": "The architect responsible for designing the Haystack Mountain School of Crafts in Deer Isle, Maine, was Edward Larrabee Barnes."
+            },
+            {
+              "id": "D",
+              "text": "Edward Larrabee Barnes is known for designing a building complex that features a cluster of cedar-shingled buildings."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Choice A builds the whole sentence around having to travel to Deer Isle, putting the location in the emphatic position.",
+          "explanation": "Emphasis is a matter of where the information sits, not merely whether it appears. Choice A makes the location the point of the sentence and its final, stressed element. Choice C does mention Deer Isle, but only as a modifier tucked inside the subject; the sentence is about who the architect was. Choice B emphasizes the architectural style and the cedar shingles, and choice D emphasizes Barnes's reputation — neither mentions the location at all."
+        }
+      ]
+    },
+    {
+      "section": "Reading and Writing",
+      "module": 2,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "Whether the reign of a French monarch such as Francis II or Louis XI was considered historically significant or, conversely, relatively ______, its trajectory was shaped by questions of legitimacy and therefore cannot be understood without a corollary understanding of the factors that allowed the monarch to assert a claim to the throne successfully.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "momentous"
+            },
+            {
+              "id": "B",
+              "text": "inconsequential"
+            },
+            {
+              "id": "C",
+              "text": "benevolent"
+            },
+            {
+              "id": "D",
+              "text": "genuine"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"Conversely\" demands the opposite of \"historically significant.\"",
+          "explanation": "The sentence offers two poles for a reign — \"historically significant or, conversely, relatively ______\" — and the signal word \"conversely\" requires the blank to reverse the first term. \"Inconsequential\" is that reversal. \"Momentous\" is a synonym for significant, not its opposite, so the contrast collapses. \"Benevolent\" and \"genuine\" describe a monarch's character or authenticity rather than the historical weight of a reign, so neither pairs with \"significant\" as an opposite."
+        },
+        {
+          "number": 2,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "In the 2010s, the price of vintage *Teenage Mutant Ninja Turtles* action figures rose dramatically, which had the counterintuitive effect of ______ demand: buyers who hadn't previously wanted to purchase old action figures thronged the market, believing prices would continue to rise and the toys could be resold later at a profit.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "monetizing"
+            },
+            {
+              "id": "B",
+              "text": "appraising"
+            },
+            {
+              "id": "C",
+              "text": "engendering"
+            },
+            {
+              "id": "D",
+              "text": "exploiting"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "New buyers \"thronged the market,\" so the price rise created demand.",
+          "explanation": "The colon explains the effect: people who had not previously wanted the figures came to the market, which means demand was brought into being. \"Engendering\" means producing or giving rise to, matching that. \"Monetizing\" means converting something into revenue, which is not what happens to demand here. \"Appraising\" means estimating value, an act of assessment rather than creation. \"Exploiting\" would mean taking advantage of demand that already existed, but the point is that this demand was new."
+        },
+        {
+          "number": 3,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Hard",
+          "passageText": "Studying wrappers from discontinued candies, menus from nineteenth-century restaurants, and flyers promoting long-forgotten sporting events may seem like a frivolous pursuit, but ephemeral objects like these are useful as markers of cultural change: they can ______ shifts in norms, values, and concerns that traditional objects of historical inquiry may not.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "register"
+            },
+            {
+              "id": "B",
+              "text": "vindicate"
+            },
+            {
+              "id": "C",
+              "text": "preclude"
+            },
+            {
+              "id": "D",
+              "text": "induce"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "As \"markers of cultural change,\" the objects record shifts rather than cause or prevent them.",
+          "explanation": "The colon restates the idea that these objects are \"markers of cultural change,\" so the verb must mean *record* or *show*. \"Register\" carries exactly that sense, as an instrument registers a reading. \"Vindicate\" means to justify or clear of blame, which shifts cannot receive. \"Preclude\" means to prevent, the opposite of marking something that occurred. \"Induce\" would make the wrappers and menus the cause of cultural shifts rather than the evidence of them."
+        },
+        {
+          "number": 4,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Hard",
+          "passageText": "______ though it seemed to many mathematicians, the Marden tameness conjecture, posed in 1974, eventually yielded to the efforts of Ian Agol, who presented a proof of it in 2004.",
+          "questionText": "Which choice completes the text with the most logical and precise word or phrase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Insuperable"
+            },
+            {
+              "id": "B",
+              "text": "Unequivocal"
+            },
+            {
+              "id": "C",
+              "text": "Irreproachable"
+            },
+            {
+              "id": "D",
+              "text": "Ineluctable"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "\"Though … eventually yielded\" sets up a concession: the conjecture looked unbeatable but was beaten.",
+          "explanation": "The construction \"______ though it seemed … eventually yielded\" requires the blank to name the impression that the eventual proof overturned, so it must mean *impossible to overcome*. \"Insuperable\" is that word. \"Unequivocal\" means unambiguous, which would not be contradicted by a proof appearing. \"Irreproachable\" means beyond criticism, again not something a proof reverses. \"Ineluctable\" means unavoidable, which would make the conjecture's proof expected rather than surprising, destroying the concession."
+        },
+        {
+          "number": 5,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Easy",
+          "passageText": "Why do rusty-spotted cats purr but jaguars roar? Researchers hypothesize that this difference between the two feline species may be partly due to a U-shaped bone in their throats called the hyoid. Rusty-spotted cats, which are much smaller than jaguars, have a rigid hyoid that rumbles when the cat's larynx vibrates, resulting in a purr. By contrast, jaguars have a somewhat flexible hyoid, and the bone is attached to the skull with a stretchy ligament that rusty-spotted cats lack. These traits allow jaguars and most other species of big cats to produce powerful roars. The same traits may also prevent most big cats from purring.",
+          "questionText": "Which choice best describes the overall structure of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The text compares the habitats of two species, then explains how those habitats are changing."
+            },
+            {
+              "id": "B",
+              "text": "The text presents a theory about two species, then discusses facts that weaken it."
+            },
+            {
+              "id": "C",
+              "text": "The text poses a question about two species, then presents a possible answer."
+            },
+            {
+              "id": "D",
+              "text": "The text describes a behavior shared by two species, then discusses other behaviors shared by them."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "It opens with a literal question and spends the rest of the paragraph offering a hypothesis in reply.",
+          "explanation": "The first sentence asks why rusty-spotted cats purr and jaguars roar, and everything after it develops the researchers' hyoid hypothesis as an answer. That is question-then-possible-answer, as choice C says. Choice A is wrong because habitats are never mentioned. Choice B is wrong because the details about the hyoid support the hypothesis rather than weaken it. Choice D is wrong because purring and roaring are presented as differing behaviors, not shared ones."
+        },
+        {
+          "number": 6,
+          "domain": "Craft and Structure",
+          "skill": "Text Structure and Purpose",
+          "difficulty": "Medium",
+          "passageText": "Scholarly interest in literary juvenilia—writings by children and teenagers—tends to focus on unpublished works by authors who became famous as adults, such as Charles Dickens's poem \"The Bill of Fare,\" which he wrote around the ages of 18–20, because they offer insights into their authors' artistic development. But some scholars also argue that recovering juvenilia by lesser-known writers is essential to understanding literary history: Daisy Ashford's novels, which she published as a child, were widely read by contemporaries and are therefore deserving of closer attention.",
+          "questionText": "Which choice best states the main purpose of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "To describe the challenges famous writers encountered when seeking to publish works written in their childhood"
+            },
+            {
+              "id": "B",
+              "text": "To present reasons why literary scholars consider juvenilia to be valuable resources"
+            },
+            {
+              "id": "C",
+              "text": "To compare the accomplishments of young writers with those of their adult contemporaries"
+            },
+            {
+              "id": "D",
+              "text": "To argue that Ashford's novels have more literary merit than Dickens's juvenilia do"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The text gives two reasons scholars value juvenilia — insight into artistic development, and insight into literary history.",
+          "explanation": "The first sentence explains why scholars study famous authors' juvenilia, and the second adds a second rationale offered by other scholars for studying lesser-known writers' juvenilia. Both halves are reasons for the value of juvenilia, which choice B captures. Choice A misreads the passage as being about publication difficulties, which it never mentions. Choice C would require a comparison of young and adult writers' accomplishments, which does not appear. Choice D turns a difference of scholarly focus into a ranking of merit that the text does not make."
+        },
+        {
+          "number": 7,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Hard",
+          "passageText": "To understand how temperature change affects microorganism-mediated cycling of soil nutrients in alpine ecosystems, Eva Kaštovská et al. collected plant-soil cores in the Tatra Mountains at elevations around 2,100 meters and transplanted them to elevations of 1,700–1,800 meters, where the mean air temperature was warmer by 2 degrees Celsius. Microorganism-mediated nutrient cycling was accelerated in the transplanted cores; crucially, microorganism community composition was unchanged, allowing Kaštovská et al. to attribute the acceleration to temperature-induced increases in microorganism activity.",
+          "questionText": "It can most reasonably be inferred from the text that the finding about the microorganism community composition was important for which reason?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It provided preliminary evidence that microorganism-mediated nutrient cycling was accelerated in the transplanted cores."
+            },
+            {
+              "id": "B",
+              "text": "It suggested that temperature-induced changes in microorganism activity may be occurring at increasingly high elevations."
+            },
+            {
+              "id": "C",
+              "text": "It ruled out a potential alternative explanation for the acceleration in microorganism-mediated nutrient cycling."
+            },
+            {
+              "id": "D",
+              "text": "It clarified that microorganism activity levels in the plant-soil cores varied depending on which microorganisms comprised the community."
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "If the community had changed, a different mix of microorganisms could have explained the speed-up; unchanged composition removes that possibility.",
+          "explanation": "The text says the unchanged composition is what allowed the researchers \"to attribute the acceleration to temperature-induced increases in microorganism activity.\" The finding earns that word \"crucially\" because it eliminates the rival explanation that a shift in which microorganisms were present drove the change — the elimination described in choice C. Choice A misassigns the role: the acceleration was measured directly, not inferred from composition. Choice B introduces a claim about higher elevations that the study, which moved cores downhill, does not support. Choice D asserts that activity varied with composition, but the point is that composition held constant."
+        },
+        {
+          "number": 8,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Hard",
+          "passageText": "Michael G. Campana and colleagues relied on historical DNA (hDNA)—genomic data incidentally preserved in specimens housed in natural history collections—to investigate the evolutionary origins of a fungal pathogen affecting bats. Although this approach offers unique benefits, such as access to genomic data from extirpated populations, it remains a relatively underutilized resource because hDNA is often to some extent degraded, a situation not easily remediable under current methodological paradigms and with extant DNA extraction and analysis technologies.",
+          "questionText": "Information in the text best supports which statement about hDNA?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "It may yield insights that other types of genomic data cannot."
+            },
+            {
+              "id": "B",
+              "text": "It has thus far proved valuable mainly to researchers studying pathogens."
+            },
+            {
+              "id": "C",
+              "text": "It may be underused because of its controversial status among scientists."
+            },
+            {
+              "id": "D",
+              "text": "It tends to be much more degraded than other types of DNA of comparable age."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The text calls the benefits \"unique\" and gives an example — data from populations that no longer exist.",
+          "explanation": "The phrase \"unique benefits, such as access to genomic data from extirpated populations\" means hDNA can supply something other sources cannot, which is choice A. Choice B generalizes from the single pathogen study in the text to a claim about where hDNA has proved most valuable overall. Choice C misidentifies the stated cause of underuse: the text blames degradation and current technology, not controversy. Choice D adds a comparison with other DNA of similar age that the text never makes."
+        },
+        {
+          "number": 9,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "In a paper for an art history class, a student claims that Rosa Bonheur's 1855 painting *The Horse Fair* marks a significant change in Bonheur's artistic development.",
+          "questionText": "Which quotation from an art history textbook would most effectively support the student's claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "\"The paintings that Bonheur produced before *The Horse Fair* can be thought of as belonging to her earlier style, to which she never returned.\""
+            },
+            {
+              "id": "B",
+              "text": "\"Of all Bonheur's paintings, none so clearly represents her abilities and ideas as *The Horse Fair*.\""
+            },
+            {
+              "id": "C",
+              "text": "\"*The Horse Fair* has been analyzed extensively since it was first exhibited, as no two viewers seem to agree about exactly what the painting means.\""
+            },
+            {
+              "id": "D",
+              "text": "\"Although Bonheur was clearly influenced by other artists of her time, she was also an artist ahead of her time, as *The Horse Fair* demonstrates.\""
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "A style she used before the painting and \"never returned\" to afterward is exactly a turning point.",
+          "explanation": "To support a claim about a significant change, the quotation must locate a before and an after with the painting between them. Choice A does: everything before *The Horse Fair* belongs to an earlier style she abandoned. Choice B calls the work representative of her abilities, which suggests continuity rather than change. Choice C concerns interpretive disagreement among viewers, not Bonheur's development. Choice D describes her as ahead of her time, a claim about originality that says nothing about a shift in her own work."
+        },
+        {
+          "number": 10,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "passageText": "Neurobiologists Laura Cuaya, Raúl Hernández-Pérez, and colleagues investigated the language detection abilities of eighteen dogs. The researchers monitored the brain activity of Kun-kun (a border collie), Bingo (a mixed breed), and other dogs while the animals listened to three recordings: one of *The Little Prince* being read in Spanish, the second in Hungarian, and a third made up of short, randomly selected fragments of the first two, scrambled so that they didn't resemble human speech. Each dog was familiar with either Spanish or Hungarian, but not both. The team concluded that differences in dogs' anatomical features may affect their ability to distinguish speech from nonspeech.",
+          "questionText": "Which finding from the study, if true, would most directly support the team's conclusion?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Compared with longer-headed dogs, shorter-headed dogs showed less difference in brain activity when hearing either Spanish or Hungarian than when hearing the scrambled recording."
+            },
+            {
+              "id": "B",
+              "text": "Compared with longer-headed dogs, shorter-headed dogs showed a greater difference in brain activity when hearing the language they were accustomed to than when hearing the other language."
+            },
+            {
+              "id": "C",
+              "text": "The pattern of brain activity that long-headed dogs showed when hearing the scrambled recording was different from the pattern of brain activity that short-headed dogs showed when hearing the language they were accustomed to."
+            },
+            {
+              "id": "D",
+              "text": "Long-headed dogs accustomed to hearing Spanish tended to show more brain activity when hearing Spanish than long-headed dogs accustomed to hearing Hungarian showed when hearing Hungarian."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The conclusion links anatomy to distinguishing speech from nonspeech, and only choice A compares head shape against the speech-versus-scrambled contrast.",
+          "explanation": "The conclusion has two parts: an anatomical difference (head length) and an ability (telling speech from nonspeech). Choice A varies head shape and measures exactly the speech-versus-scrambled distinction, finding that shorter-headed dogs draw it less sharply — direct support. Choice B compares a familiar language with an unfamiliar one, which is language recognition rather than speech detection. Choice C compares two different groups hearing two different recordings, so no clean contrast is isolated. Choice D varies which language the dogs knew, holding head shape constant, and so speaks to familiarity rather than anatomy."
+        },
+        {
+          "number": 11,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "\"Poetry\" is a 1919 poem by Marianne Moore. The poem highlights an ambivalence toward poetry as the speaker acknowledges its merits while also expressing a sense of displeasure, writing ______",
+          "questionText": "Which quotation from \"Poetry\" most effectively illustrates the claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "\"nor is it valid / to discriminate against 'business documents and / school-books'; all these phenomena are important.\""
+            },
+            {
+              "id": "B",
+              "text": "\"One must make a distinction / however: when dragged into prominence by half poets, the result is not / poetry\""
+            },
+            {
+              "id": "C",
+              "text": "\"when [poems] become so derivative as to become unintelligible, the / same thing may be said for all of us—that we / do not admire what / we cannot understand.\""
+            },
+            {
+              "id": "D",
+              "text": "\"Reading [poetry], however, with a perfect contempt for it, one discovers that there is in / it after all, a place for the genuine.\""
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "\"Perfect contempt\" is the displeasure and \"a place for the genuine\" is the merit — both in one line.",
+          "explanation": "Ambivalence requires the two attitudes to be held at once, and only choice D voices both: the speaker reads poetry \"with a perfect contempt for it\" yet finds \"a place for the genuine\" in it. Choice A argues for the importance of ordinary documents, expressing no displeasure with poetry. Choice B criticizes \"half poets\" rather than poetry itself. Choice C is about derivative poems being unintelligible, a criticism unaccompanied by any acknowledgment of merit."
+        },
+        {
+          "number": 12,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "*Cane* is a 1923 novel by Jean Toomer. In one portion of the novel, Toomer uses figurative language to connect the narrator's urban environment of Washington, DC, and the rural South of the narrator's past, writing, ______",
+          "questionText": "Which quotation from *Cane* most effectively illustrates the claim?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "\"The [train] engines of this valley have a whistle, the echoes of which sound like iterated gasps and sobs. I always think of them as crude music.\""
+            },
+            {
+              "id": "B",
+              "text": "\"I sang, with a strange quiver in my voice, a promise-song.\""
+            },
+            {
+              "id": "C",
+              "text": "\"The young trees had not outgrown their [planter] boxes then. V Street [in Washington, DC] was lined with them.\""
+            },
+            {
+              "id": "D",
+              "text": "\"And when the wind is from the South, soil of my homeland falls like a fertile shower upon the lean streets of [Washington, DC].\""
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Southern soil falling \"like a fertile shower\" on DC's streets is a simile that joins the two places.",
+          "explanation": "The claim asks for figurative language that links the city to the rural South, so the quotation must contain a figure of speech connecting both settings. Choice D does both at once: the simile \"like a fertile shower\" carries \"soil of my homeland\" onto \"the lean streets\" of Washington. Choice A is figurative but stays in the valley, never reaching the city. Choice B contains no reference to either place. Choice C mentions V Street literally, with no figurative language and no southern element."
+        },
+        {
+          "number": 13,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Hard",
+          "passageText": "Some climate models for the western United States predict that while total annual precipitation may remain unchanged from the present level, precipitation will become concentrated into fewer but more intense rain and snow events. University of Texas climate scientist Geeta Persad and her colleagues simulated how the amount of water entering aquifers and the amount being used for irrigation purposes would change if this were to occur. Persad and her colleagues concluded that concentration of precipitation into fewer events would result in a higher number of dry days, triggering more irrigation, but that this change in irrigation output is highly sensitive to the baseline concentration of precipitation that currently exists in an area.",
+          "questionText": "Which choice best describes data from the table that support Persad and her colleagues' conclusion?",
+          "image": "m2q13_aquifer_table.png",
+          "choices": [
+            {
+              "id": "A",
+              "text": "If baseline precipitation is somewhat concentrated, the amount of water being used for irrigation will increase 0.4 percent for surface water and 0.9 percent for groundwater, whereas the amount of water entering aquifers will increase 11.0 percent if baseline precipitation is evenly distributed."
+            },
+            {
+              "id": "B",
+              "text": "If baseline precipitation is somewhat concentrated, water use for irrigation will increase only slightly, whereas it will increase 9.0 percent for surface water and 7.9 percent for groundwater if baseline precipitation is evenly distributed."
+            },
+            {
+              "id": "C",
+              "text": "If baseline precipitation is somewhat concentrated, the amount of water entering aquifers will increase 4.9 percent, while the amount being used for irrigation will increase 0.4 percent for surface water and 0.9 percent for groundwater."
+            },
+            {
+              "id": "D",
+              "text": "If baseline precipitation is somewhat concentrated, water use for irrigation will decline by a small amount, whereas it will increase 11.0 percent for surface water and 9.0 percent for groundwater if baseline precipitation is evenly distributed."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The conclusion is that irrigation change depends on baseline concentration, so the evidence must compare irrigation figures across both baselines — 0.4 and 0.9 versus 9.0 and 7.9.",
+          "explanation": "The claim to support is the sensitivity of irrigation output to the existing baseline, so the supporting data must set the irrigation columns for one baseline against the other. Choice B does exactly that: barely any increase where precipitation is already somewhat concentrated, against 9.0 percent and 7.9 percent where it is evenly distributed. Choice A pairs irrigation figures from one row with the aquifer figure from the other, mixing categories. Choice C reports only the somewhat-concentrated row, so no sensitivity is shown. Choice D misreads the table twice — irrigation rises rather than declines under the concentrated baseline, and 11.0 percent is the aquifer figure, not a surface-water irrigation figure."
+        },
+        {
+          "number": 14,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "Ships in the British Royal Navy during the Napoleonic Wars (1803–1815) were ranked based on military strength. The system considered the number of a ship's cannons and decks. \"First-rate\" was the highest ranking, and \"sixth-rate\" was the lowest ranking, followed by unranked ships. The size of a ship's crew was based on this ranking: first-rate ships had between 850 and 875 crewmen, while lower-ranked ships had fewer. Two of the ships in the British Royal Navy from this period were the *Boyne* (98 cannons and three decks) and the *Britannia* (120 cannons and three decks). Of these two, only the *Britannia* was ranked a first-rate ship. It can therefore be concluded that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "some ships with three decks had a crew of fewer than 850 people."
+            },
+            {
+              "id": "B",
+              "text": "the *Britannia* needed a crew larger than 875 people in order to operate efficiently."
+            },
+            {
+              "id": "C",
+              "text": "the *Boyne* had a larger crew than the *Britannia*."
+            },
+            {
+              "id": "D",
+              "text": "all ships with at least 98 cannons had a crew of at least 850 people."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The *Boyne* had three decks but was not first-rate, and lower-ranked ships carried fewer than 850 crew.",
+          "explanation": "The text states that first-rate ships had 850 to 875 crewmen and lower-ranked ships had fewer. The *Boyne* has three decks yet was not first-rate, so its crew must have numbered under 850 — which establishes that at least one three-decked ship fell below 850, as choice A says. Choice B contradicts the stated ceiling of 875 for first-rate ships. Choice C reverses the relationship, since the lower-ranked *Boyne* would have the smaller crew. Choice D is disproved by the *Boyne* itself, which had 98 cannons and fewer than 850 crew."
+        },
+        {
+          "number": 15,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "In a 2018 study, Deepak Jaiswal and Rishi Kant found that consumers' knowledge of environmental issues had no effect on the likelihood that the consumers would purchase environmentally friendly products. Since this study was based on fewer than 400 young adults in India, however, doubts have been raised about how reliable and representative the findings are. To better understand the issue, Wencan Zhuang and colleagues analyzed the results of 54 studies of eco-friendly consumer behavior, such as a 2018 study from Indonesia that included 916 participants and a 2018 study from India with 202 participants. Taking all 54 studies together, Zhuang and colleagues found a significant positive effect of environmental knowledge on eco-friendly purchasing decisions, suggesting that ______",
+          "questionText": "Which choice most logically completes the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "a sample size of 202 may be sufficient to make reliable conclusions about the relationship between knowledge of environmental issues and purchasing decisions."
+            },
+            {
+              "id": "B",
+              "text": "concerns about the broad applicability of Jaiswal and Kant's conclusion were justified."
+            },
+            {
+              "id": "C",
+              "text": "the number of participants in Jaiswal and Kant's study was far below the number of participants in most studies of purchasing decisions."
+            },
+            {
+              "id": "D",
+              "text": "Jaiswal and Kant's methodology was more precise than the methodology used in the 2018 study from Indonesia."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The 54-study analysis found the opposite of Jaiswal and Kant's result, vindicating the doubts about how far their finding generalized.",
+          "explanation": "The passage raises doubts about whether Jaiswal and Kant's narrow sample yielded representative findings, then reports that a synthesis of 54 studies found a significant positive effect — the reverse of their no-effect result. That outcome confirms the doubts, as choice B says. Choice A draws a conclusion about the adequacy of a 202-person sample, which the aggregate result does not establish. Choice C makes a claim about typical sample sizes across the literature that the text does not supply. Choice D praises Jaiswal and Kant's methodology, which runs against the passage's skepticism and is never compared with the Indonesian study's."
+        },
+        {
+          "number": 16,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "In Norway, the Longyearbyen observatory site monitors activity in the upper atmosphere of the northern ______ in Australia, another observatory site, Buckland Park, monitors the sky of the southern hemisphere. Together, they are part of the Super Dual Auroral Radar Network—or SuperDARN, as space physicists like Tadahiko Ogawa call it.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "hemisphere and"
+            },
+            {
+              "id": "B",
+              "text": "hemisphere"
+            },
+            {
+              "id": "C",
+              "text": "hemisphere,"
+            },
+            {
+              "id": "D",
+              "text": "hemisphere;"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Two independent clauses meet at the blank, so they need a semicolon.",
+          "explanation": "\"The Longyearbyen observatory site monitors activity in the upper atmosphere of the northern hemisphere\" and \"in Australia, another observatory site, Buckland Park, monitors the sky of the southern hemisphere\" are each complete, and a semicolon is the option that joins them correctly. Choice A supplies a coordinating conjunction but no comma before it, and the clause already carries several internal commas. Choice B runs the clauses together with no punctuation at all, and choice C splices them with a comma."
+        },
+        {
+          "number": 17,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Long attributed to Jacques-Louis David, the preeminent Neoclassical painter of his day, the 1801 painting *Marie Joséphine Charlotte du Val d'Ognes* gained fresh attention in the 1990s when art historians discovered that the painting—which depicts a solitary young woman sketching—was actually the work of little-known French portrait ______ Marie-Denise Villers (1774–1821).",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "artist—"
+            },
+            {
+              "id": "B",
+              "text": "artist"
+            },
+            {
+              "id": "C",
+              "text": "artist:"
+            },
+            {
+              "id": "D",
+              "text": "artist,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "\"Portrait artist Marie-Denise Villers\" is a title-plus-name unit, which takes no punctuation.",
+          "explanation": "The name identifies which little-known portrait artist is meant, so it is restrictive and joins the descriptive phrase without punctuation, exactly as \"painter Jacques-Louis David\" would. Choice B leaves the pair intact. Choice A inserts a dash where no break belongs, and the sentence already uses a pair of dashes around the earlier interrupter. Choice C uses a colon, which would announce an explanation. Choice D adds a comma that would falsely mark the name as nonessential."
+        },
+        {
+          "number": 18,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "Along the hallowed walls of New York City's Museum of Modern Art hangs 24.5-by-34.5-inch oil ______ which was created in 1964 by American artist Vija Celmins.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "painting *Gun with Hand #1*"
+            },
+            {
+              "id": "B",
+              "text": "painting, *Gun with Hand #1*,"
+            },
+            {
+              "id": "C",
+              "text": "painting *Gun with Hand #1*,"
+            },
+            {
+              "id": "D",
+              "text": "painting, *Gun with Hand #1*"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "No comma between \"painting\" and its title, but a comma before the nonrestrictive \"which\" clause.",
+          "explanation": "The title specifies which painting, so it attaches directly to \"painting\" without punctuation; the \"which\" clause that follows is nonrestrictive and must be preceded by a comma. Choice C is the only option that gets both right. Choice A omits the required comma before \"which.\" Choice B adds a comma before the title as well, wrongly marking it as nonessential. Choice D both sets off the title with a comma and drops the comma before \"which.\""
+        },
+        {
+          "number": 19,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": "Legal scholars James Melton and Tom Ginsburg's analysis of de jure judicial independence and its growth over decades ______ six constitutional features that enhance such independence, including judicial tenure and selection procedure. Romania's constitution contains one of these features.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "have identified"
+            },
+            {
+              "id": "B",
+              "text": "identifies"
+            },
+            {
+              "id": "C",
+              "text": "are identifying"
+            },
+            {
+              "id": "D",
+              "text": "identify"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The subject is the singular \"analysis,\" not the plural scholars, so the verb must be singular.",
+          "explanation": "Stripping the modifiers leaves \"analysis … identifies six constitutional features.\" The plural nouns nearest the blank — \"decades,\" and the scholars' names inside the possessive — are not the subject, and the singular \"analysis\" governs the verb. Choice B supplies the singular present-tense form. Choices A, C, and D are all plural forms that agree with the wrong noun."
+        },
+        {
+          "number": 20,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Hard",
+          "passageText": "For Spain, a member of the North Atlantic Treaty Organization (NATO) since 1982, NATO's principle of collective defense confers both benefits and ______ organization's many members, nations as disparate as the US and Slovenia, are all bound to defend Spain, the reverse is also true.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "obligations; the"
+            },
+            {
+              "id": "B",
+              "text": "obligations. The"
+            },
+            {
+              "id": "C",
+              "text": "obligations, while the"
+            },
+            {
+              "id": "D",
+              "text": "obligations: while the"
+            }
+          ],
+          "correctAnswer": "D",
+          "rationale": "Only \"while\" turns the next clause into a subordinate one, leaving \"the reverse is also true\" as its main clause.",
+          "explanation": "The material after the blank ends with \"the reverse is also true,\" a complete clause preceded by a comma. That comma can only work if what comes before it is subordinate, which requires the subordinating conjunction \"while.\" The colon in choice D is legitimate because \"benefits and obligations\" is followed by an elaboration of both. Choices A and B leave \"the organization's many members … are all bound to defend Spain\" as an independent clause, so \"the reverse is also true\" becomes a comma splice. Choice C uses \"while\" but replaces the colon with a comma after \"obligations,\" which cannot introduce the elaboration."
+        },
+        {
+          "number": 21,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": "As of 2017, Italy's top tax rate of 55 percent was lower than the country's Laffer curve peak (70 percent). To some economists, whether a tax cut will ultimately increase Italy's tax revenue is dependent on the country's position on the Laffer ______ a theoretical relationship between tax rates and revenues, the curve was famously sketched on a napkin by economist Arthur Laffer in 1974.",
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "curve"
+            },
+            {
+              "id": "B",
+              "text": "curve;"
+            },
+            {
+              "id": "C",
+              "text": "curve, which is"
+            },
+            {
+              "id": "D",
+              "text": "curve,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "A semicolon separates the completed clause from the next one, which opens with the appositive \"a theoretical relationship … .\"",
+          "explanation": "\"A theoretical relationship between tax rates and revenues, the curve was famously sketched on a napkin\" is a complete sentence beginning with an appositive phrase, so it must be separated from the preceding independent clause by a semicolon or period. Choice B does this. Choice A runs the two clauses together. Choice D splices them with a comma. Choice C turns the appositive into a relative clause but then leaves \"the curve was famously sketched\" attached with only a comma, producing the same splice."
+        },
+        {
+          "number": 22,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "Working together with the Navajo Nation Department of Water Resources, Dr. Lani Tsinnajinnie analyzed data about snowpack levels in the Chuska Mountains. She found that the snowpack (the amount of snow on the ground) was deepest in early March at lower elevations. At higher elevations, ______ the snowpack was deepest in mid-March.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "in other words,"
+            },
+            {
+              "id": "B",
+              "text": "for instance,"
+            },
+            {
+              "id": "C",
+              "text": "on the other hand,"
+            },
+            {
+              "id": "D",
+              "text": "in summary,"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Early March at low elevations versus mid-March at high elevations is a contrast.",
+          "explanation": "The two sentences report different peak dates for different elevations, so the transition must mark opposition. \"On the other hand\" does. Choice A would signal a restatement, but the second sentence gives new information rather than rephrasing the first. Choice B would make the high-elevation finding an example of the low-elevation one, though they differ. Choice D would announce a summary, and no summing up follows."
+        },
+        {
+          "number": 23,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "Biographer Michael Gorra notes that the novelist Henry James \"lived in a world of second thoughts,\" frequently tinkering with his novels and stories after their initial publication. However, the differences between the 1881 first edition and the 1908 edition of his novel *A Portrait of a Lady* are extreme, even by James's standards; ______ some critics regard the two editions as two different novels altogether.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "by contrast,"
+            },
+            {
+              "id": "B",
+              "text": "in fact,"
+            },
+            {
+              "id": "C",
+              "text": "nevertheless,"
+            },
+            {
+              "id": "D",
+              "text": "in other words,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Critics calling them two different novels intensifies the claim that the differences are extreme.",
+          "explanation": "The clause after the blank pushes the preceding point further: the differences are not merely extreme but extreme enough that critics treat the editions as separate novels. \"In fact\" marks that intensification. Choice A would signal opposition, but the two statements agree. Choice C would concede something despite the previous claim, reversing the relationship. Choice D would present the critics' view as a restatement, but it adds a stronger claim rather than rephrasing."
+        },
+        {
+          "number": 24,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Medium",
+          "passageText": "Scientists studying asteroid deflection have focused on secondary objects such as S/2020 (2013 PY6), a moonlet orbiting the near-Earth asteroid 2013 PY6. In 2022 NASA intentionally crashed a probe into just such an object, successfully altering its orbit. Scientists have yet to demonstrate, ______ that 2013 PY6 and other primary objects would be similarly affected.",
+          "questionText": "Which choice completes the text with the most logical transition?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "for example,"
+            },
+            {
+              "id": "B",
+              "text": "though,"
+            },
+            {
+              "id": "C",
+              "text": "likewise,"
+            },
+            {
+              "id": "D",
+              "text": "moreover,"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "A success with a moonlet is set against what has not yet been shown for primary asteroids.",
+          "explanation": "The previous sentence reports a success — NASA altered a moonlet's orbit — and this sentence reports a limit on what that success establishes. The transition must therefore be concessive, and \"though\" is the only option that is. Choice A would introduce an illustration of the preceding point, which this is not. Choices C and D signal similarity and addition, treating the unproven claim as more of the same good news rather than the qualification it is."
+        },
+        {
+          "number": 25,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Easy",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Documentary TV programs in the slow TV genre consist of uninterrupted broadcasts of ordinary events in real time.\n• *Nordlandsbanen: Minutt for Minutt* is a Norwegian slow TV program.\n• The 10-hour-long program documented a train ride from Trondheim to Bodø.\n• It first aired in 2012.\n• In her book *Spectacular Television: Exploring Televisual Pleasure*, British film scholar Helen Wheatley writes that slow TV \"offers 'unspectacular' spectacle.\"",
+          "questionText": "The student wants to provide a specific example of a slow TV program. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "British film scholar Helen Wheatley writes about the slow TV genre in her book *Spectacular Television: Exploring Televisual Pleasure*."
+            },
+            {
+              "id": "B",
+              "text": "An example of the slow TV genre can be seen in *Nordlandsbanen: Minutt for Minutt*, a 2012 Norwegian show featuring an uninterrupted 10-hour real-time broadcast of a train ride from Trondheim to Bodø."
+            },
+            {
+              "id": "C",
+              "text": "Slow TV programs provide uninterrupted broadcasts of ordinary events, such as train rides, in real time."
+            },
+            {
+              "id": "D",
+              "text": "With their uninterrupted broadcasts, slow TV programs offer what film scholar Helen Wheatley calls the \"'unspectacular' spectacle\" of ordinary events occurring in real time."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Only choice B names a specific program and describes it.",
+          "explanation": "The goal calls for one particular slow TV program, and choice B names *Nordlandsbanen: Minutt for Minutt* and fills in its year, country, length, and subject. Choice A names a book about the genre rather than a program in it. Choice C describes the genre in general and mentions train rides only as a category. Choice D quotes a scholar's characterization of the genre without naming any program at all."
+        },
+        {
+          "number": 26,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Easy",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Calida Garcia Rawles is an African American painter.\n• She is known for her large-scale, hyperrealistic paintings depicting African American figures in water.\n• The painting *Lightness of Being* (24 by 30 in) depicts a young man with his arms outstretched floating on the right side of the canvas.\n• *Lost in the Shuffle* (36 by 24 in) depicts two young men with their arms outstretched floating in the bottom left and upper right corners of the canvas.\n• She paints the water with vivid blue colors, including periwinkle and cobalt.\n• The mood in the paintings is placid.",
+          "questionText": "Which choice most effectively uses information from the given sentences to emphasize the location of the figures in *Lost in the Shuffle*?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "While the number of figures may differ, constant among Rawles's hyperrealistic works is the placid mood that the paintings evoke."
+            },
+            {
+              "id": "B",
+              "text": "In Rawles's painting *Lost in the Shuffle*, two young men are depicted in the bottom left and upper right corners of the canvas."
+            },
+            {
+              "id": "C",
+              "text": "At 36 by 24 inches, Rawles's *Lost in the Shuffle* is even larger than the sizable 24-by-30-inch painting *Lightness of Being*."
+            },
+            {
+              "id": "D",
+              "text": "Rawles captures the water in paintings such as *Lightness of Being* and *Lost in the Shuffle* in vivid hues of periwinkle and cobalt."
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Choice B states where the two figures sit on the canvas — bottom left and upper right.",
+          "explanation": "The goal is the placement of the figures within *Lost in the Shuffle*, and only choice B gives it. Choice A emphasizes the shared placid mood, which is about atmosphere rather than position. Choice C emphasizes canvas dimensions and compares the two paintings' sizes. Choice D emphasizes the colors of the water across both works. None of the three says where in the painting the men appear."
+        },
+        {
+          "number": 27,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "While researching a topic, a student has taken the following notes.\n\n• Jean-Michel Basquiat was an American artist who produced more than two thousand drawings and paintings.\n• Most of his works were completed in New York City in the 1980s.\n• His work *Mater* was completed in 1982.\n• The work is composed of acrylic and oil stick on canvas and measures 72 inches by 84 inches.\n• *Mater* was purchased by a private collection for 5.8 million dollars in a 2009 auction.",
+          "questionText": "Which choice most effectively uses information from the given sentences to emphasize the scope of Basquiat's work?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "*Mater* is just one of more than two thousand drawings and paintings completed by American artist Jean-Michel Basquiat."
+            },
+            {
+              "id": "B",
+              "text": "Though artist Jean-Michel Basquiat completed most of his two thousand-plus drawings in the 1980s, his work *Mater* is composed of acrylic and oil stick on canvas."
+            },
+            {
+              "id": "C",
+              "text": "At a 2009 auction, artist Jean-Michel Basquiat's *Mater*, composed of acrylic and oil stick on canvas, sold for 5.8 million dollars."
+            },
+            {
+              "id": "D",
+              "text": "Decades after artist Jean-Michel Basquiat completed his 1982 work *Mater*, a private collection purchased it for 5.8 million dollars."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "\"Just one of more than two thousand\" puts the size of Basquiat's output in the emphatic position.",
+          "explanation": "Scope here means the sheer extent of the artist's output, so the sentence must foreground the two-thousand-plus figure. Choice A does, framing *Mater* as one item within that body of work. Choice B mentions the number but subordinates it to a contrast with the painting's materials, and the contrast it draws is not a real one. Choice C emphasizes the auction price and the medium. Choice D emphasizes the gap between completion and sale."
+        }
+      ]
+    }
+  ]
+}

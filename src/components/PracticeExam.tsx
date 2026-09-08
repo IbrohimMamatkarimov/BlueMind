@@ -533,6 +533,16 @@ function EditPencilIcon({ size = 17 }: { size?: number }) {
     </svg>
   );
 }
+function ShareQuestionIcon({ size = 17 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="18" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="6" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="18" cy="19" r="2.5" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M8.2 10.8l7.6-4.5M8.2 13.2l7.6 4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 /* ---------------------------------------------------------------------- */
 /* Answer choice row — letter badge on left, eliminator target on right    */
@@ -1330,11 +1340,17 @@ export default function PracticeExam({
   const [noteLoading, setNoteLoading] = useState(false);
   const [noteSaving, setNoteSaving] = useState(false);
   const [noteError, setNoteError] = useState("");
+  const [shareMessage, setShareMessage] = useState("");
   useEffect(() => {
     if (!wordSavedMessage) return;
     const timeout = window.setTimeout(() => setWordSavedMessage(""), 4000);
     return () => window.clearTimeout(timeout);
   }, [wordSavedMessage]);
+  useEffect(() => {
+    if (!shareMessage) return;
+    const timeout = window.setTimeout(() => setShareMessage(""), 4000);
+    return () => window.clearTimeout(timeout);
+  }, [shareMessage]);
 
   // "Leave this test?" confirmation — shown from the kebab menu instead of
   // navigating straight away. Progress is saved to localStorage (works for
@@ -1992,6 +2008,29 @@ export default function PracticeExam({
   function closeQuestionNotes() {
     setNoteModalOpen(false);
     finishStudyToolPause();
+  }
+
+  async function shareCurrentQuestion() {
+    if (!current || isBank || testMode === "exam") return;
+    const url = `${window.location.origin}${examPath}?mode=practice&question=${encodeURIComponent(current.id)}&shared=1`;
+    const shareData = {
+      title: `${mockTitle} · Question ${index + 1}`,
+      text: "Can you help me with this BlueMind SAT question?",
+      url,
+    };
+
+    try {
+      if (typeof navigator.share === "function") {
+        await navigator.share(shareData);
+        setShareMessage("Question link shared.");
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      setShareMessage("Question link copied. Send it to your teacher or study partner.");
+    } catch (cause) {
+      if (cause instanceof DOMException && cause.name === "AbortError") return;
+      window.prompt("Copy this question link:", url);
+    }
   }
 
   async function saveNewWord() {
@@ -2907,6 +2946,17 @@ export default function PracticeExam({
                     {isFullscreen ? <ExitFullscreenIcon size={17} /> : <FullscreenIcon size={17} />}
                     {isFullscreen ? "Exit full screen" : "Full screen"}
                   </button>
+                  {!isBank && testMode !== "exam" && (
+                    <button
+                      onClick={() => {
+                        setMoreOpen(false);
+                        void shareCurrentQuestion();
+                      }}
+                      className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left hover:bg-[#f0f0f0]"
+                    >
+                      <ShareQuestionIcon size={17} /> Share question
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       setMoreOpen(false);
@@ -3183,6 +3233,11 @@ export default function PracticeExam({
       {wordSavedMessage && (
         <div role="status" className="fixed left-1/2 top-24 z-[60] w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 rounded-lg border border-brand-green bg-brand-green-light px-4 py-3 text-sm font-semibold text-brand-green shadow-lg">
           {wordSavedMessage}
+        </div>
+      )}
+      {shareMessage && (
+        <div role="status" className="fixed left-1/2 top-24 z-[60] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-lg border border-[#324dc7] bg-[#eef1fb] px-4 py-3 text-sm font-semibold text-[#324dc7] shadow-lg">
+          {shareMessage}
         </div>
       )}
 
