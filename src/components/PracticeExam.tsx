@@ -47,6 +47,8 @@ interface Question {
   questionText: string;
   choices: Choice[];
   questionType: "multiple_choice" | "spr";
+  /** Official College Board question ID (bank questions only). */
+  externalId?: string | null;
   /** Question Bank only — the learner's history on this question. */
   solved?: boolean;
   attempts?: number;
@@ -716,6 +718,17 @@ function NoteIcon({ size = 20 }: { size?: number }) {
   );
 }
 
+function ShareIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="18" cy="5" r="2.6" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="6" cy="12" r="2.6" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="18" cy="19" r="2.6" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M8.3 10.7l7.4-4.3M8.3 13.3l7.4 4.3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function ToolButton({
   label,
   icon,
@@ -1264,6 +1277,21 @@ export default function PracticeExam({
   const [directionsOpen, setDirectionsOpen] = useState(false);
   const [referenceOpen, setReferenceOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  // Share a Question Bank question with a friend (/q/<questionId>).
+  const [shareOpen, setShareOpen] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
+  const [canNativeShare, setCanNativeShare] = useState(false);
+  useEffect(() => {
+    setCanNativeShare(typeof navigator !== "undefined" && typeof navigator.share === "function");
+  }, []);
+  useEffect(() => {
+    if (!shareOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setShareOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [shareOpen]);
   const [navigatorOpen, setNavigatorOpen] = useState(false);
   const [moduleReviewOpen, setModuleReviewOpen] = useState(false);
   // Real-time answer key preview inside Module Review — grades in the
@@ -2327,6 +2355,49 @@ export default function PracticeExam({
     setCheckError(null);
   }
 
+  /** The link and message for sharing a bank question — the link opens
+   * the same question on the friend's own account (see src/app/q). */
+  function sharePayload(question: Question) {
+    const url = `${window.location.origin}/q/${encodeURIComponent(question.id)}`;
+    const text = `Can you solve this SAT ${section} question? ${question.skill} · ${question.difficulty}`;
+    return { url, text };
+  }
+
+  function openShare() {
+    setShareCopied(false);
+    setShareOpen(true);
+  }
+
+  async function copyShareLink(url: string) {
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      // Clipboard API blocked (insecure origin, permissions) — fall back to
+      // a selected hidden textarea and the legacy copy command.
+      const area = document.createElement("textarea");
+      area.value = url;
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      try {
+        document.execCommand("copy");
+      } finally {
+        area.remove();
+      }
+    }
+    setShareCopied(true);
+    window.setTimeout(() => setShareCopied(false), 2000);
+  }
+
+  async function nativeShare(url: string, text: string) {
+    try {
+      await navigator.share({ title: "BlueMind SAT question", text, url });
+    } catch {
+      // The learner closed the share sheet — nothing to do.
+    }
+  }
+
   function handleSkipQuestion() {
     handleNextUnsolved();
   }
@@ -2989,6 +3060,9 @@ export default function PracticeExam({
               <ToolButton label="Notes" onClick={openQuestionNotes} icon={<NoteIcon size={22} />} title="Keep a personal note for this question" className="hidden lg:flex" />
             </>
           )}
+          {isBank && (
+            <ToolButton label="Share" onClick={openShare} icon={<ShareIcon size={22} />} title="Share this question with a friend" className="hidden lg:flex" />
+          )}
           {isMath ? (
             <>
               <ToolButton
@@ -3064,6 +3138,9 @@ export default function PracticeExam({
                       <button onClick={() => { setMoreOpen(false); openWordCapture(); }} className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left hover:bg-[#f0f0f0] lg:hidden"><NewWordIcon size={17} /> New word</button>
                       <button onClick={() => { setMoreOpen(false); openQuestionNotes(); }} className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left hover:bg-[#f0f0f0] lg:hidden"><NoteIcon size={17} /> Question notes</button>
                     </>
+                  )}
+                  {isBank && (
+                    <button onClick={() => { setMoreOpen(false); openShare(); }} className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left hover:bg-[#f0f0f0] lg:hidden"><ShareIcon size={17} /> Share question</button>
                   )}
                   <button
                     onClick={() => {
@@ -3448,6 +3525,76 @@ export default function PracticeExam({
           </div>
         </div>
       )}
+
+      {/* ---------------- Share question dialog ---------------- */}
+      {isBank && shareOpen && current && (() => {
+        const share = sharePayload(current);
+        return (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="share-question-title"
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-brand-navy/30"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) setShareOpen(false);
+            }}
+          >
+            <div className="card max-w-md w-full p-6">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <h2 id="share-question-title" className="text-lg font-bold text-brand-navy">Share question {index + 1}</h2>
+                <button onClick={() => setShareOpen(false)} aria-label="Close" className="rounded p-1 text-brand-slate hover:bg-slate-100">
+                  <CloseIcon />
+                </button>
+              </div>
+              <p className="text-sm text-brand-slate mb-4">
+                Send this question to a friend and solve it together. They get the same question on their own BlueMind account, and the answer stays hidden until they check it.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-brand-navy">{current.skill}</span>
+                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-brand-navy">{current.difficulty}</span>
+                {current.externalId && (
+                  <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-brand-slate" title="Official question ID">ID {current.externalId}</span>
+                )}
+              </div>
+              <div className="flex gap-2">
+                <input
+                  readOnly
+                  value={share.url}
+                  onFocus={(event) => event.currentTarget.select()}
+                  aria-label="Link to this question"
+                  className="flex-1 min-w-0 rounded-lg border border-brand-border bg-slate-50 px-3 py-2 text-sm text-brand-navy"
+                />
+                <button onClick={() => copyShareLink(share.url)} className="btn-primary text-xs shrink-0 min-w-[92px]">
+                  {shareCopied ? "Copied!" : "Copy link"}
+                </button>
+              </div>
+              <div className={`mt-3 grid gap-2 ${canNativeShare ? "grid-cols-3" : "grid-cols-2"}`}>
+                <a
+                  href={`https://t.me/share/url?url=${encodeURIComponent(share.url)}&text=${encodeURIComponent(share.text)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-xs text-center"
+                >
+                  Telegram
+                </a>
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(`${share.text} ${share.url}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-xs text-center"
+                >
+                  WhatsApp
+                </a>
+                {canNativeShare && (
+                  <button onClick={() => nativeShare(share.url, share.text)} className="btn-secondary text-xs">
+                    More…
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ---------------- Report a problem modal ---------------- */}
       {reportOpen && (

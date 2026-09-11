@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { nextFromLocation } from "@/lib/next-path";
 
 declare global {
   interface Window {
@@ -24,7 +25,9 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
  * (see /api/auth/google) — the client never sees or handles a secret.
  * Falls back to a disabled, informative button if no client ID is set.
  */
-export function GoogleSignInButton() {
+/** `next` overrides where to go after signing in; otherwise the page's own
+ * validated ?next= query, then the dashboard. */
+export function GoogleSignInButton({ next }: { next?: string } = {}) {
   const router = useRouter();
   const buttonRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +47,7 @@ export function GoogleSignInButton() {
           setError(data.error ?? "Google sign-in failed. Please try again.");
           return;
         }
-        router.push("/today");
+        router.push(next ?? nextFromLocation() ?? "/today");
         router.refresh();
       } catch {
         setError("Network error — please try again.");
@@ -76,7 +79,7 @@ export function GoogleSignInButton() {
       script.onload = init;
       document.body.appendChild(script);
     }
-  }, [router]);
+  }, [router, next]);
 
   if (!CLIENT_ID) {
     return (

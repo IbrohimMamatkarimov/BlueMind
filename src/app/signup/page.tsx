@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAppTheme } from "@/lib/theme";
 import { Moon, Sun } from "lucide-react";
 import { BrandLockup } from "@/components/BrainLogo";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
+import { nextFromLocation } from "@/lib/next-path";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -16,6 +17,11 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  // A shared question link sends people here as ?next=/q/<id>; carry it
+  // through sign-in (and across the login ↔ signup links) so they land
+  // on the question instead of the dashboard.
+  const [next, setNext] = useState<string | null>(null);
+  useEffect(() => setNext(nextFromLocation()), []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,7 +38,7 @@ export default function SignupPage() {
         setError(data.error ?? "Something went wrong. Please try again.");
         return;
       }
-      router.push("/today");
+      router.push(nextFromLocation() ?? "/today");
       router.refresh();
     } catch {
       setError("Network error — please check your connection and try again.");
@@ -116,7 +122,7 @@ export default function SignupPage() {
 
           <p className="mt-6 text-center text-sm text-brand-slate">
             Already have an account?{" "}
-            <Link href="/login" className="text-brand-blue font-medium hover:underline">
+            <Link href={next ? `/login?next=${encodeURIComponent(next)}` : "/login"} className="text-brand-blue font-medium hover:underline">
               Log in
             </Link>
           </p>
