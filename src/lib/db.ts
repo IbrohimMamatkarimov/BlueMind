@@ -181,6 +181,11 @@ async function runMigrations(client: PoolClient) {
     // profile photo (same pattern as question image_data above).
     "ALTER TABLE users ADD COLUMN IF NOT EXISTS country TEXT",
     "ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar_data TEXT",
+    // Latest heartbeat (src/lib/activity.ts) for the admin dashboard's
+    // "online now" count. Indexed here, not in schema.sql, because the
+    // column only exists once this ALTER has run on older databases.
+    "ALTER TABLE users ADD COLUMN IF NOT EXISTS last_seen_at TEXT",
+    "CREATE INDEX IF NOT EXISTS idx_users_last_seen ON users(last_seen_at)",
     // Backfill: getModuleQuestionsPublic requires module_pool = 'higher'
     // for every module-2 question, but several creation paths never set
     // that field before this was fixed at the source in addQuestionAdmin/

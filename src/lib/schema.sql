@@ -303,3 +303,18 @@ CREATE TABLE IF NOT EXISTS study_results (
   PRIMARY KEY (user_id, id)
 );
 CREATE INDEX IF NOT EXISTS idx_study_results_user_date ON study_results(user_id, completed_at DESC);
+
+-- Usage heartbeat for the admin dashboard (src/lib/activity.ts). One row per
+-- person, UTC day and coarse page feature; seconds only count while a tab is
+-- visible. users.last_seen_at (added in runMigrations) holds the latest report.
+CREATE TABLE IF NOT EXISTS user_activity (
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  day TEXT NOT NULL,                 -- YYYY-MM-DD (UTC)
+  feature TEXT NOT NULL,             -- e.g. 'qbank-practice', 'mock-test'
+  seconds INTEGER NOT NULL DEFAULT 0,
+  pings INTEGER NOT NULL DEFAULT 0,
+  first_seen_at TEXT NOT NULL,
+  last_seen_at TEXT NOT NULL,
+  PRIMARY KEY (user_id, day, feature)
+);
+CREATE INDEX IF NOT EXISTS idx_user_activity_day ON user_activity(day);

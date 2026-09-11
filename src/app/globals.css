@@ -9,6 +9,9 @@
   --ink: #172554;
   --muted: #64748b;
   --line: #e2e8f0;
+  /* Data-viz series colour + meter track (validated on the light surface). */
+  --viz-1: #2563eb;
+  --viz-1-track: #dbeafe;
 }
 
 html {
@@ -409,6 +412,8 @@ textarea:focus-visible,
   --ink: #e2e8f0;
   --muted: #a0aec0;
   --line: #29364d;
+  --viz-1: #3b82f6;
+  --viz-1-track: rgba(59, 130, 246, 0.22);
   color-scheme: dark;
 }
 .app-shell { background: var(--canvas); color: var(--ink); }

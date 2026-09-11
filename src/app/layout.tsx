@@ -6,6 +6,7 @@ import "@fontsource/inter/700.css";
 import "@fontsource/inter/800.css";
 import "katex/dist/katex.min.css";
 import "./globals.css";
+import { ActivityHeartbeat } from "@/components/ActivityHeartbeat";
 
 export const metadata: Metadata = {
   title: "BlueMind",
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased bg-brand-bg text-brand-navy">{children}</body>
+      <body className="font-sans antialiased bg-brand-bg text-brand-navy">
+        <ActivityHeartbeat />
+        {children}
+      </body>
     </html>
   );
 }

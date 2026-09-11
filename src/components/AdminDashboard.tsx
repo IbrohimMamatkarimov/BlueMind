@@ -7,6 +7,7 @@ import { MathText } from "@/components/MathText";
 import { FormatToolbar } from "@/components/FormatToolbar";
 import { PracticeBankPanel } from "@/components/PracticeBankPanel";
 import { QuestionPreviewModal } from "@/components/QuestionPreviewModal";
+import { AdminMonitor } from "@/components/admin/AdminMonitor";
 
 interface AdminMockSummary {
   id: string;
@@ -48,17 +49,6 @@ interface AdminQuestionRow {
   position: number;
 }
 
-interface AdminUserRow {
-  id: string;
-  email: string;
-  name: string;
-  is_guest: number;
-  created_at: string;
-  attemptCount: number;
-  completedAttemptCount: number;
-  latestScore: number | null;
-  lastActiveAt: string | null;
-}
 
 interface AdminReportRow {
   id: string;
@@ -146,7 +136,7 @@ function defaultQuestionForm(mockId: string, section: Section = "Reading and Wri
 }
 
 export function AdminDashboard() {
-  const [tab, setTab] = useState<"mocks" | "users" | "reports">("mocks");
+  const [tab, setTab] = useState<"activity" | "mocks" | "reports">("activity");
 
   const [mocks, setMocks] = useState<AdminMockSummary[] | null>(null);
   const [listError, setListError] = useState<string | null>(null);
@@ -167,8 +157,6 @@ export function AdminDashboard() {
   const [mockEditForm, setMockEditForm] = useState(EMPTY_MOCK_FORM);
   const [savingMockEdit, setSavingMockEdit] = useState(false);
 
-  const [users, setUsers] = useState<AdminUserRow[] | null>(null);
-  const [usersError, setUsersError] = useState<string | null>(null);
 
   const [reports, setReports] = useState<AdminReportRow[] | null>(null);
   const [reportsError, setReportsError] = useState<string | null>(null);
@@ -495,17 +483,6 @@ export function AdminDashboard() {
     }
   }
 
-  async function loadUsers() {
-    setUsersError(null);
-    try {
-      const res = await fetch("/api/admin/users");
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Failed to load users");
-      setUsers(data.users);
-    } catch (err) {
-      setUsersError(err instanceof Error ? err.message : "Failed to load users");
-    }
-  }
 
   async function loadReports(filter: "open" | "all") {
     setReportsError(null);
@@ -520,7 +497,6 @@ export function AdminDashboard() {
   }
 
   useEffect(() => {
-    if (tab === "users" && !users) loadUsers();
     if (tab === "reports") loadReports(reportFilter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab, reportFilter]);
@@ -1092,10 +1068,10 @@ export function AdminDashboard() {
 
   return (
     <div className="space-y-8">
-      <PageHeader eyebrow="Content workspace" title="Administration" description="Manage your mock library, question bank, and student reports." />
+      <PageHeader eyebrow="Content workspace" title="Administration" description="Monitor your users, and manage your mock library, question bank and question reports." />
 
       <div className="flex gap-2 border-b border-brand-border">
-        {(["mocks", "users", "reports"] as const).map((t) => (
+        {(["activity", "mocks", "reports"] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -1103,53 +1079,12 @@ export function AdminDashboard() {
               tab === t ? "border-brand-blue text-brand-blue" : "border-transparent text-brand-slate hover:text-brand-navy"
             }`}
           >
-            {t === "mocks" ? "Mocks & Questions" : t}
+            {t === "mocks" ? "Mocks & Questions" : t === "activity" ? "Users & activity" : t}
           </button>
         ))}
       </div>
 
-      {tab === "users" && (
-        <div className="card p-6">
-          <h2 className="font-bold text-brand-navy mb-4">Real users</h2>
-          {usersError && <p className="text-sm text-brand-red mb-3">{usersError}</p>}
-          {!users ? (
-            <div className="h-32 bg-slate-200 rounded-xl animate-pulse" />
-          ) : users.length === 0 ? (
-            <p className="text-sm text-brand-slate">No signed-up users yet.</p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="text-left text-brand-slate border-b border-brand-border">
-                    <th className="py-2 pr-3">Name</th>
-                    <th className="py-2 pr-3">Email</th>
-                    <th className="py-2 pr-3">Joined</th>
-                    <th className="py-2 pr-3">Attempts</th>
-                    <th className="py-2 pr-3">Completed</th>
-                    <th className="py-2 pr-3">Latest score</th>
-                    <th className="py-2 pr-3">Last active</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map((u) => (
-                    <tr key={u.id} className="border-b border-brand-border last:border-0">
-                      <td className="py-2 pr-3 font-medium text-brand-navy">{u.name}</td>
-                      <td className="py-2 pr-3 text-brand-slate">{u.email}</td>
-                      <td className="py-2 pr-3 text-brand-slate">{new Date(u.created_at).toLocaleDateString()}</td>
-                      <td className="py-2 pr-3 text-brand-slate">{u.attemptCount}</td>
-                      <td className="py-2 pr-3 text-brand-slate">{u.completedAttemptCount}</td>
-                      <td className="py-2 pr-3 text-brand-slate">{u.latestScore ?? "—"}</td>
-                      <td className="py-2 pr-3 text-brand-slate">
-                        {u.lastActiveAt ? new Date(u.lastActiveAt).toLocaleDateString() : "—"}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      )}
+      {tab === "activity" && <AdminMonitor />}
 
       {tab === "reports" && (
         <div className="card p-6">
