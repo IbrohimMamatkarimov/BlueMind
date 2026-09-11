@@ -3,13 +3,20 @@ import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { gradePracticeAnswer } from "@/lib/practice";
+import { getQuestionAccuracy } from "@/lib/qbank";
+import { EMPTY_ACCURACY } from "@/lib/qbank-accuracy";
 
 const BodySchema = z.object({
   questionId: z.string().min(1),
   selectedAnswer: z.string().min(1),
+  // Which attempt of this question within the set this check is (1 = the
+  // first check, 2 = after one "Try again", …). Repeating a number the set
+  // already holds returns the saved result instead of recording again.
+  sessionAttempt: z.number().int().min(1).max(10000).optional(),
 });
 
-/** Grades and records one Question Bank answer immediately. */
+/** Grades and records one Question Bank answer immediately, returning the
+ * learner's updated accuracy on that question for the navigator colour. */
 export async function POST(req: NextRequest, { params }: { params: { setId: string } }) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "Sign in required" }, { status: 401 });
@@ -34,7 +41,12 @@ export async function POST(req: NextRequest, { params }: { params: { setId: stri
       // Serialize checks for this session. This makes two simultaneous clicks
       // behave as one attempt, including the skill-stat update.
       await tx.prepare("SELECT id FROM practice_sessions WHERE id = ? AND user_id = ? FOR UPDATE").get(params.setId, user.id);
-      return gradePracticeAnswer(user.id, parsed.data.questionId, parsed.data.selectedAnswer.trim(), tx, params.setId);
+      const graded = await gradePracticeAnswer(
+        user.id, parsed.data.questionId, parsed.data.selectedAnswer.trim(), tx, params.setId, undefined, parsed.data.sessionAttempt ?? 1
+      );
+      if (!graded) return null;
+      const stats = await getQuestionAccuracy(user.id, [parsed.data.questionId], params.setId, tx);
+      return { ...graded, stats: stats.get(parsed.data.questionId) ?? EMPTY_ACCURACY };
     });
     if (!result) return NextResponse.json({ error: "Question not found" }, { status: 404 });
     return NextResponse.json(result);

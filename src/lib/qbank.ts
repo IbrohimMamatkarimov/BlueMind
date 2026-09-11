@@ -4,6 +4,7 @@ import { newId } from "./id";
 import { DOMAINS } from "./sat-constants";
 import { isAnswerCorrect } from "./spr-grading";
 import { gradePracticeAnswer } from "./practice";
+import { EMPTY_ACCURACY, type QuestionAccuracy } from "./qbank-accuracy";
 
 /**
  * Question Bank — the browsable pool of standalone questions (mock_id IS
@@ -402,6 +403,49 @@ async function loadQuestionsInOrder(ids: string[]): Promise<QuestionRow[]> {
   return ids.map((id) => byId.get(id)).filter((r): r is QuestionRow => !!r);
 }
 
+/**
+ * One learner's record on each of `questionIds`: every attempt they ever
+ * made (across all sets), how many were correct, the latest outcome, and
+ * how many attempts sit inside `sessionId` (the exam page sends that back
+ * as the next sessionAttempt so a retry is recorded exactly once).
+ */
+export async function getQuestionAccuracy(
+  userId: string,
+  questionIds: string[],
+  sessionId: string | null,
+  database: Pick<typeof db, "prepare"> = db
+): Promise<Map<string, QuestionAccuracy>> {
+  const stats = new Map<string, QuestionAccuracy>();
+  if (questionIds.length === 0) return stats;
+  const rows = (await database
+    .prepare(
+      `SELECT question_id,
+              COUNT(*) AS attempts,
+              COALESCE(SUM(is_correct), 0) AS correct,
+              (ARRAY_AGG(is_correct ORDER BY created_at DESC, id DESC))[1] AS last_correct,
+              COUNT(*) FILTER (WHERE session_id = ?) AS session_attempts
+       FROM practice_attempts
+       WHERE user_id = ? AND question_id IN (${questionIds.map(() => "?").join(",")})
+       GROUP BY question_id`
+    )
+    .all(sessionId ?? "", userId, ...questionIds)) as {
+    question_id: string;
+    attempts: number | string;
+    correct: number | string;
+    last_correct: number | string | null;
+    session_attempts: number | string;
+  }[];
+  for (const r of rows) {
+    stats.set(r.question_id, {
+      attempts: Number(r.attempts),
+      correct: Number(r.correct),
+      lastCorrect: r.last_correct === null || r.last_correct === undefined ? null : Number(r.last_correct) === 1,
+      sessionAttempts: Number(r.session_attempts),
+    });
+  }
+  return stats;
+}
+
 export interface BankSetPublic {
   setId: string;
   title: string;
@@ -422,7 +466,12 @@ export interface BankSetPublic {
     questionText: string;
     choices: { id: string; text: string; imageData?: string | null }[];
     questionType: string;
+    /** Attempted at least once (any set). Kept for older clients. */
     solved: boolean;
+    attempts: number;
+    correct: number;
+    lastCorrect: boolean | null;
+    sessionAttempts: number;
   }[];
 }
 
@@ -432,15 +481,7 @@ export async function getBankSet(userId: string, setId: string, isAdmin = false)
   if (!set) return null;
   const ids = JSON.parse(set.question_ids) as string[];
   const questions = await loadQuestionsInOrder(ids);
-  const solvedRows = ids.length > 0
-    ? (await db
-        .prepare(
-          `SELECT DISTINCT question_id FROM practice_attempts
-           WHERE user_id = ? AND question_id IN (${ids.map(() => "?").join(",")})`
-        )
-        .all(userId, ...ids)) as { question_id: string }[]
-    : [];
-  const solvedIds = new Set(solvedRows.map((row) => row.question_id));
+  const accuracy = await getQuestionAccuracy(userId, ids, set.id);
   const section: BankSection = set.section === "Math" ? "Math" : set.section === "Reading and Writing" ? "Reading and Writing" : questions[0]?.section === "Math" ? "Math" : "Reading and Writing";
   let results: unknown[] | null = null;
   if (set.results_json) {
@@ -470,7 +511,8 @@ export async function getBankSet(userId: string, setId: string, isAdmin = false)
       questionText: q.question_text,
       choices: JSON.parse(q.choices),
       questionType: q.question_type,
-      solved: solvedIds.has(q.id),
+      solved: (accuracy.get(q.id)?.attempts ?? 0) > 0,
+      ...(accuracy.get(q.id) ?? EMPTY_ACCURACY),
     })),
   };
 }

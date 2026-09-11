@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { PauseScreen, TestSetup, useExamGuard } from "@/components/TestSessionControls";
 import { formatTime, isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
 import { findNextUnsolvedIndex } from "@/lib/qbank-selection";
+import { EMPTY_ACCURACY, accuracyPalette, describeAccuracy, isSolved, recordAttempt, type QuestionAccuracy } from "@/lib/qbank-accuracy";
 
 export interface ExamResult { total: number; correctCount: number; accuracyPct: number; results: GradedQuestion[] }
 export interface FullExamModule {
@@ -46,7 +47,12 @@ interface Question {
   questionText: string;
   choices: Choice[];
   questionType: "multiple_choice" | "spr";
+  /** Question Bank only — the learner's history on this question. */
   solved?: boolean;
+  attempts?: number;
+  correct?: number;
+  lastCorrect?: boolean | null;
+  sessionAttempts?: number;
 }
 interface GradedQuestion {
   questionId: string;
@@ -70,6 +76,25 @@ interface CheckedAnswer {
   correctAnswer: string;
   rationale: string;
   explanation: string;
+  /** Updated accuracy on this question, returned with every check. */
+  stats?: QuestionAccuracy;
+  /** Client-side stopwatch reading at the moment the answer was checked. */
+  seconds?: number;
+}
+
+/** The learner's record on a bank question as the page currently knows
+ * it: the server's snapshot from load time, or — for the old `solved`
+ * flag alone — one correct attempt so older payloads still paint green. */
+function baseAccuracy(question: Question): QuestionAccuracy {
+  if (typeof question.attempts === "number") {
+    return {
+      attempts: question.attempts,
+      correct: question.correct ?? 0,
+      lastCorrect: question.lastCorrect ?? null,
+      sessionAttempts: question.sessionAttempts ?? 0,
+    };
+  }
+  return question.solved ? { attempts: 1, correct: 1, lastCorrect: true, sessionAttempts: 0 } : EMPTY_ACCURACY;
 }
 
 
@@ -735,11 +760,14 @@ function PaneExpandButton({ expanded, onClick, title }: { expanded: boolean; onC
 
 /** One numbered square in the question navigator / review page grid —
  * filled blue when answered, dashed outline when not, a red bookmark when
- * marked for review, and a location pin above the current question. */
+ * marked for review, and a location pin above the current question. In a
+ * Question Bank set an attempted question is instead shaded by the
+ * learner's accuracy on it (red = always missed, amber = half, green =
+ * always right) with a ✓ or ✕ for the latest attempt. */
 function QuestionTile({
   number,
   answered,
-  solved = false,
+  accuracy = null,
   marked,
   current,
   onClick,
@@ -747,18 +775,23 @@ function QuestionTile({
 }: {
   number: number;
   answered: boolean;
-  solved?: boolean;
+  accuracy?: QuestionAccuracy | null;
   marked: boolean;
   current: boolean;
   onClick: () => void;
   size?: number;
 }) {
+  const palette = accuracy ? accuracyPalette(accuracy) : null;
+  const status = palette && accuracy
+    ? `, ${accuracy.lastCorrect ? "solved" : "missed last time"}, ${describeAccuracy(accuracy)}`
+    : answered ? ", answered" : ", unanswered";
   return (
     <button
       onClick={onClick}
       className="relative flex items-center justify-center mx-auto"
       style={{ width: size, height: size }}
-      aria-label={`Question ${number}${solved ? ", solved" : answered ? ", answered" : ", unanswered"}${marked ? ", marked for review" : ""}`}
+      aria-label={`Question ${number}${status}${marked ? ", marked for review" : ""}`}
+      title={palette && accuracy ? `Your record: ${describeAccuracy(accuracy)}` : undefined}
     >
       {current && (
         <span className="absolute -top-[19px] left-1/2 -translate-x-1/2 text-[#1e1e1e]">
@@ -767,18 +800,23 @@ function QuestionTile({
       )}
       <span
         className={`w-full h-full flex items-center justify-center text-[16px] font-bold ${
-          solved
-            ? "bg-[#15803d] text-white"
+          palette
+            ? ""
             : answered
               ? "bg-[#324dc7] text-white"
               : "bg-white text-[#324dc7] border border-dashed border-[#1e1e1e]"
         }`}
+        style={palette ? { backgroundColor: palette.background, color: palette.foreground } : undefined}
       >
         {number}
       </span>
-      {solved && (
-        <span className="absolute -bottom-[6px] -right-[6px] w-[17px] h-[17px] rounded-full bg-white border-2 border-[#15803d] text-[#15803d] text-[11px] font-bold leading-[13px]" aria-hidden="true">
-          ✓
+      {palette && accuracy && (
+        <span
+          className="absolute -bottom-[6px] -right-[6px] w-[17px] h-[17px] rounded-full bg-white border-2 text-[11px] font-bold leading-[13px]"
+          style={{ borderColor: palette.background, color: palette.background }}
+          aria-hidden="true"
+        >
+          {accuracy.lastCorrect ? "✓" : "✕"}
         </span>
       )}
       {marked && (
@@ -800,8 +838,12 @@ function NavigatorLegend({ showSolved = false }: { showSolved?: boolean }) {
         <span className="w-[18px] h-[18px] border border-dashed border-[#1e1e1e] bg-white" /> Unanswered
       </span>
       {showSolved && (
-        <span className="flex items-center gap-1.5">
-          <span className="w-[18px] h-[18px] bg-[#15803d] text-white text-[12px] font-bold flex items-center justify-center">✓</span> Solved
+        <span className="flex items-center gap-1.5" title="Attempted questions are shaded by your accuracy on them: red when you keep missing, amber at half, green when you keep getting them right. ✓ or ✕ shows your latest attempt.">
+          <span
+            className="w-[44px] h-[18px] rounded-[2px]"
+            style={{ background: "linear-gradient(90deg, #c13515 0%, #d99e06 50%, #15803d 100%)" }}
+          />{" "}
+          Missed → Solved
         </span>
       )}
       <span className="flex items-center gap-1.5">
@@ -1153,6 +1195,9 @@ export default function PracticeExam({
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checkedAnswers, setCheckedAnswers] = useState<Record<string, CheckedAnswer>>({});
+  // Accuracy returned by checks made on this page load — fresher than the
+  // load-time snapshot in `questions`, which is what a reload falls back to.
+  const [liveAccuracy, setLiveAccuracy] = useState<Record<string, QuestionAccuracy>>({});
   const [checkingAnswer, setCheckingAnswer] = useState(false);
   const [checkError, setCheckError] = useState<string | null>(null);
   const [marked, setMarked] = useState<Record<string, boolean>>({});
@@ -1999,7 +2044,7 @@ export default function PracticeExam({
   }, [results, isMath]);
 
   const current = questions[index];
-  const shouldTrackQuestion = Boolean(current && started && !loading && !results && !timerPaused && !studyToolPause && !moduleReviewOpen && !submitting && !submitError);
+  const shouldTrackQuestion = Boolean(current && !(isBank && checkedAnswers[current.id]) && started && !loading && !results && !timerPaused && !studyToolPause && !moduleReviewOpen && !submitting && !submitError);
   useEffect(() => {
     stopQuestionClock();
     if (shouldTrackQuestion && current && document.visibilityState === "visible") {
@@ -2021,9 +2066,16 @@ export default function PracticeExam({
     return () => document.removeEventListener("visibilitychange", onVisibilityChange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current?.id, shouldTrackQuestion]);
+  const accuracyFor = useCallback(
+    (question: Question): QuestionAccuracy => liveAccuracy[question.id] ?? baseAccuracy(question),
+    [liveAccuracy]
+  );
+  // "Next Unsolved" skips questions checked on this visit and questions
+  // whose latest attempt was correct — a question missed last time is
+  // offered again so the learner can retake it.
   const solvedQuestionIds = useMemo(
-    () => new Set(questions.filter((question) => question.solved || checkedAnswers[question.id]).map((question) => question.id)),
-    [questions, checkedAnswers]
+    () => new Set(questions.filter((question) => checkedAnswers[question.id] || isSolved(accuracyFor(question))).map((question) => question.id)),
+    [questions, checkedAnswers, accuracyFor]
   );
   const nextUnsolvedIndex = current
     ? findNextUnsolvedIndex(questions.map((question) => question.id), index, solvedQuestionIds)
@@ -2177,20 +2229,26 @@ export default function PracticeExam({
   // separate from the module countdown above (which never resets and is
   // what actually ends the module) and never sent anywhere for guests, to
   // preserve the "nothing saved" guest guarantee.
+  // In the question bank it stops once the answer is checked, so the learner
+  // sees how long that question took; the reading is kept with the check so
+  // it survives navigating away and back.
   const [questionSeconds, setQuestionSeconds] = useState(0);
+  const currentCheck = isBank && current ? checkedAnswers[current.id] : undefined;
+  const stopwatchStopped = Boolean(currentCheck) || checkingAnswer;
   useEffect(() => {
     setQuestionSeconds(0);
   }, [index]);
   useEffect(() => {
-    if (!started || loading || results || countdownPaused) return;
+    if (!started || loading || results || countdownPaused || stopwatchStopped) return;
     const t = setInterval(() => setQuestionSeconds((s) => s + 1), 1000);
     return () => clearInterval(t);
-  }, [loading, results, countdownPaused, index, started]);
+  }, [loading, results, countdownPaused, index, started, stopwatchStopped]);
+  const shownQuestionSeconds = currentCheck?.seconds ?? questionSeconds;
   const questionTimeStr = useMemo(() => {
-    const m = Math.floor(questionSeconds / 60);
-    const s = questionSeconds % 60;
+    const m = Math.floor(shownQuestionSeconds / 60);
+    const s = shownQuestionSeconds % 60;
     return m > 0 ? `${m}:${String(s).padStart(2, "0")}` : `0:${String(s).padStart(2, "0")}`;
-  }, [questionSeconds]);
+  }, [shownQuestionSeconds]);
 
   const derived = useMemo(() => {
     if (!current || isMath || current.passageText) return { passage: "", prompt: "" };
@@ -2227,20 +2285,46 @@ export default function PracticeExam({
     }
     setCheckingAnswer(true);
     setCheckError(null);
+    const before = accuracyFor(current);
+    const seconds = questionSeconds;
     try {
       const response = await fetch(`/api/qbank/sets/${setId}/check`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ questionId: current.id, selectedAnswer }),
+        // Numbering the attempt within the set makes a retry record exactly
+        // once even if the request is repeated (see gradePracticeAnswer).
+        body: JSON.stringify({ questionId: current.id, selectedAnswer, sessionAttempt: before.sessionAttempts + 1 }),
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.error ?? "Your answer could not be checked.");
-      setCheckedAnswers((previous) => ({ ...previous, [current.id]: data as CheckedAnswer }));
+      const checked: CheckedAnswer = { ...(data as CheckedAnswer), seconds };
+      setCheckedAnswers((previous) => ({ ...previous, [current.id]: checked }));
+      setLiveAccuracy((previous) => ({ ...previous, [current.id]: checked.stats ?? recordAttempt(before, checked.isCorrect) }));
     } catch (error) {
       setCheckError(error instanceof Error ? error.message : "Your answer could not be checked.");
     } finally {
       setCheckingAnswer(false);
     }
+  }
+
+  /** Unlocks a checked question so it can be answered and checked again as
+   * a fresh attempt — the way a missed question earns its way back toward
+   * green (or a solved one keeps its streak). */
+  function handleTryAgain() {
+    if (!isBank || !current || !checkedAnswers[current.id]) return;
+    const id = current.id;
+    setCheckedAnswers((previous) => {
+      const next = { ...previous };
+      delete next[id];
+      return next;
+    });
+    setAnswers((previous) => {
+      const next = { ...previous };
+      delete next[id];
+      return next;
+    });
+    setQuestionSeconds(0);
+    setCheckError(null);
   }
 
   function handleSkipQuestion() {
@@ -2874,13 +2958,22 @@ export default function PracticeExam({
               >
                 {current.difficulty}
               </span>}
-              {isBank && (current.solved || checkedAnswers[current.id]) && (
-                <span className="h-6 flex items-center gap-1 text-[10px] font-semibold px-2 rounded-full whitespace-nowrap bg-green-100 text-green-800" title="You have solved this question">
-                  ✓ Solved
-                </span>
-              )}
+              {isBank && (() => {
+                const stats = accuracyFor(current);
+                const palette = accuracyPalette(stats);
+                if (!palette) return null;
+                return (
+                  <span
+                    className="h-6 flex items-center gap-1 text-[10px] font-semibold px-2 rounded-full whitespace-nowrap"
+                    style={{ backgroundColor: palette.background, color: palette.foreground }}
+                    title={`Your record on this question: ${describeAccuracy(stats)}`}
+                  >
+                    {stats.lastCorrect ? "✓" : "✕"} {Math.min(stats.correct, stats.attempts)}/{stats.attempts} · {palette.percent}%
+                  </span>
+                );
+              })()}
               <span
-                title="Time on this question"
+                title={stopwatchStopped ? "Time you took on this question" : "Time on this question"}
                 className="h-6 flex items-center text-[10px] font-semibold text-brand-slate tabular-nums px-2 rounded-full bg-slate-100 whitespace-nowrap"
               >
                 {questionTimeStr}
@@ -3278,6 +3371,11 @@ export default function PracticeExam({
                 <p className="font-semibold mb-1">Explanation</p>
                 <MathText text={checkedAnswers[current.id].explanation || checkedAnswers[current.id].rationale || "An explanation is not available yet."} />
               </div>
+              <p className="mt-3 text-xs text-brand-slate">
+                {checkedAnswers[current.id].isCorrect
+                  ? "Every correct attempt shades this question greener in the navigator; use Try again any time to keep the streak going."
+                  : "Use Try again to solve this question once more — each correct attempt moves it from red toward green in the navigator."}
+              </p>
             </div>
           )}
           {isBank && checkError && <p role="alert" className="mt-4 text-sm font-medium text-brand-red">{checkError}</p>}
@@ -3831,7 +3929,7 @@ export default function PracticeExam({
                   key={q.id}
                   number={i + 1}
                   answered={!!answers[q.id]}
-                  solved={isBank && solvedQuestionIds.has(q.id)}
+                  accuracy={isBank ? accuracyFor(q) : null}
                   marked={!!marked[q.id]}
                   current={i === index}
                   onClick={() => {
@@ -3903,7 +4001,7 @@ export default function PracticeExam({
                       key={q.id}
                       number={i + 1}
                       answered={!!answers[q.id]}
-                      solved={isBank && solvedQuestionIds.has(q.id)}
+                      accuracy={isBank ? accuracyFor(q) : null}
                       marked={!!marked[q.id]}
                       current={i === index}
                       size={44}
@@ -4050,18 +4148,23 @@ export default function PracticeExam({
             )}
             {isBank ? (
               checkedAnswers[current.id] ? (
-                nextUnsolvedIndex !== null ? (
-                  <button
-                    onClick={handleNextUnsolved}
-                    className="bb-btn-primary"
-                  >
-                    Next Unsolved
+                <>
+                  <button onClick={handleTryAgain} className="bb-btn-outline" title="Answer this question again as a new attempt">
+                    Try again
                   </button>
-                ) : (
-                  <button onClick={() => setModuleReviewOpen(true)} className="bb-btn-primary">
-                    Review &amp; Finish
-                  </button>
-                )
+                  {nextUnsolvedIndex !== null ? (
+                    <button
+                      onClick={handleNextUnsolved}
+                      className="bb-btn-primary"
+                    >
+                      Next Unsolved
+                    </button>
+                  ) : (
+                    <button onClick={() => setModuleReviewOpen(true)} className="bb-btn-primary">
+                      Review &amp; Finish
+                    </button>
+                  )}
+                </>
               ) : (
                 <>
                   <button onClick={handleSkipQuestion} className="bb-btn-outline">

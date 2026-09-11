@@ -211,7 +211,12 @@ async function runMigrations(client: PoolClient) {
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS selected_answer TEXT",
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS correct_answer TEXT",
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS time_spent_seconds INTEGER",
-    "CREATE UNIQUE INDEX IF NOT EXISTS idx_practice_attempts_session_question ON practice_attempts(user_id, session_id, question_id) WHERE session_id IS NOT NULL",
+    // A learner can now "Try again" on a checked question inside the same
+    // set (each retry is a fresh attempt that moves the question's accuracy
+    // colour), so the old one-attempt-per-set uniqueness has to go. Retry
+    // idempotency lives in gradePracticeAnswer's sessionAttempt counter.
+    "DROP INDEX IF EXISTS idx_practice_attempts_session_question",
+    "CREATE INDEX IF NOT EXISTS idx_practice_attempts_session_question_v2 ON practice_attempts(user_id, session_id, question_id) WHERE session_id IS NOT NULL",
     // Learning-system fields added after the original Mistakes Notebook and
     // Vocabulary tables shipped. These are safe no-ops on fresh databases.
     "ALTER TABLE mistake_journal_entries ADD COLUMN IF NOT EXISTS category TEXT NOT NULL DEFAULT 'unclassified'",

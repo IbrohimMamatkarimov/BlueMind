@@ -183,7 +183,8 @@ export async function gradePracticeAnswer(
   selectedAnswer: string | null,
   database = db,
   sessionId?: string,
-  timeSpentSeconds?: number
+  timeSpentSeconds?: number,
+  sessionAttempt = 1
 ): Promise<GradePracticeResult | null> {
   const q = (await database
     .prepare(
@@ -207,21 +208,28 @@ export async function gradePracticeAnswer(
 
   const isCorrect = isAnswerCorrect(q.question_type, selectedAnswer, q.correct_answer);
 
-  // A checked Question Bank answer is immutable within its session. Returning
-  // the original result makes retries, refreshes, and double-clicks safe and
-  // prevents skill statistics from being incremented twice.
+  // A checked Question Bank answer is immutable within its session. The
+  // client says which attempt of this question it is making in the set
+  // (1 = the first check, 2 = the first "Try again", …): when the set
+  // already holds that many attempts the original result comes back, so
+  // network retries, refreshes and double-clicks never record twice or
+  // bump skill statistics twice — while a deliberate retry (a higher
+  // sessionAttempt) records a fresh attempt that moves the question's
+  // accuracy.
   if (sessionId) {
-    const saved = (await database
+    const priorInSession = (await database
       .prepare(
-        `SELECT is_correct FROM practice_attempts
-         WHERE user_id = ? AND session_id = ? AND question_id = ?`
+        `SELECT id, is_correct FROM practice_attempts
+         WHERE user_id = ? AND session_id = ? AND question_id = ?
+         ORDER BY created_at DESC, id DESC`
       )
-      .get(userId, sessionId, questionId)) as { is_correct: number } | undefined;
-    if (saved) {
+      .all(userId, sessionId, questionId)) as { id: string; is_correct: number }[];
+    const wanted = Math.max(1, Math.floor(Number.isFinite(sessionAttempt) ? sessionAttempt : 1));
+    if (priorInSession.length >= wanted) {
+      const saved = priorInSession[0];
       if (Number.isFinite(timeSpentSeconds)) {
-        await database.prepare(`UPDATE practice_attempts SET time_spent_seconds = ?
-          WHERE user_id = ? AND session_id = ? AND question_id = ?`)
-          .run(Math.max(0, Math.min(3600, Math.round(timeSpentSeconds!))), userId, sessionId, questionId);
+        await database.prepare(`UPDATE practice_attempts SET time_spent_seconds = ? WHERE id = ?`)
+          .run(Math.max(0, Math.min(3600, Math.round(timeSpentSeconds!))), saved.id);
       }
       return {
         questionId: q.id,
