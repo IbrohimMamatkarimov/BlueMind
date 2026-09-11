@@ -9,6 +9,7 @@ const SESSION_DAYS = 30;
 
 const ADMIN_EMAILS = [
   "ibrohimmamatkarimov0928@gmail.com",
+  "hamidulloisfriendly@gmail.com", // Emperor
   ...((process.env.ADMIN_EMAILS ?? "")
     .split(",")
     .map((e) => e.trim().toLowerCase())
