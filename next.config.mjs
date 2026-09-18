@@ -24,6 +24,11 @@ const nextConfig = {
       static: 0,
     },
   },
+  async redirects() {
+    // The Mistakes Notebook became the Notebook once it also held question
+    // notes; keep old links and bookmarks working.
+    return [{ source: "/mistakes", destination: "/notebook", permanent: true }];
+  },
   async headers() {
     return [
       {

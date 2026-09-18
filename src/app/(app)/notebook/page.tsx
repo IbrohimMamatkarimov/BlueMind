@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { BookOpenCheck, CheckCircle2, Clock3, Pencil, RotateCcw, Save, TriangleAlert, X } from "lucide-react";
+import { BookOpenCheck, CheckCircle2, Clock3, Pencil, RotateCcw, Save, StickyNote, Trash2, TriangleAlert, X } from "lucide-react";
 import { MathText } from "@/components/MathText";
 import { EmptyState, PageHeader, StatCard } from "@/components/ui";
 
 type Section = "Reading and Writing" | "Math";
 type Status = "all" | "needs_review" | "improved";
+type View = "mistakes" | "notes";
+interface QuestionNote { questionId: string; externalId: string | null; section: Section; domain: string; skill: string; difficulty: string; questionText: string; source: string; note: string; updatedAt: string }
 type MistakeCategory = "unclassified" | "concept_gap" | "careless_error" | "misread_question" | "timing_issue" | "strategy_issue";
 interface JournalEntry { reason: string; warning: string; category: MistakeCategory; updatedAt: string }
 interface Mistake { questionId: string; externalId: string | null; section: Section; domain: string; skill: string; difficulty: string; questionText: string; mistakeCount: number; attemptCount: number; latestCorrect: boolean; lastAttemptAt: string; selectedAnswer: string | null; correctAnswer: string; source: string; lastTimeSpentSeconds: number | null; journal: JournalEntry | null }
@@ -130,7 +132,128 @@ function MistakeItem({ item, checked, starting, onToggle, onPractice, onJournalS
   </article>;
 }
 
-export default function MistakesNotebookPage() {
+function NoteItem({ item, starting, onPractice, onSaved }: {
+  item: QuestionNote;
+  starting: boolean;
+  onPractice: () => void;
+  onSaved: (saved: { note: string; updatedAt: string } | null) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(item.note);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
+
+  function cancelEditing() {
+    setDraft(item.note);
+    setSaveError("");
+    setEditing(false);
+  }
+
+  // An empty note deletes it, the same as clearing it during practice.
+  async function save(note: string) {
+    setSaving(true);
+    setSaveError("");
+    try {
+      const response = await fetch("/api/question-notes", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId: item.questionId, note }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error ?? "Could not save your note.");
+      onSaved(data.note);
+      setDraft(data.note?.note ?? "");
+      setEditing(false);
+    } catch (cause) {
+      setSaveError(cause instanceof Error ? cause.message : "Could not save your note.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return <article className="p-5">
+    <div className="flex flex-col gap-4 sm:flex-row">
+      <div className="min-w-0 flex-1">
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <span className={`text-[11px] font-semibold rounded-full px-2 py-0.5 ${difficultyClass(item.difficulty)}`}>{item.difficulty}</span>
+          <span className="text-xs text-brand-slate">{item.domain} · {item.skill} · {item.source}</span>
+        </div>
+        <div className="text-sm text-brand-navy line-clamp-2"><MathText text={item.questionText} /></div>
+      </div>
+      <button onClick={onPractice} disabled={starting} className="btn-secondary text-xs self-start shrink-0 sm:self-center">Solve again</button>
+    </div>
+
+    <div className="mt-4">
+      {editing ? <div className="rounded-xl border border-brand-border bg-slate-50 p-4">
+        <textarea autoFocus value={draft} onChange={(event) => setDraft(event.target.value)} maxLength={4000} rows={5} aria-label="Edit note" className="w-full resize-y rounded-lg border border-brand-border bg-white px-3 py-2 text-sm leading-6 text-brand-navy"/>
+        <div className="mt-1 flex items-start justify-between gap-3"><p role="alert" className="text-xs text-brand-red">{saveError}</p><span className="shrink-0 text-[10px] text-brand-slate">{draft.length}/4000</span></div>
+        <div className="mt-3 flex flex-wrap justify-end gap-2"><button onClick={cancelEditing} disabled={saving} className="btn-secondary text-xs">Cancel</button><button onClick={() => save(draft)} disabled={saving || !draft.trim() || draft.trim() === item.note} className="btn-primary text-xs"><Save size={14}/>{saving ? "Saving…" : "Save note"}</button></div>
+      </div> : <div className="rounded-xl border border-brand-border bg-slate-50 p-4">
+        <p className="whitespace-pre-wrap text-sm leading-6 text-brand-navy">{item.note}</p>
+        <div className="mt-3 flex flex-wrap items-center gap-4">
+          <span className="text-[11px] text-brand-slate">Updated {new Date(item.updatedAt).toLocaleDateString()}</span>
+          <button onClick={() => setEditing(true)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-blue"><Pencil size={13}/> Edit note</button>
+          <button onClick={() => { if (window.confirm("Delete this note? This can't be undone.")) void save(""); }} disabled={saving} className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-red disabled:opacity-50"><Trash2 size={13}/> Delete</button>
+        </div>
+        {saveError && <p role="alert" className="mt-2 text-xs text-brand-red">{saveError}</p>}
+      </div>}
+    </div>
+  </article>;
+}
+
+function NotesView({ section }: { section: Section }) {
+  const [notes, setNotes] = useState<QuestionNote[] | null>(null);
+  const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
+  const [starting, setStarting] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setNotes(null); setError(""); setSearch("");
+    fetch(`/api/question-notes?section=${encodeURIComponent(section)}`, { signal: controller.signal })
+      .then(async (response) => { const data = await response.json(); if (!response.ok) throw new Error(data.error ?? "Could not load your notes."); return data.notes as QuestionNote[]; })
+      .then(setNotes)
+      .catch((reason) => { if (!controller.signal.aborted) setError(reason instanceof Error ? reason.message : "Could not load your notes."); });
+    return () => controller.abort();
+  }, [section]);
+
+  const visible = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    return (notes ?? []).filter((item) => !query || [item.note, item.questionText, item.skill, item.domain].some((text) => text.toLowerCase().includes(query)));
+  }, [notes, search]);
+
+  async function practice(ids: string[]) {
+    if (!ids.length) return;
+    setStarting(true); setError("");
+    try {
+      const response = await fetch("/api/question-notes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section, questionIds: ids }) });
+      const data = await response.json(); if (!response.ok) throw new Error(data.error ?? "Could not start this practice.");
+      window.location.href = data.href;
+    } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not start this practice."); setStarting(false); }
+  }
+
+  function updateNote(questionId: string, saved: { note: string; updatedAt: string } | null) {
+    setNotes((current) => current && (saved
+      ? current.map((item) => item.questionId === questionId ? { ...item, ...saved } : item)
+      : current.filter((item) => item.questionId !== questionId)));
+  }
+
+  if (!notes) return error ? <p role="alert" className="card p-4 text-sm text-brand-red">{error}</p> : <div className="h-40 bg-slate-200 rounded-2xl animate-pulse" />;
+  if (!notes.length) return <EmptyState title="No notes here yet" description="Use the Notes button on any question while you practice. Every note you save appears here with its question."><StickyNote size={28} /></EmptyState>;
+  return <section className="card overflow-hidden">
+    <div className="p-5 border-b border-brand-border flex flex-wrap items-center gap-3">
+      <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search your notes" aria-label="Search your notes" className="w-full sm:w-72 border border-brand-border rounded-lg px-3 py-2 text-xs text-brand-navy"/>
+      <span className="text-xs text-brand-slate">{notes.length} note{notes.length === 1 ? "" : "s"}</span>
+      <button onClick={() => practice(visible.map((item) => item.questionId))} disabled={starting || !visible.length} className="btn-primary text-sm ml-auto disabled:opacity-50"><RotateCcw size={15} /> Practice these questions</button>
+    </div>
+    {error && <p role="alert" className="px-5 pt-4 text-sm text-brand-red">{error}</p>}
+    <div className="divide-y divide-brand-border">{visible.map((item) => <NoteItem key={item.questionId} item={item} starting={starting} onPractice={() => practice([item.questionId])} onSaved={(saved) => updateNote(item.questionId, saved)} />)}</div>
+    {visible.length === 0 && <p className="p-10 text-center text-sm text-brand-slate">No notes match your search.</p>}
+  </section>;
+}
+
+export default function NotebookPage() {
+  const [view, setView] = useState<View>("mistakes");
   const [section, setSection] = useState<Section>("Reading and Writing");
   const [payload, setPayload] = useState<Payload | null>(null);
   const [status, setStatus] = useState<Status>("needs_review");
@@ -184,11 +307,15 @@ export default function MistakesNotebookPage() {
   }
 
   return <div className="space-y-6 max-w-6xl">
-    <PageHeader eyebrow="Turn misses into mastery" title="Mistakes Notebook" description="Every question you miss stays here, so you can understand the pattern, try it again, and see your improvement." />
-    <div className="flex gap-1 p-1 bg-white border border-brand-border rounded-xl w-fit">{(["Reading and Writing", "Math"] as Section[]).map((item) => <button key={item} onClick={() => setSection(item)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${section === item ? "bg-brand-navy text-white" : "text-brand-slate"}`}>{item === "Reading and Writing" ? "Reading & Writing" : item}</button>)}</div>
-    {error && <p role="alert" className="card p-4 text-sm text-brand-red">{error}</p>}
-    {!payload && !error && <div className="grid sm:grid-cols-4 gap-4">{[1,2,3,4].map((key) => <div key={key} className="h-28 bg-slate-200 rounded-2xl animate-pulse" />)}</div>}
-    {payload && <>
+    <PageHeader eyebrow="Turn misses into mastery" title="Notebook" description="Your missed questions and your own question notes in one place, so you can understand the pattern, try again, and see your improvement." />
+    <div className="flex flex-wrap items-center gap-3">
+      <div className="flex gap-1 p-1 bg-white border border-brand-border rounded-xl w-fit">{([["mistakes", "Mistakes", TriangleAlert], ["notes", "My notes", StickyNote]] as const).map(([value, label, Icon]) => <button key={value} onClick={() => setView(value)} aria-pressed={view === value} className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold ${view === value ? "bg-brand-navy text-white" : "text-brand-slate"}`}><Icon size={15} />{label}</button>)}</div>
+      <div className="flex gap-1 p-1 bg-white border border-brand-border rounded-xl w-fit">{(["Reading and Writing", "Math"] as Section[]).map((item) => <button key={item} onClick={() => setSection(item)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${section === item ? "bg-brand-navy text-white" : "text-brand-slate"}`}>{item === "Reading and Writing" ? "Reading & Writing" : item}</button>)}</div>
+    </div>
+    {view === "notes" && <NotesView section={section} />}
+    {view === "mistakes" && error && <p role="alert" className="card p-4 text-sm text-brand-red">{error}</p>}
+    {view === "mistakes" && !payload && !error && <div className="grid sm:grid-cols-4 gap-4">{[1,2,3,4].map((key) => <div key={key} className="h-28 bg-slate-200 rounded-2xl animate-pulse" />)}</div>}
+    {view === "mistakes" && payload && <>
       <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4"><StatCard label="Notebook questions" value={payload.summary.total} detail="Questions missed at least once" /><StatCard label="Needs review" value={payload.summary.needsReview} detail="Latest attempt was incorrect" /><StatCard label="Improved" value={payload.summary.improved} detail="Correct on the latest attempt" /><StatCard label="Repeated mistakes" value={payload.summary.repeated} detail="Missed more than once" /></div>
       {payload.skills.length > 0 && <section className="card p-5 sm:p-6"><h2 className="font-bold text-brand-navy">Weakest areas</h2><p className="text-xs text-brand-slate mt-1 mb-5">Accuracy across mock tests and Question Bank practice.</p><div className="grid md:grid-cols-2 gap-x-8 gap-y-5">{payload.skills.slice(0, 8).map((item) => <button key={item.domain + item.skill} onClick={() => setSkill(item.skill)} className="text-left group"><div className="flex justify-between gap-3 mb-2"><span className="text-sm font-medium text-brand-navy group-hover:text-brand-blue">{item.skill}</span><span className="text-xs text-brand-slate">{item.accuracyPct}% · {item.mistakes} mistakes</span></div><div className="h-2 bg-slate-100 rounded-full overflow-hidden"><div className={`h-full rounded-full ${item.accuracyPct < 50 ? "bg-brand-red" : item.accuracyPct < 70 ? "bg-brand-amber" : "bg-brand-green"}`} style={{ width: `${item.accuracyPct}%` }} /></div></button>)}</div></section>}
       <DifficultyAnalytics payload={payload} section={section}/>
@@ -198,6 +325,6 @@ export default function MistakesNotebookPage() {
         {visible.length === 0 && <p className="p-10 text-center text-sm text-brand-slate">No questions match these filters.</p>}
       </section>}
     </>}
-    {selected.size > 0 && <div className="action-bar"><p className="font-semibold text-brand-navy">{selected.size} selected</p><div className="flex gap-2"><button onClick={() => setSelected(new Set())} className="btn-secondary">Clear</button><button onClick={() => practice(Array.from(selected))} disabled={starting} className="btn-primary">Practice selected</button></div></div>}
+    {view === "mistakes" && selected.size > 0 && <div className="action-bar"><p className="font-semibold text-brand-navy">{selected.size} selected</p><div className="flex gap-2"><button onClick={() => setSelected(new Set())} className="btn-secondary">Clear</button><button onClick={() => practice(Array.from(selected))} disabled={starting} className="btn-primary">Practice selected</button></div></div>}
   </div>;
 }

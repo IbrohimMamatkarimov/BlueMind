@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { href: "/today", label: "Today" },
   { href: "/mocks", label: "Mock Tests" },
   { href: "/practice", label: "Practice" },
-  { href: "/mistakes", label: "Mistakes Notebook" },
+  { href: "/notebook", label: "Notebook" },
   { href: "/progress", label: "Progress" },
 ];
 

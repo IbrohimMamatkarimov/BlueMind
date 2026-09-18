@@ -7,7 +7,7 @@ export const NAV_ITEMS = [
   { href: "/today", label: "Today", icon: CalendarCheck2 },
   { href: "/mocks", label: "Mock Tests", icon: FileText },
   { href: "/practice", label: "Question Bank", icon: BookOpen },
-  { href: "/mistakes", label: "Mistakes Notebook", icon: NotebookPen },
+  { href: "/notebook", label: "Notebook", icon: NotebookPen },
   { href: "/vocabulary", label: "Vocabulary", icon: BookMarked },
   { href: "/progress", label: "Progress", icon: ChartNoAxesCombined },
 ];

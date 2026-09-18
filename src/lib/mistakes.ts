@@ -200,7 +200,7 @@ export async function saveMistakeJournalEntry(
 ) {
   const notebook = await getMistakes(userId, section);
   if (!notebook.mistakes.some((item) => item.questionId === questionId)) {
-    return { ok: false as const, error: "That question is not in your mistakes notebook." };
+    return { ok: false as const, error: "That question is not among the mistakes in your notebook." };
   }
 
   const cleanReason = reason.trim();
@@ -234,5 +234,5 @@ export async function createMistakePracticeSet(userId: string, section: BankSect
   const ids = Array.from(new Set(requestedIds)).filter((id) => allowed.has(id));
   if (!ids.length) return { ok: false as const, error: "Choose at least one question from your notebook." };
   return createBankSet(userId, { filters: normalizeFilters({ section }), count: ids.length, shuffle: false,
-    questionIds: ids, title: "Mistakes Notebook review", allowMockQuestions: true });
+    questionIds: ids, title: "Notebook review", allowMockQuestions: true });
 }

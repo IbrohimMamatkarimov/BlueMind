@@ -72,7 +72,7 @@ export default function TodayPage() {
 
       <div className="grid gap-4 lg:grid-cols-3">
         <PlanItem icon={<BookOpenCheck size={19}/>} title={data.plan.weakSkill ? `Practice ${data.plan.weakSkill.skill}` : "Practice questions"} detail={data.plan.weakSkill ? `Your current focus area is at ${data.plan.weakSkill.accuracy}% accuracy.` : "Build enough history for a personalized skill recommendation."} progress={data.today.questions} goal={goals.questions} href={practiceHref} action="Start focused practice"/>
-        <PlanItem icon={<RotateCcw size={19}/>} title="Reflect on mistakes" detail={data.plan.mistakesDue ? `${data.plan.mistakesDue} questions still need another look.` : "Your latest missed questions have been resolved."} progress={data.today.reflections} goal={goals.mistakes} href="/mistakes" action="Open Mistakes Notebook"/>
+        <PlanItem icon={<RotateCcw size={19}/>} title="Reflect on mistakes" detail={data.plan.mistakesDue ? `${data.plan.mistakesDue} questions still need another look.` : "Your latest missed questions have been resolved."} progress={data.today.reflections} goal={goals.mistakes} href="/notebook" action="Open Notebook"/>
         <PlanItem icon={<Layers3 size={19}/>} title="Review vocabulary" detail={data.plan.vocabularyDue ? `${data.plan.vocabularyDue} flashcards are due now.` : data.plan.wordsToDefine ? `${data.plan.wordsToDefine} saved words still need definitions.` : "Your vocabulary queue is caught up."} progress={data.today.vocabularyReviews} goal={goals.vocabulary} href="/vocabulary" action="Review due cards"/>
       </div>
 
