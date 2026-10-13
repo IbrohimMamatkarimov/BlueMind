@@ -133,6 +133,11 @@ then re-run."
   # -------------------------------------------------------------- build ---
   say "Building"
   rm -rf "$staging"
+  # tsconfig.json includes .next/types/**, the route stubs of the build that
+  # is live right now. They go stale as soon as a page is renamed or removed
+  # and then fail the type check ("Cannot find module .../page.js"). The
+  # running server never reads them, so drop them before type-checking.
+  rm -rf "$live/types"
   # Build somewhere else entirely: the running site keeps serving .next
   # untouched, so a compile error costs nothing.
   if ! BLUEMIND_DIST_DIR=.next-staging npm run build; then
