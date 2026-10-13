@@ -48,7 +48,7 @@ async function main() {
 
   for (const block of rawBlocks) {
     if (block.trim() === '') continue;
-    const m = block.match(/\n(\d+)\n(.*?\?)\nA\)\s+(.*?)\nB\)\s+(.*?)\nC\)\s+(.*?)\nD\)\s+(.*)/s);
+    const m = block.match(/\n(\d+)\n([\s\S]*?\?)\nA\)\s+([\s\S]*?)\nB\)\s+([\s\S]*?)\nC\)\s+([\s\S]*?)\nD\)\s+([\s\S]*)/);
     if (m) {
       const qNum = m[1];
       let prefix = block.substring(0, m.index).trim();
