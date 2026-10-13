@@ -55,6 +55,9 @@ the sentence between them. Write `8 dollars`, as every existing set does.
 | `2026-march-us-a` | March 2026 US, Form A | 98 (R&W 27 + 27, Math 22 + 22) |
 | `2026-march-int-b` | March 2026 International, Form B | 98 (R&W 27 + 27, Math 22 + 22) |
 | `2026-march-us-b` | March 2026 US, Form B | 98 (R&W 27 + 27, Math 22 + 22) |
+| `2025-november-v1` | November 2025, Version 1 (Module 1 + hard Module 2) | 98 (R&W 27 + 27, Math 22 + 22) |
+| `2025-november-v2` | November 2025, Version 2 (Module 1 + hard Module 2) | 98 (R&W 27 + 27, Math 22 + 22) |
+| `2025-november-v3` | November 2025, Version 3 (Module 1 + hard Module 2) | 98 (R&W 27 + 27, Math 22 + 22) |
 | `2023-june-v1` | June 2023 International, Version 1 | 97 (R&W 26 + 27, Math 22 + 22) |
 | `2023-june-v2` | June 2023 International, Version 2 | 98 (R&W 27 + 27, Math 22 + 22) |
 | `2023-october-int-a` | October 2023 International, Form A | 72 (R&W 26 + 25, Math 21) |
