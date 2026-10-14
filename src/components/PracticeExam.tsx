@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { PauseScreen, TestSetup, useExamGuard } from "@/components/TestSessionControls";
 import { formatTime, isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
+import { deleteServerProgress, flushProgressSync, queueProgressSync, resolveSavedProgress } from "@/lib/progress-sync";
 import { findNextUnsolvedIndex } from "@/lib/qbank-selection";
 import { EMPTY_ACCURACY, accuracyPalette, describeAccuracy, isSolved, recordAttempt, type QuestionAccuracy } from "@/lib/qbank-accuracy";
 
@@ -1435,10 +1436,10 @@ export default function PracticeExam({
 
   // "Leave this test?" confirmation — shown from the kebab menu instead of
   // navigating straight away. Progress is saved to localStorage (works for
-  // guests and signed-in users alike, no backend attempt-record needed for
-  // this quick-practice flow) keyed to this exact mock/section/module, and
-  // restored automatically if the student comes back to the same module
-  // before finishing or explicitly deleting it.
+  // guests and signed-in users alike) keyed to this exact mock/section/
+  // module, mirrored to /api/test-progress for signed-in learners so it can
+  // be continued on another device, and restored automatically if the
+  // student comes back to the same module before finishing or deleting it.
   const [leaveModalOpen, setLeaveModalOpen] = useState(false);
   const submissionId = useRef<string>("");
   const [restoredProgress, setRestoredProgress] = useState(false);
@@ -1481,14 +1482,16 @@ export default function PracticeExam({
     if (finishedRef.current) return true;
     try {
       if (!submissionId.current) submissionId.current = crypto.randomUUID();
-      window.localStorage.setItem(progressKey, JSON.stringify({
+      const state = {
         submissionId: submissionId.current,
         answers, checkedAnswers, marked, crossedOut,
         questionTimeMs: questionTimeSnapshot(),
         secondsLeft: deadlineRef.current === null ? secondsLeft : remainingSeconds(deadlineRef.current),
         studyPauseMs: studyPauseMs + (studyPauseStartedAtRef.current === null ? 0 : Date.now() - studyPauseStartedAtRef.current),
         index, mode: testMode, savedAt: Date.now(),
-      }));
+      };
+      queueProgressSync(progressKey, state);
+      window.localStorage.setItem(progressKey, JSON.stringify(state));
       setStorageError(null);
       return true;
     } catch {
@@ -1506,14 +1509,18 @@ export default function PracticeExam({
 
   useEffect(() => {
     if (!started || loading || results || !questions.length) return;
-    const save = () => { saveRef.current(); };
+    const save = () => { saveRef.current(); void flushProgressSync(progressKey); };
+    // Mobile browsers often kill a backgrounded tab without pagehide.
+    const onHidden = () => { if (document.visibilityState === "hidden") save(); };
     window.addEventListener("pagehide", save);
     window.addEventListener("beforeunload", save);
+    document.addEventListener("visibilitychange", onHidden);
     return () => {
       window.removeEventListener("pagehide", save);
       window.removeEventListener("beforeunload", save);
+      document.removeEventListener("visibilitychange", onHidden);
     };
-  }, [started, loading, results, questions.length]);
+  }, [started, loading, results, questions.length, progressKey]);
 
   function pauseTest(reason = "Take as much time as you need.") {
     if (finishedRef.current || pausedRef.current) return;
@@ -1532,12 +1539,14 @@ export default function PracticeExam({
   function handleSaveAndExit() {
     pauseTest();
     if (!saveProgressToStorage()) return;
+    void flushProgressSync(progressKey);
     window.location.href = isBank ? "/practice/browse" : signedIn ? "/mocks" : "/";
   }
 
   function handleLeaveAndDelete() {
     try {
       window.localStorage.removeItem(progressKey);
+      deleteServerProgress(progressKey);
       fullExam?.onDelete();
       finishedRef.current = true;
     } catch {
@@ -1971,10 +1980,12 @@ export default function PracticeExam({
         }
         return data;
       })
-      .then((data) => {
+      .then(async (data) => {
         if (fullExam && data.questions.length !== (isMath ? 22 : 27)) {
           throw new Error("This full-exam module no longer has its complete question set.");
         }
+        // The server copy wins when it is newer (continued on another device).
+        const raw = await resolveSavedProgress(progressKey);
         setMockTitle(data.mockTitle);
         setQuestions(data.questions);
         setTotalSeconds((data.minutes ?? 0) * 60);
@@ -1983,7 +1994,6 @@ export default function PracticeExam({
         // module, if one exists and still matches the current question set.
         let restored = false;
         try {
-          const raw = window.localStorage.getItem(progressKey);
           if (raw) {
             const saved = JSON.parse(raw);
             if (saved && typeof saved === "object") {
@@ -2461,6 +2471,7 @@ export default function PracticeExam({
           setResults(data);
           if (testMode === "exam" && document.fullscreenElement) document.exitFullscreen().catch(() => {});
         }
+        deleteServerProgress(progressKey);
         try {
           window.localStorage.removeItem(progressKey);
         } catch {

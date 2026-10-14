@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
-import { createNotePracticeSet, getQuestionNote, listQuestionNotes, saveQuestionNote } from "@/lib/question-notes";
+import { createNotePracticeSet, getNoteQuestion, getQuestionNote, listQuestionNotes, saveQuestionNote } from "@/lib/question-notes";
 import type { BankSection } from "@/lib/qbank";
 
 const QuestionId = z.string().min(1).max(200);
@@ -20,6 +20,11 @@ export async function GET(req: NextRequest) {
   }
   const parsed = QuestionId.safeParse(questionId);
   if (!parsed.success) return NextResponse.json({ error: "A question is required." }, { status: 400 });
+  if (req.nextUrl.searchParams.get("details") === "1") {
+    const question = await getNoteQuestion(user.id, parsed.data);
+    if (!question) return NextResponse.json({ error: "That question is no longer available." }, { status: 404 });
+    return NextResponse.json({ question });
+  }
   return NextResponse.json({ note: await getQuestionNote(user.id, parsed.data) });
 }
 

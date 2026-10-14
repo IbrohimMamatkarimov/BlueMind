@@ -41,6 +41,38 @@ export async function listQuestionNotes(userId: string, section: BankSection): P
   }));
 }
 
+export interface NoteQuestionDetails {
+  passageText: string | null;
+  questionText: string;
+  imageData: string | null;
+  questionType: string;
+  choices: { id: string; text: string }[];
+  correctAnswer: string;
+  explanation: string;
+}
+
+/** The full question behind one of the learner's notes, for reading it in
+ * the Notebook without opening a practice session. Only questions the
+ * learner has a note on are returned. */
+export async function getNoteQuestion(userId: string, questionId: string): Promise<NoteQuestionDetails | null> {
+  const row = await db.prepare(`
+    SELECT q.passage_text, q.question_text, q.image_data, q.question_type, q.choices,
+           q.correct_answer, q.explanation, q.rationale
+    FROM question_notes n
+    JOIN questions q ON q.id = n.question_id
+    WHERE n.user_id = ? AND n.question_id = ?
+  `).get(userId, questionId) as Record<string, unknown> | undefined;
+  if (!row) return null;
+  let choices: { id: string; text: string }[] = [];
+  try { choices = JSON.parse(String(row.choices ?? "[]")); } catch {}
+  return {
+    passageText: row.passage_text ? String(row.passage_text) : null,
+    questionText: String(row.question_text), imageData: row.image_data ? String(row.image_data) : null,
+    questionType: String(row.question_type), choices, correctAnswer: String(row.correct_answer),
+    explanation: String(row.explanation || row.rationale || ""),
+  };
+}
+
 export async function saveQuestionNote(userId: string, questionId: string, note: string) {
   const question = await db.prepare("SELECT id FROM questions WHERE id = ?").get(questionId);
   if (!question) return { ok: false as const, error: "That question is no longer available." };

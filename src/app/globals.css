@@ -461,3 +461,15 @@ textarea:focus-visible,
 .app-dark .text-brand-blue { color: #91b3ff; }
 .app-dark .divide-brand-border > :not([hidden]) ~ :not([hidden]) { border-color: var(--line); }
 .app-dark .app-sidebar img[src="/logo.png"], .app-dark .mobile-header img[src="/logo.png"] { filter: brightness(1.8) saturate(.8); }
+
+/* Notebook "Read" mode: question notes on ruled paper with a margin line.
+   .notebook-lines rules every 28px line so the note text sits on the lines. */
+.notebook-paper { --paper: #fffdf8; --rule: #e4eaf5; --margin: #f2b8b8; --note-ink: #1e293b; position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.app-dark .notebook-paper { --paper: #111a2c; --rule: #1f2c45; --margin: #6b2f3b; --note-ink: #e2e8f0; }
+.notebook-paper::before { content: ""; position: absolute; top: 0; bottom: 0; left: 1.25rem; width: 1px; background: var(--margin); pointer-events: none; }
+.notebook-entry { padding-left: 2.25rem; }
+.notebook-lines { font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif; font-size: 17px; line-height: 28px; color: var(--note-ink); white-space: pre-wrap; overflow-wrap: anywhere; background-image: linear-gradient(to bottom, transparent 27px, var(--rule) 27px); background-size: 100% 28px; }
+@media (min-width: 640px) {
+  .notebook-paper::before { left: 3rem; }
+  .notebook-entry { padding-left: 4.25rem; }
+}

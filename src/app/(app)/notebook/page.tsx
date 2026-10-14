@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { BookOpenCheck, CheckCircle2, Clock3, Pencil, RotateCcw, Save, StickyNote, Trash2, TriangleAlert, X } from "lucide-react";
+import { BookOpen, BookOpenCheck, CheckCircle2, Clock3, List, Pencil, RotateCcw, Save, StickyNote, Trash2, TriangleAlert, X } from "lucide-react";
 import { MathText } from "@/components/MathText";
+import { NotebookReader } from "@/components/NotebookReader";
 import { EmptyState, PageHeader, StatCard } from "@/components/ui";
 
 type Section = "Reading and Writing" | "Math";
 type Status = "all" | "needs_review" | "improved";
 type View = "mistakes" | "notes";
+type NotesMode = "read" | "edit";
+const NOTES_MODE_KEY = "bluemind_notebook_notes_mode";
 interface QuestionNote { questionId: string; externalId: string | null; section: Section; domain: string; skill: string; difficulty: string; questionText: string; source: string; note: string; updatedAt: string }
 type MistakeCategory = "unclassified" | "concept_gap" | "careless_error" | "misread_question" | "timing_issue" | "strategy_issue";
 interface JournalEntry { reason: string; warning: string; category: MistakeCategory; updatedAt: string }
@@ -206,6 +209,16 @@ function NotesView({ section }: { section: Section }) {
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [starting, setStarting] = useState(false);
+  // "Read" lays the notes out like a paper notebook; "Edit" is the list with
+  // edit/delete. The learner's last choice is remembered on this device.
+  const [mode, setMode] = useState<NotesMode>("read");
+  useEffect(() => {
+    try { if (window.localStorage.getItem(NOTES_MODE_KEY) === "edit") setMode("edit"); } catch {}
+  }, []);
+  function chooseMode(next: NotesMode) {
+    setMode(next);
+    try { window.localStorage.setItem(NOTES_MODE_KEY, next); } catch {}
+  }
 
   useEffect(() => {
     const controller = new AbortController();
@@ -240,12 +253,23 @@ function NotesView({ section }: { section: Section }) {
 
   if (!notes) return error ? <p role="alert" className="card p-4 text-sm text-brand-red">{error}</p> : <div className="h-40 bg-slate-200 rounded-2xl animate-pulse" />;
   if (!notes.length) return <EmptyState title="No notes here yet" description="Use the Notes button on any question while you practice. Every note you save appears here with its question."><StickyNote size={28} /></EmptyState>;
-  return <section className="card overflow-hidden">
-    <div className="p-5 border-b border-brand-border flex flex-wrap items-center gap-3">
-      <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search your notes" aria-label="Search your notes" className="w-full sm:w-72 border border-brand-border rounded-lg px-3 py-2 text-xs text-brand-navy"/>
-      <span className="text-xs text-brand-slate">{notes.length} note{notes.length === 1 ? "" : "s"}</span>
-      <button onClick={() => practice(visible.map((item) => item.questionId))} disabled={starting || !visible.length} className="btn-primary text-sm ml-auto disabled:opacity-50"><RotateCcw size={15} /> Practice these questions</button>
+  const toolbar = <div className="p-5 flex flex-wrap items-center gap-3">
+    <div className="flex gap-1 p-1 bg-slate-50 rounded-lg" role="group" aria-label="Notes layout">
+      {([["read", "Read", BookOpen], ["edit", "Edit", List]] as const).map(([value, label, Icon]) => <button key={value} onClick={() => chooseMode(value)} aria-pressed={mode === value} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold ${mode === value ? "bg-white text-brand-blue shadow-sm" : "text-brand-slate"}`}><Icon size={14} />{label}</button>)}
     </div>
+    <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search your notes" aria-label="Search your notes" className="w-full sm:w-72 border border-brand-border rounded-lg px-3 py-2 text-xs text-brand-navy"/>
+    <span className="text-xs text-brand-slate">{notes.length} note{notes.length === 1 ? "" : "s"}</span>
+    <button onClick={() => practice(visible.map((item) => item.questionId))} disabled={starting || !visible.length} className="btn-primary text-sm ml-auto disabled:opacity-50"><RotateCcw size={15} /> Practice these questions</button>
+  </div>;
+
+  if (mode === "read") return <div className="space-y-4">
+    <section className="card">{toolbar}</section>
+    {error && <p role="alert" className="card p-4 text-sm text-brand-red">{error}</p>}
+    {visible.length > 0 ? <NotebookReader notes={visible} starting={starting} onPractice={(questionId) => practice([questionId])} /> : <p className="card p-10 text-center text-sm text-brand-slate">No notes match your search.</p>}
+  </div>;
+
+  return <section className="card overflow-hidden">
+    <div className="border-b border-brand-border">{toolbar}</div>
     {error && <p role="alert" className="px-5 pt-4 text-sm text-brand-red">{error}</p>}
     <div className="divide-y divide-brand-border">{visible.map((item) => <NoteItem key={item.questionId} item={item} starting={starting} onPractice={() => practice([item.questionId])} onSaved={(saved) => updateNote(item.questionId, saved)} />)}</div>
     {visible.length === 0 && <p className="p-10 text-center text-sm text-brand-slate">No notes match your search.</p>}

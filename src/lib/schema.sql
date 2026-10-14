@@ -269,6 +269,26 @@ CREATE TABLE IF NOT EXISTS question_notes (
   PRIMARY KEY (user_id, question_id)
 );
 CREATE INDEX IF NOT EXISTS idx_question_notes_user_updated ON question_notes(user_id, updated_at DESC);
+
+-- Unfinished tests, mirrored from the runner's localStorage so a learner can
+-- continue on any device. progress_key is the exact localStorage key (see
+-- src/lib/progress-keys.ts); state_json is the same blob. saved_at is the
+-- client's savedAt (ms) so an older tab can never overwrite newer progress,
+-- and submission_id lets grading delete the row once the test is submitted.
+CREATE TABLE IF NOT EXISTS test_progress (
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  progress_key TEXT NOT NULL,
+  kind TEXT NOT NULL,                -- 'module' | 'qbank' | 'full' | 'full_module'
+  mock_id TEXT NOT NULL,
+  section TEXT,
+  module TEXT,
+  submission_id TEXT,
+  state_json TEXT NOT NULL,
+  saved_at BIGINT NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')),
+  PRIMARY KEY (user_id, progress_key)
+);
+CREATE INDEX IF NOT EXISTS idx_test_progress_submission ON test_progress(user_id, submission_id);
 -- idx_practice_attempts_session_question is created by runMigrations() in
 -- db.ts, NOT here. session_id was added to this table after some databases
 -- already existed, so on those the CREATE TABLE above is a no-op and the

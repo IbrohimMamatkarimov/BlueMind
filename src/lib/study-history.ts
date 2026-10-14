@@ -24,6 +24,8 @@ export async function saveStudyResult(record: StudyRecord, database = db): Promi
 }
 
 export async function writeStudyResult(record: StudyRecord, tx: Pick<typeof db, "prepare">): Promise<SavedGrade> {
+    // The attempt is finished, so its server-side "in progress" copy goes too.
+    await tx.prepare("DELETE FROM test_progress WHERE user_id = ? AND submission_id = ?").run(record.userId, record.id);
     const inserted = await tx.prepare(`INSERT INTO study_results
       (id, user_id, source, source_id, title, section, module, mode, full_exam_id, correct_count, total, grade_json)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (user_id, id) DO NOTHING`)

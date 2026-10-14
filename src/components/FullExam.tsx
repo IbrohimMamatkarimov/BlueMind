@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import PracticeExam, { ExamResult } from "./PracticeExam";
 import { PauseScreen, TestSetup, useExamGuard } from "./TestSessionControls";
 import { FULL_EXAM_STEPS, formatTime, fullExamKey, isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
+import { deleteServerProgress, flushProgressSync, queueProgressSync, resolveSavedProgress } from "@/lib/progress-sync";
 import { MathText } from "./MathText";
 import { TextWatermarkOverlay } from "./TextWatermarkOverlay";
 import { useAppTheme } from "@/lib/theme";
@@ -15,7 +16,10 @@ interface FullSession {
   step: number;
   breakSeconds: number;
   results: Record<string, ExamResult>;
+  savedAt?: number;
 }
+
+const MODULE_STEPS = [0, 1, 3, 4];
 
 export default function FullExam({ mockId }: { mockId: string }) {
   const { dark } = useAppTheme();
@@ -43,7 +47,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
         if (!response.ok) throw new Error(data.error ?? "This full exam is unavailable.");
         if (cancelled) return;
         setTitle(data.mockTitle);
-        const raw = localStorage.getItem(key);
+        const raw = await resolveSavedProgress(key, "sessionId");
         if (raw) {
           const saved = JSON.parse(raw) as FullSession;
           if (saved.version !== 1 || !isTestMode(saved.mode) || !Number.isInteger(saved.step) || saved.step < 0 || saved.step > 5 || !saved.results || !Number.isFinite(saved.breakSeconds)) {
@@ -60,7 +64,12 @@ export default function FullExam({ mockId }: { mockId: string }) {
     return () => { cancelled = true; };
   }, [mockId, key]);
 
-  function persist(next: FullSession) {
+  // `flush` sends the server copy right away instead of on the throttle —
+  // used whenever the exam moves to a new step.
+  function persist(next: FullSession, flush = false) {
+    next = { ...next, savedAt: Date.now() };
+    queueProgressSync(key, next);
+    if (flush) void flushProgressSync(key, false);
     try {
       localStorage.setItem(key, JSON.stringify(next));
       sessionRef.current = next;
@@ -71,16 +80,24 @@ export default function FullExam({ mockId }: { mockId: string }) {
     }
   }
 
+  /** Removes this exam's saved state from both this browser and the server. */
+  function forgetSession() {
+    for (const storageKey of [key, ...MODULE_STEPS.map((index) => `${key}_module_${index}`)]) {
+      localStorage.removeItem(storageKey);
+      deleteServerProgress(storageKey);
+    }
+  }
+
   function start(mode: TestMode) {
     const next: FullSession = session ?? { version: 1, sessionId: crypto.randomUUID(), mode, step: 0, breakSeconds: 600, results: {} };
-    persist(next);
+    persist(next, true);
     setStarted(true);
   }
 
   function completeModule(result: ExamResult) {
     const current = sessionRef.current;
     if (!current) return;
-    persist({ ...current, step: current.step + 1, results: { ...current.results, [current.step]: result } });
+    persist({ ...current, step: current.step + 1, results: { ...current.results, [current.step]: result } }, true);
   }
 
   function saveBreak() {
@@ -103,7 +120,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
       }
     };
     const timer = setInterval(tick, 1000);
-    const save = () => { try { saveBreakRef.current(); } catch {} };
+    const save = () => { try { saveBreakRef.current(); } catch {} void flushProgressSync(key); };
     window.addEventListener("pagehide", save);
     window.addEventListener("beforeunload", save);
     return () => {
@@ -129,7 +146,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
 
   function exitBreak() {
     pauseBreak();
-    try { saveBreak(); window.location.href = "/"; }
+    try { saveBreak(); void flushProgressSync(key); window.location.href = "/"; }
     catch (err) { setSaveError((err as Error).message); }
   }
 
@@ -193,8 +210,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
         <div className="flex gap-4 items-center"><a href="/" className="text-blue-600 font-semibold">Back to mocks</a>
           <button className="rounded-full border border-slate-300 px-5 py-2" onClick={() => {
             try {
-              for (const index of [0, 1, 3, 4]) localStorage.removeItem(`${key}_module_${index}`);
-              localStorage.removeItem(key);
+              forgetSession();
               setSession(null); setStarted(false); setBreakLeft(600);
             } catch { setSaveError("Could not start a new attempt. Please try again."); }
           }}>Take again</button></div>
@@ -224,7 +240,7 @@ export default function FullExam({ mockId }: { mockId: string }) {
         <button onClick={() => pauseBreak()} className="border border-slate-300 rounded-full px-5 py-2.5 font-semibold">Pause break</button>
         <button onClick={exitBreak} className="border border-slate-300 rounded-full px-5 py-2.5 font-semibold">Save &amp; exit</button>
         <button disabled={breakLeft > 0 && session.mode === "exam"} className="bg-blue-600 text-white rounded-full px-5 py-2.5 font-semibold disabled:opacity-40" onClick={() => {
-          try { persist({ ...session, step: 3, breakSeconds: 0 }); }
+          try { persist({ ...session, step: 3, breakSeconds: 0 }, true); }
           catch (err) { setSaveError((err as Error).message); pauseBreak(); }
         }}>{breakLeft > 0 ? "Skip break & start Math" : "Start Math"}</button>
       </div>
@@ -233,8 +249,5 @@ export default function FullExam({ mockId }: { mockId: string }) {
 
   const step = FULL_EXAM_STEPS[session.step];
   return <PracticeExam key={session.step} params={{ mockId, section: step.section, module: String(step.module) }}
-    fullExam={{ mode: session.mode, sessionId: session.sessionId, storageKey: `${key}_module_${session.step}`, onComplete: completeModule, onDelete: () => {
-      localStorage.removeItem(key);
-      for (const index of [0, 1, 3, 4]) localStorage.removeItem(`${key}_module_${index}`);
-    } }} />;
+    fullExam={{ mode: session.mode, sessionId: session.sessionId, storageKey: `${key}_module_${session.step}`, onComplete: completeModule, onDelete: forgetSession }} />;
 }

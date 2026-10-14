@@ -69,7 +69,7 @@ export function TestSetup({ title, detail, savedMode, onStart, children, allowed
             </label>
           ))}
         </fieldset>
-        <p className="text-sm text-slate-600 mt-5">{practiceOnly ? "Check each answer to see the correct response and explanation. You can save and resume at any time." : "You can pause, save, and resume in every mode. Progress is saved in this browser on this device."}</p>
+        <p className="text-sm text-slate-600 mt-5">{practiceOnly ? "Check each answer to see the correct response and explanation. You can save and resume at any time." : "You can pause, save, and resume in every mode. Signed in, your progress is saved to your account, so you can continue on any device."}</p>
         {error && <p role="alert" className="text-sm text-red-700 mt-3">{error}</p>}
         <div className="mt-6 flex items-center justify-between gap-4">
           <a href={backHref ?? "/"} className="text-sm font-semibold text-slate-600">{practiceOnly ? "Back to Question Bank" : "Back to mocks"}</a>

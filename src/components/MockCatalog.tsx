@@ -3,7 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { FullExamCardAction } from "@/components/FullExamCardAction";
-import { fullExamAvailable, TestSection } from "@/lib/test-session";
+import { fullExamAvailable, fullExamKey, TestSection } from "@/lib/test-session";
+import { moduleProgressKey, savedAgo, type ProgressSummary } from "@/lib/progress-keys";
+import { loadProgressList } from "@/lib/progress-sync";
 import { SAT_STRUCTURE, SAT_TEST_MONTHS } from "@/lib/sat-constants";
 import { CommunityLink, PageHeader } from "@/components/ui";
 
@@ -28,6 +30,14 @@ interface Group {
 }
 
 type SectionTab = TestSection | "Full Exam";
+type StatusView = "all" | "in_progress" | "solved";
+type SavedScore = { correctCount: number; total: number };
+
+const STATUS_VIEWS: { value: StatusView; label: string }[] = [
+  { value: "all", label: "All tests" },
+  { value: "in_progress", label: "In progress" },
+  { value: "solved", label: "Solved" },
+];
 
 const SECTION_META: Record<SectionTab, { label: string; questions: number; minutes: number }> = {
   Math: { label: "Math", questions: SAT_STRUCTURE.math.totalQuestions, minutes: SAT_STRUCTURE.math.totalMinutes },
@@ -62,7 +72,11 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
     }, 180);
   }
 
-  const [savedScores, setSavedScores] = useState<Record<string, { correctCount: number; total: number }>>({});
+  const [statusView, setStatusView] = useState<StatusView>("all");
+  const [savedScores, setSavedScores] = useState<Record<string, SavedScore>>({});
+  // Unfinished (and finished full-exam) sessions by progress key — the
+  // server's copy for signed-in learners, merged with this browser's.
+  const [progress, setProgress] = useState<Record<string, ProgressSummary>>({});
   const [isAdmin, setIsAdmin] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [addMockYear, setAddMockYear] = useState<string | null>(null); // group key the modal is adding into
@@ -87,7 +101,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
       fetch("/api/module-results")
         .then((res) => (res.ok ? res.json() : { results: [] }))
         .then((data) => {
-          const map: Record<string, { correctCount: number; total: number }> = {};
+          const map: Record<string, SavedScore> = {};
           for (const r of data.results ?? []) {
             map[`${r.mockId}|${r.section}|${r.module}`] = { correctCount: r.correctCount, total: r.total };
           }
@@ -95,16 +109,25 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
         })
         .catch(() => {});
     }
-    loadScores();
+    function loadProgress() {
+      loadProgressList(!guest)
+        .then((list) => setProgress(Object.fromEntries(list.map((item) => [item.key, item]))))
+        .catch(() => {});
+    }
+    function refresh() {
+      loadScores();
+      loadProgress();
+    }
+    refresh();
 
     function onPageShow(e: PageTransitionEvent) {
-      if (e.persisted) loadScores();
+      if (e.persisted) refresh();
     }
     window.addEventListener("pageshow", onPageShow);
-    window.addEventListener("focus", loadScores);
+    window.addEventListener("focus", refresh);
     return () => {
       window.removeEventListener("pageshow", onPageShow);
-      window.removeEventListener("focus", loadScores);
+      window.removeEventListener("focus", refresh);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authChecked, isAdmin]);
@@ -140,6 +163,38 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
     return out;
   }, [allMocks]);
 
+  // The mocks (and, per mock, the modules) a section tab shows under a
+  // status view. "In progress" lists the most recently saved first.
+  function entriesFor(tab: SectionTab, view: StatusView) {
+    const entries = visibleMocks.flatMap((mock) => {
+      if (tab === "Full Exam") {
+        const saved = progress[fullExamKey(mock.id)];
+        const status = !saved ? "new" : saved.step === 5 ? "complete" : "saved";
+        if ((view === "in_progress" && status !== "saved") || (view === "solved" && status !== "complete")) return [];
+        return [{ mock, modules: [] as ModuleAvailability[], lastSaved: saved?.savedAt ?? 0, count: 1 }];
+      }
+      const all = tab === "Math" ? mock.math : mock.readingWriting;
+      if (view === "all") return [{ mock, modules: all, lastSaved: 0, count: all.length }];
+      const modules = all.filter((m) => m.questionCount > 0 && (view === "in_progress"
+        ? !!progress[moduleProgressKey(mock.id, tab, m.module)]
+        : !!savedScores[`${mock.id}|${tab}|${m.module}`]));
+      if (modules.length === 0) return [];
+      const lastSaved = Math.max(0, ...modules.map((m) => progress[moduleProgressKey(mock.id, tab, m.module)]?.savedAt ?? 0));
+      return [{ mock, modules, lastSaved, count: modules.length }];
+    });
+    if (view === "in_progress") entries.sort((a, b) => b.lastSaved - a.lastSaved);
+    return entries;
+  }
+  function countFor(tab: SectionTab, view: StatusView) {
+    return entriesFor(tab, view).reduce((sum, entry) => sum + entry.count, 0);
+  }
+  const entries = entriesFor(displayedTab, statusView);
+  // Shown in an empty status view: the other sections that do have tests in it.
+  const elsewhere = statusView === "all" ? [] : (Object.keys(SECTION_META) as SectionTab[])
+    .filter((tab) => tab !== displayedTab)
+    .map((tab) => ({ tab, count: countFor(tab, statusView) }))
+    .filter((item) => item.count > 0);
+
   const sectionMeta = SECTION_META[displayedTab];
 
   if (error) return <div className="card p-6 text-brand-red text-sm">{error}</div>;
@@ -150,7 +205,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
 
       {/* Section switcher — centered on its own row, dark-mode toggle pinned
           to the right edge of that same row. Matches PublicLanding.tsx. */}
-      <div className="flex items-center justify-start">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap justify-center items-center gap-1 bg-slate-100 rounded-full p-1">
           {(Object.keys(SECTION_META) as SectionTab[]).map((tab) => (
             <button
@@ -166,6 +221,32 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
           ))}
         </div>
 
+        {/* Status views. These are the learner's own tests, so admins get
+            the student actions here too. Counts follow the section tab. */}
+        <div className="flex items-center gap-1 rounded-full border border-brand-border bg-white p-1" role="group" aria-label="Filter by status">
+          {STATUS_VIEWS.map(({ value, label }) => {
+            const count = value === "all" ? 0 : countFor(activeTab, value);
+            return (
+              <button
+                key={value}
+                onClick={() => setStatusView(value)}
+                aria-pressed={statusView === value}
+                className={`flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors ${
+                  statusView === value ? "bg-brand-blue text-white shadow-sm" : "text-brand-slate hover:text-brand-navy"
+                }`}
+              >
+                {label}
+                {count > 0 && (
+                  <span className={`min-w-[1.25rem] rounded-full px-1.5 text-[11px] leading-5 tabular-nums ${
+                    statusView === value ? "bg-white/20 text-white" : value === "in_progress" ? "bg-emerald-100 text-emerald-700" : "bg-brand-blue-light text-brand-blue"
+                  }`}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Year/group filter pills */}
@@ -223,8 +304,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
             tabFading ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
           }`}
         >
-          {visibleMocks.map((mock) => {
-            const modules = displayedTab === "Math" ? mock.math : mock.readingWriting;
+          {entries.map(({ mock, modules }) => {
             return (
               <div key={mock.id} className="mock-card card p-5 flex flex-col relative overflow-hidden">
                 <div className="flex items-start gap-2.5 mb-3.5 relative z-10">
@@ -248,7 +328,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
                   </span>
                 </div>
                 <div className="mt-4 space-y-2 relative z-10">
-                  {displayedTab === "Full Exam" ? <FullExamCardAction mockId={mock.id} available={fullExamAvailable(mock)} /> : modules.map((m) => {
+                  {displayedTab === "Full Exam" ? <FullExamCardAction mockId={mock.id} available={fullExamAvailable(mock)} progress={progress[fullExamKey(mock.id)]} /> : modules.map((m) => {
                     const saved = savedScores[`${mock.id}|${displayedTab}|${m.module}`];
                     return (
                       <ModuleRow
@@ -259,7 +339,9 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
                         available={m.questionCount > 0}
                         questionCount={m.questionCount}
                         saved={saved}
-                        isAdmin={isAdmin}
+                        // A solved module being retaken still reads as solved (score + Review) in that view.
+                        progress={statusView === "solved" ? undefined : progress[moduleProgressKey(mock.id, displayedTab, m.module)]}
+                        isAdmin={isAdmin && statusView === "all"}
                         onCountChange={loadMocks}
                       />
                     );
@@ -268,10 +350,38 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
               </div>
             );
           })}
-          {visibleMocks.length === 0 && (
+          {entries.length === 0 && statusView === "all" && (
             <p className="text-sm text-brand-slate col-span-full text-center py-12">
               No mock tests available yet{activeGroup !== "All" ? ` for ${activeGroup}` : ""} — check back soon.
             </p>
+          )}
+          {entries.length === 0 && statusView !== "all" && (
+            <div className="col-span-full card px-6 py-12 text-center">
+              <p className="font-semibold text-brand-navy">
+                {statusView === "in_progress" ? `No ${sectionMeta.label} tests in progress` : `No solved ${sectionMeta.label} tests yet`}
+                {activeGroup !== "All" ? ` for ${activeGroup}` : ""}
+              </p>
+              <p className="mt-1 text-sm text-brand-slate">
+                {statusView === "in_progress"
+                  ? "Start a test and leave before submitting. It waits here, on any device you sign in on."
+                  : guest
+                    ? "Sign in to keep your scores. Finished tests then move here."
+                    : "Submit a test and it moves here with your score, ready to review or retake."}
+              </p>
+              {elsewhere.length > 0 ? (
+                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                  {elsewhere.map(({ tab, count }) => (
+                    <button key={tab} onClick={() => handleTabChange(tab)} className="rounded-full border border-brand-border px-4 py-1.5 text-xs font-semibold text-brand-blue hover:bg-brand-blue-light">
+                      {count} in {SECTION_META[tab].label}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <button onClick={() => setStatusView("all")} className="mt-4 rounded-full bg-brand-blue px-5 py-2 text-xs font-semibold text-white hover:bg-brand-blue-dark">
+                  Browse all tests
+                </button>
+              )}
+            </div>
           )}
         </div>
       )}
@@ -299,27 +409,20 @@ function ModuleRow({
   available,
   questionCount,
   saved,
+  progress,
   isAdmin,
-  onCountChange,
 }: {
   mockId: string;
   section: TestSection;
   module: 1 | 2;
   available: boolean;
   questionCount: number;
-  saved?: { correctCount: number; total: number };
+  saved?: SavedScore;
+  progress?: ProgressSummary;
   isAdmin: boolean;
   onCountChange?: () => void;
 }) {
-  const [inProgress, setInProgress] = useState(false);
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(`bluemind_progress_${mockId}_${section}_${module}`);
-      setInProgress(!!raw);
-    } catch {
-      setInProgress(false);
-    }
-  }, [mockId, section, module]);
+  const inProgress = !!progress;
 
   return (
     <div className="border border-brand-border rounded-lg px-3.5 py-3">
@@ -332,7 +435,11 @@ function ModuleRow({
             </span>
           )}
           {!isAdmin && available && inProgress && (
-            <span className="text-xs font-semibold text-brand-green">In progress — saved</span>
+            <span className="block text-xs text-brand-slate">
+              <span className="font-semibold text-brand-green">In progress</span>
+              {typeof progress?.answered === "number" && <span className="tabular-nums"> · {progress.answered}/{questionCount} answered</span>}
+              {!!progress?.savedAt && <span> · {savedAgo(progress.savedAt)}</span>}
+            </span>
           )}
         </div>
 
