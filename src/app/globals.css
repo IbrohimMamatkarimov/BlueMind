@@ -659,3 +659,48 @@ body { background: #fff; }
 .app-dark .today-momentum__progress-label strong { color: white; }
 .app-dark .today-momentum__progress-label small { color: rgba(255,255,255,.58); }
 .app-dark .today-momentum__float { border-color: rgba(255,255,255,.16); color: white; background: rgba(9,20,45,.56); }
+
+
+/* Mock catalog: keep filters together and give each paper room to read. */
+.app-shell, .app-content, .mock-catalog { min-width: 0; }
+.app-content { overflow-x: clip; }
+.mock-catalog { width: 100%; }
+.mock-catalog .page-header { margin-bottom: 1.5rem; }
+.mock-catalog .page-header h1 { font-size: clamp(2rem, 3.2vw, 2.7rem); letter-spacing: -.055em; }
+.mock-catalog .page-description { max-width: 42rem; color: #66758b; font-size: 15px; }
+.mock-catalog__controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .8rem; }
+.mock-catalog__sections, .mock-catalog__statuses { max-width: 100%; }
+.mock-catalog__sections { padding: 4px; border: 1px solid #edf1f6; background: #f6f8fb; }
+.mock-catalog__statuses { flex-wrap: wrap; border-color: #e8edf3; box-shadow: 0 2px 8px rgb(23 37 84 / .035); }
+.mock-catalog__controls button { transition: background-color 170ms ease, color 170ms ease, box-shadow 170ms ease, transform 170ms ease; }
+.mock-catalog__controls button:hover { transform: translateY(-1px); }
+.mock-catalog__years { max-width: 100%; scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }
+.mock-catalog__years button { transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; }
+.mock-catalog__years button:hover { transform: translateY(-1px); }
+.mock-catalog__grid { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.mock-catalog__grid > * { min-width: 0; }
+.mock-catalog .mock-card {
+  width: 100%;
+  min-width: 0;
+  padding: 1.25rem;
+  border: 1px solid #e6ebf2;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 3px 12px rgb(23 37 84 / .035);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+.mock-catalog .mock-card:hover { transform: translateY(-3px); border-color: #cbd8ee; box-shadow: 0 14px 32px rgb(23 37 84 / .075); }
+.mock-catalog .mock-card h3 { font-size: 1.05rem; }
+.mock-catalog__grid .mock-card > div:nth-child(2) { min-height: 44px; align-items: center; border-radius: 12px; background: #fafbfd; }
+.mock-module-row { min-width: 0; border-color: #e9edf3; border-radius: 14px; background: #fff; transition: background-color 170ms ease, border-color 170ms ease; }
+.mock-module-row:hover { border-color: #d5dfef; background: #fcfdff; }
+@media (min-width: 700px) { .mock-catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; } }
+@media (min-width: 1180px) { .mock-catalog__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; } }
+@media (max-width: 760px) {
+  .mock-catalog__controls { align-items: stretch; flex-direction: column; }
+  .mock-catalog__sections, .mock-catalog__statuses { width: fit-content; max-width: 100%; }
+  .mock-catalog__statuses { align-self: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mock-catalog .mock-card:hover, .mock-catalog__controls button:hover, .mock-catalog__years button:hover { transform: none; }
+}
