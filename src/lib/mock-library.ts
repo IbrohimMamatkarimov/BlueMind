@@ -85,20 +85,22 @@ async function buildMockLibrary({ gateOnRelease }: { gateOnRelease: boolean }): 
     )
     .all()) as unknown as PublicMockRow[];
 
-  const countStmt = db.prepare(
-    `SELECT COUNT(*) as n FROM questions WHERE mock_id = ? AND section = ? AND module = ? AND (module_pool IS NULL OR module_pool = 'higher')`
-  );
-  const releasedStmt = db.prepare(
-    `SELECT released FROM module_releases WHERE mock_id = ? AND section = ? AND module = ?`
-  );
-  async function isReleased(mockId: string, section: string, module: 1 | 2): Promise<boolean> {
-    const row = (await releasedStmt.get(mockId, section, module)) as { released: number } | undefined;
-    return !!row?.released;
-  }
-  async function moduleCount(mockId: string, section: string, module: 1 | 2): Promise<number> {
-    if (gateOnRelease && !(await isReleased(mockId, section, module))) return 0;
-    // Postgres COUNT returns a bigint string; the public API exposes numbers.
-    return Number(((await countStmt.get(mockId, section, module)) as { n: string | number }).n);
+  // Fetch availability in one round trip, rather than up to eight per mock.
+  const availability = (await db.prepare(
+    `SELECT q.mock_id, q.section, q.module, COUNT(*) AS n,
+            COALESCE(MAX(r.released), 0) AS released
+     FROM questions q
+     LEFT JOIN module_releases r ON r.mock_id = q.mock_id
+       AND r.section = q.section AND r.module = q.module
+     WHERE q.module_pool IS NULL OR q.module_pool = 'higher'
+     GROUP BY q.mock_id, q.section, q.module`
+  ).all()) as { mock_id: string; section: string; module: number; n: string | number; released: number }[];
+  const counts = new Map(availability.map((row) => [
+    JSON.stringify([row.mock_id, row.section, Number(row.module)]),
+    gateOnRelease && !Number(row.released) ? 0 : Number(row.n),
+  ]));
+  function moduleCount(mockId: string, section: string, module: 1 | 2): number {
+    return counts.get(JSON.stringify([mockId, section, module])) ?? 0;
   }
 
   const cards: (PublicMockCard & { group_label: string })[] = [];
@@ -108,10 +110,10 @@ async function buildMockLibrary({ gateOnRelease }: { gateOnRelease: boolean }): 
     // "Coming soon" even with questions sitting in the bank, so half-built
     // modules never accidentally go live to students. (Skipped entirely in
     // the admin variant — see gateOnRelease above.)
-    const mathM1 = await moduleCount(m.id, "Math", 1);
-    const mathM2 = await moduleCount(m.id, "Math", 2);
-    const rwM1 = await moduleCount(m.id, "Reading and Writing", 1);
-    const rwM2 = await moduleCount(m.id, "Reading and Writing", 2);
+    const mathM1 = moduleCount(m.id, "Math", 1);
+    const mathM2 = moduleCount(m.id, "Math", 2);
+    const rwM1 = moduleCount(m.id, "Reading and Writing", 1);
+    const rwM2 = moduleCount(m.id, "Reading and Writing", 2);
     cards.push({
       id: m.id,
       title: m.title,
