@@ -53,14 +53,14 @@ export async function POST(request: NextRequest) {
   try {
     const preferred = process.env.GEMINI_MODEL || "gemini-flash-latest";
     let response: Response | undefined;
-    for (const model of [...new Set([preferred, "gemini-flash-latest"])]) {
+    for (const model of [...new Set([preferred, "gemini-flash-lite-latest"])]) {
       response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
         body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 1200, temperature: 0.35 } }),
-        signal: AbortSignal.timeout(20_000),
+        signal: AbortSignal.timeout(10_000),
       });
-      if (response.ok || response.status !== 404) break;
+      if (response.ok || ![404, 503].includes(response.status)) break;
     }
     if (!response || !response.ok) {
       console.error("[student-help] Gemini request status", response?.status);

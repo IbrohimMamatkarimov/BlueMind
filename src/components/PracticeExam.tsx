@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+const StudentHelp = dynamic(() => import("@/components/StudentHelp").then((m) => m.StudentHelp), { ssr: false });
 import { PauseScreen, TestSetup, useExamGuard } from "@/components/TestSessionControls";
 import { formatTime, isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
 import { deleteServerProgress, flushProgressSync, queueProgressSync, resolveSavedProgress } from "@/lib/progress-sync";
@@ -4349,6 +4350,7 @@ export default function PracticeExam({
       </footer>
 
       {isMath && <DesmosCalculator open={calcOpen} onOpenChange={setCalcOpen} />}
+      {testMode === "untimed" && !fullExam && current && <div className="practice-companion"><StudentHelp title="Your question coach" context={("Untimed SAT practice. Explain reasoning step by step.\n" + section + " · " + current.skill + "\n" + (current.passageText || "") + "\nQuestion: " + current.questionText + "\nChoices: " + current.choices.map((choice) => choice.id + ": " + choice.text).join("; ")).slice(0, 4000)} /></div>}
     </div>
   );
 }

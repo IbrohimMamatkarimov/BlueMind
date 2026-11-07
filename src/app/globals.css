@@ -780,3 +780,6 @@ body { background: #fff; }
 @keyframes companion-in { from { opacity:0; transform:translateY(12px) scale(.97); } to { opacity:1; transform:none; } }
 @media(max-width:767px) { .app-shell .today-momentum__progress { width:190px; } .app-shell .today-momentum { gap:1rem; } .companion-launch { right:14px;bottom:18px; } .companion-panel { right:12px;bottom:88px; } }
 @media(prefers-reduced-motion:reduce) { .app-shell .today-momentum__float,.companion-panel { animation:none; } .nav-link:hover,.companion-launch:hover,.mock-catalog .mock-card:hover { transform:none; } }
+
+.practice-companion .companion-launch { bottom:80px; }
+.practice-companion .companion-panel { bottom:150px;max-height:calc(100dvh - 175px); }
