@@ -594,3 +594,7 @@ textarea:focus-visible,
 @media (min-width: 768px) { .today-momentum { grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr); } }
 @media (max-width: 480px) { .today-momentum__progress { width: min(100%, 240px); } .today-momentum__float { font-size: 9px; padding: .55rem .65rem; } }
 @media (prefers-reduced-motion: reduce) { .today-momentum__cta:hover, .today-plan-card:hover { transform: none; } .today-momentum__value { transition: none; } }
+
+
+.today-momentum { --pointer-x: 74%; --pointer-y: 42%; }
+.today-momentum::after { background: radial-gradient(420px circle at var(--pointer-x) var(--pointer-y), rgba(154,203,255,.18), transparent 72%), linear-gradient(110deg, transparent 20%, rgba(255,255,255,.045) 50%, transparent 75%); }
