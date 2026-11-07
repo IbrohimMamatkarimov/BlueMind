@@ -20,6 +20,8 @@ interface MockCard {
   subtitle: string | null;
   month: string;
   year: number;
+  totalQuestions: number;
+  durationMinutes: number;
   math: ModuleAvailability[];
   readingWriting: ModuleAvailability[];
 }
@@ -170,11 +172,16 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
       if (tab === "Full Exam") {
         const saved = progress[fullExamKey(mock.id)];
         const status = !saved ? "new" : saved.step === 5 ? "complete" : "saved";
+        if (!fullExamAvailable(mock) && !saved) return [];
         if ((view === "in_progress" && status !== "saved") || (view === "solved" && status !== "complete")) return [];
         return [{ mock, modules: [] as ModuleAvailability[], lastSaved: saved?.savedAt ?? 0, count: 1 }];
       }
       const all = tab === "Math" ? mock.math : mock.readingWriting;
-      if (view === "all") return [{ mock, modules: all, lastSaved: 0, count: all.length }];
+      if (view === "all") {
+        const available = all.filter((module) => module.questionCount > 0);
+        if (available.length === 0) return [];
+        return [{ mock, modules: available, lastSaved: 0, count: available.length }];
+      }
       const modules = all.filter((m) => m.questionCount > 0 && (view === "in_progress"
         ? !!progress[moduleProgressKey(mock.id, tab, m.module)]
         : !!savedScores[`${mock.id}|${tab}|${m.module}`]));
@@ -319,12 +326,16 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
                 <div className="flex items-center gap-2.5 text-xs text-brand-navy border border-brand-border rounded-lg px-3 py-2 mb-3 relative z-10">
                   <span className="flex items-center gap-1.5">
                     <ClockIcon />
-                    {sectionMeta.minutes} min
+                    {displayedTab === "Full Exam"
+                      ? mock.durationMinutes
+                      : Math.round(modules.reduce((sum, module) => sum + module.questionCount * (
+                          displayedTab === "Math" ? SAT_STRUCTURE.math.minutesPerModule / 22 : SAT_STRUCTURE.readingWriting.minutesPerModule / 27
+                        ), 0))} min
                   </span>
                   <span className="w-px h-3.5 bg-brand-border" />
                   <span className="flex items-center gap-1.5">
                     <DocIcon />
-                    {sectionMeta.questions} questions
+                    {displayedTab === "Full Exam" ? mock.totalQuestions : modules.reduce((sum, module) => sum + module.questionCount, 0)} questions
                   </span>
                 </div>
                 <div className="mt-4 space-y-2 relative z-10">
