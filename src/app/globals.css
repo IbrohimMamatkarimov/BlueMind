@@ -473,3 +473,61 @@ textarea:focus-visible,
   .notebook-paper::before { left: 3rem; }
   .notebook-entry { padding-left: 4.25rem; }
 }
+
+
+/* Workspace refresh: clearer depth, calmer motion, and stronger active states. */
+.app-shell {
+  background:
+    radial-gradient(ellipse at 72% 0%, rgba(37, 99, 235, 0.045), transparent 38rem),
+    var(--canvas);
+}
+.app-sidebar {
+  background: color-mix(in srgb, var(--surface) 94%, #eff5ff);
+  box-shadow: 8px 0 30px rgba(23, 37, 84, 0.025);
+}
+.nav-link {
+  min-height: 48px;
+  border-radius: 13px;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+.nav-link:hover { transform: translateX(2px); }
+.nav-link.nav-active {
+  background: linear-gradient(105deg, #eaf0ff, #f2f6ff);
+  box-shadow: inset 3px 0 #2563eb, 0 5px 16px rgba(37, 99, 235, 0.07);
+}
+.app-dark .nav-link.nav-active {
+  background: linear-gradient(105deg, #192c50, #172640);
+  box-shadow: inset 3px 0 #79a5ff, 0 5px 16px rgba(0, 0, 0, 0.12);
+}
+.card {
+  border-radius: 16px;
+  box-shadow: 0 2px 5px rgba(23, 37, 84, 0.035), 0 12px 30px rgba(23, 37, 84, 0.035);
+}
+.btn-primary, .btn-secondary {
+  min-height: 42px;
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(37, 99, 235, 0.2);
+}
+.btn-secondary:hover:not(:disabled) { transform: translateY(-1px); }
+.app-content > * { animation: workspace-rise 420ms cubic-bezier(.2,.75,.25,1) both; }
+@keyframes workspace-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-link:hover, .btn-primary:hover:not(:disabled), .btn-secondary:hover:not(:disabled) { transform: none; }
+  .app-content > * { animation: none; }
+}
+
+/* SAT catalog cards: give each paper a clearer lift and focus state. */
+.mock-card {
+  border-radius: 18px;
+  background: linear-gradient(155deg, var(--surface), color-mix(in srgb, var(--canvas) 35%, var(--surface)));
+  box-shadow: 0 2px 5px rgba(23, 37, 84, 0.025), 0 12px 28px rgba(23, 37, 84, 0.04);
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), border-color 220ms ease, box-shadow 220ms ease;
+}
+.mock-card:hover { transform: translateY(-3px); border-color: #a7bff7; box-shadow: 0 16px 34px rgba(37, 99, 235, 0.1); }
+@media (prefers-reduced-motion: reduce) { .mock-card:hover { transform: none; } }
