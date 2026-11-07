@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, LogIn } from "lucide-react";
+import { RobotMascot } from "./RobotMascot";
 import { AppShell } from "./AppShell";
 import { MockCatalog } from "./MockCatalog";
 
@@ -48,7 +49,7 @@ export function PublicLanding({ signedIn, userName }: { signedIn: boolean; userN
   return (
     <AppShell guest={!signedIn} userName={userName}>
       <div className="mb-5 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-border bg-white p-5 shadow-sm">
-        <div className="min-w-0">
+        <div className="flex min-w-0 items-center gap-4"><RobotMascot className="h-20 w-20 shrink-0" /><div>
           <p className="font-bold text-brand-navy">{starting ? "Opening your workspace…" : "Welcome to BlueMind"}</p>
           <p className="mt-1 text-sm text-brand-slate">
             {failed
@@ -56,7 +57,7 @@ export function PublicLanding({ signedIn, userName }: { signedIn: boolean; userN
               : "Sign in to save your scores and pick up where you left off."}
           </p>
         </div>
-        <div className="flex shrink-0 flex-wrap items-center gap-2">
+        </div><div className="flex shrink-0 flex-wrap items-center gap-2">
           <Link href="/signup" className="rounded-xl border border-brand-border px-4 py-2.5 text-sm font-semibold text-brand-navy transition hover:bg-slate-50 motion-reduce:transition-none">Create account</Link>
           <Link href="/login" className="btn-primary group inline-flex items-center gap-2"><LogIn size={16} />Sign in<ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" /></Link>
         </div>
