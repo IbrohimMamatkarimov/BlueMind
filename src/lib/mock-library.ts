@@ -1,4 +1,5 @@
 import { db } from "./db";
+import { ensureOriginalMathMocks } from "./original-math-mocks";
 import { SAT_STRUCTURE, SAT_TEST_MONTHS } from "./sat-constants";
 
 export interface PublicMockRow {
@@ -78,6 +79,7 @@ export async function getAdminMockLibrary(): Promise<PublicGroup[]> {
 }
 
 async function buildMockLibrary({ gateOnRelease }: { gateOnRelease: boolean }): Promise<PublicGroup[]> {
+  await ensureOriginalMathMocks();
   const mocks = (await db
     .prepare(
       `SELECT id, title, subtitle, group_label, month, year, order_in_month, total_questions, duration_minutes, is_official

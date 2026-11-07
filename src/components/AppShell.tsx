@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Sidebar, MobileTopBar } from "./Sidebar";
+import { StudentHelp } from "./StudentHelp";
 import { useAppTheme } from "@/lib/theme";
 const ThemeContext = createContext({ dark: false, toggleDark: () => {} });
 export function useTheme() { return useContext(ThemeContext); }
@@ -20,6 +21,7 @@ export function AppShell({ userName, isAdmin = false, avatarData, guest = false,
           <main id="main-content" className="app-content max-w-7xl mx-auto px-4 sm:px-7 lg:px-10 py-7 sm:py-10" tabIndex={-1}>{children}</main>
         </div>
       </div>
+      <StudentHelp />
     </div>
   </ThemeContext.Provider>;
 }

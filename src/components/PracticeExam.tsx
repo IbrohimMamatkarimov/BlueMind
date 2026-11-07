@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { PauseScreen, TestSetup, useExamGuard } from "@/components/TestSessionControls";
 import { formatTime, isTestMode, remainingSeconds, TestMode } from "@/lib/test-session";
 import { deleteServerProgress, flushProgressSync, queueProgressSync, resolveSavedProgress } from "@/lib/progress-sync";
@@ -16,12 +17,12 @@ export interface FullExamModule {
   onComplete: (result: ExamResult) => void;
   onDelete: () => void;
 }
-import { DesmosCalculator } from "@/components/DesmosCalculator";
+const DesmosCalculator = dynamic(() => import("@/components/DesmosCalculator").then((m) => m.DesmosCalculator), { ssr: false });
 import { MathText } from "@/components/MathText";
 import { Celebration } from "@/components/Celebration";
 import { BrainMark } from "@/components/BrainLogo";
-import { AdminQuestionEditModal } from "@/components/AdminQuestionEditModal";
-import { AdminAiPasteModal } from "@/components/AdminAiPasteModal";
+const AdminQuestionEditModal = dynamic(() => import("@/components/AdminQuestionEditModal").then((m) => m.AdminQuestionEditModal), { ssr: false });
+const AdminAiPasteModal = dynamic(() => import("@/components/AdminAiPasteModal").then((m) => m.AdminAiPasteModal), { ssr: false });
 import { FormatToolbar } from "@/components/FormatToolbar";
 import { TextWatermarkOverlay } from "@/components/TextWatermarkOverlay";
 import { useAppTheme } from "@/lib/theme";
@@ -1965,7 +1966,8 @@ export default function PracticeExam({
         });
       return;
     }
-    fetch(loadUrl)
+    const savedProgress = resolveSavedProgress(progressKey);
+    fetch(loadUrl, { signal: AbortSignal.timeout(20000) })
       .then(async (res) => {
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
@@ -1985,7 +1987,7 @@ export default function PracticeExam({
           throw new Error("This full-exam module no longer has its complete question set.");
         }
         // The server copy wins when it is newer (continued on another device).
-        const raw = await resolveSavedProgress(progressKey);
+        const raw = await savedProgress;
         setMockTitle(data.mockTitle);
         setQuestions(data.questions);
         setTotalSeconds((data.minutes ?? 0) * 60);

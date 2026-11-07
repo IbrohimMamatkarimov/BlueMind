@@ -234,9 +234,9 @@ async function runMigrations(client: PoolClient) {
     "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS next_review_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"'))",
     "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS last_reviewed_at TEXT",
   ];
-  for (const sql of migrations) {
-    await client.query(sql);
-  }
+  // These idempotent statements have no parameters; one round trip avoids
+  // dozens of network waits on every serverless cold start.
+  await client.query(migrations.join(";\n"));
 
   // Backfill position for any pre-existing rows that still have the
   // default 0 (i.e. everything added before this column existed) — orders

@@ -137,7 +137,8 @@ function genSystemOfEquations(difficulty: GenQuestion["difficulty"]): GenQuestio
   const a1 = rint(1, 5);
   const b1 = rint(1, 5);
   const a2 = rint(1, 5, [a1]);
-  const b2 = rint(1, 5, [b1]);
+  let b2 = rint(1, 5, [b1]);
+  while (a1 * b2 === a2 * b1) b2 = rint(1, 5, [b1]);
   const c1 = a1 * x + b1 * y;
   const c2 = a2 * x + b2 * y;
   const correct = String(x + y);
@@ -189,8 +190,7 @@ function genExponential(difficulty: GenQuestion["difficulty"]): GenQuestion {
   const initial = rint(2, 10) * 10;
   const rate = rint(2, 5) * 10; // percent growth
   const years = rint(1, 3);
-  let value = initial;
-  for (let i = 0; i < years; i++) value = Math.round(value * (1 + rate / 100));
+  const value = Math.round(initial * Math.pow(1 + rate / 100, years));
   const correct = String(value);
   const distractors = [
     String(initial + rate * years),
@@ -205,7 +205,7 @@ function genExponential(difficulty: GenQuestion["difficulty"]): GenQuestion {
     questionText: `A population starts at ${initial} and grows by ${rate}% each year. What is the population after ${years} year${years > 1 ? "s" : ""}, rounded to the nearest whole number?`,
     correctValue: correct,
     distractorValues: uniqueDistractors(value, distractors.map(Number), 3).map(String),
-    rationale: `Multiply by (1 + ${rate}/100) once per year, rounding at each step: starting at ${initial}, after ${years} year(s) the population is ${value}.`,
+    rationale: `Multiply by (1 + ${rate}/100) once per year, rounding only the final result: starting at ${initial}, after ${years} year(s) the population is ${value}.`,
     explanation:
       "Exponential growth multiplies the previous value by the same growth factor each period — it does not add the same fixed amount each time, which is the most common error on this skill.",
     estimatedTime: 90,
@@ -214,7 +214,7 @@ function genExponential(difficulty: GenQuestion["difficulty"]): GenQuestion {
 
 // ---------- Problem Solving & Data Analysis: Percentages ----------
 function genPercentage(difficulty: GenQuestion["difficulty"]): GenQuestion {
-  const whole = rint(4, 20) * 25;
+  const whole = rint(4, 20) * 20;
   const pct = rint(2, 19) * 5;
   const part = Math.round((whole * pct) / 100);
   const correct = String(part);
