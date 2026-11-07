@@ -704,3 +704,11 @@ body { background: #fff; }
 @media (prefers-reduced-motion: reduce) {
   .mock-catalog .mock-card:hover, .mock-catalog__controls button:hover, .mock-catalog__years button:hover { transform: none; }
 }
+
+
+/* Sign-in entrance and card accent */
+.auth-rise { animation: auth-rise .55s cubic-bezier(.2,.8,.2,1) both; }
+.auth-card { position: relative; overflow: hidden; box-shadow: 0 1px 2px rgb(15 23 42 / .04), 0 24px 56px rgb(15 23 42 / .09); }
+.auth-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, #2563eb, #60a5fa); }
+@keyframes auth-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .auth-rise { animation: none; } }

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookMarked, BookOpen, CalendarCheck2, ChartNoAxesCombined, FileText, LogOut, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, ShieldCheck, Sun, UserRound } from "lucide-react";
+import { ArrowRight, BookMarked, BookOpen, CalendarCheck2, ChartNoAxesCombined, FileText, LogIn, LogOut, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, ShieldCheck, Sun, UserRound } from "lucide-react";
 import { useTheme } from "./AppShell";
 export const NAV_ITEMS = [
   { href: "/today", label: "Today", icon: CalendarCheck2 },
@@ -32,7 +32,7 @@ export function Sidebar({ collapsed, onToggleCollapsed, ...profile }: Profile & 
     </nav>
     <div className="p-3 border-t border-brand-border space-y-1.5">
       <button onClick={toggleDark} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} title={dark ? "Light mode" : "Dark mode"} className={`nav-link w-full ${collapsed ? "justify-center px-0" : "px-3"}`}>{dark ? <Sun size={19} /> : <Moon size={19} />}{!collapsed && <span>{dark ? "Light mode" : "Dark mode"}</span>}</button>
-      <Link href={profile.guest ? "/login" : "/account"} aria-label={profile.guest ? "Sign in" : "Your account"} title={profile.guest ? "Sign in" : "Your account"} className={`flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 ${collapsed ? "justify-center" : ""}`}><Avatar {...profile} />{!collapsed && <div className="min-w-0"><p className="text-sm font-semibold text-brand-navy truncate">{profile.guest ? "Sign in" : profile.userName ?? "Your account"}</p><p className="text-xs text-brand-slate">{profile.guest ? "Save your progress" : "Account settings"}</p></div>}</Link>
+      {profile.guest ? (<Link href="/login" aria-label="Sign in" title="Sign in" className={`group flex items-center gap-3 rounded-2xl bg-brand-blue p-2.5 text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${collapsed ? "justify-center" : ""}`}><span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/15"><LogIn size={18} /></span>{!collapsed && <><span className="min-w-0 flex-1"><span className="block text-sm font-bold leading-tight">Sign in</span><span className="block text-xs text-white/80">Save your progress</span></span><ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" /></>}</Link>) : (<Link href={profile.guest ? "/login" : "/account"} aria-label={profile.guest ? "Sign in" : "Your account"} title={profile.guest ? "Sign in" : "Your account"} className={`flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 ${collapsed ? "justify-center" : ""}`}><Avatar {...profile} />{!collapsed && <div className="min-w-0"><p className="text-sm font-semibold text-brand-navy truncate">{profile.guest ? "Sign in" : profile.userName ?? "Your account"}</p><p className="text-xs text-brand-slate">{profile.guest ? "Save your progress" : "Account settings"}</p></div>}</Link>)}
       <div className="flex gap-1">
         {!profile.guest && <button onClick={logout} title="Log out" aria-label="Log out" className="sidebar-utility"><LogOut size={17} /></button>}
         <button onClick={onToggleCollapsed} title={collapsed ? "Expand sidebar" : "Collapse sidebar"} aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"} className="sidebar-utility flex-1">{collapsed ? <PanelLeftOpen size={17} /> : <><PanelLeftClose size={17} /><span>Collapse</span></>}</button>
@@ -45,7 +45,7 @@ export function MobileTopBar(profile: Profile) {
   return <header className="mobile-header md:hidden sticky top-0 z-40 border-b border-brand-border">
     <div className="h-16 px-4 flex items-center justify-between">
       <Link href={profile.guest ? "/" : "/today"} className="flex items-center gap-2 font-extrabold text-brand-navy"><img src="/logo.png" alt="" width={25} height={25} />BlueMind<span className="text-brand-blue -ml-2">.</span></Link>
-      <div className="flex items-center gap-2"><button onClick={toggleDark} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} className="sidebar-utility">{dark ? <Sun size={19} /> : <Moon size={19} />}</button><Link href={profile.guest ? "/login" : "/account"} aria-label={profile.guest ? "Sign in" : "Your account"}><Avatar {...profile} /></Link></div>
+      <div className="flex items-center gap-2"><button onClick={toggleDark} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} className="sidebar-utility">{dark ? <Sun size={19} /> : <Moon size={19} />}</button>{profile.guest ? <Link href="/login" className="inline-flex items-center gap-1.5 rounded-full bg-brand-blue px-3.5 py-2 text-sm font-bold text-white shadow-sm transition hover:opacity-90 motion-reduce:transition-none"><LogIn size={15} />Sign in</Link> : <Link href="/account" aria-label="Your account"><Avatar {...profile} /></Link>}</div>
     </div>
     <nav aria-label="Main navigation" className="flex gap-1 px-3 pb-3 overflow-x-auto">
       {[...NAV_ITEMS, ...(profile.isAdmin ? [{ href: "/admin", label: "Admin", icon: ShieldCheck }] : [])].map(({ href, label }) => {
