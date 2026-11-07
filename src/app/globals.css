@@ -959,3 +959,13 @@ body { background: #fff; }
 
 /* Keep the companion close without covering the learner's data. */
 .companion-launch--robot{width:64px;min-height:66px;padding:0!important;justify-content:center;background:transparent;border:0;box-shadow:none}.companion-launch--robot:hover{box-shadow:none;transform:translateY(-3px)}.companion-launch--robot .companion-robot{width:66px;height:76px;margin:0}.companion-launch--robot>.text-left{position:absolute;right:70px;bottom:11px;width:max-content;max-width:190px;background:#18376a;color:white;border:1px solid #416294;border-radius:10px;padding:8px 11px;opacity:0;transform:translateX(5px);pointer-events:none;transition:opacity .18s,transform .18s}.companion-launch--robot:hover>.text-left,.companion-launch--robot:focus-visible>.text-left{opacity:1;transform:none}.companion-launch--robot::after{content:"?";position:absolute;bottom:3px;right:0;display:grid;place-items:center;width:17px;height:17px;border:2px solid white;border-radius:50%;background:#3863aa;color:white;font-size:9px;font-weight:750}
+
+/* On phones, the brain companion belongs to the persistent header. */
+@media(max-width:767px){
+ .app-shell .companion-launch--robot{top:3px;right:101px;bottom:auto;width:44px;min-height:51px}
+ .app-shell[data-guest=true] .companion-launch--robot{right:147px}
+ .app-shell .companion-launch--robot .companion-robot{width:45px;height:54px}
+ .app-shell .companion-launch--robot::after{bottom:1px;right:-1px;width:14px;height:14px;font-size:7px}
+ .app-shell .companion-launch--robot>.text-left{right:0;top:57px;bottom:auto}
+ .app-shell .companion-panel{top:72px;bottom:auto;max-height:calc(100dvh - 88px)}
+}

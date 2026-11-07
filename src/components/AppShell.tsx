@@ -15,7 +15,7 @@ export function AppShell({ userName, isAdmin = false, avatarData, guest = false,
   function toggleCollapsed() { const next = !collapsed; setCollapsed(next); try { localStorage.setItem("bluemind-sidebar-collapsed", next ? "1" : "0"); } catch {} }
   const profile = { userName, isAdmin, avatarData, guest };
   return <ThemeContext.Provider value={theme}>
-    <div className={`app-shell min-h-screen ${theme.dark ? "app-dark dark" : ""}`}>
+    <div data-guest={guest ? "true" : "false"} className={`app-shell min-h-screen ${theme.dark ? "app-dark dark" : ""}`}>
       <a href="#main-content" className="skip-link">Skip to content</a>
       <div className="flex"><Sidebar {...profile} collapsed={collapsed} onToggleCollapsed={toggleCollapsed} />
         <div className="flex-1 min-w-0"><MobileTopBar {...profile} />
