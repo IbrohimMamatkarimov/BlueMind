@@ -84,7 +84,11 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
   const [addMockYear, setAddMockYear] = useState<string | null>(null); // group key the modal is adding into
 
   useEffect(() => {
-    fetch("/api/auth/me")
+    try {
+      const cached = JSON.parse(sessionStorage.getItem("bluemind-public-catalog-v2") || "null");
+      if (cached && Date.now() - cached.savedAt < 120000 && Array.isArray(cached.groups)) setGroups(cached.groups);
+    } catch {}
+    fetch("/api/auth/me", { signal: AbortSignal.timeout(8000) })
       .then((res) => (res.ok ? res.json() : { user: null }))
       .then((data) => setIsAdmin(!guest && !!data.user?.isAdmin))
       .catch(() => setIsAdmin(false))
@@ -135,12 +139,16 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
   }, [authChecked, isAdmin]);
 
   function loadMocks() {
-    return fetch(isAdmin ? "/api/admin/mocks/library" : "/api/public/mocks")
+    setError(null);
+    return fetch(isAdmin ? "/api/admin/mocks/library" : "/api/public/mocks", { signal: AbortSignal.timeout(20000) })
       .then((res) => {
         if (!res.ok) throw new Error("failed");
         return res.json();
       })
-      .then((data) => setGroups(data.groups))
+      .then((data) => {
+        setGroups(data.groups);
+        if (!isAdmin) { try { sessionStorage.setItem("bluemind-public-catalog-v2", JSON.stringify({ groups: data.groups, savedAt: Date.now() })); } catch {} }
+      })
       .catch(() => setError("Couldn't load the mock library right now. Please refresh."));
   }
 
@@ -204,7 +212,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
 
   const sectionMeta = SECTION_META[displayedTab];
 
-  if (error) return <div className="card p-6 text-brand-red text-sm">{error}</div>;
+  if (error && !groups) return <div role="alert" className="card p-6 text-brand-red text-sm">{error}<button type="button" onClick={loadMocks} className="btn-secondary ml-3">Try again</button></div>;
 
   return (
     <div className="space-y-6 mock-catalog">
@@ -304,7 +312,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
       )}
 
       {!groups ? (
-        <div className="h-64 bg-slate-200 rounded-xl animate-pulse" />
+        <div role="status" aria-label="Loading mock tests" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{[1,2,3].map((item) => <div key={item} className="card p-6"><div className="h-3 w-24 rounded-full bg-blue-100 animate-pulse"/><p className="mt-5 text-sm text-brand-slate">Preparing your practice library…</p><div className="mt-5 h-12 rounded-xl bg-slate-50"/><div className="mt-2 h-12 rounded-xl bg-slate-50"/></div>)}</div>
       ) : (
         <div
           className={`mock-catalog__grid grid sm:grid-cols-2 xl:grid-cols-3 items-start gap-4 transition-all duration-200 ${
