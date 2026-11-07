@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAppTheme } from "@/lib/theme";
-import { Moon, Sun } from "lucide-react";
+import { Eye, EyeOff, Moon, Sun } from "lucide-react";
 import { BrandLockup } from "@/components/BrainLogo";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { nextFromLocation } from "@/lib/next-path";
@@ -24,6 +24,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   // A shared question link sends people here as ?next=/q/<id>; carry it
   // through sign-in (and across the login ↔ signup links) so they land
   // on the question instead of the dashboard.
@@ -57,7 +58,7 @@ export default function LoginPage() {
   return (
     <div className={["auth-shell min-h-screen flex items-center justify-center px-4 py-12", dark ? "app-dark" : ""].join(" ")}>
       <button onClick={toggleDark} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} className="fixed right-5 top-5 sidebar-utility">{dark ? <Sun size={20} /> : <Moon size={20} />}</button>
-      <div className="w-full max-w-sm">
+      <div className="auth-rise w-full max-w-sm">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-slate hover:text-brand-navy mb-6"
@@ -68,8 +69,8 @@ export default function LoginPage() {
         <div className="flex justify-center mb-8">
           <BrandLockup size={32} />
         </div>
-        <div className="card p-7 sm:p-9">
-          <h1 className="text-2xl font-bold text-brand-navy mb-1">Welcome back</h1>
+        <div className="card auth-card p-7 sm:p-9">
+          <h1 className="text-3xl font-extrabold tracking-tight text-brand-navy mb-1.5">Welcome back</h1>
           <p className="text-sm text-brand-slate mb-6">Log in to continue your SAT prep.</p>
 
           {error && (
@@ -89,7 +90,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg border border-brand-border focus:border-brand-blue outline-none text-sm"
+                className="w-full px-3.5 py-3 rounded-xl border border-brand-border focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/15 outline-none text-sm transition motion-reduce:transition-none"
                 placeholder="you@example.com"
               />
             </div>
@@ -97,17 +98,27 @@ export default function LoginPage() {
               <label className="block text-sm font-medium text-brand-navy mb-1.5" htmlFor="password">
                 Password
               </label>
-              <input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg border border-brand-border focus:border-brand-blue outline-none text-sm"
-                placeholder="••••••••"
-              />
+              <div className="relative">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full pl-3.5 pr-11 py-3 rounded-xl border border-brand-border focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/15 outline-none text-sm transition motion-reduce:transition-none"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  className="absolute inset-y-0 right-0 grid w-11 place-items-center text-brand-slate hover:text-brand-navy"
+                >
+                  {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+                </button>
+              </div>
             </div>
-            <button type="submit" disabled={loading} className="btn-primary w-full">
+            <button type="submit" disabled={loading} className="btn-primary w-full !py-3 !rounded-xl">
               {loading ? "Logging in…" : "Log in"}
             </button>
           </form>
