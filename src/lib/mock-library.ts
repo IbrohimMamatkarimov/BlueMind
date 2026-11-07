@@ -54,7 +54,13 @@ const GROUP_ORDER = ["2026", "2025", "2024", "2023"];
  * left out of the public library entirely.
  */
 export async function getPublicMockLibrary(): Promise<PublicGroup[]> {
-  return buildMockLibrary({ gateOnRelease: true });
+  const groups = await buildMockLibrary({ gateOnRelease: true });
+  // Keep records that only exist for historical attempts in the database,
+  // but do not advertise their empty modules as practice. Saved results use
+  // their stable mock id elsewhere and are therefore unaffected.
+  return groups.filter((group) => group.mocks.some((mock) =>
+    [...mock.math, ...mock.readingWriting].some((module) => module.questionCount > 0)
+  ));
 }
 
 /**
@@ -156,3 +162,4 @@ export async function getModuleQuestionsPublic(mockId: string, section: string, 
 export function moduleMinutes(section: string) {
   return section === "Math" ? SAT_STRUCTURE.math.minutesPerModule : SAT_STRUCTURE.readingWriting.minutesPerModule;
 }
+
