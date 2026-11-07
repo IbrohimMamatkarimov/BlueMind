@@ -68,8 +68,8 @@ export default function TodayPage() {
     {data && <>
       <section className="today-momentum" onPointerMove={(event) => { if (event.pointerType !== "mouse") return; const box = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty("--pointer-x", `${((event.clientX - box.left) / box.width) * 100}%`); event.currentTarget.style.setProperty("--pointer-y", `${((event.clientY - box.top) / box.height) * 100}%`); }}>
         <div className="today-momentum__copy">
-          <p className="today-momentum__eyebrow"><Flame size={14} /> Daily goals</p>
-          <h2>{completedGoals === 3 ? "All three goals are done." : "One good session is a start."}</h2>
+          <p className="today-momentum__eyebrow"><Flame size={14} /> Your daily mission</p>
+          <h2>{completedGoals === 3 ? "Mission complete for today." : "Small steps. Stronger skills."}</h2>
           <p className="today-momentum__summary">
             {completedGoals === 3
               ? "Nice work. Your goals are complete for today."
@@ -86,6 +86,7 @@ export default function TodayPage() {
         </div>
 
         <div className="today-momentum__progress" role="img" aria-label={`${Math.round(completedGoals / 3 * 100)} percent of daily goals complete`}>
+          <img className="studio-hero-robot" src="/companions/robot.png" width={1096} height={1440} alt="" decoding="async" loading="lazy"/>
           <svg viewBox="0 0 100 100" aria-hidden="true">
             <circle className="today-momentum__track" cx="50" cy="50" r="40" />
             <circle className="today-momentum__value" cx="50" cy="50" r="40"

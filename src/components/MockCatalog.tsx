@@ -216,7 +216,8 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
 
   return (
     <div className="space-y-6 mock-catalog">
-      <PageHeader eyebrow="Practice" title="Mock tests" description="Pick a section, choose a test, and continue whenever you are ready." />
+      <PageHeader eyebrow="Practice studio" title="Mock tests" description="Make room for one focused session. Choose a paper, find your rhythm, and keep improving." />
+      {groups && <div className="studio-library-meta"><span><i aria-hidden="true"/> Your library is ready</span><strong>{allMocks.length} practice sets</strong><span>Save your place. Return whenever you’re ready.</span></div>}
 
       {/* Section switcher — centered on its own row, dark-mode toggle pinned
           to the right edge of that same row. Matches PublicLanding.tsx. */}
