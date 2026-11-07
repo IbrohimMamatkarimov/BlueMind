@@ -19,13 +19,16 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Invalid section" }, { status: 400 });
   }
 
-  const mock = (await db.prepare("SELECT id, title, subtitle FROM mocks WHERE id = ?").get(mockId)) as
+  const module = Number(moduleParam) as 1 | 2;
+  const [mockRow, rows] = await Promise.all([
+    db.prepare("SELECT id, title, subtitle FROM mocks WHERE id = ?").get(mockId),
+    getModuleQuestionsPublic(mockId, section, module),
+  ]);
+  const mock = mockRow as
     | { id: string; title: string; subtitle: string | null }
     | undefined;
   if (!mock) return NextResponse.json({ error: "Mock not found" }, { status: 404 });
 
-  const module = Number(moduleParam) as 1 | 2;
-  const rows = await getModuleQuestionsPublic(mockId, section, module);
   if (rows.length === 0) {
     return NextResponse.json({ error: "This module isn't available yet" }, { status: 404 });
   }

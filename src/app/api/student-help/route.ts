@@ -51,14 +51,22 @@ export async function POST(request: NextRequest) {
   ].join("\n\n");
 
   try {
-    const model = process.env.GEMINI_MODEL || "gemini-3.8-flash";
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
-      body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 700, temperature: 0.35 } }),
-      signal: AbortSignal.timeout(20_000),
-    });
-    if (!response.ok) return NextResponse.json({ error: "Student help is temporarily unavailable." }, { status: 502 });
+    const preferred = process.env.GEMINI_MODEL || "gemini-flash-latest";
+    let response: Response | undefined;
+    for (const model of [...new Set([preferred, "gemini-flash-latest"])]) {
+      response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
+        body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 1200, temperature: 0.35 } }),
+        signal: AbortSignal.timeout(20_000),
+      });
+      if (response.ok || response.status !== 404) break;
+    }
+    if (!response || !response.ok) {
+      console.error("[student-help] Gemini request status", response?.status);
+      if (response?.status === 429) return NextResponse.json({ error: "The AI quota is currently full. Please try again later." }, { status: 429 });
+      return NextResponse.json({ error: "The AI provider could not answer right now. Please try again later." }, { status: 502 });
+    }
     const answer = answerText(await response.json());
     if (!answer) return NextResponse.json({ error: "Student help did not return an answer. Try again." }, { status: 502 });
     return NextResponse.json({ answer });

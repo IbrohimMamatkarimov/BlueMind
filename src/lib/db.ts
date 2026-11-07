@@ -59,10 +59,32 @@ async function initPool(): Promise<Pool> {
   try {
     const client = await pool.connect();
     try {
-      const schema = fs.readFileSync(SCHEMA_PATH, "utf-8");
-      await client.query(schema);
-      await runMigrations(client);
-      await backfillModuleReleases(client);
+      // Bump when schema.sql or runMigrations changes. Most cold starts now
+      // read one small version row instead of executing all DDL again.
+      const schemaVersion = "2026-11-08-performance-v1";
+      let installed = false;
+      try {
+        const version = await client.query(
+          "SELECT version FROM bluemind_schema_versions WHERE version = $1",
+          [schemaVersion]
+        );
+        installed = version.rowCount === 1;
+      } catch (error) {
+        if ((error as { code?: string }).code !== "42P01") throw error;
+      }
+      if (!installed) {
+        await client.query("SELECT pg_advisory_lock(74510821)");
+        try {
+          const schema = fs.readFileSync(SCHEMA_PATH, "utf-8");
+          await client.query(schema);
+          await runMigrations(client);
+          await backfillModuleReleases(client);
+          await client.query("CREATE TABLE IF NOT EXISTS bluemind_schema_versions (version TEXT PRIMARY KEY)");
+          await client.query("INSERT INTO bluemind_schema_versions (version) VALUES ($1) ON CONFLICT DO NOTHING", [schemaVersion]);
+        } finally {
+          await client.query("SELECT pg_advisory_unlock(74510821)");
+        }
+      }
     } finally {
       client.release();
     }
