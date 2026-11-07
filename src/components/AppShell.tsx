@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Sidebar, MobileTopBar } from "./Sidebar";
+import { WorkspaceBar } from "./WorkspaceBar";
 import { StudentHelp } from "./StudentHelp";
 import { useAppTheme } from "@/lib/theme";
 const ThemeContext = createContext({ dark: false, toggleDark: () => {} });
@@ -18,6 +19,7 @@ export function AppShell({ userName, isAdmin = false, avatarData, guest = false,
       <a href="#main-content" className="skip-link">Skip to content</a>
       <div className="flex"><Sidebar {...profile} collapsed={collapsed} onToggleCollapsed={toggleCollapsed} />
         <div className="flex-1 min-w-0"><MobileTopBar {...profile} />
+          <WorkspaceBar/>
           <main id="main-content" className="app-content max-w-7xl mx-auto px-4 sm:px-7 lg:px-10 py-7 sm:py-10" tabIndex={-1}>{children}</main>
         </div>
       </div>

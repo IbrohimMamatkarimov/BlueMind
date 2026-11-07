@@ -42,11 +42,11 @@ export function StudentHelp({ title = "BlueMind Assistant", context = "Help this
   return <>
     <button ref={launcher} type="button" aria-expanded={open} aria-controls="bluemind-companion" onClick={() => setOpen((value) => !value)} className="companion-launch companion-launch--robot">
       <RobotMascot className="companion-robot" mood={loading ? "thinking" : error ? "error" : answer ? "happy" : "idle"} />
-      <span className="text-left"><strong className="block text-sm">Blu</strong><span className="block text-[10px] text-blue-100">Your BlueMind companion</span></span>
+      <span className="text-left"><strong className="block text-sm">Blu</strong><span className="block text-[10px] text-blue-100">Your brainy study companion</span></span>
     </button>
     {open && <section id="bluemind-companion" role="dialog" aria-label="BlueMind Assistant" className="companion-panel">
       <header className="companion-heading"><RobotMascot className="companion-header-robot" mood={loading ? "thinking" : error ? "error" : answer ? "happy" : "idle"}/><div className="flex-1"><h2 className="text-sm font-bold">{title}</h2><p className="text-xs text-blue-100">Blu is here to help you figure it out.</p></div><button type="button" onClick={() => {setOpen(false);launcher.current?.focus();}} aria-label="Close assistant" className="rounded-lg p-2 hover:bg-white/10"><X size={18}/></button></header>
-      <div className="companion-body"><p className="text-sm leading-6">Hey, I’m Blu. Tell me where you are stuck. I can break down a concept, explain a method, or help you plan your next session.</p>
+      <div className="companion-body"><p className="text-sm leading-6">Hey, I’m Blu, your study brain. Tell me where you are stuck. I can break down a concept, explain a method, or help you plan your next session.</p>
         <div className="companion-suggestions">{["Explain a math concept","Help with transitions","Plan a study session"].map((text) => <button type="button" key={text} onClick={() => {setQuestion(text); input.current?.focus();}}>{text}</button>)}</div>
         <div aria-live="polite" aria-busy={loading}>{loading && <p className="mt-4 text-sm">Thinking through your question…</p>}{answer && <div className="companion-answer">{answer}</div>}</div>
         {error && <p role="alert" className="mt-3 text-xs text-red-700">{error}</p>}

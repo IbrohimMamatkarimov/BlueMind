@@ -328,9 +328,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
                     <h3 className="text-[15px] font-bold text-brand-navy leading-tight tracking-tight">{mock.title}</h3>
                     {mock.subtitle && <p className="text-xs text-brand-slate mt-0.5">{mock.subtitle}</p>}
                   </div>
-                  <span className="shrink-0 w-7 h-7 rounded-lg border-2 border-brand-blue text-brand-blue text-sm font-bold flex items-center justify-center">
-                    {badgeLetters[mock.id]}
-                  </span>
+                  <span className="mock-paper-mark"><DocIcon /></span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-brand-navy border border-brand-border rounded-lg px-3 py-2 mb-3 relative z-10">
                   <span className="flex items-center gap-1.5">
@@ -449,6 +447,7 @@ function ModuleRow({
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
           <span className="text-sm font-bold text-brand-navy block tracking-tight">Module {module}</span>
+          {available && !saved && !inProgress && <span className="block mt-1 text-[10px] text-brand-slate">{questionCount} questions · {Math.round(questionCount * (section === "Math" ? SAT_STRUCTURE.math.minutesPerModule / SAT_STRUCTURE.math.questionsPerModule : SAT_STRUCTURE.readingWriting.minutesPerModule / SAT_STRUCTURE.readingWriting.questionsPerModule))} min</span>}
           {!isAdmin && available && saved && !inProgress && (
             <span className="text-xs text-brand-slate tabular-nums">
               Score: {saved.correctCount}/{saved.total}

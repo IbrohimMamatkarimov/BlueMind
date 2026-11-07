@@ -1,10 +1,8 @@
 "use client";
-
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpenCheck, Check, Flame, Layers3, RotateCcw, Save, Target, X } from "lucide-react";
-import { PageHeader, StatCard } from "@/components/ui";
-
+import { ArrowRight, BookOpenCheck, Check, Flame, Layers3, RotateCcw, Save, Target, X, Clock, ArrowUpRight } from "lucide-react";
+import { RobotMascot } from "@/components/RobotMascot";
 interface TodayPayload {
   today: { questions: number; correct: number; accuracy: number | null; sessions: number; vocabularyReviews: number; reflections: number };
   plan: { mistakesDue: number; vocabularyDue: number; wordsToDefine: number; weakSkill: { section: string; skill: string; attempted: number; accuracy: number } | null };
@@ -16,14 +14,16 @@ interface Goals { questions: number; mistakes: number; vocabulary: number }
 const DEFAULT_GOALS: Goals = { questions: 10, mistakes: 3, vocabulary: 5 };
 const GOALS_KEY = "bluemind-daily-goals-v1";
 
-function PlanItem({ icon, title, detail, progress, goal, href, action }: { icon: React.ReactNode; title: string; detail: string; progress: number; goal: number; href: string; action: string }) {
-  const complete = progress >= goal;
-  const percent = Math.min(100, goal ? Math.round(progress / goal * 100) : 100);
-  return <article className="today-plan-card card p-5 sm:p-6">
-    <div className="flex items-start gap-4"><span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${complete ? "bg-brand-green-light text-brand-green" : "bg-brand-blue-light text-brand-blue"}`}>{complete ? <Check size={19}/> : icon}</span><div className="min-w-0 flex-1"><div className="flex items-start justify-between gap-3"><div><h2 className="font-bold text-brand-navy">{title}</h2><p className="mt-1 text-xs leading-5 text-brand-slate">{detail}</p></div><span className="shrink-0 text-xs font-semibold tabular-nums text-brand-slate">{Math.min(progress, goal)}/{goal}</span></div><div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100"><div className={`h-full rounded-full ${complete ? "bg-brand-green" : "bg-brand-blue"}`} style={{ width: `${percent}%` }}/></div><Link href={href} className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-blue">{complete ? "Keep going" : action}<ArrowRight size={13}/></Link></div></div>
-  </article>;
-}
 
+function TaskRow({ icon, title, detail, value, goal, href, tone }: { icon: React.ReactNode; title:string; detail:string; value:number; goal:number; href:string; tone:string }) {
+  const complete=value>=goal;
+  const percentage=Math.min(100,Math.round(value/goal*100));
+  return <Link href={href} className="study-task" data-tone={tone}>
+    <span className="study-task__icon">{complete?<Check size={20}/>:icon}</span>
+    <span className="study-task__body"><strong>{title}</strong><span>{detail}</span><span className="study-task__track"><span style={{width:percentage+"%"}}/></span></span>
+    <span className="study-task__count"><b>{Math.min(value,goal)}<small>/{goal}</small></b><span>{complete?"Complete":"Continue"} <ArrowRight size={12}/></span></span>
+  </Link>;
+}
 export default function TodayPage() {
   const [data, setData] = useState<TodayPayload | null>(null);
   const [error, setError] = useState("");
@@ -37,7 +37,8 @@ export default function TodayPage() {
       const saved = window.localStorage.getItem(GOALS_KEY);
       if (saved) {
         const parsed = JSON.parse(saved) as Goals;
-        const next = { questions: Math.max(1, parsed.questions), mistakes: Math.max(1, parsed.mistakes), vocabulary: Math.max(1, parsed.vocabulary) };
+        const safe = (value: number, fallback: number) => Number.isFinite(value) ? Math.max(1, value) : fallback;
+        const next = { questions: safe(parsed.questions,10), mistakes: safe(parsed.mistakes,3), vocabulary: safe(parsed.vocabulary,5) };
         setGoals(next); setDraftGoals(next);
       }
     } catch { window.localStorage.removeItem(GOALS_KEY); }
@@ -61,54 +62,42 @@ export default function TodayPage() {
   }
   const practiceHref = data?.plan.weakSkill ? `/practice/browse?section=${encodeURIComponent(data.plan.weakSkill.section)}&skill=${encodeURIComponent(data.plan.weakSkill.skill)}` : "/practice";
 
-  return <div className="max-w-6xl space-y-6">
-    <PageHeader eyebrow="Today" title="Today" description="Your goals and practice for today." action={<button onClick={() => { setDraftGoals(goals); setEditingGoals(true); }} className="btn-secondary"><Target size={16}/> Edit daily goals</button>}/>
-    {error && <div role="alert" className="card flex items-center justify-between gap-4 p-5 text-sm text-brand-red"><p>{error}</p><button onClick={() => setReload((value) => value + 1)} className="btn-secondary">Try again</button></div>}
-    {!data && !error && <div className="grid gap-4 sm:grid-cols-3">{[1,2,3].map((item) => <div key={item} className="h-36 animate-pulse rounded-2xl bg-slate-200"/>)}</div>}
-    {data && <>
-      <section className="today-momentum" onPointerMove={(event) => { if (event.pointerType !== "mouse") return; const box = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty("--pointer-x", `${((event.clientX - box.left) / box.width) * 100}%`); event.currentTarget.style.setProperty("--pointer-y", `${((event.clientY - box.top) / box.height) * 100}%`); }}>
-        <div className="today-momentum__copy">
-          <p className="today-momentum__eyebrow"><Flame size={14} /> Your daily mission</p>
-          <h2>{completedGoals === 3 ? "Mission complete for today." : "Small steps. Stronger skills."}</h2>
-          <p className="today-momentum__summary">
-            {completedGoals === 3
-              ? "Nice work. Your goals are complete for today."
-              : `${3 - completedGoals} goal${3 - completedGoals === 1 ? "" : "s"} left. Pick one to start.`}
-          </p>
-          <Link href={practiceHref} className="today-momentum__cta">
-            {data.plan.weakSkill ? `Practice ${data.plan.weakSkill.skill}` : "Start practice"}
-            <ArrowRight size={16} />
-          </Link>
-          <div className="today-momentum__streak">
-            <span className="today-momentum__streak-icon"><Flame size={17} /></span>
-            <span><strong>{data.streak.current} day streak</strong><small>Personal best: {data.streak.best} days</small></span>
-          </div>
-        </div>
 
-        <div className="today-momentum__progress" role="img" aria-label={`${Math.round(completedGoals / 3 * 100)} percent of daily goals complete`}>
-          <img className="studio-hero-robot" src="/companions/robot.png" width={1096} height={1440} alt="" decoding="async" loading="lazy"/>
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <circle className="today-momentum__track" cx="50" cy="50" r="40" />
-            <circle className="today-momentum__value" cx="50" cy="50" r="40"
-              style={{ strokeDasharray: 251.3, strokeDashoffset: 251.3 - (251.3 * completedGoals / 3) }} />
-          </svg>
-          <div className="today-momentum__progress-label"><strong>{completedGoals}<span>/3</span></strong><small>goals done</small></div>
-          <span className="today-momentum__float today-momentum__float--one"><BookOpenCheck size={16} /> {data.today.questions} questions</span>
-          <span className="today-momentum__float today-momentum__float--two"><Check size={15} /> {data.today.reflections} reflections</span>
-        </div>
-      </section>
-
-      <div className="grid gap-4 lg:grid-cols-3">
-        <PlanItem icon={<BookOpenCheck size={19}/>} title={data.plan.weakSkill ? `Practice ${data.plan.weakSkill.skill}` : "Practice questions"} detail={data.plan.weakSkill ? `Your current focus area is at ${data.plan.weakSkill.accuracy}% accuracy.` : "Build enough history for a personalized skill recommendation."} progress={data.today.questions} goal={goals.questions} href={practiceHref} action="Start focused practice"/>
-        <PlanItem icon={<RotateCcw size={19}/>} title="Reflect on mistakes" detail={data.plan.mistakesDue ? `${data.plan.mistakesDue} questions still need another look.` : "Your latest missed questions have been resolved."} progress={data.today.reflections} goal={goals.mistakes} href="/notebook" action="Open Notebook"/>
-        <PlanItem icon={<Layers3 size={19}/>} title="Review vocabulary" detail={data.plan.vocabularyDue ? `${data.plan.vocabularyDue} flashcards are due now.` : data.plan.wordsToDefine ? `${data.plan.wordsToDefine} saved words still need definitions.` : "Your vocabulary queue is caught up."} progress={data.today.vocabularyReviews} goal={goals.vocabulary} href="/vocabulary" action="Review due cards"/>
+  const overall = data ? Math.round((Math.min(data.today.questions/goals.questions,1)+Math.min(data.today.reflections/goals.mistakes,1)+Math.min(data.today.vocabularyReviews/goals.vocabulary,1))/3*100) : 0;
+  return <div className="study-home">
+    <header className="study-page-title"><div><p>YOUR STUDY DESK</p><h1>Make today count.</h1><span>A clear plan. One focused session at a time.</span></div><button type="button" onClick={()=>{setDraftGoals(goals);setEditingGoals(true);}} className="study-outline"><Target size={15}/> Daily targets</button></header>
+    {error && <div role="alert" className="card p-5 text-sm text-brand-red">{error}<button type="button" className="btn-secondary ml-3" onClick={()=>setReload(value=>value+1)}>Try again</button></div>}
+    {!data&&!error&&<div className="study-loading" role="status">Preparing your study desk…<div/><div/></div>}
+    {data&&<>
+      <div className="study-top-grid">
+        <section className="study-focus">
+          <div className="study-focus__top"><span><i/> YOUR NEXT SESSION</span><span className="study-streak"><Flame size={13}/>{data.streak.current} day streak</span></div>
+          <h2>{completedGoals===3?"Today’s targets, complete.":data.plan.weakSkill?"Turn a weak spot into progress.":"A little practice. A clearer mind."}</h2>
+          <p>{data.plan.weakSkill?`Focus on ${data.plan.weakSkill.skill}. Your recorded accuracy is ${data.plan.weakSkill.accuracy}%.`:"Choose a focused practice set, then review what you learned."}</p>
+          <div className="study-focus__actions"><Link href={practiceHref} className="study-primary">Start focused practice <ArrowRight size={16}/></Link><Link href="/mocks" className="study-focus__secondary">Browse mock tests <ArrowUpRight size={15}/></Link></div>
+          <div className="study-focus__foot"><Clock size={13}/><span>Untimed practice or a full exam environment. You choose.</span></div>
+        </section>
+        <section className="study-targets"><div className="study-section-label"><span>TODAY’S MOMENTUM</span><span>{completedGoals}/3 targets</span></div>
+          <div className="study-targets__center"><div className="study-progress-ring" style={{background:`conic-gradient(#3f70df ${overall}%, var(--study-track) 0)`}}><span><strong>{overall}<small>%</small></strong><small>daily progress</small></span></div><RobotMascot className="study-desk-robot" mood={completedGoals===3?"happy":"idle"}/></div>
+          <p>{completedGoals===3?"All targets complete. Keep the habit going.":`${3-completedGoals} targets left. Every small step counts.`}</p>
+          <button type="button" onClick={()=>{setDraftGoals(goals);setEditingGoals(true);}}>Adjust your targets <ArrowRight size={12}/></button>
+        </section>
       </div>
-
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"><StatCard label="Questions today" value={data.today.questions} detail={data.today.accuracy == null ? "Complete a practice set to begin" : `${data.today.accuracy}% accuracy`}/><StatCard label="Sessions today" value={data.today.sessions} detail="Completed practice sessions"/><StatCard label="Mistake reflections" value={data.today.reflections} detail={`${data.plan.mistakesDue} unresolved questions`}/><StatCard label="Vocabulary reviews" value={data.today.vocabularyReviews} detail={`${data.plan.vocabularyDue} cards currently due`}/></div>
-
-      <section className="card p-5 sm:p-6"><div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start"><div><p className="eyebrow">Last 7 days</p><h2 className="text-xl font-bold text-brand-navy">Your weekly snapshot</h2><p className="mt-2 text-sm text-brand-slate">A compact view of practice and active review.</p></div><Link href="/progress" className="btn-secondary text-xs">Full progress report <ArrowRight size={14}/></Link></div><div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-5"><div><p className="text-2xl font-bold text-brand-navy">{data.weekly.questions}</p><p className="text-xs text-brand-slate">questions</p></div><div><p className="text-2xl font-bold text-brand-navy">{data.weekly.accuracy == null ? "—" : `${data.weekly.accuracy}%`}</p><p className="text-xs text-brand-slate">accuracy</p></div><div><p className="text-2xl font-bold text-brand-navy">{data.weekly.sessions}</p><p className="text-xs text-brand-slate">sessions</p></div><div><p className="text-2xl font-bold text-brand-navy">{data.weekly.vocabularyAdded}</p><p className="text-xs text-brand-slate">words added</p></div><div><p className="text-2xl font-bold text-brand-navy">{data.weekly.reflections}</p><p className="text-xs text-brand-slate">reflections</p></div></div></section>
+      <div className="study-work-grid">
+        <section className="study-panel"><header className="study-panel__heading"><div><p>YOUR ROUTINE</p><h2>Three moves for today</h2></div><span className="study-count-pill">{completedGoals} done</span></header>
+          <TaskRow icon={<BookOpenCheck size={20}/>} title="Practice questions" detail={data.plan.weakSkill?`Recommended: ${data.plan.weakSkill.skill}`:"Build accuracy with a focused question set."} value={data.today.questions} goal={goals.questions} href={practiceHref} tone="blue"/>
+          <TaskRow icon={<RotateCcw size={20}/>} title="Review your mistakes" detail={data.plan.mistakesDue?`${data.plan.mistakesDue} questions need another look.`:"Turn missed questions into lessons you remember."} value={data.today.reflections} goal={goals.mistakes} href="/notebook" tone="mint"/>
+          <TaskRow icon={<Layers3 size={20}/>} title="Keep words in memory" detail={data.plan.vocabularyDue?`${data.plan.vocabularyDue} vocabulary cards due.`:data.plan.wordsToDefine?`${data.plan.wordsToDefine} saved words need definitions.`:"Capture useful words and revisit them regularly."} value={data.today.vocabularyReviews} goal={goals.vocabulary} href="/vocabulary" tone="violet"/>
+        </section>
+        <aside className="study-panel study-week"><header className="study-panel__heading"><div><p>LAST SEVEN DAYS</p><h2>Effort, made visible</h2></div><Link href="/progress" aria-label="Open progress report"><ArrowUpRight size={18}/></Link></header>
+          <div className="study-week__main"><strong>{data.weekly.questions}</strong><span>questions practiced</span><div><span>{data.weekly.accuracy==null?"No accuracy data yet":data.weekly.accuracy+"% accuracy"}</span><span>{data.weekly.sessions} sessions</span></div></div>
+          <div className="study-week__rows"><span>Words added <b>{data.weekly.vocabularyAdded}</b></span><span>Vocabulary reviews <b>{data.weekly.vocabularyReviews}</b></span><span>Mistake reflections <b>{data.weekly.reflections}</b></span><span>Personal best streak <b>{data.streak.best} days</b></span></div>
+          <Link href="/progress" className="study-report-link">Explore your progress <ArrowRight size={14}/></Link>
+        </aside>
+      </div>
+      <nav className="study-shortcuts" aria-label="Study shortcuts"><Link href="/mocks"><BookOpenCheck size={17}/><span><strong>Mock library</strong><small>Practice in an exam setting</small></span><ArrowUpRight size={15}/></Link><Link href="/practice"><Target size={17}/><span><strong>Question bank</strong><small>Find the skill you want to improve</small></span><ArrowUpRight size={15}/></Link><Link href="/notebook"><RotateCcw size={17}/><span><strong>Your notebook</strong><small>Make every mistake useful</small></span><ArrowUpRight size={15}/></Link></nav>
     </>}
-
     {editingGoals && <div role="dialog" aria-modal="true" aria-labelledby="goals-title" className="fixed inset-0 z-50 flex items-center justify-center bg-brand-navy/30 px-4"><div className="card w-full max-w-md p-6"><div className="flex items-start justify-between"><div><h2 id="goals-title" className="text-lg font-bold text-brand-navy">Daily goals</h2><p className="mt-1 text-xs text-brand-slate">Choose a realistic pace you can repeat.</p></div><button onClick={() => setEditingGoals(false)} aria-label="Close daily goals" className="rounded-lg p-1 text-brand-slate"><X size={18}/></button></div><div className="mt-5 space-y-4">{([['questions','Practice questions'],['mistakes','Mistake reflections'],['vocabulary','Vocabulary reviews']] as [keyof Goals,string][]).map(([key,label]) => <label key={key} className="flex items-center justify-between gap-4"><span className="text-sm font-semibold text-brand-navy">{label}</span><input type="number" min={1} max={key === "mistakes" ? 25 : 100} value={draftGoals[key]} onChange={(event) => setDraftGoals((current) => ({ ...current, [key]: Number(event.target.value) || 1 }))} className="w-24 rounded-lg border border-brand-border px-3 py-2 text-sm"/></label>)}</div><div className="mt-6 flex justify-end gap-2"><button onClick={() => setEditingGoals(false)} className="btn-secondary text-xs">Cancel</button><button onClick={saveGoals} className="btn-primary text-xs"><Save size={14}/> Save goals</button></div></div></div>}
+
   </div>;
 }
