@@ -14,7 +14,7 @@ const ROUTES=[
 export function WorkspaceBar(){
  const path=usePathname();const router=useRouter();const [open,setOpen]=useState(false);const [query,setQuery]=useState("");const [index,setIndex]=useState(0);
  const dialog=useRef<HTMLDialogElement>(null);const input=useRef<HTMLInputElement>(null);
- const filtered=ROUTES.filter(item=>(item.label+" "+item.detail).toLowerCase().includes(query.toLowerCase()));
+ const filtered=ROUTES.filter(item=>(item.label+" "+item.detail+" "+item.href).toLowerCase().includes(query.toLowerCase()));
  useEffect(()=>{const onKey=(event:KeyboardEvent)=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="k"){event.preventDefault();setOpen(value=>!value);}};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey);},[]);
  useEffect(()=>{if(open){setQuery("");setIndex(0);dialog.current?.showModal();input.current?.focus();}else if(dialog.current?.open){dialog.current.close();}},[open]);
  const current=ROUTES.find(item=>path?.startsWith(item.href));
