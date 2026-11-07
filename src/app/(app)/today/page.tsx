@@ -66,7 +66,7 @@ export default function TodayPage() {
     {error && <div role="alert" className="card flex items-center justify-between gap-4 p-5 text-sm text-brand-red"><p>{error}</p><button onClick={() => setReload((value) => value + 1)} className="btn-secondary">Try again</button></div>}
     {!data && !error && <div className="grid gap-4 sm:grid-cols-3">{[1,2,3].map((item) => <div key={item} className="h-36 animate-pulse rounded-2xl bg-slate-200"/>)}</div>}
     {data && <>
-      <section className="today-momentum">
+      <section className="today-momentum" onPointerMove={(event) => { if (event.pointerType !== "mouse") return; const box = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty("--pointer-x", `${((event.clientX - box.left) / box.width) * 100}%`); event.currentTarget.style.setProperty("--pointer-y", `${((event.clientY - box.top) / box.height) * 100}%`); }}>
         <div className="today-momentum__copy">
           <p className="today-momentum__eyebrow"><Flame size={14} /> Your daily study plan</p>
           <h2>{completedGoals === 3 ? "You’re on a roll." : "Build your momentum today."}</h2>
