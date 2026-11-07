@@ -27,7 +27,7 @@ export function Sidebar({ collapsed, onToggleCollapsed, ...profile }: Profile & 
       {!collapsed && <p className="eyebrow px-3 mb-4">Your workspace</p>}
       {items.map(({ href, label, icon: Icon }) => {
         const active = pathname?.startsWith(href) || (href === "/mocks" && pathname === "/");
-        return <Link key={href} href={profile.guest ? href === "/mocks" ? "/" : "/login" : href} aria-current={active ? "page" : undefined} title={collapsed ? label : undefined} className={`nav-link ${active ? "nav-active" : ""} ${collapsed ? "justify-center px-0" : "px-3"}`}><Icon size={20} strokeWidth={1.8} />{!collapsed && <span>{label}</span>}</Link>;
+        return <Link key={href} href={href} aria-current={active ? "page" : undefined} title={collapsed ? label : undefined} className={`nav-link ${active ? "nav-active" : ""} ${collapsed ? "justify-center px-0" : "px-3"}`}><Icon size={20} strokeWidth={1.8} />{!collapsed && <span>{label}</span>}</Link>;
       })}
     </nav>
     <div className="p-3 border-t border-brand-border space-y-1.5">
@@ -50,7 +50,7 @@ export function MobileTopBar(profile: Profile) {
     <nav aria-label="Main navigation" className="flex gap-1 px-3 pb-3 overflow-x-auto">
       {[...NAV_ITEMS, ...(profile.isAdmin ? [{ href: "/admin", label: "Admin", icon: ShieldCheck }] : [])].map(({ href, label }) => {
         const active = pathname?.startsWith(href) || (href === "/mocks" && pathname === "/");
-        return <Link key={href} href={profile.guest ? href === "/mocks" ? "/" : "/login" : href} aria-current={active ? "page" : undefined} className={`flex-1 text-center rounded-lg px-3 py-2.5 text-xs font-semibold whitespace-nowrap ${active ? "bg-brand-blue-light text-brand-blue" : "text-brand-slate"}`}>{label}</Link>;
+        return <Link key={href} href={href} aria-current={active ? "page" : undefined} className={`flex-1 text-center rounded-lg px-3 py-2.5 text-xs font-semibold whitespace-nowrap ${active ? "bg-brand-blue-light text-brand-blue" : "text-brand-slate"}`}>{label}</Link>;
       })}
     </nav>
   </header>;
