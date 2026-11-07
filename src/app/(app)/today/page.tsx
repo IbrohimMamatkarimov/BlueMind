@@ -62,21 +62,21 @@ export default function TodayPage() {
   const practiceHref = data?.plan.weakSkill ? `/practice/browse?section=${encodeURIComponent(data.plan.weakSkill.section)}&skill=${encodeURIComponent(data.plan.weakSkill.skill)}` : "/practice";
 
   return <div className="max-w-6xl space-y-6">
-    <PageHeader eyebrow="Your personalized study plan" title="Today" description="A focused plan built from your recent practice, due reviews, and unfinished learning." action={<button onClick={() => { setDraftGoals(goals); setEditingGoals(true); }} className="btn-secondary"><Target size={16}/> Edit daily goals</button>}/>
+    <PageHeader eyebrow="Today" title="Today" description="Your goals and practice for today." action={<button onClick={() => { setDraftGoals(goals); setEditingGoals(true); }} className="btn-secondary"><Target size={16}/> Edit daily goals</button>}/>
     {error && <div role="alert" className="card flex items-center justify-between gap-4 p-5 text-sm text-brand-red"><p>{error}</p><button onClick={() => setReload((value) => value + 1)} className="btn-secondary">Try again</button></div>}
     {!data && !error && <div className="grid gap-4 sm:grid-cols-3">{[1,2,3].map((item) => <div key={item} className="h-36 animate-pulse rounded-2xl bg-slate-200"/>)}</div>}
     {data && <>
       <section className="today-momentum" onPointerMove={(event) => { if (event.pointerType !== "mouse") return; const box = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty("--pointer-x", `${((event.clientX - box.left) / box.width) * 100}%`); event.currentTarget.style.setProperty("--pointer-y", `${((event.clientY - box.top) / box.height) * 100}%`); }}>
         <div className="today-momentum__copy">
-          <p className="today-momentum__eyebrow"><Flame size={14} /> Your daily study plan</p>
-          <h2>{completedGoals === 3 ? "You’re on a roll." : "Build your momentum today."}</h2>
+          <p className="today-momentum__eyebrow"><Flame size={14} /> Daily goals</p>
+          <h2>{completedGoals === 3 ? "All three goals are done." : "One good session is a start."}</h2>
           <p className="today-momentum__summary">
             {completedGoals === 3
-              ? "You completed all three goals. Keep the rhythm with one more focused session."
-              : `${3 - completedGoals} small goal${3 - completedGoals === 1 ? "" : "s"} stand between you and a complete study day.`}
+              ? "Nice work. Your goals are complete for today."
+              : `${3 - completedGoals} goal${3 - completedGoals === 1 ? "" : "s"} left. Pick one to start.`}
           </p>
           <Link href={practiceHref} className="today-momentum__cta">
-            {data.plan.weakSkill ? `Practice ${data.plan.weakSkill.skill}` : "Start focused practice"}
+            {data.plan.weakSkill ? `Practice ${data.plan.weakSkill.skill}` : "Start practice"}
             <ArrowRight size={16} />
           </Link>
           <div className="today-momentum__streak">
