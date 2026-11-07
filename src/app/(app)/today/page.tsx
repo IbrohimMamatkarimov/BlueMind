@@ -19,7 +19,7 @@ const GOALS_KEY = "bluemind-daily-goals-v1";
 function PlanItem({ icon, title, detail, progress, goal, href, action }: { icon: React.ReactNode; title: string; detail: string; progress: number; goal: number; href: string; action: string }) {
   const complete = progress >= goal;
   const percent = Math.min(100, goal ? Math.round(progress / goal * 100) : 100);
-  return <article className="card p-5 sm:p-6">
+  return <article className="today-plan-card card p-5 sm:p-6">
     <div className="flex items-start gap-4"><span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${complete ? "bg-brand-green-light text-brand-green" : "bg-brand-blue-light text-brand-blue"}`}>{complete ? <Check size={19}/> : icon}</span><div className="min-w-0 flex-1"><div className="flex items-start justify-between gap-3"><div><h2 className="font-bold text-brand-navy">{title}</h2><p className="mt-1 text-xs leading-5 text-brand-slate">{detail}</p></div><span className="shrink-0 text-xs font-semibold tabular-nums text-brand-slate">{Math.min(progress, goal)}/{goal}</span></div><div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100"><div className={`h-full rounded-full ${complete ? "bg-brand-green" : "bg-brand-blue"}`} style={{ width: `${percent}%` }}/></div><Link href={href} className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-blue">{complete ? "Keep going" : action}<ArrowRight size={13}/></Link></div></div>
   </article>;
 }
@@ -66,8 +66,35 @@ export default function TodayPage() {
     {error && <div role="alert" className="card flex items-center justify-between gap-4 p-5 text-sm text-brand-red"><p>{error}</p><button onClick={() => setReload((value) => value + 1)} className="btn-secondary">Try again</button></div>}
     {!data && !error && <div className="grid gap-4 sm:grid-cols-3">{[1,2,3].map((item) => <div key={item} className="h-36 animate-pulse rounded-2xl bg-slate-200"/>)}</div>}
     {data && <>
-      <section className="card overflow-hidden bg-brand-navy p-6 text-white sm:p-8">
-        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center"><div><p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">Daily momentum</p><h2 className="mt-2 text-2xl font-bold">{completedGoals === 3 ? "Today’s plan is complete" : `${3 - completedGoals} goal${3 - completedGoals === 1 ? "" : "s"} left today`}</h2><p className="mt-2 text-sm text-white/70">{data.streak.activeToday ? "You kept your learning streak alive today." : "One focused activity will keep your streak moving."}</p></div><div className="flex items-center gap-3 rounded-2xl bg-white/10 px-5 py-4"><Flame size={27} className="text-amber-300"/><div><p className="text-2xl font-bold tabular-nums">{data.streak.current}</p><p className="text-xs text-white/70">day streak · best {data.streak.best}</p></div></div></div>
+      <section className="today-momentum">
+        <div className="today-momentum__copy">
+          <p className="today-momentum__eyebrow"><Flame size={14} /> Your daily study plan</p>
+          <h2>{completedGoals === 3 ? "You’re on a roll." : "Build your momentum today."}</h2>
+          <p className="today-momentum__summary">
+            {completedGoals === 3
+              ? "You completed all three goals. Keep the rhythm with one more focused session."
+              : `${3 - completedGoals} small goal${3 - completedGoals === 1 ? "" : "s"} stand between you and a complete study day.`}
+          </p>
+          <Link href={practiceHref} className="today-momentum__cta">
+            {data.plan.weakSkill ? `Practice ${data.plan.weakSkill.skill}` : "Start focused practice"}
+            <ArrowRight size={16} />
+          </Link>
+          <div className="today-momentum__streak">
+            <span className="today-momentum__streak-icon"><Flame size={17} /></span>
+            <span><strong>{data.streak.current} day streak</strong><small>Personal best: {data.streak.best} days</small></span>
+          </div>
+        </div>
+
+        <div className="today-momentum__progress" role="img" aria-label={`${Math.round(completedGoals / 3 * 100)} percent of daily goals complete`}>
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle className="today-momentum__track" cx="50" cy="50" r="40" />
+            <circle className="today-momentum__value" cx="50" cy="50" r="40"
+              style={{ strokeDasharray: 251.3, strokeDashoffset: 251.3 - (251.3 * completedGoals / 3) }} />
+          </svg>
+          <div className="today-momentum__progress-label"><strong>{completedGoals}<span>/3</span></strong><small>goals done</small></div>
+          <span className="today-momentum__float today-momentum__float--one"><BookOpenCheck size={16} /> {data.today.questions} questions</span>
+          <span className="today-momentum__float today-momentum__float--two"><Check size={15} /> {data.today.reflections} reflections</span>
+        </div>
       </section>
 
       <div className="grid gap-4 lg:grid-cols-3">
