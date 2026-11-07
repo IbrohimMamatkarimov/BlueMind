@@ -521,3 +521,13 @@ textarea:focus-visible,
   .nav-link:hover, .btn-primary:hover:not(:disabled), .btn-secondary:hover:not(:disabled) { transform: none; }
   .app-content > * { animation: none; }
 }
+
+/* SAT catalog cards: give each paper a clearer lift and focus state. */
+.mock-card {
+  border-radius: 18px;
+  background: linear-gradient(155deg, var(--surface), color-mix(in srgb, var(--canvas) 35%, var(--surface)));
+  box-shadow: 0 2px 5px rgba(23, 37, 84, 0.025), 0 12px 28px rgba(23, 37, 84, 0.04);
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), border-color 220ms ease, box-shadow 220ms ease;
+}
+.mock-card:hover { transform: translateY(-3px); border-color: #a7bff7; box-shadow: 0 16px 34px rgba(37, 99, 235, 0.1); }
+@media (prefers-reduced-motion: reduce) { .mock-card:hover { transform: none; } }
