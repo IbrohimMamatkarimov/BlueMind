@@ -10,8 +10,8 @@ import { ActivityHeartbeat } from "@/components/ActivityHeartbeat";
 
 export const metadata: Metadata = {
   title: "BlueMind",
-  description:
-    "Free SAT mock tests and focused question practice. Take a mock, understand your mistakes, know what to practice next, track your improvement.",
+  description: "SAT practice and progress.",
+  icons: { icon: "/icon.svg?v=3", shortcut: "/icon.svg?v=3", apple: "/apple-icon.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

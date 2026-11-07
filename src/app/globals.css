@@ -598,3 +598,64 @@ textarea:focus-visible,
 
 .today-momentum { --pointer-x: 74%; --pointer-y: 42%; }
 .today-momentum::after { background: radial-gradient(420px circle at var(--pointer-x) var(--pointer-y), rgba(154,203,255,.18), transparent 72%), linear-gradient(110deg, transparent 20%, rgba(255,255,255,.045) 50%, transparent 75%); }
+
+
+/* Calm, light daily planner: use white cards with blue as a guide. */
+body { background: #fff; }
+.today-momentum {
+  border-color: #e3eaf4;
+  color: #192c4c;
+  background:
+    radial-gradient(ellipse at 85% 10%, rgb(72 127 222 / .06), transparent 20rem),
+    linear-gradient(125deg, #fff, #f8faff);
+  box-shadow: 0 12px 34px rgb(28 55 96 / .065);
+}
+.today-momentum::before { opacity: .16; }
+.today-momentum::after {
+  background: radial-gradient(360px circle at var(--pointer-x) var(--pointer-y), rgb(63 119 209 / .09), transparent 72%);
+}
+.today-momentum__eyebrow { color: #55729e; letter-spacing: .12em; }
+.today-momentum__eyebrow svg { color: #3374c8; }
+.today-momentum h2 { color: #1c3152; }
+.today-momentum__summary { color: #65748a; }
+.today-momentum__cta {
+  color: #fff;
+  background: #2765bd;
+  box-shadow: 0 8px 18px rgb(39 101 189 / .16);
+}
+.today-momentum__cta:hover { background: #1f56a6; box-shadow: 0 12px 24px rgb(39 101 189 / .2); }
+.today-momentum__streak { color: #233858; }
+.today-momentum__streak-icon { border-color: #dbe6f3; color: #3474c5; background: #f0f6ff; }
+.today-momentum__streak small { color: #718099; }
+.today-momentum__progress svg { filter: none; }
+.today-momentum__track { stroke: #e2eaf5; }
+.today-momentum__value { stroke: #3981d5; }
+.today-momentum__progress-label strong { color: #1e3557; }
+.today-momentum__progress-label strong span { color: #8494aa; }
+.today-momentum__progress-label small { color: #74839a; }
+.today-momentum__float {
+  border-color: #e1e9f3;
+  color: #29405f;
+  background: rgb(255 255 255 / .94);
+  box-shadow: 0 6px 18px rgb(27 56 100 / .07);
+  backdrop-filter: blur(8px);
+}
+.today-momentum__float svg { color: #3476c7; }
+.today-plan-card { box-shadow: 0 4px 18px rgb(23 37 84 / .035); }
+.today-plan-card:hover { box-shadow: 0 12px 26px rgb(23 37 84 / .07); }
+.app-dark .today-momentum {
+  border-color: rgba(255,255,255,.12);
+  color: white;
+  background:
+    radial-gradient(ellipse at 82% 12%, rgba(79,145,255,.33), transparent 21rem),
+    linear-gradient(122deg,#0d1b37,#173568 56%,#1e4c8d);
+}
+.app-dark .today-momentum__eyebrow { color: #b9d0ff; }
+.app-dark .today-momentum h2 { color: white; }
+.app-dark .today-momentum__summary { color: rgba(255,255,255,.72); }
+.app-dark .today-momentum__streak { color: white; }
+.app-dark .today-momentum__streak small { color: rgba(255,255,255,.56); }
+.app-dark .today-momentum__track { stroke: rgba(255,255,255,.13); }
+.app-dark .today-momentum__progress-label strong { color: white; }
+.app-dark .today-momentum__progress-label small { color: rgba(255,255,255,.58); }
+.app-dark .today-momentum__float { border-color: rgba(255,255,255,.16); color: white; background: rgba(9,20,45,.56); }
