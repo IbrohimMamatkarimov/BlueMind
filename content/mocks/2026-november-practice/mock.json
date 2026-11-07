@@ -1,0 +1,644 @@
+{
+  "$schema": "../mock.schema.json",
+  "mock": {
+    "title": "November 2026",
+    "subtitle": "Original Practice Set 1",
+    "groupLabel": "2026",
+    "month": "November",
+    "year": 2026,
+    "source": "Original BlueMind practice questions aligned to College Board's public digital SAT domains and sample formats.",
+    "notes": "All questions in this set are original and written for BlueMind; they are not official College Board questions. Topic and format references: https://satsuite.collegeboard.org/practice/student-question-bank and https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+    "totalQuestions": 20,
+    "durationMinutes": 32
+  },
+  "modules": [
+    {
+      "section": "Reading and Writing",
+      "module": 1,
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Easy",
+          "passageText": "Because the wetland boardwalk keeps foot traffic to a single route, young reeds have slowly spread across the marsh edge. Rangers describe the recovery as ______: it is visible from year to year, but it does not happen quickly.",
+          "questionText": "Which choice completes the text with the most logical and precise word?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "gradual"
+            },
+            {
+              "id": "B",
+              "text": "accidental"
+            },
+            {
+              "id": "C",
+              "text": "immediate"
+            },
+            {
+              "id": "D",
+              "text": "uncertain"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "A recovery that is visible over several years but happens slowly is gradual.",
+          "explanation": "\"Gradual\" means taking place over time, which matches the passage. \"Immediate\" means happening at once, while \"accidental\" and \"uncertain\" do not describe the pace of the recovery.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 2,
+          "domain": "Information and Ideas",
+          "skill": "Inferences",
+          "difficulty": "Medium",
+          "passageText": "A research team placed temperature sensors at three shaded points along a creek and three in an open field. During the hottest week of the summer, the creek sensors varied less from day to night. The team plans to repeat the study in winter before drawing conclusions about the sites' climates.",
+          "questionText": "Which statement is best supported by the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "During the study week, the shaded creek locations had smaller daily temperature swings than the open-field locations."
+            },
+            {
+              "id": "B",
+              "text": "The creek was warmer than the field at every hour of the study."
+            },
+            {
+              "id": "C",
+              "text": "The researchers have proved that shade causes lower temperatures in every season."
+            },
+            {
+              "id": "D",
+              "text": "The open field had more sensors than the creek."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The text directly reports less day-to-night variation at the creek sensors during the hottest week.",
+          "explanation": "The passage supports only a comparison of daily variation during that study week. It does not state which site was always warmer, establish a year-round causal claim, or say that the field had more sensors.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 3,
+          "domain": "Standard English Conventions",
+          "skill": "Boundaries",
+          "difficulty": "Medium",
+          "passageText": null,
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nThe coastal station records wave height every hour ______ its instruments also monitor wind speed.",
+          "choices": [
+            {
+              "id": "A",
+              "text": "; its"
+            },
+            {
+              "id": "B",
+              "text": "; and its,"
+            },
+            {
+              "id": "C",
+              "text": "; its,"
+            },
+            {
+              "id": "D",
+              "text": "; its;"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "A semicolon correctly joins the two independent clauses.",
+          "explanation": "Both \"The coastal station records wave height every hour\" and \"its instruments also monitor wind speed\" can stand alone, so a semicolon can join them. The other choices add incorrect punctuation or an unnecessary conjunction.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 4,
+          "domain": "Expression of Ideas",
+          "skill": "Rhetorical Synthesis",
+          "difficulty": "Medium",
+          "passageText": "A student is writing about a new maker space at a public library and has taken these notes:\n• The space opens on Saturdays and Sundays.\n• Use of the space is free.\n• The 3D printers require an online reservation.\n• The library lends safety glasses.",
+          "questionText": "The student wants to emphasize how accessible the maker space is. Which choice most effectively uses relevant information from the notes?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The library's maker space is free to use on weekends, and visitors can reserve its 3D printers online."
+            },
+            {
+              "id": "B",
+              "text": "The maker space has 3D printers, safety glasses, and weekend hours."
+            },
+            {
+              "id": "C",
+              "text": "The library lends safety glasses to visitors who use the maker space."
+            },
+            {
+              "id": "D",
+              "text": "Visitors can reserve the 3D printers online before going to the library."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "This choice combines the free cost and weekend access, the two details that most directly show broad access.",
+          "explanation": "Choice A focuses on affordability and when the space is open. The other choices mention accurate details but do not combine the strongest evidence of accessibility.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 5,
+          "domain": "Information and Ideas",
+          "skill": "Central Ideas and Details",
+          "difficulty": "Easy",
+          "passageText": "Some coastal gulls gather seaweed to line their nests. A field team comparing nests across several beaches found that gulls used more seaweed at beaches where dry grass was scarce. The team suggests that the birds choose materials partly according to what is locally available.",
+          "questionText": "Which choice best states the main idea of the text?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Gulls may adapt the materials they use for nests to local conditions."
+            },
+            {
+              "id": "B",
+              "text": "Seaweed is the only material coastal gulls use to build nests."
+            },
+            {
+              "id": "C",
+              "text": "Gulls at beaches with dry grass avoid nesting near the shore."
+            },
+            {
+              "id": "D",
+              "text": "The field team found that every gull nest contained the same materials."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The text describes a relationship between material availability and the materials gulls use.",
+          "explanation": "The field team's observation supports the idea that gulls adjust nest materials to what is available. The passage does not claim seaweed is the only material, say where the birds nest, or report that all nests are identical.",
+          "questionType": "multiple_choice"
+        }
+      ]
+    },
+    {
+      "section": "Reading and Writing",
+      "module": 2,
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Craft and Structure",
+          "skill": "Cross-Text Connections",
+          "difficulty": "Hard",
+          "passageText": "Text 1\nUrban planner Lena Ortiz argues that planting shade trees can make sidewalks more comfortable during hot afternoons. She notes that trees also provide habitat, although they take years to mature.\n\nText 2\nEngineer Malik Chen favors reflective roof coatings for neighborhoods that need faster heat relief. He cautions that the coatings do not shade sidewalks or provide habitat.",
+          "questionText": "How would Chen (Text 2) most likely respond to Ortiz's argument (Text 1)?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "He would agree that trees have benefits but recommend coatings when a quicker reduction in heat is needed."
+            },
+            {
+              "id": "B",
+              "text": "He would argue that trees mature faster than roof coatings can be installed."
+            },
+            {
+              "id": "C",
+              "text": "He would claim that reflective coatings provide the same habitat as trees."
+            },
+            {
+              "id": "D",
+              "text": "He would reject all efforts to reduce heat in neighborhoods."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Chen acknowledges the value of trees but emphasizes a faster alternative with different benefits.",
+          "explanation": "Text 2 presents coatings as a quicker heat-relief measure while recognizing that they do not offer trees' sidewalk shade or habitat. It does not claim coatings create habitat, that trees mature quickly, or that heat reduction should be abandoned.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 2,
+          "domain": "Craft and Structure",
+          "skill": "Words in Context",
+          "difficulty": "Medium",
+          "passageText": "The archivist did not discard the faded map. Instead, she placed it in a protective sleeve and limited its display to short periods, taking steps to ______ the fragile document for future researchers.",
+          "questionText": "Which choice completes the text with the most logical and precise word?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "preserve"
+            },
+            {
+              "id": "B",
+              "text": "translate"
+            },
+            {
+              "id": "C",
+              "text": "challenge"
+            },
+            {
+              "id": "D",
+              "text": "replace"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Protective storage and limited display are actions intended to preserve the map.",
+          "explanation": "The archivist is protecting the map so it remains usable in the future. \"Translate,\" \"challenge,\" and \"replace\" do not describe that purpose.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 3,
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure, and Sense",
+          "difficulty": "Medium",
+          "passageText": null,
+          "questionText": "Which choice completes the text so that it conforms to the conventions of Standard English?\n\nThe collection of mineral samples from the river ______ on display in the science center.",
+          "choices": [
+            {
+              "id": "A",
+              "text": "is"
+            },
+            {
+              "id": "B",
+              "text": "are"
+            },
+            {
+              "id": "C",
+              "text": "were"
+            },
+            {
+              "id": "D",
+              "text": "have been"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The singular subject is \"collection,\" so it takes the singular verb \"is.\"",
+          "explanation": "The subject is \"collection,\" not the plural noun \"samples\" inside the prepositional phrase. The singular verb \"is\" agrees with \"collection.\"",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 4,
+          "domain": "Expression of Ideas",
+          "skill": "Transitions",
+          "difficulty": "Easy",
+          "passageText": null,
+          "questionText": "The city museum trains volunteers to answer visitors' questions about the exhibits. ______, conservators handle the specialized work of repairing damaged artifacts.",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Meanwhile"
+            },
+            {
+              "id": "B",
+              "text": "For example"
+            },
+            {
+              "id": "C",
+              "text": "Therefore"
+            },
+            {
+              "id": "D",
+              "text": "Similarly"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "\"Meanwhile\" signals that conservators perform a separate task alongside the volunteers' work.",
+          "explanation": "The sentence contrasts two roles that occur within the museum: volunteers answer questions while conservators repair artifacts. \"Meanwhile\" fits this parallel relationship; the other transitions signal examples, causes, or similarity.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 5,
+          "domain": "Information and Ideas",
+          "skill": "Command of Evidence",
+          "difficulty": "Medium",
+          "passageText": "A survey asked 150 commuters which improvement they would most like to see on their daily route. Sixty-eight percent selected more frequent buses, 18 percent selected protected bike lanes, and 14 percent selected wider sidewalks.",
+          "questionText": "Which statement is best supported by the survey results?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "More than half of the surveyed commuters preferred more frequent buses."
+            },
+            {
+              "id": "B",
+              "text": "Most commuters in the entire city preferred protected bike lanes."
+            },
+            {
+              "id": "C",
+              "text": "Exactly 68 commuters selected more frequent buses."
+            },
+            {
+              "id": "D",
+              "text": "Wider sidewalks were selected by more commuters than bike lanes."
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Sixty-eight percent is greater than half, so a majority of the surveyed commuters selected more frequent buses.",
+          "explanation": "The results support a majority preference among the 150 people surveyed. They do not establish the preference of every city resident. Sixty-eight percent of 150 is 102, not 68, and 14 percent is fewer than 18 percent.",
+          "questionType": "multiple_choice"
+        }
+      ]
+    },
+    {
+      "section": "Math",
+      "module": 1,
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Algebra",
+          "skill": "Linear Equations",
+          "difficulty": "Easy",
+          "passageText": null,
+          "questionText": "A workshop charges a $14 registration fee plus $5 for each session. If a participant pays $49 in total, how many sessions did the participant attend?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "5"
+            },
+            {
+              "id": "B",
+              "text": "6"
+            },
+            {
+              "id": "C",
+              "text": "7"
+            },
+            {
+              "id": "D",
+              "text": "9"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Subtract the $14 fee and divide the remaining $35 by $5 per session.",
+          "explanation": "Let s be the number of sessions. 14 + 5s = 49, so 5s = 35 and s = 7.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 2,
+          "domain": "Problem-Solving and Data Analysis",
+          "skill": "Percentages",
+          "difficulty": "Easy",
+          "passageText": null,
+          "questionText": "A community center has a budget of $2,500 for supplies. It plans to spend 18 percent of the budget on art materials. How much is budgeted for art materials?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "$250"
+            },
+            {
+              "id": "B",
+              "text": "$400"
+            },
+            {
+              "id": "C",
+              "text": "$450"
+            },
+            {
+              "id": "D",
+              "text": "$1,800"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "Eighteen percent of $2,500 is 0.18 × 2,500 = $450.",
+          "explanation": "Convert 18 percent to 0.18 and multiply by 2,500. The result is $450; the other amounts come from using a different percentage or subtracting from the total.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 3,
+          "domain": "Algebra",
+          "skill": "Systems of Equations",
+          "difficulty": "Medium",
+          "passageText": null,
+          "questionText": "The system of equations below represents the numbers of adult and student tickets sold at a concert.\n\nx + y = 14\n2x + y = 21\n\nWhat is the value of x?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "5"
+            },
+            {
+              "id": "B",
+              "text": "7"
+            },
+            {
+              "id": "C",
+              "text": "9"
+            },
+            {
+              "id": "D",
+              "text": "14"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "Subtracting the first equation from the second gives x = 7.",
+          "explanation": "(2x + y) − (x + y) = 21 − 14, so x = 7. Substituting gives y = 7, which satisfies both equations.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 4,
+          "domain": "Algebra",
+          "skill": "Linear Functions",
+          "difficulty": "Medium",
+          "passageText": null,
+          "questionText": "A line passes through the points (2, 5) and (6, 17). What is the y-intercept of the line?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "−1"
+            },
+            {
+              "id": "B",
+              "text": "2"
+            },
+            {
+              "id": "C",
+              "text": "3"
+            },
+            {
+              "id": "D",
+              "text": "11"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "The slope is 3, so using y = 3x + b with (2, 5) gives b = −1.",
+          "explanation": "The slope is (17 − 5)/(6 − 2) = 3. Substituting (2, 5) into y = 3x + b gives 5 = 6 + b, so the y-intercept is −1.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 5,
+          "domain": "Geometry and Trigonometry",
+          "skill": "Area and Volume",
+          "difficulty": "Medium",
+          "passageText": null,
+          "questionText": "A rectangle has a perimeter of 30 centimeters. Its length is 3 centimeters greater than twice its width. What is the area of the rectangle, in square centimeters?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "36"
+            },
+            {
+              "id": "B",
+              "text": "40"
+            },
+            {
+              "id": "C",
+              "text": "44"
+            },
+            {
+              "id": "D",
+              "text": "55"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The dimensions are 11 centimeters by 4 centimeters, giving an area of 44 square centimeters.",
+          "explanation": "Let the width be w and the length be 2w + 3. Then 2w + 2(2w + 3) = 30, so 6w = 24 and w = 4. The length is 11, and the area is 11 × 4 = 44.",
+          "questionType": "multiple_choice"
+        }
+      ]
+    },
+    {
+      "section": "Math",
+      "module": 2,
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 1,
+          "domain": "Advanced Math",
+          "skill": "Nonlinear Equations",
+          "difficulty": "Medium",
+          "passageText": null,
+          "questionText": "What is the greater solution to the equation x² − 7x + 12 = 0?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "2"
+            },
+            {
+              "id": "B",
+              "text": "3"
+            },
+            {
+              "id": "C",
+              "text": "4"
+            },
+            {
+              "id": "D",
+              "text": "6"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The expression factors as (x − 3)(x − 4), so the greater solution is 4.",
+          "explanation": "Setting each factor equal to zero gives x = 3 and x = 4. The greater solution is 4.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 2,
+          "domain": "Geometry and Trigonometry",
+          "skill": "Right Triangle Trig",
+          "difficulty": "Easy",
+          "passageText": null,
+          "questionText": "A right triangle has legs of lengths 9 and 12. What is the area of the triangle?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "36"
+            },
+            {
+              "id": "B",
+              "text": "54"
+            },
+            {
+              "id": "C",
+              "text": "108"
+            },
+            {
+              "id": "D",
+              "text": "150"
+            }
+          ],
+          "correctAnswer": "B",
+          "rationale": "The area is one-half the product of the perpendicular legs: (1/2)(9)(12) = 54.",
+          "explanation": "For a right triangle, the legs can be used as base and height. One-half of 9 × 12 is 54 square units.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 3,
+          "domain": "Problem-Solving and Data Analysis",
+          "skill": "Data Interpretation",
+          "difficulty": "Easy",
+          "passageText": null,
+          "questionText": "The five daily high temperatures recorded in a town were 12, 14, 14, 18, and 22 degrees Celsius. What was the mean of the five temperatures?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "14"
+            },
+            {
+              "id": "B",
+              "text": "15"
+            },
+            {
+              "id": "C",
+              "text": "16"
+            },
+            {
+              "id": "D",
+              "text": "18"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The sum is 80, and 80 divided by 5 is 16.",
+          "explanation": "Add the five values: 12 + 14 + 14 + 18 + 22 = 80. Dividing by 5 gives a mean of 16 degrees.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 4,
+          "domain": "Advanced Math",
+          "skill": "Equivalent Expressions",
+          "difficulty": "Medium",
+          "passageText": null,
+          "questionText": "For x > 0, which expression is equivalent to (2x³)(x²)/(4x)?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "x⁴/2"
+            },
+            {
+              "id": "B",
+              "text": "x⁵/2"
+            },
+            {
+              "id": "C",
+              "text": "2x⁴"
+            },
+            {
+              "id": "D",
+              "text": "x⁶/2"
+            }
+          ],
+          "correctAnswer": "A",
+          "rationale": "Multiply the powers of x and then divide by 4x: (2/4)x^(3+2−1) = x⁴/2.",
+          "explanation": "The coefficient is 2/4 = 1/2. The exponent is 3 + 2 − 1 = 4, so the expression simplifies to x⁴/2.",
+          "questionType": "multiple_choice"
+        },
+        {
+          "number": 5,
+          "domain": "Problem-Solving and Data Analysis",
+          "skill": "Percentages",
+          "difficulty": "Medium",
+          "passageText": null,
+          "questionText": "The price of a museum ticket increased from $40 to $46. What was the percent increase?",
+          "choices": [
+            {
+              "id": "A",
+              "text": "6%"
+            },
+            {
+              "id": "B",
+              "text": "13%"
+            },
+            {
+              "id": "C",
+              "text": "15%"
+            },
+            {
+              "id": "D",
+              "text": "46%"
+            }
+          ],
+          "correctAnswer": "C",
+          "rationale": "The increase was $6, and 6/40 = 0.15, or 15 percent.",
+          "explanation": "Compute the change, 46 − 40 = 6. Divide by the original price: 6/40 = 0.15. Converting to a percent gives 15 percent.",
+          "questionType": "multiple_choice"
+        }
+      ]
+    }
+  ]
+}

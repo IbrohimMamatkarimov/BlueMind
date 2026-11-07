@@ -531,3 +531,70 @@ textarea:focus-visible,
 }
 .mock-card:hover { transform: translateY(-3px); border-color: #a7bff7; box-shadow: 0 16px 34px rgba(37, 99, 235, 0.1); }
 @media (prefers-reduced-motion: reduce) { .mock-card:hover { transform: none; } }
+
+
+/* Daily study command center: a vivid, data-led focus panel. */
+.today-momentum {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+  overflow: hidden;
+  min-height: 310px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 28px;
+  color: white;
+  background:
+    radial-gradient(ellipse at 82% 12%, rgba(79, 145, 255, .33), transparent 21rem),
+    radial-gradient(ellipse at 0% 100%, rgba(37, 99, 235, .38), transparent 27rem),
+    linear-gradient(122deg, #0d1b37, #173568 56%, #1e4c8d);
+  box-shadow: 0 26px 70px rgba(14, 39, 86, .2), inset 0 1px rgba(255,255,255,.1);
+}
+.today-momentum::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .24;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(110deg, transparent, black 75%);
+}
+.today-momentum__copy { position: relative; z-index: 1; max-width: 620px; }
+.today-momentum__eyebrow { display: inline-flex; align-items: center; gap: .55rem; color: #b9d0ff; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.today-momentum__eyebrow svg { color: #ffcf70; }
+.today-momentum h2 { margin-top: 1rem; max-width: 15ch; color: white; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -.055em; line-height: 1.02; }
+.today-momentum__summary { margin-top: .9rem; max-width: 52ch; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.7; }
+.today-momentum__cta { display: inline-flex; min-height: 46px; align-items: center; gap: .7rem; margin-top: 1.35rem; padding: 0 1.1rem; border-radius: 13px; color: #102349; background: #fff; font-size: 13px; font-weight: 800; box-shadow: 0 10px 24px rgba(3,17,42,.18); transition: transform 180ms ease, box-shadow 180ms ease; }
+.today-momentum__cta:hover { transform: translateY(-2px); box-shadow: 0 16px 28px rgba(3,17,42,.24); }
+.today-momentum__streak { display: flex; align-items: center; gap: .65rem; margin-top: 1.5rem; color: white; }
+.today-momentum__streak-icon { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; color: #ffd16f; background: rgba(255,255,255,.08); }
+.today-momentum__streak strong, .today-momentum__streak small { display: block; }
+.today-momentum__streak strong { font-size: 12px; }
+.today-momentum__streak small { margin-top: 2px; color: rgba(255,255,255,.56); font-size: 10px; }
+.today-momentum__progress { position: relative; display: grid; width: min(100%, 290px); aspect-ratio: 1; place-items: center; justify-self: center; }
+.today-momentum__progress svg { width: 72%; transform: rotate(-90deg); overflow: visible; filter: drop-shadow(0 8px 18px rgba(0,0,0,.2)); }
+.today-momentum__track, .today-momentum__value { fill: none; stroke-width: 5; }
+.today-momentum__track { stroke: rgba(255,255,255,.13); }
+.today-momentum__value { stroke: #9dd4ff; stroke-linecap: round; transition: stroke-dashoffset 700ms cubic-bezier(.2,.8,.2,1); }
+.today-momentum__progress-label { position: absolute; display: flex; flex-direction: column; align-items: center; }
+.today-momentum__progress-label strong { font-size: 38px; line-height: 1; letter-spacing: -.06em; }
+.today-momentum__progress-label strong span { color: rgba(255,255,255,.48); font-size: 20px; }
+.today-momentum__progress-label small { margin-top: .45rem; color: rgba(255,255,255,.58); font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.today-momentum__float { position: absolute; display: inline-flex; align-items: center; gap: .45rem; padding: .65rem .8rem; border: 1px solid rgba(255,255,255,.16); border-radius: 12px; background: rgba(9,20,45,.56); color: white; font-size: 10px; font-weight: 700; box-shadow: 0 10px 25px rgba(0,0,0,.16); backdrop-filter: blur(12px); }
+.today-momentum__float--one { top: 18%; right: 0; }
+.today-momentum__float--two { bottom: 16%; left: 0; }
+.today-momentum__float svg { color: #a9d9ff; }
+.today-plan-card { border-radius: 20px; box-shadow: 0 8px 28px rgba(23,37,84,.045); transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease; }
+.today-plan-card:hover { transform: translateY(-3px); border-color: #c6d6fa; box-shadow: 0 18px 36px rgba(23,37,84,.085); }
+@media (min-width: 768px) { .today-momentum { grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr); } }
+@media (max-width: 480px) { .today-momentum__progress { width: min(100%, 240px); } .today-momentum__float { font-size: 9px; padding: .55rem .65rem; } }
+@media (prefers-reduced-motion: reduce) { .today-momentum__cta:hover, .today-plan-card:hover { transform: none; } .today-momentum__value { transition: none; } }
+
+
+.today-momentum { --pointer-x: 74%; --pointer-y: 42%; }
+.today-momentum::after { background: radial-gradient(420px circle at var(--pointer-x) var(--pointer-y), rgba(154,203,255,.18), transparent 72%), linear-gradient(110deg, transparent 20%, rgba(255,255,255,.045) 50%, transparent 75%); }
