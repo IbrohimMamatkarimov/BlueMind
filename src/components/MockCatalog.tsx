@@ -200,13 +200,13 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
   if (error) return <div className="card p-6 text-brand-red text-sm">{error}</div>;
 
   return (
-    <div className="space-y-6">
-      <PageHeader eyebrow="Build your confidence" title="SAT Mock Tests" description="Choose a paper, find your pace, and make every practice count." />
+    <div className="space-y-6 mock-catalog">
+      <PageHeader eyebrow="Practice" title="Mock tests" description="Pick a section, choose a test, and continue whenever you are ready." />
 
       {/* Section switcher — centered on its own row, dark-mode toggle pinned
           to the right edge of that same row. Matches PublicLanding.tsx. */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap justify-center items-center gap-1 bg-slate-100 rounded-full p-1">
+      <div className="mock-catalog__controls">
+        <div className="mock-catalog__sections flex flex-wrap items-center gap-1 bg-slate-100 rounded-full p-1">
           {(Object.keys(SECTION_META) as SectionTab[]).map((tab) => (
             <button
               key={tab}
@@ -223,7 +223,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
 
         {/* Status views. These are the learner's own tests, so admins get
             the student actions here too. Counts follow the section tab. */}
-        <div className="flex items-center gap-1 rounded-full border border-brand-border bg-white p-1" role="group" aria-label="Filter by status">
+        <div className="mock-catalog__statuses flex items-center gap-1 rounded-full border border-brand-border bg-white p-1" role="group" aria-label="Filter by status">
           {STATUS_VIEWS.map(({ value, label }) => {
             const count = value === "all" ? 0 : countFor(activeTab, value);
             return (
@@ -251,7 +251,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
 
       {/* Year/group filter pills */}
       {groups && (
-        <div className="flex items-center gap-2 overflow-x-auto pb-1">
+        <div className="mock-catalog__years flex items-center gap-2 overflow-x-auto pb-1">
           <button
             onClick={() => setActiveGroup("All")}
             className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 hover:scale-105 ${
@@ -300,7 +300,7 @@ export function MockCatalog({ guest = false }: { guest?: boolean }) {
         <div className="h-64 bg-slate-200 rounded-xl animate-pulse" />
       ) : (
         <div
-          className={`grid sm:grid-cols-2 xl:grid-cols-3 items-start gap-4 transition-all duration-200 ${
+          className={`mock-catalog__grid grid sm:grid-cols-2 xl:grid-cols-3 items-start gap-4 transition-all duration-200 ${
             tabFading ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
           }`}
         >
@@ -425,7 +425,7 @@ function ModuleRow({
   const inProgress = !!progress;
 
   return (
-    <div className="border border-brand-border rounded-lg px-3.5 py-3">
+    <div className="mock-module-row border border-brand-border rounded-lg px-3.5 py-3">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
           <span className="text-sm font-bold text-brand-navy block tracking-tight">Module {module}</span>
