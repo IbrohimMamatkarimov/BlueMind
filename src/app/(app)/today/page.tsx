@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BookOpenCheck, Check, Layers3, RotateCcw, Save, Target, X, Clock, ArrowUpRight } from "lucide-react";
+import { SatCountdown } from "@/components/SatCountdown";
 import { RobotMascot } from "@/components/RobotMascot";
 interface TodayPayload {
   today: { questions: number; correct: number; accuracy: number | null; sessions: number; vocabularyReviews: number; reflections: number };
@@ -75,7 +76,7 @@ export default function TodayPage() {
           <h2>{completedGoals===3?"Today’s targets, complete.":data.plan.weakSkill?"Turn a weak spot into progress.":"Ready for your next win?"}</h2>
           <p>{data.plan.weakSkill?`Focus on ${data.plan.weakSkill.skill}. Your recorded accuracy is ${data.plan.weakSkill.accuracy}%.`:"Pick a skill. Give it your focus."}</p>
           <div className="study-focus__actions"><Link href={practiceHref} className="study-primary">Start practice <ArrowRight size={16}/></Link><Link href="/mocks" className="study-focus__secondary">Mock tests <ArrowUpRight size={15}/></Link></div>
-          <div className="study-focus__foot"><Clock size={13}/><span>Your pace. Your progress.</span></div>
+          <SatCountdown/>
         </section>
         <section className="study-targets"><div className="study-section-label"><span>TODAY’S MOMENTUM</span><span>{completedGoals}/3 targets</span></div>
           <div className="study-targets__center"><div className="study-progress-ring" style={{background:`conic-gradient(#96758c ${overall}%, var(--study-track) 0)`}}><span><strong>{overall}<small>%</small></strong><small>daily progress</small></span></div><RobotMascot className="study-desk-robot" mood={completedGoals===3?"happy":"idle"}/></div>
