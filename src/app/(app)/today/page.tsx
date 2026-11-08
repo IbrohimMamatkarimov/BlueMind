@@ -65,17 +65,17 @@ export default function TodayPage() {
 
   const overall = data ? Math.round((Math.min(data.today.questions/goals.questions,1)+Math.min(data.today.reflections/goals.mistakes,1)+Math.min(data.today.vocabularyReviews/goals.vocabulary,1))/3*100) : 0;
   return <div className="study-home">
-    <header className="study-page-title"><div><p>YOUR STUDY DESK</p><h1>Make today count.</h1><span>A clear plan. One focused session at a time.</span></div><button type="button" onClick={()=>{setDraftGoals(goals);setEditingGoals(true);}} className="study-outline"><Target size={15}/> Daily targets</button></header>
+    <header className="study-page-title"><div><p>YOUR STUDY DESK</p><h1>Your next step.</h1><span>Practice. Review. Improve.</span></div><button type="button" onClick={()=>{setDraftGoals(goals);setEditingGoals(true);}} className="study-outline"><Target size={15}/> Daily targets</button></header>
     {error && <div role="alert" className="card p-5 text-sm text-brand-red">{error}<button type="button" className="btn-secondary ml-3" onClick={()=>setReload(value=>value+1)}>Try again</button></div>}
     {!data&&!error&&<div className="study-loading" role="status">Preparing your study desk…<div/><div/></div>}
     {data&&<>
       <div className="study-top-grid">
         <section className="study-focus">
           <div className="study-focus__top"><span><i/> YOUR NEXT SESSION</span><span className="study-streak"><Flame size={13}/>{data.streak.current} day streak</span></div>
-          <h2>{completedGoals===3?"Today’s targets, complete.":data.plan.weakSkill?"Turn a weak spot into progress.":"A little practice. A clearer mind."}</h2>
-          <p>{data.plan.weakSkill?`Focus on ${data.plan.weakSkill.skill}. Your recorded accuracy is ${data.plan.weakSkill.accuracy}%.`:"Choose a focused practice set, then review what you learned."}</p>
-          <div className="study-focus__actions"><Link href={practiceHref} className="study-primary">Start focused practice <ArrowRight size={16}/></Link><Link href="/mocks" className="study-focus__secondary">Browse mock tests <ArrowUpRight size={15}/></Link></div>
-          <div className="study-focus__foot"><Clock size={13}/><span>Untimed practice or a full exam environment. You choose.</span></div>
+          <h2>{completedGoals===3?"Today’s targets, complete.":data.plan.weakSkill?"Turn a weak spot into progress.":"Ready for your next win?"}</h2>
+          <p>{data.plan.weakSkill?`Focus on ${data.plan.weakSkill.skill}. Your recorded accuracy is ${data.plan.weakSkill.accuracy}%.`:"Pick a skill. Give it your focus."}</p>
+          <div className="study-focus__actions"><Link href={practiceHref} className="study-primary">Start practice <ArrowRight size={16}/></Link><Link href="/mocks" className="study-focus__secondary">Mock tests <ArrowUpRight size={15}/></Link></div>
+          <div className="study-focus__foot"><Clock size={13}/><span>Your pace. Your progress.</span></div>
         </section>
         <section className="study-targets"><div className="study-section-label"><span>TODAY’S MOMENTUM</span><span>{completedGoals}/3 targets</span></div>
           <div className="study-targets__center"><div className="study-progress-ring" style={{background:`conic-gradient(#3f70df ${overall}%, var(--study-track) 0)`}}><span><strong>{overall}<small>%</small></strong><small>daily progress</small></span></div><RobotMascot className="study-desk-robot" mood={completedGoals===3?"happy":"idle"}/></div>
@@ -84,12 +84,12 @@ export default function TodayPage() {
         </section>
       </div>
       <div className="study-work-grid">
-        <section className="study-panel"><header className="study-panel__heading"><div><p>YOUR ROUTINE</p><h2>Three moves for today</h2></div><span className="study-count-pill">{completedGoals} done</span></header>
+        <section className="study-panel"><header className="study-panel__heading"><div><p>YOUR ROUTINE</p><h2>Your daily plan</h2></div><span className="study-count-pill">{completedGoals} done</span></header>
           <TaskRow icon={<BookOpenCheck size={20}/>} title="Practice questions" detail={data.plan.weakSkill?`Recommended: ${data.plan.weakSkill.skill}`:"Build accuracy with a focused question set."} value={data.today.questions} goal={goals.questions} href={practiceHref} tone="blue"/>
           <TaskRow icon={<RotateCcw size={20}/>} title="Review your mistakes" detail={data.plan.mistakesDue?`${data.plan.mistakesDue} questions need another look.`:"Turn missed questions into lessons you remember."} value={data.today.reflections} goal={goals.mistakes} href="/notebook" tone="mint"/>
           <TaskRow icon={<Layers3 size={20}/>} title="Keep words in memory" detail={data.plan.vocabularyDue?`${data.plan.vocabularyDue} vocabulary cards due.`:data.plan.wordsToDefine?`${data.plan.wordsToDefine} saved words need definitions.`:"Capture useful words and revisit them regularly."} value={data.today.vocabularyReviews} goal={goals.vocabulary} href="/vocabulary" tone="violet"/>
         </section>
-        <aside className="study-panel study-week"><header className="study-panel__heading"><div><p>LAST SEVEN DAYS</p><h2>Effort, made visible</h2></div><Link href="/progress" aria-label="Open progress report"><ArrowUpRight size={18}/></Link></header>
+        <aside className="study-panel study-week"><header className="study-panel__heading"><div><p>LAST SEVEN DAYS</p><h2>This week</h2></div><Link href="/progress" aria-label="Open progress report"><ArrowUpRight size={18}/></Link></header>
           <div className="study-week__main"><strong>{data.weekly.questions}</strong><span>questions practiced</span><div><span>{data.weekly.accuracy==null?"No accuracy data yet":data.weekly.accuracy+"% accuracy"}</span><span>{data.weekly.sessions} sessions</span></div></div>
           <div className="study-week__rows"><span>Words added <b>{data.weekly.vocabularyAdded}</b></span><span>Vocabulary reviews <b>{data.weekly.vocabularyReviews}</b></span><span>Mistake reflections <b>{data.weekly.reflections}</b></span><span>Personal best streak <b>{data.streak.best} days</b></span></div>
           <Link href="/progress" className="study-report-link">Explore your progress <ArrowRight size={14}/></Link>

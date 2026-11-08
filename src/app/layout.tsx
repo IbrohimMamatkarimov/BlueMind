@@ -1,3 +1,4 @@
+import { StudioMotion } from "@/components/StudioMotion";
 import type { Metadata } from "next";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="font-sans antialiased bg-brand-bg text-brand-navy">
         <ActivityHeartbeat />
+        <StudioMotion />
         {children}
       </body>
     </html>
