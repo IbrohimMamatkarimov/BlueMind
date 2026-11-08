@@ -1019,3 +1019,36 @@ body { background: #fff; }
 
 @media(max-width:900px){.study-top-grid{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:600px){.study-targets{display:block}.study-section-label{flex-direction:row}.study-targets__center{padding:20px 0;gap:24px}.study-targets>p{text-align:center}.study-targets>button{justify-content:center;margin:10px auto 0}.study-progress-ring{flex:none}.study-desk-robot{flex:none}}
+
+/* Articulated, bounded character motion. Never moves the help button. */
+.brand-mascot{--bot-spring:cubic-bezier(.22,1,.36,1)}
+.brand-mascot .bot-leg-left,.brand-mascot .bot-leg-right{transform-box:fill-box;transform-origin:50% 0}
+.brand-mascot[data-action=walk] :is(.code-float,.brain-float){animation:bot-stroll 4.2s var(--bot-spring) both!important}
+.brand-mascot[data-action=walk] .bot-leg-left{animation:bot-step .48s ease-in-out 8 alternate}
+.brand-mascot[data-action=walk] .bot-leg-right{animation:bot-step .48s ease-in-out -.24s 8 alternate-reverse}
+.brand-mascot[data-action=walk] :is(.code-head,.brain-head){animation:bot-bob .48s ease-in-out 8 alternate!important}
+.brand-mascot[data-action=wave] :is(.code-wave,.brain-wave){transform-box:fill-box;transform-origin:20% 90%;animation:bot-greet .65s ease-in-out 4!important}
+.brand-mascot[data-action=look] :is(.brand-eyes,.code-bracket-eyes){animation:bot-look 3.6s ease-in-out both!important}
+.brand-mascot[data-action=happy] :is(.code-float,.brain-float){animation:bot-hop 1.1s var(--bot-spring) 2!important}
+.brand-mascot[data-action=happy] .brain-signals{animation:bot-signal .5s ease-in-out 4 alternate}
+.brand-mascot[data-action=thinking] :is(.code-head,.brain-head){animation:bot-think 2s ease-in-out infinite!important}
+@keyframes bot-stroll{0%,100%{transform:translateX(0) rotate(0)}20%{transform:translateX(-12px) rotate(-3deg)}48%{transform:translateX(0) rotate(0)}75%{transform:translateX(12px) rotate(3deg)}}
+@keyframes bot-step{from{transform:rotate(-16deg) translateY(-1px)}to{transform:rotate(16deg) translateY(-4px)}}
+@keyframes bot-bob{to{transform:translateY(-3px) rotate(1.5deg)}}
+@keyframes bot-greet{0%,100%{transform:rotate(0)}35%{transform:rotate(-22deg)}70%{transform:rotate(12deg)}}
+@keyframes bot-look{0%,100%{transform:translateX(0)}25%,40%{transform:translateX(-4px)}65%,80%{transform:translateX(4px)}}
+@keyframes bot-hop{0%,100%{transform:translateY(0)}20%{transform:translateY(2px) scaleY(.98)}48%{transform:translateY(-10px) rotate(-3deg)}75%{transform:translateY(1px)}}
+@keyframes bot-signal{to{opacity:.4}}
+@keyframes bot-think{50%{transform:rotate(-5deg) translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){.brand-mascot[data-action] *{animation:none!important;transform:none!important}}
+
+/* Confident cobalt, ice-blue surfaces and a warm primary action. */
+.study-focus{background:radial-gradient(ellipse at 95% 5%,#647be1,transparent 68%),linear-gradient(125deg,#183c8c,#354fba);border-color:#6a80d1;box-shadow:0 16px 36px #2949ac20}
+.study-focus__top{color:#d5e2ff}.study-focus>p{color:#d6e0ff}.study-focus__foot{color:#afc4f5}
+.study-primary{background:#ffd39c;color:#423123;border:1px solid #ffe3be;box-shadow:0 4px 0 #ba894b,0 9px 20px #10276d22;transition:transform .22s,box-shadow .22s,background .22s}
+.study-primary:hover{background:#ffe3bd;transform:translateY(-2px);box-shadow:0 6px 0 #ba894b,0 13px 24px #10276d22}
+.study-primary:active{transform:translateY(3px);box-shadow:0 1px 0 #ba894b}
+.study-targets{background:radial-gradient(ellipse at 100% 0,#dce9ff,transparent 80%),var(--study-surface);border-color:#cbdcf5}
+.study-task[data-tone=blue] .study-task__icon{background:#e5eeff;color:#3760c2}.study-task[data-tone=mint] .study-task__icon{background:#dcf5ed;color:#238369}.study-task[data-tone=violet] .study-task__icon{background:#ede7ff;color:#7750b6}
+.study-shortcuts>a:nth-child(n){border-top:3px solid #7e9ce8}.study-shortcuts>a:nth-child(2){border-top-color:#a38bd9}.study-shortcuts>a:nth-child(3){border-top-color:#62bba4}
+.app-dark .study-targets{background:radial-gradient(ellipse at 100% 0,#263d6a,transparent 80%),var(--study-surface)}

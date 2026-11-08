@@ -1,11 +1,24 @@
 "use client";
-import { useId } from "react";
+import { useId, useEffect, useRef, useState } from "react";
 export function RobotMascot({mood="idle",className=""}:{mood?:"idle"|"thinking"|"happy"|"error";tone?:"blue"|"forest";className?:string}){
  const id=useId().replace(/:/g,"");
- return <span className={"robot-mascot brand-mascot brain-mascot "+className} data-mood={mood} aria-hidden="true"><svg viewBox="0 0 160 174" fill="none">
+
+ const host=useRef<HTMLSpanElement>(null);
+ const [action,setAction]=useState("idle");
+ useEffect(()=>{
+  const el=host.current;if(!el)return;
+  const motion=window.matchMedia("(prefers-reduced-motion: reduce)");
+  if(motion.matches)return;
+  let visible=false;let step=0;
+  const sequence=["look","walk","wave","idle","happy","idle"];
+  const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;},{threshold:.2});observer.observe(el);
+  const timer=window.setInterval(()=>{if(visible&&!document.hidden){setAction(sequence[step%sequence.length]);step++;}},4200);
+  return()=>{clearInterval(timer);observer.disconnect();};
+ },[]);
+ return <span ref={host} data-action={mood==="idle"?action:mood} onPointerEnter={()=>setAction("wave")} onPointerLeave={()=>setAction("idle")} className={"robot-mascot brand-mascot brain-mascot "+className} data-mood={mood} aria-hidden="true"><svg viewBox="0 0 160 174" fill="none">
  <defs><linearGradient id={id+"brain"} x1="27" y1="30" x2="132" y2="112" gradientUnits="userSpaceOnUse"><stop stopColor="#a7c6ff"/><stop offset=".5" stopColor="#78a5ee"/><stop offset="1" stopColor="#416fc0"/></linearGradient><linearGradient id={id+"base"} x1="43" y1="112" x2="117" y2="155" gradientUnits="userSpaceOnUse"><stop stopColor="#e8f3ff"/><stop offset="1" stopColor="#9ab6d8"/></linearGradient></defs>
  <ellipse cx="80" cy="165" rx="36" ry="5" fill="#204c81" opacity=".12"/>
- <g className="brain-float"><path d="M61 148v11M100 148v11" stroke="#8da8cd" strokeWidth="9" strokeLinecap="round"/><path d="M52 160h19M91 160h19" stroke="#dfeeff" strokeWidth="9" strokeLinecap="round"/>
+ <g className="brain-float"><g className="bot-leg-left"><path d="M61 148v11" stroke="#8da8cd" strokeWidth="9" strokeLinecap="round"/><path d="M52 160h19" stroke="#dfeeff" strokeWidth="9" strokeLinecap="round"/></g><g className="bot-leg-right"><path d="M100 148v11" stroke="#8da8cd" strokeWidth="9" strokeLinecap="round"/><path d="M91 160h19" stroke="#dfeeff" strokeWidth="9" strokeLinecap="round"/></g>
  <path d="M48 122 31 133M112 122l17-12" stroke="#a5c0e0" strokeWidth="9" strokeLinecap="round"/><circle cx="28" cy="135" r="7" fill="#e5f2ff" stroke="#9ebcde"/><g className="brain-wave"><path d="m126 113 9-14" stroke="#e5f2ff" strokeWidth="10" strokeLinecap="round"/><path d="m132 98-1-5m7 8 5-3" stroke="#e5f2ff" strokeWidth="4" strokeLinecap="round"/></g>
  <rect x="47" y="111" width="66" height="39" rx="17" fill={"url(#"+id+"base)"} stroke="#93b1d9"/><path d="M69 127h22M80 119v17" stroke="#5f8ecc" strokeWidth="3" strokeLinecap="round"/>
  <g className="brain-head"><path d="M80 28c-11-14-31-8-34 6-16-2-26 12-22 26-13 9-11 28 1 35-3 18 15 29 30 22 8 12 21 9 25 1 7 10 21 10 28-1 17 7 34-6 30-22 14-9 12-28 0-35 3-15-8-28-23-26-5-15-24-20-35-6Z" fill={"url(#"+id+"brain)"} stroke="#4672b6" strokeWidth="2"/>
