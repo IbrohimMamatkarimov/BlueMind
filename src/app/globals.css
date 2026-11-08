@@ -1089,3 +1089,11 @@ body { background: #fff; }
 .app-dark .app-sidebar .nav-link{color:#a3bad9}.app-dark .app-sidebar .nav-link>svg{background:#223c5d;border-color:#355171}
 .app-dark .app-sidebar .nav-active{background:#294a73;border-color:#436a96;color:#e2eeff}
 .app-dark .study-targets,.app-dark .study-shortcuts>a:nth-child(n){background:var(--study-surface);border-color:var(--study-border)}
+
+/* Companions animate in place and remain easy to click. */
+:is(.rivo-tutor-trigger,.companion-launch--robot){animation:none!important;translate:none!important;will-change:auto}
+:is(.rivo-tutor-trigger,.companion-launch--robot) .brand-mascot :is(.code-float,.brain-float){animation:brand-hover 5s ease-in-out infinite!important}
+:is(.rivo-tutor-trigger,.companion-launch--robot) .bot-leg-left,:is(.rivo-tutor-trigger,.companion-launch--robot) .bot-leg-right{animation:none!important;transform:none!important}
+.brand-mascot[data-action=walk] :is(.code-float,.brain-float){animation:bot-bob 1.5s ease-in-out 2 alternate!important}
+.brand-mascot[data-action=walk] :is(.bot-leg-left,.bot-leg-right){animation:none!important;transform:none!important}
+@media(prefers-reduced-motion:reduce){:is(.rivo-tutor-trigger,.companion-launch--robot) .brand-mascot *{animation:none!important}}
