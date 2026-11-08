@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpenCheck, Check, Flame, Layers3, RotateCcw, Save, Target, X, Clock, ArrowUpRight } from "lucide-react";
+import { ArrowRight, BookOpenCheck, Check, Layers3, RotateCcw, Save, Target, X, Clock, ArrowUpRight } from "lucide-react";
 import { RobotMascot } from "@/components/RobotMascot";
 interface TodayPayload {
   today: { questions: number; correct: number; accuracy: number | null; sessions: number; vocabularyReviews: number; reflections: number };
@@ -71,7 +71,7 @@ export default function TodayPage() {
     {data&&<>
       <div className="study-top-grid">
         <section className="study-focus">
-          <div className="study-focus__top"><span><i/> YOUR NEXT SESSION</span><span className="study-streak"><Flame size={13}/>{data.streak.current} day streak</span></div>
+
           <h2>{completedGoals===3?"Today’s targets, complete.":data.plan.weakSkill?"Turn a weak spot into progress.":"Ready for your next win?"}</h2>
           <p>{data.plan.weakSkill?`Focus on ${data.plan.weakSkill.skill}. Your recorded accuracy is ${data.plan.weakSkill.accuracy}%.`:"Pick a skill. Give it your focus."}</p>
           <div className="study-focus__actions"><Link href={practiceHref} className="study-primary">Start practice <ArrowRight size={16}/></Link><Link href="/mocks" className="study-focus__secondary">Mock tests <ArrowUpRight size={15}/></Link></div>
