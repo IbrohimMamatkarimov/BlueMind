@@ -1131,3 +1131,8 @@ body{background:#f7f3ed;color:#332b32}::selection{background:#e9d9e3}
 .app-dark .study-targets,.app-dark .study-shortcuts>a:nth-child(n){background:#322830;border-color:#493a45}
 .app-dark .study-progress-ring>span,.app-dark .study-workspace-bar,.app-dark .mobile-header{background:#2b242b}
 .app-dark .study-search-trigger{background:#322830;border-color:#493a45}
+
+.app-shell:not(.app-dark){background:#f7f3ed}.app-shell:not(.app-dark) .app-sidebar{background:linear-gradient(180deg,#f2eae7,#f7f1eb);border-color:#e3d7d2}
+.btn-primary{background:#85617b}.btn-primary:hover{background:#6c4c63}.btn-primary:hover:not(:disabled){box-shadow:0 7px 18px #85617b26}
+.mock-catalog__sections{background:#f6efef;border-color:#e6d9df}.mock-catalog__sections button[aria-selected=true]{background:#85617b;color:white}
+.app-shell a:focus-visible,.app-shell button:focus-visible{outline-color:#a08097}
