@@ -1016,3 +1016,6 @@ body { background: #fff; }
 @keyframes study-breathe{50%{transform:scale(1.08);opacity:.65}}
 @media(max-width:767px){.study-page-title h1{font-size:28px}.study-top-grid{grid-template-columns:1fr}.study-focus{padding:25px;min-height:260px}.study-targets__center{padding-block:16px}.study-work-grid{grid-template-columns:1fr}.study-task{padding:20px 17px;gap:11px}.study-task__body>span:not(.study-task__track){font-size:11px}.study-shortcuts{grid-template-columns:1fr}.study-shortcuts>a{padding:19px}.study-focus h2{font-size:30px}}
 @media(prefers-reduced-motion:reduce){.study-focus::after{animation:none}.study-task:hover .study-task__icon{transform:none}}
+
+@media(max-width:900px){.study-top-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.study-targets{display:block}.study-section-label{flex-direction:row}.study-targets__center{padding:20px 0;gap:24px}.study-targets>p{text-align:center}.study-targets>button{justify-content:center;margin:10px auto 0}.study-progress-ring{flex:none}.study-desk-robot{flex:none}}
