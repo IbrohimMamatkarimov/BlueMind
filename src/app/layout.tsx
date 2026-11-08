@@ -12,7 +12,7 @@ import { ActivityHeartbeat } from "@/components/ActivityHeartbeat";
 export const metadata: Metadata = {
   title: "BlueMind",
   description: "SAT practice and progress.",
-  icons: { icon: "/icon.svg?v=3", shortcut: "/icon.svg?v=3", apple: "/apple-icon.png" },
+  icons: { icon: "/study-mark.svg", shortcut: "/study-mark.svg", apple: "/study-mark.svg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

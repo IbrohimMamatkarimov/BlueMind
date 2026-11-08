@@ -21,7 +21,7 @@ export function Sidebar({ collapsed, onToggleCollapsed, ...profile }: Profile & 
   async function logout() { const response = await fetch("/api/auth/logout", { method: "POST" }); if (response.ok) { try { window.localStorage.removeItem("bluemind-vocabulary-cache-v1"); window.localStorage.removeItem("bluemind-vocabulary-review-queue-v1"); } catch {} router.push("/login"); router.refresh(); } }
   return <aside className={`app-sidebar hidden md:flex flex-col shrink-0 h-screen sticky top-0 ${collapsed ? "w-[76px]" : "w-[216px]"}`}>
     <Link href={profile.guest ? "/" : "/today"} aria-label="BlueMind home" className={`h-20 flex items-center gap-2.5 ${collapsed ? "justify-center" : "px-6"}`}>
-      <img src="/logo.png" alt="" width={30} height={30} className="shrink-0" />{!collapsed && <span className="text-lg font-extrabold text-brand-navy tracking-tight">BlueMind<span className="text-brand-blue">.</span></span>}
+      <img src="/study-mark.svg" alt="" width={30} height={30} className="shrink-0" />{!collapsed && <span className="text-lg font-extrabold text-brand-navy tracking-tight">BlueMind<span className="text-brand-blue">.</span></span>}
     </Link>
     <nav aria-label="Main navigation" className="flex-1 px-3 py-4 space-y-1.5">
       {!collapsed && <p className="eyebrow px-3 mb-4">Your workspace</p>}
@@ -44,7 +44,7 @@ export function MobileTopBar(profile: Profile) {
   const pathname = usePathname(); const { dark, toggleDark } = useTheme();
   return <header className="mobile-header md:hidden sticky top-0 z-40 border-b border-brand-border">
     <div className="h-16 px-4 flex items-center justify-between">
-      <Link href={profile.guest ? "/" : "/today"} className="flex items-center gap-2 font-extrabold text-brand-navy"><img src="/logo.png" alt="" width={25} height={25} />BlueMind<span className="text-brand-blue -ml-2">.</span></Link>
+      <Link href={profile.guest ? "/" : "/today"} className="flex items-center gap-2 font-extrabold text-brand-navy"><img src="/study-mark.svg" alt="" width={25} height={25} />BlueMind<span className="text-brand-blue -ml-2">.</span></Link>
       <div className="flex items-center gap-2"><button onClick={toggleDark} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} className="sidebar-utility">{dark ? <Sun size={19} /> : <Moon size={19} />}</button>{profile.guest ? <Link href="/login" className="inline-flex items-center gap-1.5 rounded-full bg-brand-blue px-3.5 py-2 text-sm font-bold text-white shadow-sm transition hover:opacity-90 motion-reduce:transition-none"><LogIn size={15} />Sign in</Link> : <Link href="/account" aria-label="Your account"><Avatar {...profile} /></Link>}</div>
     </div>
     <nav aria-label="Main navigation" className="flex gap-1 px-3 pb-3 overflow-x-auto">

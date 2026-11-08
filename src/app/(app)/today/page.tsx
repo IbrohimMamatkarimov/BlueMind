@@ -78,7 +78,7 @@ export default function TodayPage() {
           <div className="study-focus__foot"><Clock size={13}/><span>Your pace. Your progress.</span></div>
         </section>
         <section className="study-targets"><div className="study-section-label"><span>TODAY’S MOMENTUM</span><span>{completedGoals}/3 targets</span></div>
-          <div className="study-targets__center"><div className="study-progress-ring" style={{background:`conic-gradient(#3f70df ${overall}%, var(--study-track) 0)`}}><span><strong>{overall}<small>%</small></strong><small>daily progress</small></span></div><RobotMascot className="study-desk-robot" mood={completedGoals===3?"happy":"idle"}/></div>
+          <div className="study-targets__center"><div className="study-progress-ring" style={{background:`conic-gradient(#96758c ${overall}%, var(--study-track) 0)`}}><span><strong>{overall}<small>%</small></strong><small>daily progress</small></span></div><RobotMascot className="study-desk-robot" mood={completedGoals===3?"happy":"idle"}/></div>
           <p>{completedGoals===3?"All targets complete. Keep the habit going.":`${3-completedGoals} targets left. Every small step counts.`}</p>
           <button type="button" onClick={()=>{setDraftGoals(goals);setEditingGoals(true);}}>Adjust your targets <ArrowRight size={12}/></button>
         </section>

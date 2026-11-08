@@ -1097,3 +1097,37 @@ body { background: #fff; }
 .brand-mascot[data-action=walk] :is(.code-float,.brain-float){animation:bot-bob 1.5s ease-in-out 2 alternate!important}
 .brand-mascot[data-action=walk] :is(.bot-leg-left,.bot-leg-right){animation:none!important;transform:none!important}
 @media(prefers-reduced-motion:reduce){:is(.rivo-tutor-trigger,.companion-launch--robot) .brand-mascot *{animation:none!important}}
+
+/* Warm paper, ink and restrained plum — the blue companion keeps its identity. */
+:root{--surface:#fffdfa;--canvas:#f7f3ed;--ink:#332b32;--muted:#82757d;--line:#e7dfd8;--viz-1:#87677f;--viz-1-track:#eee4eb}
+body{background:#f7f3ed;color:#332b32}::selection{background:#e9d9e3}
+.app-shell{--study-surface:#fffdfa;--study-ink:#352b33;--study-muted:#877981;--study-border:#e7dfda;--study-track:#eee7e9;background:#f7f3ed;color:#352b33}
+.app-sidebar{background:linear-gradient(180deg,#f2eae7,#f7f1eb);border-color:#e3d7d2}
+.app-sidebar .nav-link{color:#887780}.app-sidebar .nav-link>svg{background:#fffaf5;border-color:#e5d8d7;color:#987b8c}
+.app-sidebar .nav-link.nav-active{background:#e9dfe5;border-color:#d8c3d0;color:#67495e;box-shadow:none}
+.app-sidebar .nav-link.nav-active>svg{background:#836079;border-color:#836079;color:#fff8f2}
+.app-sidebar .nav-link.nav-active::after{background:#9b758c}.app-sidebar .nav-link:hover{background:#ede3e6}
+.study-workspace-bar,.mobile-header{background:#fffdfa;border-color:#e7dfda}
+.study-focus{background:#665260;border-color:#806977;box-shadow:0 12px 28px #5e465214}
+.study-focus::after{border-color:#ead6df26;box-shadow:0 0 0 38px #ead6df06,0 0 0 76px #ead6df04}
+.study-focus h2{color:#fff8f2}.study-focus__top{color:#e5cfdc}.study-focus>p{color:#eadce3}.study-focus__foot{color:#c9b4c0}.study-focus__secondary{color:#f1e3ea}.study-streak{color:#ecd4b3}
+.study-primary{background:#f0e1d2;border-color:#fff1e1;color:#5e4652;box-shadow:0 3px 0 #c6aa9d,0 7px 15px #35212d1a}
+.study-primary:hover{background:#fff0df;box-shadow:0 5px 0 #c6aa9d,0 10px 18px #35212d1a}.study-primary:active{box-shadow:0 1px 0 #c6aa9d}
+.study-targets{background:#f4eae9;border-color:#e5d7d9}.study-progress-ring>span{background:#fff9f5}
+.study-section-label>span:last-child,.study-targets>button,.study-report-link{color:#8b657b}
+.study-task[data-tone] .study-task__icon{background:#f3eaf0;border-color:#e5d8e2;color:#93728a}
+.study-task__track>span{background:#a08097}.study-task__count>span{color:#95768b}
+.study-count-pill{background:#efe3eb;color:#8c6880}.study-week__main>div>span{background:#f0e8e9}
+.study-shortcuts>a:nth-child(n){background:#fffaf5;border-color:#e5d9d4;border-top-color:#b397a5}.study-shortcuts>a>svg{color:#99778c}
+.study-loading>div{background:#f0e8e9}.study-search-trigger{background:#fffaf6;border-color:#e5dad5}
+.mock-catalog .mock-card:nth-child(n){background:#fffdfa;border-color:#e6dbd6;border-top-color:#b89cac;box-shadow:0 5px 18px #75596a08}
+.mock-paper-mark{background:#f3eaf0;color:#97738b;border-color:#e3d5df}
+.mock-catalog__sections button[aria-selected=true],.mobile-header nav a[aria-current=page]{background:#816077;color:#fff9f5;border-color:#816077}
+.mobile-header nav a{background:#f7f0ed;border-color:#e4d8d5;color:#897780}
+.avatar{background:#eee0e8;color:#8a637d}
+.app-dark.app-shell{--study-surface:#2b242b;--study-ink:#f1e6ec;--study-muted:#c0aeb8;--study-border:#493a45;--study-track:#493a45;background:#211c22;color:#f1e6ec}
+.app-dark .app-sidebar{background:#282129;border-color:#493a45}.app-dark .app-sidebar .nav-link{color:#c1aeb9}.app-dark .app-sidebar .nav-link>svg{background:#3c303b;border-color:#55424f}
+.app-dark .app-sidebar .nav-active{background:#4a3648;border-color:#70506a;color:#f4e9f0}
+.app-dark .study-targets,.app-dark .study-shortcuts>a:nth-child(n){background:#322830;border-color:#493a45}
+.app-dark .study-progress-ring>span,.app-dark .study-workspace-bar,.app-dark .mobile-header{background:#2b242b}
+.app-dark .study-search-trigger{background:#322830;border-color:#493a45}

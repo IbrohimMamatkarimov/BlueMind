@@ -11,20 +11,20 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          blue: "#2563EB",
-          "blue-dark": "#1D4ED8",
-          "blue-light": "#EFF6FF",
-          navy: "#172554",
-          bg: "#F8FAFC",
-          border: "#E2E8F0",
-          card: "#FFFFFF",
+          blue: "#85617B",
+          "blue-dark": "#6C4C63",
+          "blue-light": "#F4EAF0",
+          navy: "#352B33",
+          bg: "#F7F3ED",
+          border: "#E7DFDA",
+          card: "#FFFDFA",
           green: "#16A34A",
           "green-light": "#F0FDF4",
           amber: "#D97706",
           "amber-light": "#FFFBEB",
           red: "#DC2626",
           "red-light": "#FEF2F2",
-          slate: "#64748B",
+          slate: "#877981",
         },
       },
       fontFamily: {
