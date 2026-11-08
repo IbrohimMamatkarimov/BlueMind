@@ -48,9 +48,9 @@ export function MobileTopBar(profile: Profile) {
       <div className="flex items-center gap-2"><button onClick={toggleDark} aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} className="sidebar-utility">{dark ? <Sun size={19} /> : <Moon size={19} />}</button>{profile.guest ? <Link href="/login" className="inline-flex items-center gap-1.5 rounded-full bg-brand-blue px-3.5 py-2 text-sm font-bold text-white shadow-sm transition hover:opacity-90 motion-reduce:transition-none"><LogIn size={15} />Sign in</Link> : <Link href="/account" aria-label="Your account"><Avatar {...profile} /></Link>}</div>
     </div>
     <nav aria-label="Main navigation" className="flex gap-1 px-3 pb-3 overflow-x-auto">
-      {[...NAV_ITEMS, ...(profile.isAdmin ? [{ href: "/admin", label: "Admin", icon: ShieldCheck }] : [])].map(({ href, label }) => {
+      {[...NAV_ITEMS, ...(profile.isAdmin ? [{ href: "/admin", label: "Admin", icon: ShieldCheck }] : [])].map(({ href, label, icon: Icon }) => {
         const active = pathname?.startsWith(href) || (href === "/mocks" && pathname === "/");
-        return <Link key={href} href={href} aria-current={active ? "page" : undefined} className={`flex-1 text-center rounded-lg px-3 py-2.5 text-xs font-semibold whitespace-nowrap ${active ? "bg-brand-blue-light text-brand-blue" : "text-brand-slate"}`}>{label}</Link>;
+        return <Link key={href} href={href} aria-current={active ? "page" : undefined} className={`flex-1 text-center rounded-lg px-3 py-2.5 text-xs font-semibold whitespace-nowrap ${active ? "bg-brand-blue-light text-brand-blue" : "text-brand-slate"}`}><Icon size={14}/>{label}</Link>;
       })}
     </nav>
   </header>;

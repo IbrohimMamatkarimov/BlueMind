@@ -1052,3 +1052,40 @@ body { background: #fff; }
 .study-task[data-tone=blue] .study-task__icon{background:#e5eeff;color:#3760c2}.study-task[data-tone=mint] .study-task__icon{background:#dcf5ed;color:#238369}.study-task[data-tone=violet] .study-task__icon{background:#ede7ff;color:#7750b6}
 .study-shortcuts>a:nth-child(n){border-top:3px solid #7e9ce8}.study-shortcuts>a:nth-child(2){border-top-color:#a38bd9}.study-shortcuts>a:nth-child(3){border-top-color:#62bba4}
 .app-dark .study-targets{background:radial-gradient(ellipse at 100% 0,#263d6a,transparent 80%),var(--study-surface)}
+
+/* The companion walks between two resting spots; hover, focus or chat pauses it. */
+:is(.rivo-tutor-trigger,.companion-launch--robot){animation:companion-travel 36s linear infinite!important;--roam-distance:min(35vw,520px);will-change:translate}
+:is(.rivo-tutor-trigger,.companion-launch--robot):is(:hover,:focus-visible,[aria-expanded=true]){animation-play-state:paused!important}
+:is(.rivo-tutor-trigger,.companion-launch--robot) .brand-mascot :is(.code-float,.brain-float){animation:travel-bob 1s ease-in-out infinite!important}
+:is(.rivo-tutor-trigger,.companion-launch--robot) .bot-leg-left{animation:travel-step .6s ease-in-out infinite alternate!important}
+:is(.rivo-tutor-trigger,.companion-launch--robot) .bot-leg-right{animation:travel-step .6s ease-in-out -.3s infinite alternate!important}
+:is(.rivo-tutor-trigger,.companion-launch--robot):is(:hover,:focus-visible,[aria-expanded=true]) .brand-mascot *{animation-play-state:paused!important}
+@keyframes companion-travel{0%,12%{translate:0 0}38%,60%{translate:calc(-1 * var(--roam-distance)) 0}86%,100%{translate:0 0}}
+@keyframes travel-bob{50%{transform:translateY(-2px) rotate(1deg)}}
+@keyframes travel-step{from{transform:rotate(-14deg)}to{transform:rotate(14deg) translateY(-3px)}}
+@media(max-width:767px){.app-shell .companion-launch--robot{top:auto;bottom:16px;right:15px;width:54px;min-height:62px;--roam-distance:25vw}.app-shell[data-guest=true] .companion-launch--robot{right:15px}.app-shell .companion-launch--robot .companion-robot{width:55px;height:64px}.app-shell .companion-launch--robot>.text-left{top:auto;bottom:70px;right:0}.app-shell .companion-panel{top:auto;bottom:90px}.rivo-tutor-trigger{--roam-distance:25vw}}
+@media(prefers-reduced-motion:reduce){:is(.rivo-tutor-trigger,.companion-launch--robot){animation:none!important;translate:none;will-change:auto}:is(.rivo-tutor-trigger,.companion-launch--robot) .brand-mascot *{animation:none!important}}
+
+/* A single blue family gives the entire workspace a shared identity. */
+.app-sidebar{background:linear-gradient(180deg,#f4f7ff,#edf2fc);border-right:1px solid #d7e1f2}
+.app-sidebar nav{padding-top:18px}.app-sidebar .nav-link{min-height:52px;border:1px solid transparent;border-radius:14px;gap:12px;color:#607496;font-size:13px;padding-top:10px;padding-bottom:10px;position:relative}
+.app-sidebar .nav-link>svg{box-sizing:content-box;padding:7px;width:18px;height:18px;border:1px solid #d8e2f2;border-radius:10px;background:#ffffffa6;color:#6b85b0}
+.app-sidebar .nav-link.nav-active{background:linear-gradient(110deg,#dde9ff,#e7efff);border-color:#b8cbed;color:#2b55a1;box-shadow:0 5px 14px #4d75ba0b}
+.app-sidebar .nav-link.nav-active>svg{background:#446fb7;color:white;border-color:#446fb7}
+.app-sidebar .nav-link::before{display:none}.app-sidebar .nav-link.nav-active::after{content:"";position:absolute;right:12px;width:5px;height:5px;border-radius:50%;background:#527cbf}
+.app-sidebar .nav-link:hover{background:#e4ecfa;transform:translateX(2px)}
+.study-focus{background:radial-gradient(ellipse at 100% 0,#5680b9,transparent 75%),linear-gradient(125deg,#294c7b,#3d6398);border-color:#6a8dbb;box-shadow:0 14px 32px #3b61971a}
+.study-primary{background:#dceaff;color:#2f548a;border-color:#edf4ff;box-shadow:0 3px 0 #a1bbde,0 7px 15px #25487922}
+.study-primary:hover{background:#eff5ff;box-shadow:0 5px 0 #a1bbde,0 10px 18px #25487922}
+.study-primary:active{box-shadow:0 1px 0 #a1bbde}
+.study-targets{background:linear-gradient(145deg,#ffffff,#e9f1fc);border-color:#d3e0f2}
+.study-task[data-tone] .study-task__icon{background:#eaf1fc;border-color:#d6e2f5;color:#5279b1}
+.study-task__track>span{background:#7296cb}
+.study-shortcuts>a:nth-child(n){background:linear-gradient(140deg,#fff,#edf3fc);border-top-color:#a0b9dc}
+.mock-catalog .mock-card:nth-child(n){border-top-color:#8eadd6}
+.mobile-header nav a{border:1px solid #dbe5f4;border-radius:11px;background:#f4f7fc;transition:background .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.mobile-header nav a[aria-current=page]{background:#426eaf;color:white;border-color:#426eaf;box-shadow:0 4px 9px #426eaf20}
+.app-dark .app-sidebar{background:linear-gradient(180deg,#192d49,#14243a);border-color:#304966}
+.app-dark .app-sidebar .nav-link{color:#a3bad9}.app-dark .app-sidebar .nav-link>svg{background:#223c5d;border-color:#355171}
+.app-dark .app-sidebar .nav-active{background:#294a73;border-color:#436a96;color:#e2eeff}
+.app-dark .study-targets,.app-dark .study-shortcuts>a:nth-child(n){background:var(--study-surface);border-color:var(--study-border)}
