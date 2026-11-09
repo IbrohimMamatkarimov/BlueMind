@@ -61,7 +61,7 @@ async function initPool(): Promise<Pool> {
     try {
       // Bump when schema.sql or runMigrations changes. Most cold starts now
       // read one small version row instead of executing all DDL again.
-      const schemaVersion = "2026-11-08-performance-v1";
+      const schemaVersion = "2026-11-09-dashboard-indexes-v1";
       let installed = false;
       try {
         const version = await client.query(
