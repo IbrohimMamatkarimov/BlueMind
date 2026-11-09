@@ -218,6 +218,7 @@ CREATE TABLE IF NOT EXISTS practice_attempts (
 
 CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_skill ON practice_attempts(user_id, skill);
 CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_question ON practice_attempts(user_id, question_id);
+CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_created ON practice_attempts(user_id, created_at DESC);
 
 -- A student's private reflection on a missed question. This is deliberately
 -- separate from attempt history so the lesson survives future retries and a
@@ -257,6 +258,7 @@ CREATE TABLE IF NOT EXISTS vocabulary_words (
   updated_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'))
 );
 CREATE INDEX IF NOT EXISTS idx_vocabulary_words_user_updated ON vocabulary_words(user_id, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_vocabulary_words_user_reviewed ON vocabulary_words(user_id, last_reviewed_at DESC);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_vocabulary_words_source_word
   ON vocabulary_words(user_id, question_id, LOWER(word)) WHERE question_id IS NOT NULL;
 
