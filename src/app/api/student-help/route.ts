@@ -21,6 +21,14 @@ function takeRateLimit(request: NextRequest) {
   return true;
 }
 
+
+function offlineStudyHelp(question: string) {
+  const q = question.toLowerCase();
+  if (/(plan|schedule|session|study)/.test(q)) return "Here is a focused 30-minute session:\n\n1. **3 min** — choose one small goal.\n2. **17 min** — work through 4–6 practice questions without checking answers.\n3. **7 min** — review every mistake and write the reason.\n4. **3 min** — choose your first task for next time.\n\nTell me the SAT section you are working on and I can tailor the plan.";
+  if (/(math|equation|algebra|geometry|percent)/.test(q)) return "Try this method:\n\n1. Underline what the question is asking for.\n2. List the numbers and relationships you are given.\n3. Write one equation or draw one quick diagram before calculating.\n4. Check whether your answer makes sense in the original question.\n\nPaste the exact problem when you can, and I’ll help you choose the next step.";
+  return "I can still help you make progress right now. Start by telling me the section, the exact part that feels confusing, and what you have tried. I’ll help you turn it into one small next step.";
+}
+
 function answerText(data: unknown) {
   const candidate = (data as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> }).candidates?.[0];
   return candidate?.content?.parts?.map((part) => part.text ?? "").join("").trim() ?? "";
@@ -65,13 +73,13 @@ export async function POST(request: NextRequest) {
     if (!response || !response.ok) {
       console.error("[student-help] Gemini request status", response?.status);
       if (response?.status === 429) return NextResponse.json({ error: "The AI quota is currently full. Please try again later." }, { status: 429 });
-      return NextResponse.json({ error: "The AI provider could not answer right now. Please try again later." }, { status: 502 });
+      return NextResponse.json({ answer: offlineStudyHelp(question), fallback: true });
     }
     const answer = answerText(await response.json());
-    if (!answer) return NextResponse.json({ error: "Student help did not return an answer. Try again." }, { status: 502 });
+    if (!answer) return NextResponse.json({ answer: offlineStudyHelp(question), fallback: true });
     return NextResponse.json({ answer });
   } catch {
-    return NextResponse.json({ error: "Student help is temporarily unavailable." }, { status: 502 });
+    return NextResponse.json({ answer: offlineStudyHelp(question), fallback: true });
   }
 }
 
