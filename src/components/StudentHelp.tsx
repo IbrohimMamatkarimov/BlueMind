@@ -40,11 +40,11 @@ export function StudentHelp({ title = "BlueMind Assistant", context = "Help this
   if (disabled) return null;
   return <>
     <button ref={launcher} type="button" aria-expanded={open} aria-controls="bluemind-companion" onClick={() => setOpen((value) => !value)} className="companion-launch companion-launch--robot">
-      <span className="companion-face companion-robot"><BookOpen size={22}/></span>
+      <span className="mira-avatar" aria-hidden="true"><i className="mira-avatar__orb"/><b className="mira-avatar__pencil"/><em className="mira-avatar__spark">✦</em></span>
       <span className="text-left"><strong className="block text-sm">Mira</strong><span className="block text-[10px] text-blue-100">Your study guide</span></span>
     </button>
     {open && <section id="bluemind-companion" role="dialog" aria-label="BlueMind Assistant" className="companion-panel">
-      <header className="companion-heading"><span className="companion-face companion-header-robot"><BookOpen size={22}/></span><div className="flex-1"><h2 className="text-sm font-bold">{title}</h2><p className="text-xs text-blue-100">Mira helps you find the next clear step.</p></div><button type="button" onClick={() => {setOpen(false);launcher.current?.focus();}} aria-label="Close assistant" className="rounded-lg p-2 hover:bg-white/10"><X size={18}/></button></header>
+      <header className="companion-heading"><span className="mira-avatar mira-avatar--panel" aria-hidden="true"><i className="mira-avatar__orb"/><b className="mira-avatar__pencil"/><em className="mira-avatar__spark">✦</em></span><div className="flex-1"><h2 className="text-sm font-bold">{title}</h2><p className="text-xs text-blue-100">Mira helps you find the next clear step.</p></div><button type="button" onClick={() => {setOpen(false);launcher.current?.focus();}} aria-label="Close assistant" className="rounded-lg p-2 hover:bg-white/10"><X size={18}/></button></header>
       <div className="companion-body"><p className="text-sm leading-6">Hey, I’m Mira, your study guide. Tell me where you are stuck. I can break down a concept, explain a method, or help you plan your next session.</p>
         <div className="companion-suggestions">{["Explain a math concept","Help with transitions","Plan a study session"].map((text) => <button type="button" key={text} onClick={() => {setQuestion(text); input.current?.focus();}}>{text}</button>)}</div>
         <div aria-live="polite" aria-busy={loading}>{loading && <p className="mt-4 text-sm">Thinking through your question…</p>}{answer && <div className="companion-answer">{answer}</div>}</div>
