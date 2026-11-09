@@ -1,5 +1,4 @@
 import { db } from "./db";
-import { getMistakes } from "./mistakes";
 
 interface CountRow {
   questions?: unknown;
@@ -50,7 +49,7 @@ export async function getTodayDashboard(userId: string) {
   const start = todayStart.toISOString();
   const weekStart = isoDaysAgo(7);
 
-  const [todayRow, weeklyRow, skillRow, activityRows, reading, math] = await Promise.all([
+  const [todayRow, weeklyRow, skillRow, activityRows, vocabulary, mistakePlan] = await Promise.all([
     db.prepare(`
       SELECT
         COALESCE((SELECT SUM(total) FROM study_results WHERE user_id = ? AND source = 'mock' AND completed_at >= ?), 0) +
@@ -84,21 +83,43 @@ export async function getTodayDashboard(userId: string) {
       UNION SELECT LEFT(updated_at, 10) AS day FROM mistake_journal_entries WHERE user_id = ?
     ) activity WHERE day IS NOT NULL ORDER BY day`)
       .all(userId, userId, userId, userId, userId) as Promise<{ day: string }[]>,
-    getMistakes(userId, "Reading and Writing"),
-    getMistakes(userId, "Math"),
+    db.prepare(`SELECT
+      COUNT(*) FILTER (WHERE definition <> '' AND next_review_at <= ?) AS due,
+      COUNT(*) FILTER (WHERE definition = '') AS needs_definition
+      FROM vocabulary_words WHERE user_id = ?`).get(new Date().toISOString(), userId) as Promise<Record<string, unknown>>,
+    // The previous dashboard loaded the full Mistakes Notebook twice just to
+    // calculate this one number. That expanded every saved mock result and
+    // made the first dashboard load several seconds slower. Keep the plan
+    // accurate with one compact aggregate over the student's latest answers.
+    db.prepare(`WITH events AS (
+      SELECT question_id, is_correct, created_at
+      FROM practice_attempts WHERE user_id = ?
+      UNION ALL
+      SELECT result->>'questionId' AS question_id,
+             CASE WHEN result->>'isCorrect' = 'true' THEN 1 ELSE 0 END AS is_correct,
+             sr.completed_at AS created_at
+      FROM study_results sr
+      CROSS JOIN LATERAL jsonb_array_elements((sr.grade_json::jsonb)->'results') AS result
+      WHERE sr.user_id = ? AND sr.source = 'mock'
+      UNION ALL
+      SELECT a.question_id, a.is_correct, a.created_at
+      FROM answers a
+      JOIN attempts att ON att.id = a.attempt_id
+      WHERE att.user_id = ? AND att.status = 'completed'
+    ), latest AS (
+      SELECT DISTINCT ON (question_id) question_id, is_correct
+      FROM events
+      WHERE question_id IS NOT NULL
+      ORDER BY question_id, created_at DESC
+    )
+    SELECT COUNT(*) FILTER (WHERE is_correct = 0) AS unresolved
+    FROM latest`).get(userId, userId, userId) as Promise<Record<string, unknown>>,
   ]);
-
-  const vocabulary = await db.prepare(`SELECT
-    COUNT(*) FILTER (WHERE definition <> '' AND next_review_at <= ?) AS due,
-    COUNT(*) FILTER (WHERE definition = '') AS needs_definition
-    FROM vocabulary_words WHERE user_id = ?`).get(new Date().toISOString(), userId) as Record<string, unknown>;
 
   const todayQuestions = Number(todayRow.questions ?? 0);
   const todayCorrect = Number(todayRow.correct ?? 0);
   const weeklyQuestions = Number(weeklyRow.questions ?? 0);
   const weeklyCorrect = Number(weeklyRow.correct ?? 0);
-  const unresolvedMistakes = [...reading.mistakes, ...math.mistakes].filter((item) => !item.latestCorrect);
-  const reflectedMistakes = [...reading.mistakes, ...math.mistakes].filter((item) => item.journal).length;
   const weakSkill = skillRow ? {
     section: String(skillRow.section),
     skill: String(skillRow.skill),
@@ -116,7 +137,7 @@ export async function getTodayDashboard(userId: string) {
       reflections: Number(todayRow.reflections ?? 0),
     },
     plan: {
-      mistakesDue: unresolvedMistakes.length,
+      mistakesDue: Number(mistakePlan.unresolved ?? 0),
       vocabularyDue: Number(vocabulary.due ?? 0),
       wordsToDefine: Number(vocabulary.needs_definition ?? 0),
       weakSkill,
@@ -129,7 +150,7 @@ export async function getTodayDashboard(userId: string) {
       vocabularyAdded: Number(weeklyRow.vocabulary_added ?? 0),
       vocabularyReviews: Number(weeklyRow.vocabulary_reviews ?? 0),
       reflections: Number(weeklyRow.reflections ?? 0),
-      reflectedMistakes,
+      reflectedMistakes: Number(todayRow.reflections ?? 0),
     },
   };
 }
