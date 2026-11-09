@@ -238,6 +238,7 @@ async function runMigrations(client: PoolClient) {
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS selected_answer TEXT",
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS correct_answer TEXT",
     "ALTER TABLE practice_attempts ADD COLUMN IF NOT EXISTS time_spent_seconds INTEGER",
+    "CREATE INDEX IF NOT EXISTS idx_practice_attempts_user_created ON practice_attempts(user_id, created_at DESC)",
     // A learner can now "Try again" on a checked question inside the same
     // set (each retry is a fresh attempt that moves the question's accuracy
     // colour), so the old one-attempt-per-set uniqueness has to go. Retry
@@ -255,6 +256,7 @@ async function runMigrations(client: PoolClient) {
     "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS review_count INTEGER NOT NULL DEFAULT 0",
     "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS next_review_at TEXT NOT NULL DEFAULT (to_char(now() AT TIME ZONE 'utc', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"'))",
     "ALTER TABLE vocabulary_words ADD COLUMN IF NOT EXISTS last_reviewed_at TEXT",
+    "CREATE INDEX IF NOT EXISTS idx_vocabulary_words_user_reviewed ON vocabulary_words(user_id, last_reviewed_at DESC)",
   ];
   // These idempotent statements have no parameters; one round trip avoids
   // dozens of network waits on every serverless cold start.
