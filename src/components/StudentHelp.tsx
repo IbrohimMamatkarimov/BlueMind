@@ -52,7 +52,7 @@ export function StudentHelp({ title = "BlueMind Assistant", context = "Help this
         {error && <p role="alert" className="mt-3 text-xs text-red-700">{error}</p>}
         <p className="mt-3 text-[10px] leading-4 text-slate-500">AI can make mistakes. Check the reasoning. Your message and this page’s study context are sent to Google Gemini.</p>
       </div>
-      <form className="companion-form" onSubmit={(event) => {event.preventDefault();void ask();}}><textarea ref={input} aria-label="Your study question" placeholder="Ask your question…" value={question} onChange={(event) => setQuestion(event.target.value)} maxLength={2000}/><button type="submit" disabled={loading || !question.trim()} aria-label="Send question"><Send size={17}/></button></form>
+      <form className="companion-form" onSubmit={(event) => {event.preventDefault();void ask();}}><textarea ref={input} aria-label="Your study question" placeholder="Ask your question…" value={question} onChange={(event) => setQuestion(event.target.value)} onKeyDown={event=>{if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();void ask();}}} maxLength={2000}/><button type="submit" disabled={loading || !question.trim()} aria-label="Send question"><Send size={17}/></button></form>
     </section>}
   </>;
 }
