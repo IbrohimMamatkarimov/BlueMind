@@ -8,6 +8,7 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
   const uz=lang==="uz";
   const player=useRef<HTMLAudioElement>(null);
   const [playing,setPlaying]=useState(false);
+  const audioCache=useRef(new Map<string,string>());
   const request=useRef<AbortController|null>(null);
   const device=useRef(false);
   const englishRecognition=useRef<{stop:()=>void}|null>(null);
@@ -16,7 +17,7 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
   const [state,setState]=useState("idle"),[error,setError]=useState(""),[url,setUrl]=useState("");
   useEffect(()=>{mounted.current=true;return ()=>{mounted.current=false;englishRecognition.current?.stop();request.current?.abort();player.current?.pause();if("speechSynthesis" in window)window.speechSynthesis.cancel();recording.current?.stream.getTracks().forEach(t=>t.stop());};},[]);
   useEffect(()=>{request.current?.abort();player.current?.pause();if("speechSynthesis" in window)window.speechSynthesis.cancel();setPlaying(false);setUrl("");setError("");},[answer,lang]);
-  useEffect(()=>()=>{if(url.startsWith("blob:")) URL.revokeObjectURL(url);},[url]);
+  useEffect(()=>()=>{for(const cached of audioCache.current.values()){if(cached.startsWith("blob:"))URL.revokeObjectURL(cached);}},[]);
   function deviceSpeak(text:string){
     if(!("speechSynthesis" in window))return false;
     const voice=window.speechSynthesis.getVoices().find(v=>v.lang.toLowerCase().startsWith(lang));
@@ -29,6 +30,9 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
     return true;
   }
   async function send(body:FormData|string) {
+    const cacheKey=typeof body==="string"?lang+body:"";
+    const cached=cacheKey&&audioCache.current.get(cacheKey);
+    if(cached){setUrl(cached);return;}
     request.current?.abort();
     const controller=new AbortController();request.current=controller;
     setState("busy");
@@ -41,8 +45,8 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
         }
         throw Error(detail.error || (uz?"Ovoz yaratilmadi.":"Could not prepare audio."));
       }
-      if(r.headers.get("content-type")?.startsWith("audio/")) setUrl(URL.createObjectURL(await r.blob()));
-      else {const data=await r.json();if(data.text) onText(data.text);else if(data.url)setUrl(data.url);else throw Error();}
+      if(r.headers.get("content-type")?.startsWith("audio/")) {const audioUrl=URL.createObjectURL(await r.blob());audioCache.current.set(cacheKey,audioUrl);setUrl(audioUrl);}
+      else {const data=await r.json();if(data.text) onText(data.text);else if(data.url){audioCache.current.set(cacheKey,data.url);setUrl(data.url);}else throw Error();}
     } catch(e){if(controller.signal.aborted)return;setError(e instanceof Error && e.message?e.message:"Qayta urinib ko‘ring.");}
     finally{if(mounted.current)setState("idle");}
   }
