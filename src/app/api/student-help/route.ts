@@ -49,20 +49,20 @@ export async function POST(request: NextRequest) {
     "You are BlueMind's concise SAT study helper.",
     "Help the student understand the method. Do not claim material is official SAT content unless the provided context says so. Do not invent facts from a passage that is not included.",
     "If this is an active exam question, give a process hint and do not reveal an answer. For normal practice, explain the reasoning in clear numbered steps.",
-    "Keep the response under 350 words. Use simple Markdown only.",
+    "Keep the response under 100 words. Use simple Markdown only.",
     `Page context:\n${context || "No extra page context."}`,
     `Student question:\n${question}`,
   ].join("\n\n");
 
   try {
-    const preferred = "gemini-flash-lite-latest";
+    const preferred = "gemini-3.5-flash-lite";
     const deadline = AbortSignal.timeout(18_000);
     let response: Response | undefined;
     for (const model of [...new Set([preferred, process.env.GEMINI_MODEL || "gemini-flash-latest"])]) {
       response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
-        body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 1200, temperature: 0.35 } }),
+        body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 1024, temperature: 0.35, thinkingConfig: { thinkingLevel: "minimal" } } }),
         signal: deadline,
       });
       if (response.ok || ![404, 429, 503].includes(response.status)) break;
