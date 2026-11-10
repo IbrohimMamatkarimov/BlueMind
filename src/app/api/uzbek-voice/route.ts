@@ -1,3 +1,5 @@
+export const maxDuration = 120;
+
 export async function POST(req: Request) {
   const language = req.headers.get("x-voice-language") === "en" ? "en" : "uz";
   const permissionError = () => Response.json({error: language === "en" ? "Voice service needs account permissions. Please contact support." : "Ovoz xizmati uchun hisob ruxsatlari kerak. Yordam xizmatiga murojaat qiling."},{status:503});
@@ -30,12 +32,17 @@ export async function POST(req: Request) {
     headers.set("Idempotency-Key",crypto.randomUUID());
     const response = await fetch("https://api.voicelab.uz/v1/"+(stt?"stt":"tts"),{method:"POST",headers,body,signal:AbortSignal.timeout(45000)});
     if (response.status === 401 || response.status === 403) return permissionError();
-    if (!response.ok) throw Error();
+    if (!response.ok) {
+      const failure=await response.json().catch(()=>({}));
+      console.error("VoiceLab request failed",{operation:stt?"stt":"tts",status:response.status,code:failure.error?.code,requestId:failure.request_id});
+      const message=response.status===402 ? (language==="en"?"Voice credits are exhausted. Contact support.":"Ovoz xizmati krediti tugagan. Yordam xizmatiga murojaat qiling.") : response.status===429 ? (language==="en"?"Voice service is busy. Try again shortly.":"Ovoz xizmati band. Birozdan keyin urinib ko‘ring.") : stt ? (language==="en"?"Could not transcribe this recording. Try a shorter recording.":"Yozuvni matnga aylantirib bo‘lmadi. Qisqaroq yozuv bilan urinib ko‘ring.") : (language==="en"?"Could not generate speech. Please retry.":"Ovoz yaratib bo‘lmadi. Qayta urinib ko‘ring.");
+      return Response.json({error:message},{status:response.status===402?402:502});
+    }
     if (!stt && response.headers.get("content-type")?.startsWith("audio/")) return new Response(response.body,{headers:{"Content-Type":response.headers.get("content-type")!}});
     const job = await response.json();
     if (!job.id) throw Error();
     const path = stt ? "stt/transcriptions/" : "tts/generations/";
-    const signal = AbortSignal.timeout(40000);
+    const signal = AbortSignal.timeout(45000);
     while (!signal.aborted) {
       await new Promise(resolve=>setTimeout(resolve,1200));
       const poll = await fetch("https://api.voicelab.uz/v1/"+path+encodeURIComponent(job.id),{headers,signal,cache:"no-store"});
