@@ -10,10 +10,11 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
   const [playing,setPlaying]=useState(false);
   const request=useRef<AbortController|null>(null);
   const device=useRef(false);
+  const englishRecognition=useRef<{stop:()=>void}|null>(null);
   const recording=useRef<MediaRecorder|null>(null);
   const mounted=useRef(false);
   const [state,setState]=useState("idle"),[error,setError]=useState(""),[url,setUrl]=useState("");
-  useEffect(()=>{mounted.current=true;return ()=>{mounted.current=false;request.current?.abort();player.current?.pause();if("speechSynthesis" in window)window.speechSynthesis.cancel();recording.current?.stream.getTracks().forEach(t=>t.stop());};},[]);
+  useEffect(()=>{mounted.current=true;return ()=>{mounted.current=false;englishRecognition.current?.stop();request.current?.abort();player.current?.pause();if("speechSynthesis" in window)window.speechSynthesis.cancel();recording.current?.stream.getTracks().forEach(t=>t.stop());};},[]);
   useEffect(()=>{request.current?.abort();player.current?.pause();if("speechSynthesis" in window)window.speechSynthesis.cancel();setPlaying(false);setUrl("");setError("");},[answer,lang]);
   useEffect(()=>()=>{if(url.startsWith("blob:")) URL.revokeObjectURL(url);},[url]);
   function deviceSpeak(text:string){
@@ -47,6 +48,19 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
   }
   async function mic(){
     setError("");
+    if(englishRecognition.current){englishRecognition.current.stop();return;}
+    if(lang==="en"){
+      type Recognition={lang:string;onresult:((event:{results:{[index:number]:{[index:number]:{transcript:string}}}})=>void)|null;onerror:(()=>void)|null;onend:(()=>void)|null;start:()=>void;stop:()=>void};
+      const speechWindow=window as unknown as {SpeechRecognition?:new()=>Recognition;webkitSpeechRecognition?:new()=>Recognition};
+      const Constructor=speechWindow.SpeechRecognition??speechWindow.webkitSpeechRecognition;
+      if(!Constructor){setError("English dictation is unavailable in this browser. Please type your question.");return;}
+      const recognizer=new Constructor();recognizer.lang="en-US";
+      englishRecognition.current=recognizer;
+      recognizer.onresult=e=>onText(e.results[0][0].transcript);
+      recognizer.onerror=()=>setError("Could not hear you. Check microphone access and try again.");
+      recognizer.onend=()=>{englishRecognition.current=null;if(mounted.current)setState("idle");};
+      recognizer.start();setState("recording");return;
+    }
     if(recording.current?.state==="recording"){recording.current.stop();return;}
     setState("busy");
     try{
@@ -63,11 +77,12 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
     }catch{setState("idle");setError(uz?"Mikrofonga ruxsat bering yoki savolni yozing.":"Allow microphone access or type your question.");}
   }
   return <aside className="flex flex-wrap items-center gap-2 p-2 text-sm" aria-label={uz?"Ovoz boshqaruvi":"Voice controls"}>
-    <button type="button" disabled={state==="busy"} onClick={mic} className="inline-flex items-center gap-2 rounded-lg border px-3 py-2"><Mic size={16}/>{state==="recording"?(uz?"To‘xtatish":"Stop recording"):(uz?"Gapirish":"Dictate")}</button>
+    <button type="button" disabled={state==="busy"} onClick={mic} className="inline-flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 disabled:cursor-wait"><Mic size={16}/>{state==="recording"?(uz?"To‘xtatish":"Stop recording"):(uz?"Gapirish":"Dictate")}</button>
     {answer&&<button type="button" disabled={state!=="idle"} className="inline-flex items-center gap-2 rounded-lg border px-3 py-2" onClick={()=>{
       setError("");
       if(device.current){window.speechSynthesis.cancel();device.current=false;setPlaying(false);return;}
       if(url && player.current){if(playing)player.current.pause();else void player.current.play().catch(()=>setError(uz?"Audio boshqaruvidan foydalaning.":"Use the audio controls below."));return;}
+      if(lang==="en"){if(!deviceSpeak(answer.replaceAll("**","")))setError("No English voice is installed on this device.");return;}
       void send(JSON.stringify({text:answer.replace(/[*#`]/g,"").slice(0,5000)}));
     }}>{playing?<Pause size={16}/>:url?<Play size={16}/>:<Volume2 size={16}/>}{playing?(uz?"Pauza":"Pause"):url?(uz?"Ijro etish":"Play"):(uz?"Javobni tinglash":"Read aloud")}</button>}
     {state==="busy"&&<button type="button" onClick={()=>{request.current?.abort();setState("idle");}}>{uz?"Bekor qilish":"Cancel"}</button>}
