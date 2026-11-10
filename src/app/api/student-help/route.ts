@@ -22,12 +22,7 @@ function takeRateLimit(request: NextRequest) {
 }
 
 
-function offlineStudyHelp(question: string) {
-  const q = question.toLowerCase();
-  if (/(plan|schedule|session|study)/.test(q)) return "Here is a focused 30-minute session:\n\n1. **3 min** — choose one small goal.\n2. **17 min** — work through 4–6 practice questions without checking answers.\n3. **7 min** — review every mistake and write the reason.\n4. **3 min** — choose your first task for next time.\n\nTell me the SAT section you are working on and I can tailor the plan.";
-  if (/(math|equation|algebra|geometry|percent)/.test(q)) return "Try this method:\n\n1. Underline what the question is asking for.\n2. List the numbers and relationships you are given.\n3. Write one equation or draw one quick diagram before calculating.\n4. Check whether your answer makes sense in the original question.\n\nPaste the exact problem when you can, and I’ll help you choose the next step.";
-  return "I can still help you make progress right now. Start by telling me the section, the exact part that feels confusing, and what you have tried. I’ll help you turn it into one small next step.";
-}
+
 
 function answerText(data: unknown) {
   const candidate = (data as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> }).candidates?.[0];
@@ -59,27 +54,27 @@ export async function POST(request: NextRequest) {
   ].join("\n\n");
 
   try {
-    const preferred = process.env.GEMINI_MODEL || "gemini-flash-latest";
+    const preferred = "gemini-flash-lite-latest";
     let response: Response | undefined;
     for (const model of [...new Set([preferred, "gemini-flash-lite-latest"])]) {
       response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
         body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 1200, temperature: 0.35 } }),
-        signal: AbortSignal.timeout(3_000),
+        signal: AbortSignal.timeout(18_000),
       });
       if (response.ok || ![404, 503].includes(response.status)) break;
     }
     if (!response || !response.ok) {
       console.error("[student-help] Gemini request status", response?.status);
       if (response?.status === 429) return NextResponse.json({ error: "The AI quota is currently full. Please try again later." }, { status: 429 });
-      return NextResponse.json({ answer: offlineStudyHelp(question), fallback: true });
+      return NextResponse.json({ error: "Could not get a reply. Please try again." }, { status: 503 });
     }
     const answer = answerText(await response.json());
-    if (!answer) return NextResponse.json({ answer: offlineStudyHelp(question), fallback: true });
+    if (!answer) return NextResponse.json({ error: "Could not get a reply. Please try again." }, { status: 503 });
     return NextResponse.json({ answer });
   } catch {
-    return NextResponse.json({ answer: offlineStudyHelp(question), fallback: true });
+    return NextResponse.json({ error: "Could not get a reply. Please try again." }, { status: 503 });
   }
 }
 
