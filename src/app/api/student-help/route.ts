@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
         body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 1200, temperature: 0.35 } }),
-        signal: AbortSignal.timeout(10_000),
+        signal: AbortSignal.timeout(3_000),
       });
       if (response.ok || ![404, 503].includes(response.status)) break;
     }
