@@ -20,7 +20,7 @@ export async function POST(req: Request) {
    const {text}=await req.json();
    if(typeof text!=="string"||!text.trim()||text.length>5000)return error("Matn uzunligini tekshiring.",400);
    headers.set("Content-Type","application/json");
-   body=JSON.stringify({text,model:"lola",blocking:"true"});
+   body=JSON.stringify({text,model:"sevinch",blocking:"true"});
   }
   const signal=AbortSignal.timeout(95000);
   let response=await fetch("https://uzbekvoice.ai/api/v1/"+(stt?"stt":"tts"),{method:"POST",headers,body,signal});
