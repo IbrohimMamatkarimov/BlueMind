@@ -1,4 +1,3 @@
-import {CreatorTeam} from "@/components/CreatorTeam";
 import {SystemLanguage} from "@/components/SystemLanguage";
 import { StudioMotion } from "@/components/StudioMotion";
 import type { Metadata } from "next";
@@ -24,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SystemLanguage />
         <ActivityHeartbeat />
         <StudioMotion />
-        <CreatorTeam brand="BlueMind" accent="#65526a"/>{children}
+        {children}
       </body>
     </html>
   );
