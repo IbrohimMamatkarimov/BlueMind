@@ -17,15 +17,19 @@ export function CreatorTeam({brand,accent}:{brand:string;accent:string}){
  const close=()=>{dialog.current?.close();trigger.current?.focus();};
  return <>
   <div className="creator-team-entry" style={{"--creator-accent":accent} as React.CSSProperties}>
-   <button ref={trigger} type="button" onClick={()=>dialog.current?.showModal()} aria-haspopup="dialog"><Users size={15}/>{english?"Meet the creator":"Jamoa"}<ArrowUpRight size={14}/></button>
+   <button ref={trigger} type="button" onClick={()=>dialog.current?.showModal()} aria-haspopup="dialog"><span className="creator-button-spark" aria-hidden="true">✦</span><span>{english?"The creator":"Jamoa"}</span><ArrowUpRight size={14}/></button>
   </div>
   <dialog ref={dialog} className="creator-team-dialog" style={{"--creator-accent":accent} as React.CSSProperties} aria-labelledby="creator-team-name" onClick={event=>{if(event.target===event.currentTarget){const box=event.currentTarget.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)close();}}} onClose={()=>trigger.current?.focus()}>
-   <div className="creator-team-cover" style={{backgroundImage:`linear-gradient(180deg,#071c2440,#071c2470),url(${CREATOR_BACKGROUND})`}}><span className="creator-team-orbit"/><span className="creator-team-orbit second"/><span className="creator-team-wordmark">{brand}</span><button type="button" onClick={close} aria-label={english?"Close":"Yopish"} className="creator-team-close"><X size={20}/></button><div className="creator-team-coverline"><span>{english?"Ideas into reality.":"G‘oyadan — haqiqatga."}</span><p>{english?"Meet the mind behind "+brand:brand+" ortidagi ijodkor bilan tanishing"}</p></div></div>
+   <div className="creator-team-cover" style={{backgroundImage:`linear-gradient(180deg,#071c2440,#071c2470),url(${CREATOR_BACKGROUND})`}}><span className="creator-team-orbit"/><span className="creator-team-orbit second"/><span className="creator-team-wordmark">{brand}</span><button type="button" onClick={close} aria-label={english?"Close":"Yopish"} className="creator-team-close"><X size={20}/></button></div>
    <div className="creator-team-content">
     <p className="creator-team-eyebrow">{english?"THE PERSON BEHIND "+brand.toUpperCase():brand.toUpperCase()+" YARATUVCHISI"}</p>
     <h2 id="creator-team-name">Ibrohim<br/>Mamatkarimov</h2>
-    <p className="creator-team-intro">{english?"I’m Ibrohim, an 18-year-old CAU student working toward becoming an AI engineer.":"Men Ibrohimman. 18 yoshdaman, CAU’da tahsil olaman. AI muhandisi bo‘lish yo‘lida o‘rganaman va loyihalar yarataman."}</p>
-    <div className="creator-team-details"><span><GraduationCap size={18}/>{english?"Studies at CAU":"CAU talabasi"}</span><span><Sparkles size={18}/>{english?"Aspiring AI engineer":"Bo‘lajak AI muhandisi"}</span></div>
+    
+    <div className="creator-facts">
+ <div className="creator-fact"><span className="creator-fact-label">{english?"AGE":"YOSH"}</span><strong>18<span>{english?"y.o.":"yosh"}</span></strong></div>
+ <div className="creator-fact"><GraduationCap size={22}/><span className="creator-fact-label">{english?"EDUCATION":"TA’LIM"}</span><strong>CAU</strong><small>{english?"University student":"Universitet talabasi"}</small></div>
+ <div className="creator-fact"><Sparkles size={22}/><span className="creator-fact-label">{english?"PURSUING":"YO‘NALISH"}</span><strong>AI</strong><small>{english?"Engineering":"Muhandislik"}</small></div>
+ </div>
     <a className="creator-team-contact" href="https://t.me/ibrohimmamatkarimov" target="_blank" rel="noopener noreferrer"><span><small>{english?"LET’S CONNECT":"BOG‘LANISH UCHUN"}</small><strong>@ibrohimmamatkarimov</strong></span><ArrowUpRight size={22}/></a>
    </div>
   </dialog>
@@ -72,6 +76,26 @@ export function CreatorTeam({brand,accent}:{brand:string;accent:string}){
 .creator-team-contact strong{font-size:15px}
 .creator-team-orbit{opacity:.2}
 @media(max-width:540px){.creator-team-cover{height:210px;padding:22px}.creator-team-content{padding:24px}.creator-team-entry button{padding:8px 11px;font-size:12px}.creator-team-entry button svg:last-child{display:none}.creator-team-details{display:grid;gap:12px}}
+
+.creator-team-entry button{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(115deg,#0d2931,var(--creator-accent),#334958)!important;border:1px solid #ffffff40!important;color:#fff!important;box-shadow:0 6px 18px #102a3222!important;padding:11px 22px!important;gap:10px!important}
+.creator-team-entry button:before{content:"";position:absolute;inset:-100%;z-index:-1;background:linear-gradient(105deg,transparent 40%,#ffffff24 50%,transparent 60%);animation:creator-button-light 7s ease-in-out infinite;pointer-events:none}
+.creator-button-spark{color:#f4dca2;font-size:18px;display:inline-block;animation:creator-button-turn 8s ease-in-out infinite}
+.creator-team-cover{height:130px!important;background-position:center 44%;padding:24px!important}
+.creator-team-content{padding-top:26px!important}
+.creator-team-content h2{font-size:clamp(30px,6vw,38px)!important;letter-spacing:-.035em!important;line-height:1.13!important}
+.creator-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.creator-fact{position:relative;min-width:0;min-height:136px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:6px;padding:15px 12px;border:1px solid color-mix(in srgb,var(--creator-accent) 15%,#e4e9ea);border-radius:18px;background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--creator-accent) 7%,#fff));animation:creator-team-in .5s both;transition:transform .22s,box-shadow .22s}
+.creator-fact:nth-child(2){animation-delay:.08s}.creator-fact:nth-child(3){animation-delay:.16s}
+.creator-fact:hover{transform:translateY(-5px);box-shadow:0 10px 24px #152e3212}
+.creator-fact>svg{position:absolute;right:12px;top:13px;color:var(--creator-accent);opacity:.7}
+.creator-fact-label{font-size:9px;letter-spacing:.12em;font-weight:700;color:#647278}
+.creator-fact strong{font-size:32px;letter-spacing:-.04em;line-height:1.1;color:var(--creator-accent)}
+.creator-fact strong span{font-size:12px;letter-spacing:0;margin-left:5px;font-weight:500}
+.creator-fact small{font-size:11px;line-height:1.5;color:#5a666c}
+@keyframes creator-button-light{0%,55%{transform:translateX(-35%)}85%,100%{transform:translateX(35%)}}
+@keyframes creator-button-turn{0%,70%,100%{transform:rotate(0)}85%{transform:rotate(90deg)}}
+@media(max-width:380px){.creator-facts{gap:6px}.creator-fact{padding:12px 8px}.creator-fact strong{font-size:27px}.creator-team-content{padding:20px!important}}
+@media(prefers-reduced-motion:reduce){.creator-team-entry button:before,.creator-button-spark,.creator-fact{animation:none}.creator-fact{transition:none}}
 @keyframes creator-team-in{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
 @keyframes creator-team-drift{to{transform:translate(-20px,20px)}}
 @keyframes creator-team-star{50%{transform:rotate(25deg)}}
