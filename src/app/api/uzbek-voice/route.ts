@@ -2,7 +2,7 @@ export async function POST(req: Request) {
   const language = req.headers.get("x-voice-language") === "en" ? "en" : "uz";
   const key = process.env.VOICELAB_API_KEY;
   if (!key) return Response.json({error:"Ovoz xizmati hali ulanmagan."},{status:503});
-  if (req.headers.get("origin") !== new URL(req.url).origin) return new Response(null,{status:403});
+  if (![new URL(req.url).origin,"https://bluemind.uz","https://www.bluemind.uz"].includes(req.headers.get("origin") || "")) return new Response(null,{status:403});
   const size = Number(req.headers.get("content-length"));
   if (!size || size > 2000000) return new Response(null,{status:413});
   const stt = req.headers.get("content-type")?.startsWith("multipart/form-data");
