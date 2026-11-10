@@ -1176,3 +1176,17 @@ body{background:#f7f3ed;color:#332b32}::selection{background:#e9d9e3}
 
 /* Mira launcher: the character itself is the button — no banner or label. */
 .companion-launch{right:22px!important;bottom:22px!important;width:88px!important;height:88px!important;min-height:0!important;padding:0!important;display:grid!important;place-items:center!important;border:0!important;border-radius:50%!important;background:radial-gradient(circle,#eee8ff6b 0 43%,transparent 44%)!important;box-shadow:none!important;overflow:visible!important}.companion-launch .mira-art{width:84px!important;height:84px!important;filter:drop-shadow(0 10px 11px #25215b4a)!important;transition:transform .22s ease,filter .22s ease}.companion-launch:hover .mira-art{transform:translateY(-5px) scale(1.06);filter:drop-shadow(0 14px 14px #25215b60)!important}.companion-launch .text-left{display:none!important}.companion-launch::before{content:""!important;position:absolute!important;inset:8px!important;border:1px solid #a79df055!important;border-radius:50%!important;pointer-events:none!important}.companion-launch--robot::after{display:none!important}@media(max-width:640px){.companion-launch{right:12px!important;bottom:12px!important;width:76px!important;height:76px!important}.companion-launch .mira-art{width:73px!important;height:73px!important}}
+
+/* Keep the conversation scrollable while its input and controls stay reachable. */
+.companion-panel{position:fixed;z-index:1000!important;top:auto!important;right:16px!important;bottom:112px!important;display:flex!important;flex-direction:column!important;max-height:calc(100dvh - 136px)!important;width:min(390px,calc(100vw - 32px));isolation:isolate;pointer-events:auto;overflow:hidden;touch-action:pan-y}
+.companion-panel>header{flex-shrink:0;min-height:76px;align-items:center;position:relative;padding:12px 16px;gap:12px}
+.companion-panel>header img{display:block;width:48px!important;height:48px!important;flex:none;object-fit:contain}
+.companion-panel>header button{flex:none;min-width:40px;min-height:40px;display:grid;place-items:center;border-radius:12px;cursor:pointer}
+.companion-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior-y:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.companion-panel>aside{flex-shrink:0;max-height:150px;overflow-y:auto}
+.companion-panel>form,.companion-panel>div:last-child{flex-shrink:0}
+.companion-panel button{pointer-events:auto;touch-action:manipulation}
+.companion-panel textarea{max-height:100px;min-height:64px}
+.companion-panel button:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.companion-panel audio{max-width:100%;height:36px}
+@media(max-width:640px){.companion-panel{bottom:100px!important;right:12px!important;width:calc(100vw - 24px);max-height:calc(100dvh - 120px)!important}}
