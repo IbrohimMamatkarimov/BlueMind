@@ -1,5 +1,5 @@
 "use client";
-import {useEffect,useState} from "react";
+import {useEffect,useRef,useState} from "react";
 const words:Record<string,string>={
   "today": "Bugun",
   "mock tests": "Sinov testlari",
@@ -385,7 +385,18 @@ const words:Record<string,string>={
 };
 export function SystemLanguage(){
  const [lang,setLang]=useState("en");
- useEffect(()=>{const language=localStorage.getItem("bluemind-language")==="uz"?"uz":"en";setLang(language);document.documentElement.lang=language;if(language==="en")return;
+ const originals=useRef(new WeakMap<Node, Map<string,{source:string;shown:string}>>());
+ useEffect(()=>{const language=localStorage.getItem("bluemind-language")==="uz"?"uz":"en";setLang(language);},[]);
+ useEffect(()=>{document.documentElement.lang=lang;
+ function render(node:Node,key:string,current:string){
+   let fields=originals.current.get(node);
+   if(!fields){fields=new Map();originals.current.set(node,fields);}
+   const prev=fields.get(key);
+   const source=prev?.shown===current?prev.source:current;
+   const shown=lang==="uz"?translate(source):source;
+   fields.set(key,{source,shown});
+   return shown;
+ }
  function translate(value:string){const raw=value.trim();const exact=words[raw.toLowerCase()];
  if(typeof exact==="string")return value.replace(raw,exact);
  const count=raw.match(/^(\d[\d,.]*)\s+(questions?|modules?|minutes?|min|hours?|seconds?|days?|weeks?|months?|points?|words?|sessions?|reviews?|attempts?)$/i);
@@ -394,10 +405,10 @@ export function SystemLanguage(){
  if(month && /^(January|February|March|April|May|June|July|August|September|October|November|December)$/i.test(month[1]))return value.replace(raw,month[2]+"-yil "+words[month[1].toLowerCase()]);
  const stem=raw.replace(/[:…]+$/,"");if(stem!==raw && typeof words[stem.toLowerCase()]==="string")return value.replace(stem,words[stem.toLowerCase()]);
  return value;}
- function visit(node:Node){if(node instanceof Text){const next=translate(node.data);if(next!==node.data)node.data=next;return;}
+ function visit(node:Node){if(node instanceof Text){const next=render(node,"text",node.data);if(next!==node.data)node.data=next;return;}
  if(!(node instanceof Element)||node.matches("script,style,textarea,code,pre,[contenteditable=true]"))return;
- for(const attr of ["placeholder","aria-label","title"]){const val=node.getAttribute(attr);if(val&&translate(val)!==val)node.setAttribute(attr,translate(val));}
+ for(const attr of ["placeholder","aria-label","title"]){const val=node.getAttribute(attr);if(val){const next=render(node,attr,val);if(next!==val)node.setAttribute(attr,next);}}
  node.childNodes.forEach(visit);}
- visit(document.body);const observer=new MutationObserver(records=>records.forEach(r=>{if(r.type==="childList")r.addedNodes.forEach(visit);else visit(r.target);}));observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["placeholder","aria-label","title"]});return ()=>observer.disconnect();},[]);
- return <nav aria-label="Interface language / Interfeys tili" style={{display:"flex",justifyContent:"flex-end",padding:"4px 16px"}}><div style={{display:"inline-flex",border:"1px solid #bbb4bb",borderRadius:20,padding:2}}>{(["en","uz"] as const).map(code=><button key={code} type="button" lang={code} aria-pressed={lang===code} style={{borderRadius:18,padding:"4px 12px",fontWeight:600,background:lang===code?"#493944":"transparent",color:lang===code?"white":"inherit"}} onClick={()=>{if(code===lang)return;localStorage.setItem("bluemind-language",code);location.reload();}}>{code==="uz"?"O‘zbekcha":"English"}</button>)}</div></nav>;
+ visit(document.body);const observer=new MutationObserver(records=>records.forEach(r=>{if(r.type==="childList")r.addedNodes.forEach(visit);else visit(r.target);}));observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["placeholder","aria-label","title"]});return ()=>observer.disconnect();},[lang]);
+ return <nav aria-label="Interface language / Interfeys tili" style={{display:"flex",justifyContent:"flex-end",padding:"4px 16px"}}><div style={{display:"inline-flex",border:"1px solid #bbb4bb",borderRadius:20,padding:2}}>{(["en","uz"] as const).map(code=><button key={code} type="button" lang={code} aria-pressed={lang===code} style={{borderRadius:18,padding:"4px 12px",fontWeight:600,background:lang===code?"#493944":"transparent",color:lang===code?"white":"inherit"}} onClick={()=>{if(code===lang)return;localStorage.setItem("bluemind-language",code);setLang(code);}}>{code==="uz"?"O‘zbekcha":"English"}</button>)}</div></nav>;
 }
