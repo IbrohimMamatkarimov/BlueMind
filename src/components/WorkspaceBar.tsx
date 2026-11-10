@@ -1,4 +1,5 @@
 "use client";
+import {CreatorTeam} from "@/components/CreatorTeam";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -18,7 +19,7 @@ export function WorkspaceBar(){
  useEffect(()=>{const onKey=(event:KeyboardEvent)=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="k"){event.preventDefault();setOpen(value=>!value);}};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey);},[]);
  useEffect(()=>{if(open){setQuery("");setIndex(0);dialog.current?.showModal();input.current?.focus();}else if(dialog.current?.open){dialog.current.close();}},[open]);
  const current=ROUTES.find(item=>path?.startsWith(item.href));
- return <><div className="study-workspace-bar"><div><span>WORKSPACE</span><b>{current?.label||"BlueMind"}</b></div><button type="button" onClick={()=>setOpen(true)} aria-label="Search workspace" className="study-search-trigger"><Search size={15}/><span>Find your next move</span><kbd><Command size={10}/> K</kbd></button></div>
+ return <><div className="study-workspace-bar"><div><span>WORKSPACE</span><b>{current?.label||"BlueMind"}</b></div><div className="creator-header-center"><CreatorTeam brand="BlueMind" accent="#65526a"/></div><button type="button" onClick={()=>setOpen(true)} aria-label="Search workspace" className="study-search-trigger"><Search size={15}/><span>Find your next move</span><kbd><Command size={10}/> K</kbd></button></div>
  <dialog ref={dialog} className="study-command" aria-labelledby="study-command-title" onClose={()=>setOpen(false)} onClick={event=>{if(event.target===event.currentTarget)setOpen(false);}}>
  <h2 id="study-command-title" className="sr-only">Search your workspace</h2><div className="study-command__input"><Search size={18}/><input ref={input} value={query} onChange={event=>{setQuery(event.target.value);setIndex(0);}} placeholder="Where would you like to go?" aria-label="Search workspace" onKeyDown={event=>{if(event.key==="ArrowDown"){event.preventDefault();setIndex(value=>Math.min(value+1,filtered.length-1));}if(event.key==="ArrowUp"){event.preventDefault();setIndex(value=>Math.max(0,value-1));}if(event.key==="Enter"&&filtered[index]){event.preventDefault();router.push(filtered[index].href);setOpen(false);}}}/><button type="button" aria-label="Close search" onClick={()=>setOpen(false)}><X size={17}/></button></div>
  <div className="study-command__results">{filtered.length?filtered.map((item,i)=><Link key={item.href} href={item.href} data-selected={i===index} onClick={()=>setOpen(false)}><item.icon size={20}/><span><strong>{item.label}</strong><small>{item.detail}</small></span><ArrowUpRight size={15}/></Link>):<p>No matching pages. Try “mocks” or “vocabulary”.</p>}</div><footer>↑ ↓ to move · Enter to open · Esc to close</footer>
