@@ -48,7 +48,7 @@ export function StudentHelp({ title = "BlueMind Assistant", context = "Help this
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Please try again shortly.");
       if (!data.answer?.trim()) throw new Error("Please try again."); setAnswer(data.answer); 
-    } catch (cause) { setQuestion(draft=>draft||query); setError(current.signal.aborted ? "That took too long. Try again." : cause instanceof Error ? cause.message : "Please try again."); }
+    } catch (cause) { setQuestion(draft=>draft||query); setError(localStorage.getItem("bluemind-language")!=="en" ? "Javob olinmadi. Savolingiz saqlandi, qayta yuboring." : "Could not get a reply. Your question is saved; please retry."); }
     finally { window.clearTimeout(timeout); setLoading(false); }
   }
   if (disabled) return null;
@@ -61,7 +61,7 @@ export function StudentHelp({ title = "BlueMind Assistant", context = "Help this
     {open && <section id="bluemind-companion" role="dialog" aria-label="BlueMind Assistant" className="companion-panel">
       <header className="companion-heading"><img className="mira-art" src={MIRA_AVATAR} alt=""/><div className="flex-1"><h2 className="text-sm font-bold">{title}</h2><p className="text-xs text-blue-100">Mira helps you find the next clear step.</p></div><button type="button" onClick={() => {setOpen(false);launcher.current?.focus();}} aria-label="Close assistant" className="rounded-lg p-2 hover:bg-white/10"><X size={18}/></button></header>
       <div {...chatDrag} tabIndex={0} className="companion-body">{sentQuestion&&<p className="mb-3 ml-6 rounded-2xl bg-blue-50 px-4 py-3 text-sm" aria-label="Sent question">{sentQuestion}</p>}<p className="text-sm leading-6">Hey, I’m Mira, your study guide. Tell me where you are stuck. I can break down a concept, explain a method, or help you plan your next session.</p>
-        <div className="companion-suggestions">{["Explain a math concept","Help with transitions","Plan a study session"].map((text) => <button type="button" key={text} onClick={() => {void ask(text);}}>{text}</button>)}</div>
+        <div className="companion-suggestions">{["Explain a math concept","Help with transitions","Plan a study session"].map((text) => <button type="button" key={text} onClick={() => {void ask(localStorage.getItem("bluemind-language")==="en" ? text : ({"Explain a math concept":"Matematik tushunchani izohlang","Help with transitions":"Bog‘lovchi iboralarni tushuntiring","Plan a study session":"Mashg‘ulot rejasini tuzing"}[text] || text));}}>{text}</button>)}</div>
         <div aria-live="polite" aria-busy={loading}>{loading && <p className="mt-4 text-sm">Thinking through your question…</p>}{answer && <CompanionAnswer value={answer}/>}</div>
         {error && <p role="alert" className="mt-3 text-xs text-red-700">{error}</p>}
         <p className="mt-3 text-[10px] leading-4 text-slate-500">AI can make mistakes. Check the reasoning. Your message and this page’s study context are sent to Google Gemini.</p>
