@@ -40,7 +40,7 @@ export function StudentHelp({ title = "BlueMind Assistant", context = "Help this
     try {
       const response = await fetch("/api/student-help", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: query, context: localStorage.getItem('bluemind-language')==='uz' ? context+'\nAnswer in Uzbek.' : context+' Answer in English.' }), signal: current.signal,
+        body: JSON.stringify({ question: query, context: localStorage.getItem('bluemind-language')!=='en' ? context+'\nAnswer in Uzbek.' : context+' Answer in English.' }), signal: current.signal,
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Please try again shortly.");
