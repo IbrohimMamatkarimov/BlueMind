@@ -1,5 +1,5 @@
 export async function POST(req: Request) {
-  const key = process.env.UZBEKVOICE_API_KEY;
+  const key = process.env.VOICELAB_API_KEY;
   if (!key) return Response.json({error:"Ovoz xizmati hali ulanmagan."},{status:503});
   if (req.headers.get("origin") !== new URL(req.url).origin) return new Response(null,{status:403});
   const size = Number(req.headers.get("content-length"));
@@ -7,27 +7,42 @@ export async function POST(req: Request) {
   const stt = req.headers.get("content-type")?.startsWith("multipart/form-data");
   try {
     let body: FormData | string;
-    const headers = new Headers({Authorization:key});
+    const headers = new Headers({Authorization:"Bearer "+key});
     if (stt) {
       const file = (await req.formData()).get("file");
       if (!(file instanceof File) || !file.type.startsWith("audio/")) return new Response(null,{status:400});
       const form = new FormData();
-      form.set("file",file); form.set("language","uz"); form.set("model","general");
-      form.set("blocking","true"); form.set("return_offsets","false"); form.set("run_diarization","false");
+      form.set("audio",file); form.set("language","uz"); form.set("include_speakers","false");
       body = form;
     } else {
       const {text} = await req.json();
       if (typeof text !== "string" || !text.trim() || text.length > 3000) return new Response(null,{status:400});
       headers.set("Content-Type","application/json");
-      body = JSON.stringify({text,model:"sevinch",blocking:"true"});
+      const catalog = await fetch("https://api.voicelab.uz/v1/voices?language=uz&model_id=lison",{headers,signal:AbortSignal.timeout(8000)});
+      const voice = (await catalog.json()).data?.[0]?.id;
+      if (!voice) throw Error();
+      body = JSON.stringify({text,language:"uz",voice_id:voice});
     }
-    const response = await fetch("https://uzbekvoice.ai/api/v1/"+(stt?"stt":"tts"),{method:"POST",headers,body,signal:AbortSignal.timeout(45000)});
+    headers.set("Idempotency-Key",crypto.randomUUID());
+    const response = await fetch("https://api.voicelab.uz/v1/"+(stt?"stt":"tts"),{method:"POST",headers,body,signal:AbortSignal.timeout(45000)});
     if (!response.ok) throw Error();
     if (!stt && response.headers.get("content-type")?.startsWith("audio/")) return new Response(response.body,{headers:{"Content-Type":response.headers.get("content-type")!}});
-    const {result} = await response.json();
-    if (stt && typeof result?.text === "string") return Response.json({text:result.text});
-    const url = result?.url ?? result?.audio_url ?? result;
-    if (!stt && typeof url === "string" && url.startsWith("https://")) return Response.json({url});
+    const job = await response.json();
+    if (!job.id) throw Error();
+    const path = stt ? "stt/transcriptions/" : "tts/generations/";
+    const signal = AbortSignal.timeout(40000);
+    while (!signal.aborted) {
+      await new Promise(resolve=>setTimeout(resolve,1200));
+      const poll = await fetch("https://api.voicelab.uz/v1/"+path+encodeURIComponent(job.id),{headers,signal,cache:"no-store"});
+      if (!poll.ok) throw Error();
+      const result = await poll.json();
+      if (result.status==="failed") throw Error();
+      if (result.status==="completed") {
+        if(stt && typeof result.transcript==="string") return Response.json({text:result.transcript});
+        if(!stt && typeof result.audio_url==="string") return Response.json({url:new URL(result.audio_url,"https://api.voicelab.uz").href});
+        throw Error();
+      }
+    }
     throw Error();
   } catch { return Response.json({error:"Ovozga ishlov berilmadi. Qayta urinib ko‘ring."},{status:502}); }
 }
