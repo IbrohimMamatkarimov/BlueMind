@@ -1,5 +1,6 @@
 export async function POST(req: Request) {
   const language = req.headers.get("x-voice-language") === "en" ? "en" : "uz";
+  const permissionError = () => Response.json({error: language === "en" ? "Voice service needs account permissions. Please contact support." : "Ovoz xizmati uchun hisob ruxsatlari kerak. Yordam xizmatiga murojaat qiling."},{status:503});
   const key = process.env.VOICELAB_API_KEY;
   if (!key) return Response.json({error:"Ovoz xizmati hali ulanmagan."},{status:503});
   if (![new URL(req.url).origin,"https://bluemind.uz","https://www.bluemind.uz"].includes(req.headers.get("origin") || "")) return new Response(null,{status:403});
@@ -20,12 +21,15 @@ export async function POST(req: Request) {
       if (typeof text !== "string" || !text.trim() || text.length > 5000) return new Response(null,{status:400});
       headers.set("Content-Type","application/json");
       const catalog = await fetch("https://api.voicelab.uz/v1/voices?language="+language+"&model_id=lison",{headers,signal:AbortSignal.timeout(8000)});
+      if(catalog.status === 401 || catalog.status === 403) return permissionError();
+      if(!catalog.ok) throw Error();
       const voice = (await catalog.json()).data?.[0]?.id;
       if (!voice) throw Error();
       body = JSON.stringify({text,language,voice_id:voice});
     }
     headers.set("Idempotency-Key",crypto.randomUUID());
     const response = await fetch("https://api.voicelab.uz/v1/"+(stt?"stt":"tts"),{method:"POST",headers,body,signal:AbortSignal.timeout(45000)});
+    if (response.status === 401 || response.status === 403) return permissionError();
     if (!response.ok) throw Error();
     if (!stt && response.headers.get("content-type")?.startsWith("audio/")) return new Response(response.body,{headers:{"Content-Type":response.headers.get("content-type")!}});
     const job = await response.json();
@@ -35,6 +39,7 @@ export async function POST(req: Request) {
     while (!signal.aborted) {
       await new Promise(resolve=>setTimeout(resolve,1200));
       const poll = await fetch("https://api.voicelab.uz/v1/"+path+encodeURIComponent(job.id),{headers,signal,cache:"no-store"});
+      if (poll.status === 401 || poll.status === 403) return permissionError();
       if (!poll.ok) throw Error();
       const result = await poll.json();
       if (result.status==="failed") throw Error();
@@ -45,5 +50,5 @@ export async function POST(req: Request) {
       }
     }
     throw Error();
-  } catch { return Response.json({error:"Ovozga ishlov berilmadi. Qayta urinib ko‘ring."},{status:502}); }
+  } catch { return Response.json({error:language==="en"?"Could not process audio. Please try again.":"Ovozga ishlov berilmadi. Qayta urinib ko‘ring."},{status:502}); }
 }
