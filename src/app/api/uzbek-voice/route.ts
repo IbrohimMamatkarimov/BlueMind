@@ -1,4 +1,5 @@
 export async function POST(req: Request) {
+  const language = req.headers.get("x-voice-language") === "en" ? "en" : "uz";
   const key = process.env.VOICELAB_API_KEY;
   if (!key) return Response.json({error:"Ovoz xizmati hali ulanmagan."},{status:503});
   if (req.headers.get("origin") !== new URL(req.url).origin) return new Response(null,{status:403});
@@ -12,16 +13,16 @@ export async function POST(req: Request) {
       const file = (await req.formData()).get("file");
       if (!(file instanceof File) || !file.type.startsWith("audio/")) return new Response(null,{status:400});
       const form = new FormData();
-      form.set("audio",file); form.set("language","uz"); form.set("include_speakers","false");
+      form.set("audio",file); form.set("language",language); form.set("include_speakers","false");
       body = form;
     } else {
       const {text} = await req.json();
-      if (typeof text !== "string" || !text.trim() || text.length > 3000) return new Response(null,{status:400});
+      if (typeof text !== "string" || !text.trim() || text.length > 5000) return new Response(null,{status:400});
       headers.set("Content-Type","application/json");
-      const catalog = await fetch("https://api.voicelab.uz/v1/voices?language=uz&model_id=lison",{headers,signal:AbortSignal.timeout(8000)});
+      const catalog = await fetch("https://api.voicelab.uz/v1/voices?language="+language+"&model_id=lison",{headers,signal:AbortSignal.timeout(8000)});
       const voice = (await catalog.json()).data?.[0]?.id;
       if (!voice) throw Error();
-      body = JSON.stringify({text,language:"uz",voice_id:voice});
+      body = JSON.stringify({text,language,voice_id:voice});
     }
     headers.set("Idempotency-Key",crypto.randomUUID());
     const response = await fetch("https://api.voicelab.uz/v1/"+(stt?"stt":"tts"),{method:"POST",headers,body,signal:AbortSignal.timeout(45000)});
