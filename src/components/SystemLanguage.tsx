@@ -384,9 +384,9 @@ const words:Record<string,string>={
   "december": "dekabr"
 };
 export function SystemLanguage(){
- const [lang,setLang]=useState("en");
+ const [lang,setLang]=useState("uz");
  const originals=useRef(new WeakMap<Node, Map<string,{source:string;shown:string}>>());
- useEffect(()=>{const language=localStorage.getItem("bluemind-language")==="uz"?"uz":"en";setLang(language);},[]);
+ useEffect(()=>{const language=localStorage.getItem("bluemind-language")==="en"?"en":"uz";setLang(language);},[]);
  useEffect(()=>{document.documentElement.lang=lang;
  function render(node:Node,key:string,current:string){
    let fields=originals.current.get(node);
