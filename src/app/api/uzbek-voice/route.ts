@@ -1,61 +1,39 @@
 export const maxDuration = 120;
-
 export async function POST(req: Request) {
-  const language = req.headers.get("x-voice-language") === "en" ? "en" : "uz";
-  const permissionError = () => Response.json({error: language === "en" ? "Voice service needs account permissions. Please contact support." : "Ovoz xizmati uchun hisob ruxsatlari kerak. Yordam xizmatiga murojaat qiling."},{status:503});
-  const key = process.env.VOICELAB_API_KEY;
-  if (!key) return Response.json({error:"Ovoz xizmati hali ulanmagan."},{status:503});
-  if (![new URL(req.url).origin,"https://bluemind.uz","https://www.bluemind.uz"].includes(req.headers.get("origin") || "")) return new Response(null,{status:403});
-  const size = Number(req.headers.get("content-length"));
-  if (!size || size > 2000000) return new Response(null,{status:413});
-  const stt = req.headers.get("content-type")?.startsWith("multipart/form-data");
-  try {
-    let body: FormData | string;
-    const headers = new Headers({Authorization:"Bearer "+key});
-    if (stt) {
-      const file = (await req.formData()).get("file");
-      if (!(file instanceof File) || !file.type.startsWith("audio/")) return new Response(null,{status:400});
-      const form = new FormData();
-      form.set("audio",file); form.set("language",language); form.set("include_speakers","false");
-      body = form;
-    } else {
-      const {text} = await req.json();
-      if (typeof text !== "string" || !text.trim() || text.length > 5000) return new Response(null,{status:400});
-      headers.set("Content-Type","application/json");
-      const catalog = await fetch("https://api.voicelab.uz/v1/voices?language="+language+"&model_id=lison",{headers,signal:AbortSignal.timeout(8000)});
-      if(catalog.status === 401 || catalog.status === 403) return permissionError();
-      if(!catalog.ok) throw Error();
-      const voice = (await catalog.json()).data?.[0]?.id;
-      if (!voice) throw Error();
-      body = JSON.stringify({text,language,voice_id:voice});
-    }
-    headers.set("Idempotency-Key",crypto.randomUUID());
-    const response = await fetch("https://api.voicelab.uz/v1/"+(stt?"stt":"tts"),{method:"POST",headers,body,signal:AbortSignal.timeout(45000)});
-    if (response.status === 401 || response.status === 403) return permissionError();
-    if (!response.ok) {
-      const failure=await response.json().catch(()=>({}));
-      console.error("VoiceLab request failed",{operation:stt?"stt":"tts",status:response.status,code:failure.error?.code,requestId:failure.request_id});
-      const message=response.status===402 ? (language==="en"?"Voice credits are exhausted. Contact support.":"Ovoz xizmati krediti tugagan. Yordam xizmatiga murojaat qiling.") : response.status===429 ? (language==="en"?"Voice service is busy. Try again shortly.":"Ovoz xizmati band. Birozdan keyin urinib ko‘ring.") : stt ? (language==="en"?"Could not transcribe this recording. Try a shorter recording.":"Yozuvni matnga aylantirib bo‘lmadi. Qisqaroq yozuv bilan urinib ko‘ring.") : (language==="en"?"Could not generate speech. Please retry.":"Ovoz yaratib bo‘lmadi. Qayta urinib ko‘ring.");
-      return Response.json({error:message},{status:response.status===402?402:502});
-    }
-    if (!stt && response.headers.get("content-type")?.startsWith("audio/")) return new Response(response.body,{headers:{"Content-Type":response.headers.get("content-type")!}});
-    const job = await response.json();
-    if (!job.id) throw Error();
-    const path = stt ? "stt/transcriptions/" : "tts/generations/";
-    const signal = AbortSignal.timeout(45000);
-    while (!signal.aborted) {
-      await new Promise(resolve=>setTimeout(resolve,1200));
-      const poll = await fetch("https://api.voicelab.uz/v1/"+path+encodeURIComponent(job.id),{headers,signal,cache:"no-store"});
-      if (poll.status === 401 || poll.status === 403) return permissionError();
-      if (!poll.ok) throw Error();
-      const result = await poll.json();
-      if (result.status==="failed") throw Error();
-      if (result.status==="completed") {
-        if(stt && typeof result.transcript==="string") return Response.json({text:result.transcript});
-        if(!stt && typeof result.audio_url==="string") return Response.json({url:new URL(result.audio_url,"https://api.voicelab.uz").href});
-        throw Error();
-      }
-    }
-    throw Error();
-  } catch { return Response.json({error:language==="en"?"Could not process audio. Please try again.":"Ovozga ishlov berilmadi. Qayta urinib ko‘ring."},{status:502}); }
+ const language=req.headers.get("x-voice-language")==="en"?"en":"uz";
+ const error=(message:string,status=502)=>Response.json({error:message},{status});
+ if(![new URL(req.url).origin,"https://bluemind.uz","https://www.bluemind.uz"].includes(req.headers.get("origin")||""))return error("Forbidden",403);
+ const key=process.env.MOHIRAI_API_KEY;
+ if(!key)return error("Voice service is being configured.",503);
+ const stt=req.headers.get("content-type")?.startsWith("multipart/form-data");
+ if(language==="en")return error("Use your device English voice.",422);
+ try{
+  const headers=new Headers({Authorization:key});
+  let body:FormData|string;
+  if(stt){
+   const incoming=await req.formData(),file=incoming.get("file");
+   if(!(file instanceof File)||!file.type.startsWith("audio/")||file.size>2000000)return error("Yozuv juda katta yoki noto‘g‘ri.",400);
+   const form=new FormData();
+   form.set("file",file);form.set("language","uz");form.set("model","general");
+   form.set("return_offsets","false");form.set("run_diarization","false");form.set("blocking","true");body=form;
+  }else{
+   const {text}=await req.json();
+   if(typeof text!=="string"||!text.trim()||text.length>5000)return error("Matn uzunligini tekshiring.",400);
+   headers.set("Content-Type","application/json");
+   body=JSON.stringify({text,model:"sevinch",blocking:"true"});
+  }
+  const signal=AbortSignal.timeout(95000);
+  let response=await fetch("https://uzbekvoice.ai/api/v1/"+(stt?"stt":"tts"),{method:"POST",headers,body,signal});
+  if(!response.ok)return error(response.status===402?"Ovoz xizmati balansi yetarli emas.":"Ovoz xizmati so‘rovni bajarmadi. Qayta urinib ko‘ring.");
+  let data=await response.json();
+  while(!data.result && data.id && !["FAILURE","FAILED"].includes(String(data.status??data.state).toUpperCase())){
+   await new Promise(resolve=>setTimeout(resolve,1500));
+   response=await fetch("https://uzbekvoice.ai/api/v1/tasks?id="+encodeURIComponent(data.id),{headers:{Authorization:key},signal,cache:"no-store"});
+   if(!response.ok)throw Error();
+   data=await response.json();
+  }
+  if(stt&&typeof data.result?.text==="string")return Response.json({text:data.result.text});
+  if(!stt&&typeof data.result?.url==="string"&&data.result.url.startsWith("https://"))return Response.json({url:data.result.url});
+  throw Error();
+ }catch{return error("Ovozga ishlov berilmadi. Qayta urinib ko‘ring.");}
 }
