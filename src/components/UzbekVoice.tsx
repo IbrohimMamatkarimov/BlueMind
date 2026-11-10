@@ -8,21 +8,24 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
   const uz=lang==="uz";
   const player=useRef<HTMLAudioElement>(null);
   const [playing,setPlaying]=useState(false);
+  const request=useRef<AbortController|null>(null);
   const recording=useRef<MediaRecorder|null>(null);
   const mounted=useRef(false);
   const [state,setState]=useState("idle"),[error,setError]=useState(""),[url,setUrl]=useState("");
-  useEffect(()=>{mounted.current=true;return ()=>{mounted.current=false;recording.current?.stream.getTracks().forEach(t=>t.stop());};},[]);
-  useEffect(()=>{setUrl("");},[answer,lang]);
+  useEffect(()=>{mounted.current=true;return ()=>{mounted.current=false;request.current?.abort();player.current?.pause();recording.current?.stream.getTracks().forEach(t=>t.stop());};},[]);
+  useEffect(()=>{request.current?.abort();player.current?.pause();setPlaying(false);setUrl("");setError("");},[answer,lang]);
   useEffect(()=>()=>{if(url.startsWith("blob:")) URL.revokeObjectURL(url);},[url]);
   async function send(body:FormData|string) {
+    request.current?.abort();
+    const controller=new AbortController();request.current=controller;
     setState("busy");
     try {
-      const r=await fetch("/api/uzbek-voice",{method:"POST",headers:{"x-voice-language":lang,...(typeof body==="string"?{"Content-Type":"application/json"}:{})},body});
+      const r=await fetch("/api/uzbek-voice",{method:"POST",signal:controller.signal,headers:{"x-voice-language":lang,...(typeof body==="string"?{"Content-Type":"application/json"}:{})},body});
       if(!r.ok) throw Error((await r.json()).error);
       if(r.headers.get("content-type")?.startsWith("audio/")) setUrl(URL.createObjectURL(await r.blob()));
       else {const data=await r.json();if(data.text) onText(data.text);else if(data.url)setUrl(data.url);else throw Error();}
-    } catch(e){setError(e instanceof Error && e.message?e.message:"Qayta urinib ko‘ring.");}
-    finally{setState("idle");}
+    } catch(e){if(controller.signal.aborted)return;setError(e instanceof Error && e.message?e.message:"Qayta urinib ko‘ring.");}
+    finally{if(mounted.current)setState("idle");}
   }
   async function mic(){
     setError("");
@@ -39,7 +42,7 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
       rec.onstop=()=>{stream.getTracks().forEach(t=>t.stop());if(!mounted.current)return;
         const form=new FormData();form.set("file",new Blob(chunks,{type:rec.mimeType}),rec.mimeType.includes("mp4")?"voice.mp4":"voice.webm");void send(form);};
       rec.start();setState("recording");window.setTimeout(()=>{if(rec.state==="recording")rec.stop();},30000);
-    }catch{setState("idle");setError("Mikrofonga ruxsat bering yoki savolni yozing.");}
+    }catch{setState("idle");setError(uz?"Mikrofonga ruxsat bering yoki savolni yozing.":"Allow microphone access or type your question.");}
   }
   return <aside className="flex flex-wrap items-center gap-2 p-2 text-sm" aria-label={uz?"Ovoz boshqaruvi":"Voice controls"}>
     <button type="button" disabled={state==="busy"} onClick={mic} className="inline-flex items-center gap-2 rounded-lg border px-3 py-2"><Mic size={16}/>{state==="recording"?(uz?"To‘xtatish":"Stop recording"):(uz?"Gapirish":"Dictate")}</button>
@@ -50,6 +53,6 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
     }}>{playing?<Pause size={16}/>:url?<Play size={16}/>:<Volume2 size={16}/>}{playing?(uz?"Pauza":"Pause"):url?(uz?"Ijro etish":"Play"):(uz?"Javobni tinglash":"Read aloud")}</button>}
     {state==="busy"&&<small role="status">{uz?"Tayyorlanmoqda…":"Preparing audio…"}</small>}
     {url&&<audio ref={player} controls autoPlay src={url} className="w-full" onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)} onEnded={()=>setPlaying(false)}/>}
-    {error&&<p role="alert">{uz?error:"Voice is unavailable. Check microphone access or try again."}</p>}
+    {error&&<p role="alert">{error}</p>}
   </aside>;
 }
