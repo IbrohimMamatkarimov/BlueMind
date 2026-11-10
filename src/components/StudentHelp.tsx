@@ -1,4 +1,5 @@
 "use client";
+import {useChatDrag} from "@/components/useChatDrag";
 import { createPortal } from "react-dom";
 import { UzbekVoice } from "@/components/UzbekVoice";
 import { useEffect, useRef, useState } from "react";
@@ -13,6 +14,7 @@ function CompanionAnswer({ value }: { value: string }) {
 
 export function StudentHelp({ title = "BlueMind Assistant", context = "Help this learner build SAT math, reading, and writing skills.", disabled = false }: { title?: string; context?: string; disabled?: boolean }) {
   const [mounted,setMounted]=useState(false);useEffect(()=>setMounted(true),[]);
+  const chatDrag=useChatDrag();
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState("");
   const [sentQuestion,setSentQuestion]=useState("");
@@ -58,7 +60,7 @@ export function StudentHelp({ title = "BlueMind Assistant", context = "Help this
     </button>
     {open && <section id="bluemind-companion" role="dialog" aria-label="BlueMind Assistant" className="companion-panel">
       <header className="companion-heading"><img className="mira-art" src={MIRA_AVATAR} alt=""/><div className="flex-1"><h2 className="text-sm font-bold">{title}</h2><p className="text-xs text-blue-100">Mira helps you find the next clear step.</p></div><button type="button" onClick={() => {setOpen(false);launcher.current?.focus();}} aria-label="Close assistant" className="rounded-lg p-2 hover:bg-white/10"><X size={18}/></button></header>
-      <div className="companion-body">{sentQuestion&&<p className="mb-3 ml-6 rounded-2xl bg-blue-50 px-4 py-3 text-sm" aria-label="Sent question">{sentQuestion}</p>}<p className="text-sm leading-6">Hey, I’m Mira, your study guide. Tell me where you are stuck. I can break down a concept, explain a method, or help you plan your next session.</p>
+      <div {...chatDrag} tabIndex={0} className="companion-body">{sentQuestion&&<p className="mb-3 ml-6 rounded-2xl bg-blue-50 px-4 py-3 text-sm" aria-label="Sent question">{sentQuestion}</p>}<p className="text-sm leading-6">Hey, I’m Mira, your study guide. Tell me where you are stuck. I can break down a concept, explain a method, or help you plan your next session.</p>
         <div className="companion-suggestions">{["Explain a math concept","Help with transitions","Plan a study session"].map((text) => <button type="button" key={text} onClick={() => {void ask(text);}}>{text}</button>)}</div>
         <div aria-live="polite" aria-busy={loading}>{loading && <p className="mt-4 text-sm">Thinking through your question…</p>}{answer && <CompanionAnswer value={answer}/>}</div>
         {error && <p role="alert" className="mt-3 text-xs text-red-700">{error}</p>}
