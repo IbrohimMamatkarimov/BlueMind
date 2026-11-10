@@ -20,7 +20,8 @@ export function UzbekVoice({answer,onText,language}:{language?:string;answer:str
   useEffect(()=>()=>{for(const cached of audioCache.current.values()){if(cached.startsWith("blob:"))URL.revokeObjectURL(cached);}},[]);
   function deviceSpeak(text:string){
     if(!("speechSynthesis" in window))return false;
-    const voice=window.speechSynthesis.getVoices().find(v=>v.lang.toLowerCase().startsWith(lang));
+    const voices=window.speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith(lang));
+    const voice=voices.find(v=>/Jenny|Aria|Samantha|Susan|Victoria|Zira|Sonia/i.test(v.name))??voices[0];
     if(!voice)return false;
     const utterance=new SpeechSynthesisUtterance(text);
     utterance.voice=voice;utterance.lang=voice.lang;
