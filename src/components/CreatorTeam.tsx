@@ -27,7 +27,7 @@ export function CreatorTeam({brand,accent}:{brand:string;accent:string}){
     
     <section className="creator-about" aria-labelledby="creator-about-title">
      <h3 id="creator-about-title">{english?"About me":"Men haqimda"}</h3>
-     <p>{english?"I’m Ibrohim Mamatkarimov, an 18-year-old student at Central Asian University (CAU).":"Men Ibrohim Mamatkarimovman. 18 yoshdaman va Central Asian University (CAU)da tahsil olaman."}</p>
+     <p>{english?"I’m Ibrohim Mamatkarimov. I’m 18 years old.":"Men Ibrohim Mamatkarimovman. 18 yoshdaman."}</p>
      <p>{english?"I’m working toward becoming an AI engineer. I study artificial intelligence and build practical web projects to develop my skills.":"Sun’iy intellekt muhandisi bo‘lish yo‘lida o‘rganayapman. AI texnologiyalarini o‘rganib, bilimlarimni amaliy veb loyihalar yaratish orqali rivojlantiraman."}</p>
      <p>{english?"For questions, feedback, or collaboration, you can reach me on Telegram.":"Savol, taklif yoki hamkorlik uchun menga Telegram orqali yozishingiz mumkin."}</p>
     </section>
