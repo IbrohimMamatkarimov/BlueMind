@@ -24,11 +24,6 @@ function takeRateLimit(request: NextRequest) {
 
 
 
-function answerText(data: unknown) {
-  const candidate = (data as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> }).candidates?.[0];
-  return candidate?.content?.parts?.map((part) => part.text ?? "").join("").trim() ?? "";
-}
-
 export async function POST(request: NextRequest) {
   if (!process.env.GEMINI_API_KEY) {
     return NextResponse.json({ error: "Student help is not configured yet." }, { status: 503 });
@@ -54,29 +49,38 @@ export async function POST(request: NextRequest) {
     `Student question:\n${question}`,
   ].join("\n\n");
 
-  try {
-    const preferred = "gemini-3.5-flash-lite";
-    const deadline = AbortSignal.timeout(18_000);
-    let response: Response | undefined;
-    for (const model of [...new Set([preferred, process.env.GEMINI_MODEL || "gemini-flash-latest"])]) {
-      response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
-        body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 1024, temperature: 0.35, thinkingConfig: { thinkingLevel: "minimal" } } }),
-        signal: deadline,
-      });
-      if (response.ok || ![404, 429, 503].includes(response.status)) break;
+  let lastStatus = 503;
+  for (const model of ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]) {
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY! },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            generationConfig: { maxOutputTokens: 1024, temperature: 0.35, thinkingConfig: { thinkingLevel: "minimal" } },
+          }),
+          signal: AbortSignal.timeout(6_000),
+        }
+      );
+      lastStatus = response.status;
+      if (!response.ok) {
+        console.warn("[companion] provider status", model, response.status);
+        if (![404, 408, 429, 500, 502, 503, 504].includes(response.status)) break;
+        continue;
+      }
+      const data = await response.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string; thought?: boolean }> } }> };
+      const answer = data.candidates?.[0]?.content?.parts?.filter(part => !part.thought).map(part => part.text || "").join("").trim();
+      if (answer) return NextResponse.json({ answer });
+      console.warn("[companion] empty provider response", model);
+    } catch (error) {
+      console.warn("[companion] attempt failed", model, error instanceof Error ? error.name : "UnknownError");
     }
-    if (!response || !response.ok) {
-      console.error("[student-help] Gemini request status", response?.status);
-      if (response?.status === 429) return NextResponse.json({ error: "The AI quota is currently full. Please try again later." }, { status: 429 });
-      return NextResponse.json({ error: "Could not get a reply. Please try again." }, { status: 503 });
-    }
-    const answer = answerText(await response.json());
-    if (!answer) return NextResponse.json({ error: "Could not get a reply. Please try again." }, { status: 503 });
-    return NextResponse.json({ answer });
-  } catch {
-    return NextResponse.json({ error: "Could not get a reply. Please try again." }, { status: 503 });
   }
+  const limited = lastStatus === 429;
+  return NextResponse.json({ error: limited
+    ? "AI xizmatining limiti vaqtincha to‘ldi. Birozdan keyin qayta urinib ko‘ring."
+    : "Javob olinmadi. Iltimos, savolingizni qayta yuboring."
+  }, { status: limited ? 429 : 503 });
 }
-
