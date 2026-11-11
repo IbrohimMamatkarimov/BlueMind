@@ -6,8 +6,9 @@ export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "Sign in to view the Question Bank" }, { status: 401 });
 
-  return NextResponse.json({
-    sections: await getQuestionBankOverview(user.id),
-    stats: await getGlobalPracticeStats(user.id),
-  });
+  const [sections, stats] = await Promise.all([
+    getQuestionBankOverview(user.id),
+    getGlobalPracticeStats(user.id),
+  ]);
+  return NextResponse.json({ sections, stats });
 }
