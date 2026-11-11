@@ -87,32 +87,21 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
     const { payload } = await jwtVerify(token, getSecret());
     const userId = payload.userId as string;
 
-    let avatarData: string | null = null;
-
+    type UserRow = { id: string; email: string; name: string; isGuest: number; avatar_data?: string | null };
+    let row: UserRow | undefined;
     try {
-      const avatarRow = (await db
-        .prepare("SELECT avatar_data FROM users WHERE id = ?")
-        .get(userId)) as
-        | { avatar_data: string | null }
-        | undefined;
-
-      avatarData = avatarRow?.avatar_data ?? null;
-    } catch {
-      // avatar_data may not exist in older databases.
-    }
-
-    const row = (await db
-      .prepare(
+      row = await db.prepare(
+        "SELECT id, email, name, is_guest as isGuest, avatar_data FROM users WHERE id = ?"
+      ).get(userId) as UserRow | undefined;
+    } catch (error) {
+      // Retain compatibility with databases that have not added avatars yet.
+      // Other database failures must not trigger a second expensive query.
+      if ((error as { code?: string }).code !== "42703") throw error;
+      row = await db.prepare(
         "SELECT id, email, name, is_guest as isGuest FROM users WHERE id = ?"
-      )
-      .get(userId)) as
-      | {
-          id: string;
-          email: string;
-          name: string;
-          isGuest: number;
-        }
-      | undefined;
+      ).get(userId) as UserRow | undefined;
+    }
+    const avatarData = row?.avatar_data ?? null;
 
     if (!row) return null;
 
